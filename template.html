@@ -59,6 +59,7 @@
   --gearset-tile: #105446;
   --brand-tile: #b45f06;
   --exotic-tile: oklch(0.45 0.14 35);
+  --named-tile: oklch(0.42 0.1 250);
 }
 
 * { box-sizing: border-box; }
@@ -151,6 +152,7 @@ select.field option, select.field optgroup { background: var(--hm-overlay); colo
 .tile[data-kind='gearset'] { background: var(--gearset-tile); }
 .tile[data-kind='brandset'] { background: var(--brand-tile); }
 .tile[data-kind='exotic'] { background: var(--exotic-tile); }
+.tile[data-kind='namedweapon'] { background: var(--named-tile); }
 .card-title { min-width: 0; }
 .card-title h3 { margin: 0; font-size: 1rem; line-height: 1.375rem; font-weight: 600; letter-spacing: -0.011em; }
 .card-title .alt-name { color: var(--hm-fg-3); font-size: 0.8125rem; font-weight: 450; }
@@ -161,7 +163,7 @@ select.field option, select.field optgroup { background: var(--hm-overlay); colo
 .badge[data-tone='brandset'] { --tone-bg: var(--hm-warning-bg); --tone-line: var(--hm-warning-line); --tone-fg: var(--hm-warning-fg); }
 .badge[data-tone='exotic'] { --tone-bg: var(--hm-danger-bg); --tone-line: var(--hm-danger-line); --tone-fg: var(--hm-danger-fg); }
 .badge[data-tone='new'] { --tone-bg: var(--hm-accent-subtle); --tone-line: var(--hm-accent-line); --tone-fg: var(--hm-accent-subtle-fg); }
-.badge[data-tone='info'] { --tone-bg: var(--hm-info-bg); --tone-line: var(--hm-info-line); --tone-fg: var(--hm-info-fg); }
+.badge[data-tone='info'], .badge[data-tone='namedweapon'] { --tone-bg: var(--hm-info-bg); --tone-line: var(--hm-info-line); --tone-fg: var(--hm-info-fg); }
 .badge[data-tone='neutral'] { --tone-bg: var(--hm-control); --tone-line: var(--hm-line); --tone-fg: var(--hm-fg-2); }
 .badge[data-tone='pvp'] { --tone-bg: var(--hm-warning-bg); --tone-line: var(--hm-warning-line); --tone-fg: var(--hm-warning-fg); }
 
@@ -189,6 +191,13 @@ a.scale::before { content: '↗'; margin-right: 0.25rem; opacity: 0.7; }
 .row .hint { color: var(--hm-fg-3); font-size: 0.8125rem; }
 .row .scales { margin-top: 0.125rem; }
 .row-val .bonus + .bonus { margin-top: 0.375rem; }
+/* Waffenwerte der Named Weapons: Zahl oben, Bezeichnung darunter */
+.wstats { display: grid; grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); gap: 0.5rem 0.75rem; margin: 0; }
+.wstats div { min-width: 0; }
+.wstats dt { color: var(--hm-fg-3); font-size: 0.75rem; line-height: 1rem; }
+.wstats dd { margin: 0; color: var(--hm-fg); font-size: 0.9375rem; font-weight: 550; font-variant-numeric: tabular-nums; }
+.wstats .hint { display: block; color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 450; }
+.base-weapon { margin: 0 0 0.5rem; color: var(--hm-fg-2); font-size: 0.875rem; }
 
 .talent { padding: 0.5rem; margin: 0 -0.5rem; border-radius: var(--hm-radius-sm); }
 .talent + .talent { margin-top: 0.25rem; }
@@ -430,12 +439,12 @@ const ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/m
 
 const UI = {
   de: {
-    subtitle: (build) => `Gear-Sets, Brand-Sets, Exotics und Schadensformeln · direkt aus den Spieldaten (Build ${build})`,
+    subtitle: (build) => `Gear-Sets, Brand-Sets, Exotics, Named-Waffen und Schadensformeln · direkt aus den Spieldaten (Build ${build})`,
     views: { codex: 'Codex', talents: 'Talente', formulas: 'Formeln', faq: 'FAQ' },
     tal: {
       count: 'Talente',
       search: 'Talente durchsuchen …',
-      intro: 'Talente für gelbe Items (High-End): was zufällig auf Waffen, Westen und Rucksäcken würfeln kann, plus die Talente der Named Items. Gear-Set- und Exotic-Talente gehören zu genau einem Item und stehen im Codex.',
+      intro: 'Talente für gelbe Items (High-End): was zufällig auf Waffen, Westen und Rucksäcken würfeln kann, plus die Talente der Named Items und Named-Waffen. Gear-Set- und Exotic-Talente gehören zu genau einem Item und stehen im Codex.',
       anySource: 'Jede Herkunft', anyWeapon: 'Jeder Waffentyp',
       source: { roll: 'Würfelbar', named: 'Named Item', gearset: 'Gear-Set', exotic: 'Exotic', augment: 'Augment' },
       sourceHint: { roll: 'kann zufällig auf diesem Slot würfeln', named: 'nur auf diesem Named Item', gearset: 'Teil eines Gear-Sets', exotic: 'nur auf diesem Exotic', augment: 'Augment auf Prototyp-Items' },
@@ -446,23 +455,25 @@ const UI = {
       on: 'auf', from: 'aus',
       empty: 'Kein Talent passt. Anderer Filter oder weniger Wörter?',
     },
-    counts: { gearset: 'Gear-Sets', brandset: 'Brand-Sets', exotic: 'Exotics' },
-    search: 'Namen, Talente, Named Items durchsuchen …',
+    counts: { gearset: 'Gear-Sets', brandset: 'Brand-Sets', exotic: 'Exotics', namedweapon: 'Named-Waffen' },
+    search: 'Namen, Talente, Named Items, Waffen durchsuchen …',
     anyScale: 'Betrifft … (alle)',
-    anyType: 'Jeder Exotic-Typ', weapons: 'Waffen', gear: 'Ausrüstung',
+    anyType: 'Jeder Typ', weapons: 'Waffen', gear: 'Ausrüstung',
     sort: { old: 'Älteste zuerst', new: 'Neueste zuerst', name: 'Name A–Z' },
-    kinds: { all: 'Alle', gearset: 'Gear-Sets', brandset: 'Brand-Sets', 'exotic-weapon': 'Exotic-Waffen', 'exotic-gear': 'Exotic-Ausrüstung' },
+    kinds: { all: 'Alle', gearset: 'Gear-Sets', brandset: 'Brand-Sets', 'exotic-weapon': 'Exotic-Waffen', 'exotic-gear': 'Exotic-Ausrüstung', namedweapon: 'Named-Waffen' },
     reset: 'Zurücksetzen',
     of: (a, b) => `${a} von ${b}`,
     empty: 'Nichts gefunden. Anderer Filter oder weniger Wörter?',
     pvpNote: 'PvP-Ansicht: Werte, die im PvP anders sind, sind markiert. Alles andere gilt in PvE und PvP gleich.',
-    kind: { gearset: 'Gear-Set', brandset: 'Brand-Set', exotic: 'Exotic' },
+    kind: { gearset: 'Gear-Set', brandset: 'Brand-Set', exotic: 'Exotic', namedweapon: 'Named-Waffe' },
     newBadge: 'Neu', pvpBadge: 'PvP-Wert',
-    setBonuses: 'Set-Boni', attributes: 'Feste Attribute', talents: 'Talente', exoticTalents: 'Exotic-Talente', named: 'Named Items',
+    setBonuses: 'Set-Boni', attributes: 'Feste Attribute', talents: 'Talente', exoticTalents: 'Exotic-Talente', namedTalent: 'Named-Talent', named: 'Named Items',
     pieces: (n) => `${n} Teile`, piece1: '1 Teil',
     slot: { '4pc': '4 Teile', chest: 'Weste', backpack: 'Rucksack', exotic: 'Talent', holstered: 'Im Holster' },
     rolls: 'zufällig', fixed: 'fest', maxRoll: 'Höchstwert', varies: 'Wert nicht in den Daten',
     legacy: 'Ältere Talente in den Spieldaten – nicht mehr mit dem Item verknüpft, vermutlich entfernt:',
+    weapon: { title: 'Waffenwerte (Spieldatei)', base: 'Variante von', damage: 'Grundschaden', vsBase: (name) => `ggü. ${name}`, rpm: 'Schuss/Min.', magazine: 'Magazin', reload: 'Nachladen', headshot: 'Kopfschuss', range: 'Reichweite', note: 'Grundschaden aus der Waffendatei (myDamageMax). Ingame wird er noch mit Kurven für Stufe und Gear Score multipliziert – vergleichbar sind nur die Verhältnisse.' },
+    variants: 'Varianten in den Daten',
     more: 'Herkunft & Quelle', obtain: 'So bekommst du es', obtainNote: '(Community-Angabe, englisch)', source: 'Spieldatei', tags: 'Spiel-Tags',
     unknownDate: 'Datum unbekannt',
     formulas: {
@@ -482,12 +493,12 @@ const UI = {
     footer: (m) => `Fan-Projekt, nicht mit Ubisoft verbunden. Namen, Talente, Set-Boni und PvP-Werte stammen direkt aus den Spieldateien (Build ${m.build}, ausgelesen am ${m.extracted}). „Seit wann“, Bezugsquellen und Höchstwerte fester Exotic-Attribute stammen aus Community-Quellen. Icons von <a href="https://github.com/mxswat/mx-division-builds">mx-division-builds</a> (mxswat, CC BY-NC-SA 4.0). Anleitung zum Aktualisieren: <a href="docs/datamining.md">docs/datamining.md</a>.`,
   },
   en: {
-    subtitle: (build) => `Gear sets, brand sets, exotics and damage formulas · straight from the game files (build ${build})`,
+    subtitle: (build) => `Gear sets, brand sets, exotics, named weapons and damage formulas · straight from the game files (build ${build})`,
     views: { codex: 'Codex', talents: 'Talents', formulas: 'Formulas', faq: 'FAQ' },
     tal: {
       count: 'Talents',
       search: 'Search talents…',
-      intro: 'Talents for yellow (high-end) items: what can roll randomly on weapons, chests and backpacks, plus the talents of named items. Gear set and exotic talents belong to one specific item and are listed in the codex.',
+      intro: 'Talents for yellow (high-end) items: what can roll randomly on weapons, chests and backpacks, plus the talents of named items and named weapons. Gear set and exotic talents belong to one specific item and are listed in the codex.',
       anySource: 'Any source', anyWeapon: 'Any weapon type',
       source: { roll: 'Rollable', named: 'Named item', gearset: 'Gear set', exotic: 'Exotic', augment: 'Augment' },
       sourceHint: { roll: 'can roll randomly on this slot', named: 'only on this named item', gearset: 'part of a gear set', exotic: 'only on this exotic', augment: 'augment on prototype items' },
@@ -498,23 +509,25 @@ const UI = {
       on: 'on', from: 'from',
       empty: 'No talent matches. Try another filter or fewer words.',
     },
-    counts: { gearset: 'Gear sets', brandset: 'Brand sets', exotic: 'Exotics' },
-    search: 'Search names, talents, named items…',
+    counts: { gearset: 'Gear sets', brandset: 'Brand sets', exotic: 'Exotics', namedweapon: 'Named weapons' },
+    search: 'Search names, talents, named items, weapons…',
     anyScale: 'Related to… (any)',
-    anyType: 'Any exotic type', weapons: 'Weapons', gear: 'Gear',
+    anyType: 'Any type', weapons: 'Weapons', gear: 'Gear',
     sort: { old: 'Oldest first', new: 'Newest first', name: 'Name A–Z' },
-    kinds: { all: 'All', gearset: 'Gear sets', brandset: 'Brand sets', 'exotic-weapon': 'Exotic weapons', 'exotic-gear': 'Exotic gear' },
+    kinds: { all: 'All', gearset: 'Gear sets', brandset: 'Brand sets', 'exotic-weapon': 'Exotic weapons', 'exotic-gear': 'Exotic gear', namedweapon: 'Named weapons' },
     reset: 'Reset',
     of: (a, b) => `${a} of ${b}`,
     empty: 'Nothing matches. Try another filter or fewer words.',
     pvpNote: 'PvP view: values that differ in PvP are marked. Everything else is the same in PvE and PvP.',
-    kind: { gearset: 'Gear set', brandset: 'Brand set', exotic: 'Exotic' },
+    kind: { gearset: 'Gear set', brandset: 'Brand set', exotic: 'Exotic', namedweapon: 'Named weapon' },
     newBadge: 'New', pvpBadge: 'PvP value',
-    setBonuses: 'Set bonuses', attributes: 'Fixed attributes', talents: 'Talents', exoticTalents: 'Exotic talents', named: 'Named items',
+    setBonuses: 'Set bonuses', attributes: 'Fixed attributes', talents: 'Talents', exoticTalents: 'Exotic talents', namedTalent: 'Named talent', named: 'Named items',
     pieces: (n) => `${n} pieces`, piece1: '1 piece',
     slot: { '4pc': '4 pieces', chest: 'Chest', backpack: 'Backpack', exotic: 'Talent', holstered: 'Holstered' },
     rolls: 'rolls', fixed: 'fixed', maxRoll: 'max roll', varies: 'value not in the data',
     legacy: 'Older talents in the game data – no longer linked to the item, most likely removed:',
+    weapon: { title: 'Weapon stats (game file)', base: 'Variant of', damage: 'Base damage', vsBase: (name) => `vs. ${name}`, rpm: 'RPM', magazine: 'Magazine', reload: 'Reload', headshot: 'Headshot', range: 'Range', note: 'Base damage from the weapon file (myDamageMax). In game it is multiplied by level and gear score curves – only the ratios are comparable.' },
+    variants: 'Variants in the data',
     more: 'Origin & source', obtain: 'How to get', obtainNote: '(community info)', source: 'Game file', tags: 'Game tags',
     unknownDate: 'date unknown',
     formulas: {
@@ -617,7 +630,7 @@ function scalesOf(entry) {
 }
 
 function haystackOf(entry) {
-  const parts = [entry.name.de, entry.name.en, entry.categoryLabel?.de ?? '', entry.categoryLabel?.en ?? '', entry.added?.label ?? '', typeof entry.obtain === 'string' ? entry.obtain : ''];
+  const parts = [entry.name.de, entry.name.en, entry.categoryLabel?.de ?? '', entry.categoryLabel?.en ?? '', entry.base?.de ?? '', entry.base?.en ?? '', entry.added?.label ?? '', typeof entry.obtain === 'string' ? entry.obtain : ''];
   for (const b of entry.bonuses ?? []) parts.push(b.label?.de ?? '', b.label?.en ?? '');
   for (const a of entry.attributes ?? []) parts.push(a.label?.de ?? '', a.label?.en ?? '');
   for (const tal of talentsOf(entry)) parts.push(tal.name?.de ?? '', tal.name?.en ?? '', tal.text?.de ?? '', tal.text?.en ?? '');
@@ -639,7 +652,8 @@ const entries = DATA.map((entry) => ({
   haystack: haystackOf(entry),
   scaleSet: scalesOf(entry),
   pvpDiff: hasPvpDifference(entry),
-  isNew: !entry.added?.date || entry.added.date.slice(0, 7) >= newestDate.slice(0, 7),
+  // Named Weapons haben kein Datum in den Daten und sind deshalb nie "neu"
+  isNew: entry.kind !== 'namedweapon' && (!entry.added?.date || entry.added.date.slice(0, 7) >= newestDate.slice(0, 7)),
 }));
 
 // ---------- Filter ----------
@@ -658,7 +672,7 @@ function fillControls() {
   els.pvpNote.textContent = ui.pvpNote;
   els.subtitle.textContent = ui.subtitle(META.build);
   const countOf = (kind) => entries.filter((e) => e.kind === kind).length;
-  els.counts.innerHTML = ['gearset', 'brandset', 'exotic'].map((k) => `<div><b>${countOf(k)}</b>${escapeHtml(ui.counts[k])}</div>`).join('') + `<div><b>${TALENTS.length}</b>${escapeHtml(ui.tal.count)}</div>`;
+  els.counts.innerHTML = ['gearset', 'brandset', 'exotic', 'namedweapon'].map((k) => `<div><b>${countOf(k)}</b>${escapeHtml(ui.counts[k])}</div>`).join('') + `<div><b>${TALENTS.length}</b>${escapeHtml(ui.tal.count)}</div>`;
   fillTalentControls();
   els.footer.innerHTML = ui.footer(META);
   document.documentElement.lang = state.lang;
@@ -666,7 +680,7 @@ function fillControls() {
 
 function matches(entry) {
   if (state.kind !== 'all' && entry.kindKey !== state.kind) return false;
-  if (state.type && !(entry.kind === 'exotic' && entry.category === state.type)) return false;
+  if (state.type && !((entry.kind === 'exotic' || entry.kind === 'namedweapon') && entry.category === state.type)) return false;
   if (state.scale && !entry.scaleSet.has(state.scale)) return false;
   if (state.q) {
     const words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
@@ -679,7 +693,18 @@ function sortEntries(list) {
   const byName = (a, b) => loc(a.name).localeCompare(loc(b.name), state.lang);
   if (state.sort === 'name') return list.sort(byName);
   const direction = state.sort === 'old' ? 1 : -1;
-  return list.sort((a, b) => direction * sortDate(a).localeCompare(sortDate(b)) || byName(a, b));
+  // Named Weapons haben kein Datum: immer am Ende, nach Waffentyp gruppiert
+  const dated = list.filter((e) => e.kind !== 'namedweapon').sort((a, b) => direction * sortDate(a).localeCompare(sortDate(b)) || byName(a, b));
+  const named = list.filter((e) => e.kind === 'namedweapon').sort((a, b) => WEAPON_CATEGORIES.indexOf(a.category) - WEAPON_CATEGORIES.indexOf(b.category) || byName(a, b));
+  return [...dated, ...named];
+}
+
+// Gruppe in der Codex-Liste: Update/Datum, bei Named Weapons der Waffentyp
+function groupOf(entry) {
+  const ui = t();
+  if (entry.kind === 'namedweapon') return { key: `named|${entry.category}`, label: `${ui.kinds.namedweapon} · ${loc(entry.categoryLabel)}`, sub: '' };
+  const label = entry.added?.label ?? ui.unknownDate;
+  return { key: `${label}|${(entry.added?.date ?? '').slice(0, 7)}`, label, sub: entry.added?.date ? formatDate({ date: entry.added.date.slice(0, 7) }) : '' };
 }
 
 // ---------- Karten ----------
@@ -741,8 +766,8 @@ function renderTalent(tal, slotLabel) {
 
 function renderTalents(entry) {
   if (entry.talents.length === 0) return '';
-  const label = entry.kind === 'exotic' ? t().exoticTalents : t().talents;
-  const items = entry.talents.map((tal) => renderTalent(tal, t().slot[tal.slot] ?? tal.slot)).join('');
+  const label = entry.kind === 'exotic' ? t().exoticTalents : entry.kind === 'namedweapon' ? t().namedTalent : t().talents;
+  const items = entry.talents.map((tal) => renderTalent(tal, tal.slot === 'named' ? '' : t().slot[tal.slot] ?? tal.slot)).join('');
   return `<div class="section"><p class="section-label">${escapeHtml(label)}</p>${items}</div>`;
 }
 
@@ -773,23 +798,45 @@ function renderMore(entry) {
     parts.push(`<p><strong>${escapeHtml(ui.legacy)}</strong></p>${legacy}`);
   }
   if (entry.tags?.length) parts.push(`<p>${escapeHtml(ui.tags)}: <code>${escapeHtml(entry.tags.join(', '))}</code></p>`);
+  if (entry.variants?.length) parts.push(`<p>${escapeHtml(ui.variants)}: <code>${escapeHtml(entry.variants.join(', '))}</code></p>`);
   if (entry.source) parts.push(`<p>${escapeHtml(ui.source)}: <code>${escapeHtml(entry.source)}</code></p>`);
   return parts.length ? `<details class="more"><summary>${escapeHtml(ui.more)}</summary>${parts.join('')}</details>` : '';
 }
 
+// Waffenwerte aus der Waffendatei; Grundschaden nur, wenn er von der normalen Version abweicht
+function renderWeaponStats(entry) {
+  const s = entry.stats;
+  if (!s) return '';
+  const ui = t().weapon;
+  const de = state.lang === 'de';
+  const stat = (label, value, hint = '') => (value === null || value === undefined ? '' : `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}${hint ? `<span class="hint">${escapeHtml(hint)}</span>` : ''}</dd></div>`);
+  const diff = s.damageDiff ? `${s.damageDiff > 0 ? '+' : ''}${formatNumber(s.damageDiff)}${de ? ' %' : '%'}` : null;
+  const items = [
+    diff ? stat(ui.damage, diff, ui.vsBase(loc(entry.base))) : '',
+    stat(ui.rpm, s.rpm !== null ? formatNumber(s.rpm) : null),
+    stat(ui.magazine, s.magazine !== null ? formatNumber(s.magazine) : null),
+    stat(ui.reload, s.reload !== null ? `${formatNumber(s.reload)} s` : null),
+    stat(ui.headshot, s.headshot !== null ? `× ${formatNumber(s.headshot)}` : null),
+    stat(ui.range, s.range !== null ? `${formatNumber(s.range)} m` : null),
+  ].join('');
+  const base = entry.base ? `<p class="base-weapon">${escapeHtml(ui.base)} <strong>${escapeHtml(loc(entry.base))}</strong></p>` : '';
+  if (!items && !base) return '';
+  return `<div class="section"><p class="section-label" title="${escapeHtml(ui.note)}">${escapeHtml(ui.title)}</p>${base}<dl class="wstats">${items}</dl></div>`;
+}
+
 function renderCard(entry) {
   const ui = t();
-  const kindLabel = entry.kind === 'exotic' ? loc(entry.categoryLabel) : ui.kind[entry.kind];
+  const kindLabel = entry.kind === 'exotic' ? loc(entry.categoryLabel) : entry.kind === 'namedweapon' ? `${ui.kind.namedweapon} · ${loc(entry.categoryLabel)}` : ui.kind[entry.kind];
   const badges = [`<span class="badge" data-tone="${entry.kind}">${escapeHtml(kindLabel)}</span>`];
   if (entry.isNew) badges.push(`<span class="badge" data-tone="new">${escapeHtml(ui.newBadge)}</span>`);
   if (state.mode === 'pvp' && entry.pvpDiff) badges.push(`<span class="badge" data-tone="pvp">PvP ≠ PvE</span>`);
   const other = state.lang === 'de' ? entry.name.en : entry.name.de;
   const altName = other && other !== loc(entry.name) ? ` <span class="alt-name">${escapeHtml(other)}</span>` : '';
-  const when = [entry.added?.label, formatDate(entry.added)].filter(Boolean).join(' · ');
+  const when = entry.kind === 'namedweapon' ? '' : [entry.added?.label, formatDate(entry.added)].filter(Boolean).join(' · ');
   return `<article class="card" id="${entry.kind}-${entry.id}">
     <div class="card-head">${renderTile(entry)}<div class="card-title"><h3>${escapeHtml(loc(entry.name))}${altName}</h3>
       <div class="meta">${badges.join('')}${when ? `<span>${escapeHtml(when)}</span>` : ''}</div></div></div>
-    ${renderBonuses(entry)}${renderAttributes(entry)}${renderTalents(entry)}${renderNamedItems(entry)}${renderMore(entry)}
+    ${renderBonuses(entry)}${renderAttributes(entry)}${renderWeaponStats(entry)}${renderTalents(entry)}${renderNamedItems(entry)}${renderMore(entry)}
   </article>`;
 }
 
@@ -804,12 +851,11 @@ function renderCodex() {
   let html = '';
   let current = null;
   for (const entry of visible) {
-    const label = entry.added?.label ?? ui.unknownDate;
-    const group = `${label}|${(entry.added?.date ?? '').slice(0, 7)}`;
-    if (group !== current) {
+    const group = groupOf(entry);
+    if (group.key !== current) {
       if (current !== null) html += '</div></section>';
-      html += `<section class="group"><div class="group-head"><h2>${escapeHtml(label)}</h2><span>${escapeHtml(entry.added?.date ? formatDate({ date: entry.added.date.slice(0, 7) }) : '')}</span></div><div class="grid">`;
-      current = group;
+      html += `<section class="group"><div class="group-head"><h2>${escapeHtml(group.label)}</h2><span>${escapeHtml(group.sub)}</span></div><div class="grid">`;
+      current = group.key;
     }
     html += renderCard(entry);
   }
@@ -1595,13 +1641,19 @@ function renderFaq() {
 }
 
 // ---------- Zustand & Navigation ----------
+// Der Typ-Filter gilt fuer Exotics und Named Weapons; Waffentypen passen nicht zu Exotic-Ausruestung usw.
+function typeFitsKind() {
+  if (!state.type || state.kind === 'all') return true;
+  return WEAPON_CATEGORIES.includes(state.type) ? ['exotic-weapon', 'namedweapon'].includes(state.kind) : state.kind === 'exotic-gear';
+}
+
 function readHash() {
   const params = new URLSearchParams(location.hash.slice(1));
   for (const key of Object.keys(DEFAULTS)) state[key] = params.get(key) ?? DEFAULTS[key];
   if (!params.get('lang')) { try { state.lang = localStorage.getItem('lang') || DEFAULTS.lang; } catch {} }
   if (!params.get('mode')) { try { state.mode = localStorage.getItem('mode') || DEFAULTS.mode; } catch {} }
   if (!UI[state.lang]) state.lang = 'de';
-  if (state.type && state.kind === 'all') state.kind = WEAPON_CATEGORIES.includes(state.type) ? 'exotic-weapon' : 'exotic-gear';
+  if (!typeFitsKind()) state.kind = 'all';
   return params.get('f');
 }
 
@@ -1662,7 +1714,7 @@ els.q.addEventListener('input', () => { state.q = els.q.value.trim(); update(); 
 els.scale.addEventListener('change', () => { state.scale = els.scale.value; update(); });
 els.type.addEventListener('change', () => {
   state.type = els.type.value;
-  if (state.type) state.kind = WEAPON_CATEGORIES.includes(state.type) ? 'exotic-weapon' : 'exotic-gear';
+  if (!typeFitsKind()) state.kind = 'all';
   update();
 });
 els.sort.addEventListener('change', () => { state.sort = els.sort.value; update(); });
@@ -1670,7 +1722,7 @@ els.kinds.addEventListener('click', (event) => {
   const button = event.target.closest('button[data-kind]');
   if (!button) return;
   state.kind = button.dataset.kind;
-  state.type = '';
+  if (!typeFitsKind()) state.type = '';
   update();
 });
 els.tq.addEventListener('input', () => { state.tq = els.tq.value.trim(); update(); });

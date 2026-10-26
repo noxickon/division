@@ -1,6 +1,6 @@
 ﻿# Erzeugt data/*.json fuer die Division-Page direkt aus einem Hunter-Export (Raw Files) von The Division 2.
 # Aufruf:  powershell -NoProfile -ExecutionPolicy Bypass -File tools\extract.ps1 [-Export <raw_files>] [-Version 23]
-# Ausgabe: data/gearsets.json, data/brandsets.json, data/exotics.json, data/formulas.json, data/meta.json
+# Ausgabe: data/gearsets.json, data/brandsets.json, data/exotics.json, data/namedweapons.json, data/talents.json, data/dot.json, data/formulas.json, data/meta.json
 param(
     [string]$Export = (Join-Path $env:USERPROFILE 'Downloads\exported_files\raw_files'),
     [int]$Version = 0,
@@ -290,7 +290,7 @@ foreach ($file in Get-ChildItem $Configs -Filter "*_code1_data$Version.mitemgene
         $talents = New-Object System.Collections.Generic.List[object]
         foreach ($slot in Find-Kids $cfg 'ItemTalentSlot') {
             $line = $slot.props | Where-Object { $_.StartsWith('myPresetTalent ') } | Select-Object -First 1
-            if ($line) { $ref = Get-Ref $line; if ($ref) { $talents.Add(@{ slot = $slot.name; id = $ref.name }) } }
+            if ($line) { $ref = Get-Ref $line; if ($ref) { $talents.Add(@{ slot = $slot.name; id = $ref.name; named = ((Get-Prop $slot 'myIsNamedTalent') -eq 'TRUE') }) } }
         }
         $attrs = New-Object System.Collections.Generic.List[object]
         foreach ($slot in Find-Kids $cfg 'ItemAttributeSlot') {
@@ -308,20 +308,36 @@ foreach ($file in Get-ChildItem $Configs -Filter "*_code1_data$Version.mitemgene
 }
 Log "Itemgenerierung: $($ConfigByLink.Count) Konfigurationen"
 
+# Waffenwerte einer Item-Datei: myWeapon <..> : Elternwaffe { Overrides wie myDamageMax }
+function Get-WeaponRef([string]$Text) {
+    $m = [regex]::Match($Text, '(?m)^(\t*)myWeapon <[^>]*> (?:: |= )(\S+)(?: [0-9A-F]{32})?[ \t]*\r?$')
+    if (-not $m.Success) { return $null }
+    $indent = $m.Groups[1].Value
+    $props = @{}
+    $block = [regex]::Match($Text.Substring($m.Index + $m.Length), "^\r?\n$indent\{(.*?)\r?\n$indent\}", 'Singleline')
+    if ($block.Success) {
+        foreach ($p in [regex]::Matches($block.Groups[1].Value, "(?m)^$indent\t(my\w+) ([-0-9.]+)[ \t]*\r?$")) { $props[$p.Groups[1].Value] = [double]::Parse($p.Groups[2].Value, [Globalization.CultureInfo]::InvariantCulture) }
+    }
+    return @{ parent = $m.Groups[2].Value; props = $props }
+}
+
 # Items: nur Dateien mit eigener Generierungs-Konfiguration (keine Optik-, Kleidungs- oder MTX-Items)
 $Items = @{}
+$ItemHeads = @{}   # alle Items und Vorlagen: Elternvorlage und Anzeigename (fuer den Namen der Basiswaffe)
 # Aeltere Items (z. B. Launch-Exotics) liegen im Division-1-Ordner "rogue"; Division 2 ("hunter") ueberschreibt gleichnamige
 $itemFiles = @(Get-ChildItem (Join-Path $R 'juice\item') -Filter *.mitem) + @(Get-ChildItem (Join-Path $H 'juice\item') -Filter *.mitem)
 foreach ($file in $itemFiles) {
     if ($file.Name -match '^(appearance_|player_gear_mtx|player_(shirt|pants|shoes|mask_mtx|patchitem)|ci_|blueprint_)') { continue }
     $text = [IO.File]::ReadAllText($file.FullName)
-    if ($text -notmatch 'myItemGenerationConfig <[^>]*> = (\S+)') { continue }
-    $link = $Matches[1]
     $head = if ($text -match '(?m)^(\w+Item) (\S+) <[^>]*>(?: : (\S+))?') { @{ cls = $Matches[1]; id = $Matches[2]; template = $Matches[3] } } else { $null }
     if (-not $head) { continue }
     $ui = if ($text -match '(?m)^\s*myUIName (".*")\s*$') { Get-Loc $Matches[1].Trim('"') } else { $null }
+    $weapon = if ($head.cls -eq 'WeaponItem') { Get-WeaponRef $text } else { $null }
+    $ItemHeads[$head.id] = @{ id = $head.id; parent = $head.template; name = $ui; weapon = $weapon }
+    if ($text -notmatch 'myItemGenerationConfig <[^>]*> = (\S+)') { continue }
+    $link = $Matches[1]
     $tags = @([regex]::Matches($text, '(?m)^\s*ItemTag .* (\S+)\s*$') | ForEach-Object { $_.Groups[1].Value })
-    $Items[$head.id] = @{ id = $head.id; cls = $head.cls; template = $head.template; link = $link; name = $ui; tags = $tags; file = $file.Name }
+    $Items[$head.id] = @{ id = $head.id; cls = $head.cls; template = $head.template; link = $link; name = $ui; tags = $tags; weapon = $weapon; file = $file.Name }
 }
 Log "Items mit Konfiguration: $($Items.Count)"
 
@@ -476,7 +492,7 @@ $Categories = @{
 function Get-WeaponCategory([string]$Text) {
     switch -regex ($Text) {
         'assault_?rifle|_ar_' { 'Assault Rifle'; break } 'light_?machine_?gun|lmg' { 'LMG'; break }
-        'marksman|sniper|_mmr|dmr' { 'Marksman Rifle'; break } 'sub_?machine|smg' { 'SMG'; break }
+        'marksm[ae]n|sniper|_mmr|dmr' { 'Marksman Rifle'; break } 'sub_?machine|smg' { 'SMG'; break }
         'shotgun' { 'Shotgun'; break } 'pistol|revolver|handgun' { 'Pistol'; break } 'rifle' { 'Rifle'; break }
         default { $null }
     }
@@ -562,6 +578,103 @@ foreach ($item in $Items.Values | Sort-Object { $_.id }) {
 }
 Log "Exotics: $($exotics.Count)"
 
+# ---------- Named Weapons ----------
+# Waffen-Definitionen (rogue\juice\weapon): Elternwaffe und eigene Werte; fehlende Werte erbt eine Waffe von ihren Eltern
+$WeaponDefs = @{}
+foreach ($file in Get-ChildItem (Join-Path $R 'juice\weapon') -Filter *.mweapon) {
+    $txt = [IO.File]::ReadAllText($file.FullName)
+    if ($txt -notmatch '(?m)^Weapon (\S+) <[^>]*>(?: : (\S+))?') { continue }
+    $name = $Matches[1]; $parent = $Matches[2]
+    $props = @{}
+    foreach ($p in [regex]::Matches($txt, '(?m)^\t(my\w+) ([-0-9.]+)[ \t]*\r?$')) { if (-not $props.ContainsKey($p.Groups[1].Value)) { $props[$p.Groups[1].Value] = [double]::Parse($p.Groups[2].Value, [Globalization.CultureInfo]::InvariantCulture) } }
+    $WeaponDefs[$name] = @{ parent = $parent; props = $props }
+}
+function Get-WeaponStat($Ref, [string]$Key) {
+    if (-not $Ref) { return $null }
+    if ($Ref.props.ContainsKey($Key)) { return $Ref.props[$Key] }
+    $name = $Ref.parent; $depth = 0
+    while ($name -and $WeaponDefs[$name] -and $depth -lt 20) {
+        if ($WeaponDefs[$name].props.ContainsKey($Key)) { return $WeaponDefs[$name].props[$Key] }
+        $name = $WeaponDefs[$name].parent; $depth++
+    }
+    return $null
+}
+# Normale Version derselben Waffe: gleiche Item-ID ohne _named..., sonst eine andere Stufe (_t1_v1 ...)
+# Sie liegt oft nur im rogue-Ordner und hat keine eigene Generierungs-Konfiguration, deshalb ueber $ItemHeads
+function Get-BaseWeaponItem($Item) {
+    $id = $Item.id -replace '_named.*$|_intro$', ''
+    foreach ($c in $id, ($id -replace '_v\d+$', ''), ($id -replace '_t\d+(_v\d+)?$', '_t1_v1'), ($id -replace '_t\d+(_v\d+)?$', '_t2_v1'), ($id -replace '_t\d+(_v\d+)?$', '_t3_v1')) {
+        if ($c -ne $Item.id -and $ItemHeads[$c] -and $ItemHeads[$c].name -and (Get-ItemWeapon $ItemHeads[$c])) { return $ItemHeads[$c] }
+    }
+    return $null
+}
+# Waffe eines Items; ohne eigenes myWeapon erbt es die Waffe des Eltern-Items (z. B. Scalpel, Sleipnir)
+function Get-ItemWeapon($Item) {
+    $node = $Item; $depth = 0
+    while ($node -and $depth -lt 10) { if ($node.weapon) { return $node.weapon }; $node = if ($node.template) { $ItemHeads[$node.template] } else { $ItemHeads[$node.parent] }; $depth++ }
+    return $null
+}
+# Anzeigename aus der Vorlagenkette (z. B. SIG 556), falls es keine normale Version gibt
+function Get-TemplateName([string]$Id) {
+    $depth = 0
+    while ($Id -and $ItemHeads[$Id] -and $depth -lt 10) { if ($ItemHeads[$Id].name) { return $ItemHeads[$Id].name }; $Id = $ItemHeads[$Id].parent; $depth++ }
+    return $null
+}
+
+$namedWeapons = New-Object System.Collections.Generic.List[object]
+$seenNamedWeapon = @{}
+# Kuerzeste ID zuerst: die Grundvariante gewinnt vor _vendor_roaming, _hunter_box usw.
+foreach ($item in $Items.Values | Where-Object { $_.cls -eq 'WeaponItem' -and $_.tags -notcontains 'Exotic' } | Sort-Object { $_.id.Length }, { $_.id }) {
+    $cfg = $ConfigByLink[$item.link]
+    if (-not $cfg) { continue }
+    $nt = $cfg.talents | Where-Object { $_.named } | Select-Object -First 1
+    if (-not $nt) { continue }
+    $name = Get-ItemName $item
+    if (-not $name -or $name.en -notmatch '[A-Za-z]') { continue }
+    if ($seenNamedWeapon.ContainsKey($name.en)) { $seenNamedWeapon[$name.en].variants += $item.id; continue }
+    $talent = Get-Talent $nt.id
+    if (-not $talent -or -not $talent.name) { continue }
+
+    $category = Get-WeaponCategory "$($item.id) $($item.template)"
+    $baseItem = Get-BaseWeaponItem $item
+    $baseName = if ($baseItem) { Get-ItemName $baseItem } else { $t = Get-TemplateName $item.template; if ($t) { Clean-Name $t } else { $null } }
+    # Grundschaden der Datei (myDamageMax); Ingame-Schaden = dieser Wert x Kurven (siehe PhysicalDamageMaxFinal)
+    $wref = Get-ItemWeapon $item
+    $dmg = Get-WeaponStat $wref 'myDamageMax'
+    $baseDmg = if ($baseItem) { Get-WeaponStat (Get-ItemWeapon $baseItem) 'myDamageMax' } else { $null }
+    $reload = Get-WeaponStat $wref 'myReloadTimeMS'
+    if (-not $dmg) { $dmg = $null }   # Event-Waffen ohne Schaden (z. B. Wasserpistole)
+    $stats = [ordered]@{
+        damage = $(if ($dmg) { [math]::Round($dmg, 2) } else { $null })
+        baseDamage = $(if ($baseDmg) { [math]::Round($baseDmg, 2) } else { $null })
+        damageDiff = $(if ($dmg -and $baseDmg -and [math]::Abs($dmg - $baseDmg) -gt 0.01) { [math]::Round(($dmg / $baseDmg - 1) * 100, 1) } else { $null })
+        rpm = Get-WeaponStat $wref 'myRPM'
+        magazine = Get-WeaponStat $wref 'myClipSize'
+        reload = $(if ($reload) { [math]::Round($reload / 1000, 2) } else { $null })
+        headshot = $(if ($v = Get-WeaponStat $wref 'myDamageMultiplierHead') { [math]::Round($v, 2) } else { $null })
+        range = $(if ($v = Get-WeaponStat $wref 'myRangeOptimal') { [math]::Round($v, 1) } else { $null })
+    }
+    $entry = [ordered]@{
+        id = Get-Slug $name.en
+        kind = 'namedweapon'
+        category = $category
+        categoryLabel = $(if ($category) { $Categories[$category] } else { $null })
+        isWeapon = $true
+        name = $name
+        base = $baseName
+        added = $null
+        talents = @((With-Slot 'named' $talent))
+        stats = $stats
+        tags = @($item.tags | Where-Object { $_ -match 'DZ|Raid|Vendor|Season|Event|Hunter|Box' })
+        variants = @()
+        source = "juice\item\$($item.file)"
+    }
+    $seenNamedWeapon[$name.en] = $entry
+    $namedWeapons.Add($entry)
+}
+foreach ($w in $namedWeapons) { $w.variants = @($w.variants) }
+Log "Named Weapons: $($namedWeapons.Count)"
+
 # ---------- Talente: wo jedes Talent vorkommt ----------
 # Wuerfelbare Talente stehen in Talentlisten; nur Listen, die aktuelle Item-Konfigurationen benutzen, zaehlen
 $AllWeapons = @('Assault Rifle', 'LMG', 'Marksman Rifle', 'Rifle', 'SMG', 'Shotgun', 'Pistol')
@@ -600,6 +713,10 @@ foreach ($set in $brandsets) {
     foreach ($n in $set.namedItems) {
         if ($n.talent) { Add-TalentOrigin $n.talent.id 'named' @($n.slot) ([ordered]@{ kind = 'named'; item = $n.name; set = $set.name; slot = $n.slot }) }
     }
+}
+# Named Weapons: Basiswaffe statt Marke in Klammern
+foreach ($w in $namedWeapons) {
+    Add-TalentOrigin $w.talents[0].id 'named' @($w.category) ([ordered]@{ kind = 'named'; item = $w.name; set = $w.base; slot = $w.category })
 }
 
 $talents = New-Object System.Collections.Generic.List[object]
@@ -792,12 +909,13 @@ function Write-Json($Value, [string]$Name) {
     [IO.File]::WriteAllText((Join-Path $Repo "data\$Name"), $json, $Utf8)
 }
 $byName = [Comparison[object]] { param($a, $b) [string]::Compare($a['name']['en'], $b['name']['en'], $true) }
-foreach ($list in $gearsets, $brandsets, $exotics, $talents) { $list.Sort($byName) }
+foreach ($list in $gearsets, $brandsets, $exotics, $namedWeapons, $talents) { $list.Sort($byName) }
 Write-Json $talents.ToArray() 'talents.json'
 Write-Json ([ordered]@{ levelCurve40 = $levelCurve40; levelFormula = $AttrByName['LevelAndTierCurve'].formula; sources = $dotSources.ToArray() }) 'dot.json'
 Write-Json $gearsets.ToArray() 'gearsets.json'
 Write-Json $brandsets.ToArray() 'brandsets.json'
 Write-Json $exotics.ToArray() 'exotics.json'
+Write-Json $namedWeapons.ToArray() 'namedweapons.json'
 Write-Json $formulas.ToArray() 'formulas.json'
 
 $build = $null

@@ -160,6 +160,8 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
 | Hardcoded Talente | `H\juice\hardcodedtalent\hardcodedtalentsettings.juice` | Pestilenz, Eagle Bearer, Nemesis, Guerilla Warfare |
 | Item → Talent / Attribute | `H\juice\itemgeneration\configs\configs_<kategorie>_code1_data<N>.mitemgenerationconfigs` | `myTalentSlots` → `myPresetTalent`, `myAttributeSlots` |
 | Named Items | `H\juice\item\*_named*.mitem`, Links in `H\juice\itemgeneration\configlinks\*_named_config_link.*` (~168) | `myUIName`, `myDescription` (Talenttext im `contextComment`), `ItemTag Named_Brand_<X>` |
+| Named Weapons | `H\juice\item\player_weapon_*_named*.mitem` (und `*_intro`, ältere in `R\juice\item`) | `WeaponItem`, `ItemTag Named_Weapon` (nicht bei allen), `myWeapon` (Waffe + Overrides) |
+| Waffenwerte | `R\juice\weapon\*.mweapon` (482, nur in R) | `Weapon <name> : <eltern>`, `myDamageMax`, `myRPM`, `myClipSize`, `myReloadTimeMS`, `myDamageMultiplierHead`, `myRangeOptimal` |
 | Exotic-Quellen | `H\rejuice\itemlist_exotics_all.rejuice`, Loot-Tabellen `H\juice\loot\ltdrp_*exotic*` | `LootItem "<Typ> - <Name>"`, `myConditions` (z. B. `Has Blueprint`) |
 | Statuseffekt-Einstellungen | `H\juice\statuseffects\`, `H\juice\combat\combatsystem.juice` | Spezialmunition → Effekt |
 | Schemas (Felddefinitionen) | `H\fruit\<bereich>\*.fruit` | Klassen, Enums, Tooltips der Felder |
@@ -174,6 +176,9 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
 - **Exotic-Talente:** Aktiv ist nur, was die Config verknüpft (heute bei 79 von 82 Exotics genau ein Talent, z. B. `talent_exotic_lmg_mk1_a`). Gleichnamige Nachbar-Talente ohne Verknüpfung (`_b`, `_holstered`, z. B. bei Pestilenz „Pestilenz“ und „Outcast-Belastbarkeit“, insgesamt bei 13 Launch-Exotics) tauchen nur noch in der Icon-Kategorienliste `H\rejuice\itemgenerationsettings.rejuice` auf: Altlasten, auf der Seite nur eingeklappt unter „Herkunft & Quelle“.
 - **Sets:** `myItems` im `.mgearset` listet die Teile; Chest- und Rucksack-Talente der Gear-Sets kommen über die Item-Configs der Set-Weste/des Set-Rucksacks.
 - **Named Items:** nicht alle stehen in `myItems`. Zuordnung über das Markenkürzel in der Item-ID: `player_gear_back_511_01_named` gehört zur Marke, deren Teile `player_gear_*_511_*` heißen.
+- **Named Weapons:** Waffen-Item (`WeaponItem`), kein `Exotic`-Tag, und die Item-Config hat einen `ItemTalentSlot` mit `myIsNamedTalent TRUE` (das feste Perfekt-Talent, z. B. Baker's Dozen → `talent_weapon_missed_shots_in_cover_have_chance_to_return_perfect`). Der Tag `Named_Weapon` fehlt bei ~20 Items (z. B. Designated Hitter, Emeline's Guard), deshalb über das Talent-Flag gehen. Gleichnamige Varianten (`_vendor_roaming`, `_hunter_box`, `_friendreferral`, `_specializationadventure`) werden zusammengefasst, die kürzeste ID gewinnt.
+- **Waffenwerte:** Item → `myWeapon <..> : <waffe> { Overrides }` (oder `= <waffe> <UID>`); fehlt `myWeapon`, erbt das Item die Waffe seines Eltern-Items. Fehlende Werte erbt die Waffe über `Weapon <name> : <eltern>` in `R\juice\weapon`. `myDamageMax` ist **nicht** der Ingame-Schaden: `PhysicalDamageMaxFinal` = `Weapon.PhysicalDamageMax` × `WeaponDamageBaseModBonus` (Kurven) … Vergleichbar ist nur das Verhältnis Named ↔ normale Version (fast immer gleich; Ausnahmen z. B. Diceros Special −6,1 %, The Sleigher +18,6 %).
+- **Basiswaffe einer Named Weapon:** dieselbe Item-ID ohne `_named…`/`_intro` (sonst eine andere Stufe `_t1_v1`/`_t2_v1`/`_t3_v1`), meist in `R\juice\item` ohne eigene Config; sonst der Name aus der Vorlagenkette. Ohne Treffer: Stage Left.
 - **Saison eines Items:** Item-Tags wie `Y8S3_Exotic_03`.
 - **Welches Talent auf welchem Slot würfelt:** `H\juice\itemgeneration\talentlists\talentlist_code1_data<N>.mitemgenerationtalentlists` enthält `TalentListContainer <name> { myTalents { Talent … = <talent_id> } }`. Aktiv sind nur Listen, die eine aktuelle Item-Konfiguration in `myPossibleTalentLists` nennt (auch Vorlagen wie `weapon_item_template_config`): `warlock_chest_talents` (Weste), `warlock_back_talents` (Rucksack), `advanced_weapon_talents` (alle Waffen), `Assault Rifle`, `LMG`, `MMR`, `Pistol`, `Rifle`, `Shotgun`, `shotgun_cycling_only`, `SMG` (je Waffentyp) und `Prototype Augments`. Die Listen `active_*`/`common_*` für Maske, Handschuhe, Holster, Knieschoner sind Altlasten (vor Warlords of New York) und werden nicht mehr benutzt.
 - **Bedingung eines Talents:** `myRequirementsText` im Talent (nur wenn `enabled = true`), z. B. „Nur mit Präzisionsgewehren oder Schrotflinten“.
@@ -198,7 +203,7 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
 ### Werkzeuge
 
 - Alles liegt im Repo `D:\GitHub\division` (GitHub `noxickon/division`), Ordner `tools\`:
-    - `extract.ps1` – liest den Hunter-Export und schreibt `data\*.json`: `gearsets`, `brandsets`, `exotics`, `talents` (Talente gelber Items mit Slot/Herkunft), `dot` (Schaden-über-Zeit-Quellen mit Grundwert, Formel-Klammern, Tier-Boni, Tick-Rate), `formulas` (alle Attribute), `meta` (Build-Datum). Talente bekommen `applies` (ausgelöste Statuseffekte). Parameter: `-Export <raw_files>`, `-Version <N>`, `-Game <Spielordner>`.
+    - `extract.ps1` – liest den Hunter-Export und schreibt `data\*.json`: `gearsets`, `brandsets`, `exotics`, `namedweapons` (Basiswaffe, Named-Talent, Waffenwerte), `talents` (Talente gelber Items mit Slot/Herkunft), `dot` (Schaden-über-Zeit-Quellen mit Grundwert, Formel-Klammern, Tier-Boni, Tick-Rate), `formulas` (alle Attribute), `meta` (Build-Datum). Talente bekommen `applies` (ausgelöste Statuseffekte). Parameter: `-Export <raw_files>`, `-Version <N>`, `-Game <Spielordner>`.
     - `juice.ps1` – Parser für das Snowdrop-Textformat und die `.locpack`-Lokalisierung.
     - `build.ps1` – baut `index.html` aus `template.html` + `data\*.json`.
     - `serve.ps1` – lokaler Server auf `http://localhost:8080`.
@@ -225,7 +230,7 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
 - **PvE/PvP als Umschalter** bei Gear-Sets, Brand-Sets, Exotics und Named Items. **PvE ist standardmäßig aktiv**, PvP kann man sich ansehen; abweichende Werte sind markiert.
 - **Sprache DE/EN als Umschalter**, Deutsch ist Standard; beide Texte kommen offiziell aus dem Spiel.
 - Daten kommen aus den Spieldateien statt aus dem Internet.
-- Vier Ansichten: **FAQ** (Antworten aus den Daten, z. B. Grundschaden von Brennen/Bluten, Effizienz, Waffenhandling), **Codex** (Sets, Brands, Exotics), **Talente** (nur Talente gelber Items: würfelbare Talente auf Waffen, Westen, Rucksäcken und die Named-Talente der Brand-Sets, jeweils mit Slot/Waffentyp; Gear-Set-, Exotic- und Prototyp-Talente stehen nur im Codex) und **Formeln**. Die obere Leiste mit Ansicht, PvE/PvP und Sprache bleibt beim Scrollen stehen.
+- Vier Ansichten: **FAQ** (Antworten aus den Daten, z. B. Grundschaden von Brennen/Bluten, Effizienz, Waffenhandling), **Codex** (Sets, Brands, Exotics, Named-Waffen nach Waffentyp gruppiert), **Talente** (nur Talente gelber Items: würfelbare Talente auf Waffen, Westen, Rucksäcken und die Named-Talente der Brand-Sets und Named Weapons, jeweils mit Slot/Waffentyp; Gear-Set-, Exotic- und Prototyp-Talente stehen nur im Codex) und **Formeln**. Die obere Leiste mit Ansicht, PvE/PvP und Sprache bleibt beim Scrollen stehen.
 - Eine Formel-Ansicht erklärt die Schadensberechnung mit Beispielen und einem Rechner („Was bringt mir +10 %?“); bei jedem Talent und Bonus zeigen Chips, welchen Schadens-Topf es betrifft, mit Link zur Erklärung.
 
 ## Offene Punkte
@@ -235,6 +240,7 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
 - [ ] Verstärkter Schaden (Amplified): in welchem Topf er landet, steckt in den Talentregeln (`ModificationType` Multiplicative/Additive) – noch auswerten
 - [x] Exotics, Gear-Sets, Brands und Named Items für die Division-Page aufbereiten – erledigt (28 Gear-Sets, 37 Brands, 69 Named Items, 82 Exotics)
 - [x] Extraktor und Daten-Pipeline ins Repo übernehmen – erledigt (`tools\`)
+- [x] Named Weapons ergänzen – erledigt (98 Named Weapons, Talente-Ansicht jetzt 207 Talente)
 
 ## Quellen
 

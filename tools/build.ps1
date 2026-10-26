@@ -7,7 +7,7 @@ function Read-Text([string]$Name) { [IO.File]::ReadAllText((Join-Path $Repo $Nam
 
 $entries = @()
 # ConvertFrom-Json liefert in PowerShell 5.1 ein JSON-Array als ein Objekt; deshalb einzeln anhaengen
-foreach ($f in 'gearsets', 'brandsets', 'exotics') { foreach ($e in (ConvertFrom-Json (Read-Text "data\$f.json"))) { $entries += $e } }
+foreach ($f in 'gearsets', 'brandsets', 'exotics', 'namedweapons') { foreach ($e in (ConvertFrom-Json (Read-Text "data\$f.json"))) { $entries += $e } }
 
 $ids = @{}
 foreach ($e in $entries) {
@@ -27,7 +27,7 @@ foreach ($p in $iconsOld.PSObject.Properties) {
 
 # </script> darf im eingebetteten JSON nicht vorkommen
 function Inline([string]$Json) { return $Json.Replace('<', ([char]92 + 'u003c')) }
-$data = Inline ((Read-Text 'data\gearsets.json').TrimEnd(']') + ',' + (Read-Text 'data\brandsets.json').Trim().TrimStart('[').TrimEnd(']') + ',' + (Read-Text 'data\exotics.json').Trim().TrimStart('['))
+$data = Inline ((Read-Text 'data\gearsets.json').TrimEnd(']') + ',' + (Read-Text 'data\brandsets.json').Trim().TrimStart('[').TrimEnd(']') + ',' + (Read-Text 'data\exotics.json').Trim().TrimStart('[').TrimEnd(']') + ',' + (Read-Text 'data\namedweapons.json').Trim().TrimStart('['))
 $html = (Read-Text 'template.html').
     Replace('/*DATA*/', $data).
     Replace('/*ICONS*/', (Inline (ConvertTo-Json -InputObject $icons -Compress))).
