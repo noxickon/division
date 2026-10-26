@@ -1,0 +1,4186 @@
+[
+  {
+    "id": "liberty",
+    "name": "Liberty",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Liberty or Death",
+        "text": "Hits grant +2% weapon damage. Stacks up to 30 times. Headshots consume all stacks, repairing your shield for 3% per stack.",
+        "stats": [
+          "Weapon Damage",
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic quest (Kendra's Liberty parts), then pistol targeted loot and exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Launch roster is not confirmed by an official source; it is known to exist by TU3 (2019-05-14)."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Liberty"
+    ]
+  },
+  {
+    "id": "lullaby",
+    "name": "Lullaby",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Sandman",
+        "text": "Melee attacks instantly kill non-elite enemies. Cooldown: 15s.",
+        "stats": [
+          "Melee Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Armor",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Deluxe Pack / pre-order exclusive (Capitol Defender Pack, Ultimate Edition); upgrade of Sweet Dreams via blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Identical to Sweet Dreams, different name and skin."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Lullaby"
+    ]
+  },
+  {
+    "id": "merciless",
+    "name": "Merciless",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Binary Trigger",
+        "text": "This weapon fires on trigger pull and release. If both bullets hit the same enemy, gain a stack. At 7 stacks, shooting an enemy deals +500% amplified damage and creates a 7m explosion dealing 500% weapon damage, consuming the stacks.",
+        "stats": [
+          "Damage Amplification",
+          "Explosive Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Hyenas mission and Summit bosses (1% normal to 7% heroic), exotic caches, rifle targeted loot",
+    "confidence": "single-source",
+    "notes": [
+      "Launch roster is not confirmed by an official source; known to exist by TU3."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Merciless"
+    ]
+  },
+  {
+    "id": "ruthless",
+    "name": "Ruthless",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Binary Trigger",
+        "text": "This weapon fires on trigger pull and release. If both bullets hit the same enemy, gain a stack. At 7 stacks, shooting an enemy deals +500% amplified damage and creates a 7m explosion dealing 500% weapon damage, consuming the stacks.",
+        "stats": [
+          "Damage Amplification",
+          "Explosive Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Deluxe Pack / Ultimate Edition exclusive; upgrade of Merciless via blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Identical to Merciless, different name and skin."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Ruthless"
+    ]
+  },
+  {
+    "id": "sweet-dreams",
+    "name": "Sweet Dreams",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Sandman",
+        "text": "Melee attacks instantly kill non-elite enemies. Cooldown: 15s.",
+        "stats": [
+          "Melee Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Armor",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Outcast mission and Summit bosses (1% normal to 7% heroic), exotic caches, shotgun targeted loot",
+    "confidence": "single-source",
+    "notes": [
+      "Launch roster not confirmed by an official source; a guide dated 2019-04-01 already lists it."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Sweet_Dreams"
+    ]
+  },
+  {
+    "id": "the-chatterbox",
+    "name": "The Chatterbox",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2019-03-15",
+      "update": "Launch",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Incessant Chatter",
+        "text": "When you reload, rate of fire is increased by 25% for each enemy within 15m for the duration of that magazine. Max stacks: 5 Kills refill 50% of your magazine.",
+        "stats": [
+          "Rate of Fire"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic quest (Hyenas faction crates, 3 parts), then SMG targeted loot and exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Launch roster not confirmed by an official source; known to exist by TU3. Older value (sheet snapshot): +20% Rate of Fire per enemy, now +25% (ProtoTrack)."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/The_Chatterbox"
+    ]
+  },
+  {
+    "id": "nemesis",
+    "name": "Nemesis",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2019-04-05",
+      "update": "Title Update 2",
+      "label": "TU2 · Invasion: Battle for D.C."
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Electromagnetic Accelerator",
+        "text": "Shots fired deal 0-100% weapon damage based on how long the trigger is held before releasing.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 111,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic quest (Nemesis parts), then MMR targeted loot",
+    "confidence": "single-source",
+    "notes": [
+      "Wiki dates it to TU2; official source not found."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Nemesis"
+    ]
+  },
+  {
+    "id": "pestilence",
+    "name": "Pestilence",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2019-04-05",
+      "update": "Title Update 2",
+      "label": "TU2 · Invasion: Battle for D.C."
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Plague of the Outcasts",
+        "text": "Hits apply a debuff dealing 100% weapon damage over 10s. This stacks up to 50 times. Whenever an enemy dies with this debuff, 100% of the stacks are transferred to a nearby enemy within 25m.",
+        "stats": [
+          "Bleed Damage",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Dark Zone landmark bosses, Brooklyn boss Foxtrot (8%), exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): 50% of stacks transfer on kill. Now 100% (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Pestilence"
+    ]
+  },
+  {
+    "id": "eagle-bearer",
+    "name": "Eagle Bearer",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2019-05-14",
+      "update": "Title Update 3",
+      "label": "TU3 · Operation Dark Hours"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Eagle's Strike",
+        "text": "Accuracy increases as you continuously fire, up to +30%. Headshot kills grant the Tenacity buff for 15s.",
+        "stats": [
+          "Accuracy"
+        ]
+      },
+      {
+        "slot": "weapon",
+        "name": "Tenacity",
+        "text": "40-80% of damage taken is delayed until the buff expires. All of the total delayed damage is reduced for each enemy killed while the buff is active, up to 100% with 3 kills. The strength of Tenacity is increased by 1% for body shots and 5% for headshots.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Raid Operation Dark Hours (0.03% first weekly boss, 10% raid chest); Toxic Dark Zone Hunters (2%); Red Moon Rising event",
+    "confidence": "confirmed",
+    "notes": [
+      "Dark Zone Hunter drop (2%) added in Y8S2; Red Moon Rising event pool in Y8S3.1."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Eagle_Bearer"
+    ]
+  },
+  {
+    "id": "dodge-city-gunslingers-holster",
+    "name": "Dodge City Gunslinger's Holster",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2019-06-18",
+      "update": "Title Update 4",
+      "label": "TU4"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Quick Draw",
+        "text": "While your pistol is holstered, gain a stacking buff every 0.3s, up to 100. When you swap to it, your first shot consumes the buff and deals +10% damage per stack. This deals headshot damage to anywhere you hit. Requires: Pistol Equipped",
+        "stats": [
+          "Weapon Damage",
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Weapon Handling",
+        "value": 8,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic quest (Holster Intel project), then holster targeted loot and exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (Fandom list, TU22 era): buff stacks every 0.5s. Now every 0.3s (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Dodge_City_Gunslinger's_Holster"
+    ]
+  },
+  {
+    "id": "btsu-datagloves",
+    "name": "BTSU Datagloves",
+    "kind": "exotic",
+    "category": "Gloves",
+    "added": {
+      "date": "2019-07-23",
+      "update": "Title Update 5",
+      "label": "TU5 · D.C. Outskirts: Expeditions"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Transference Overclock",
+        "text": "Grants +15% Hive skill haste per skill tier. Detonating a Hive refreshes your skill cooldowns and grants overcharge for 15s. If at Skill Tier 6, this effect also applies to all allies. Allies receiving this effect are unable to benefit from it again for 120s.",
+        "stats": [
+          "Skill Haste",
+          "Skill Tier",
+          "Overcharge",
+          "Skill Cooldown"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Haste",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Repair Skills",
+        "value": 20,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, gloves targeted loot, Black Tusk Medic/Controller drops (Camp White Oak)",
+    "confidence": "confirmed",
+    "notes": [
+      "Original TU5 version had three different talents; reworked in WONY (TU8)."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/BTSU_Datagloves"
+    ]
+  },
+  {
+    "id": "diamondback",
+    "name": "Diamondback",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2019-07-23",
+      "update": "Title Update 5",
+      "label": "TU5 · D.C. Outskirts: Expeditions"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Agonizing Bite",
+        "text": "Diamondback randomly marks an enemy within 20m. If no enemies are within 20m, it marks the enemy closest to you. Hitting that enemy consumes the mark, guaranteeing a critical hit with damage amplified by 20% After hitting a mark, all shots fired are guaranteed critical hits for 5s. A new random enemy is marked afterwards and whenever you reload.",
+        "stats": [
+          "Critical Hit Chance",
+          "Critical Hit Damage",
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Kenly College final loot room; rifle targeted loot, Black Tusk completion blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "TU5 launch had three talents (Agonizing Bite, Deep Fangs, Shedding Skin). TU21 (2024-06-11) rework: mark now picks a random enemy within 20m, else the closest; magazine 5 -> 8."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Diamondback"
+    ]
+  },
+  {
+    "id": "sawyers-kneepads",
+    "name": "Sawyer's Kneepads",
+    "kind": "exotic",
+    "category": "Kneepads",
+    "added": {
+      "date": "2019-10-15",
+      "update": "Title Update 6",
+      "label": "TU6 · Pentagon: The Last Castle"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Stand Your Ground",
+        "text": "Cannot be staggered by explosions. Increases total weapon damage by 3% each second you are not moving. Stacks up to 10 until you start moving. All stacks lost 10s after moving.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Explosive Resistance",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Health",
+        "value": 18935,
+        "unit": null,
+        "fixed": true
+      }
+    ],
+    "obtain": "Hyenas mission and Summit bosses (1% normal to 7% heroic), exotic caches",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Sawyer's_Kneepads"
+    ]
+  },
+  {
+    "id": "chameleon",
+    "name": "Chameleon",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2020-02-12",
+      "update": "Title Update 7",
+      "label": "TU7 · Coney Island"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Adaptive Instincts",
+        "text": "Hitting 30 headshots grants +20% critical hit chance and +50% critical hit damage for 45s. Hitting 65 body shots grants +90% weapon damage for 45s. Hitting 20 leg shots grants +150% reload speed for 45s. Buffs refresh when out of combat.",
+        "stats": [
+          "Critical Hit Chance",
+          "Critical Hit Damage",
+          "Weapon Damage",
+          "Reload Speed"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, AR targeted loot, bounty bosses, Brooklyn boss Kilo (8%)",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): 60 body shots for +80% Weapon Damage and 30 leg shots. Now 65 body shots for +90% and 20 leg shots (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Chameleon"
+    ]
+  },
+  {
+    "id": "acostas-go-bag",
+    "name": "Acosta's Go-Bag",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "One in Hand ...",
+        "text": "Throwing a grenade refunds it and grants +1 skill tier for 15s. Grants overcharge if already at skill tier 6. Cooldown: 60s.",
+        "stats": [
+          "Skill Tier",
+          "Overcharge"
+        ]
+      },
+      {
+        "slot": "gear",
+        "name": "... Two in the Bag",
+        "text": "+1 Armor Kit Capacity. +3 Grenade Capacity. +25% Ammo Capacity. +10% Repair Skills. +10% Status Effects.",
+        "stats": [
+          "Ammo Capacity",
+          "Repair Skills",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Damage",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Skill Haste",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, backpack targeted loot, faction lockboxes (3%)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Acosta's_Go-Bag"
+    ]
+  },
+  {
+    "id": "bullet-king",
+    "name": "Bullet King",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Bullet Hell",
+        "text": "This weapon never needs to be reloaded. For every 100 bullets that hit an enemy, replenish some ammo to you and your allies' reserves.",
+        "stats": [
+          "Ammo Capacity"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Rikers mission and Summit bosses (1% normal to 7% heroic), Brooklyn boss Hotel (8%), exotic caches",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Bullet_King"
+    ]
+  },
+  {
+    "id": "coyotes-mask",
+    "name": "Coyote's Mask",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Pack Instincts",
+        "text": "You and all allies gain a bonus based on the distance of the last enemy you hit. 0-15m: +25% critical hit damage 15-25m: +10% critical hit damage and +10% critical hit chance 25m+: +25% critical hit chance",
+        "stats": [
+          "Critical Hit Damage",
+          "Critical Hit Chance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Jefferson Trade Center boss Coyote (1% normal to 7% heroic), Brooklyn boss Lima (8%), exotic caches",
+    "confidence": "single-source",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Coyote's_Mask"
+    ]
+  },
+  {
+    "id": "imperial-dynasty",
+    "name": "Imperial Dynasty",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Dragon's Glare",
+        "text": "While in combat, applies burn to the enemy closest to you within 20m. Cooldown: 35s",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Status Effects",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Cleaners mission and Summit bosses (1% normal to 7% heroic), exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): cooldown 40s. Now 35s (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Imperial_Dynasty"
+    ]
+  },
+  {
+    "id": "lady-death",
+    "name": "Lady Death",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Breathe Free",
+        "text": "When moving, gain 4 stacks per second, or 8 stacks if sprinting. Max stack is equal to the weapon's Magazine Size. Each round fired consumes a stack, amplifying damage by 75%. Kills grant +20% movement speed for 10s.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "NYC named bosses (3%), exotic caches",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): 72% amplified damage, max stacks 32. Now 75% and max stacks = magazine size (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Lady_Death"
+    ]
+  },
+  {
+    "id": "ninjabike-messenger-kneepads",
+    "name": "NinjaBike Messenger Kneepads",
+    "kind": "exotic",
+    "category": "Kneepads",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Parkour!",
+        "text": "Performing a cover to cover or vaulting reloads your drawn weapon and grants +25% bonus armor for 5s.",
+        "stats": [
+          "Reload Speed",
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "DZ drops (3%), exotic caches",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/NinjaBike_Messenger_Kneepads"
+    ]
+  },
+  {
+    "id": "tardigrade-armor-system",
+    "name": "Tardigrade Armor System",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Ablative Nano-Plating",
+        "text": "Whenever your or any ally's armor breaks, they gain 80% of your armor as bonus armor for 10s. Cooldown per ally: 45s Killing an enemy with your specialization weapon removes this cooldown for all allies.",
+        "stats": [
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Armor Regeneration",
+        "value": 4925,
+        "unit": "HP/s",
+        "fixed": true
+      },
+      {
+        "stat": "Explosive Resistance",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "True Sons mission and Summit bosses (1% normal to 7% heroic), Brooklyn boss Sierra (8%), exotic caches",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Tardigrade_Armor_System"
+    ]
+  },
+  {
+    "id": "the-bighorn",
+    "name": "The Bighorn",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2020-03-03",
+      "update": "Warlords of New York",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Big Game Hunter",
+        "text": "When scoped, switches to semi-automatic fire mode, dealing 450% weapon damage with each shot. Headshots grant +6% headshot damage. Stacks up to 25 times. Once at full stacks, 10 stacks decay every 4 seconds until all stacks have been removed. Headshots delay decaying of stacks.",
+        "stats": [
+          "Weapon Damage",
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Legendary mission bosses, Legendary Summit bosses (5%), Red Moon Rising event",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): +2% Headshot Damage per hit, up to 50 stacks. Now +6%, up to 25 stacks (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/The_Bighorn"
+    ]
+  },
+  {
+    "id": "mantis",
+    "name": "Mantis",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2020-06-16",
+      "update": "Title Update 10",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "In Plain Sight",
+        "text": "Your scoped view displays additional information about enemies not targeting you. Headshot and weakpoint damage against enemies not targeting you amplified by 50%. Headshot kills reset the cooldown of the Decoy skill. This bonus will wait until the Decoy goes on cooldown if currently active.",
+        "stats": [
+          "Damage Amplification",
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 111,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, MMR targeted loot, Hyenas completion blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Was Season 2 (Keener's Legacy) level 55 reward; general loot pool since TU11."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Mantis"
+    ]
+  },
+  {
+    "id": "regulus",
+    "name": "Regulus",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2020-06-16",
+      "update": "Title Update 10",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Regicide",
+        "text": "Headshot kills create a 5m explosion, dealing 400% weapon damage and applying bleed to all enemies hit.",
+        "stats": [
+          "Weapon Damage",
+          "Bleed",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Raid Operation Iron Horse (0.03% first weekly boss) plus Regulus exotic project",
+    "confidence": "confirmed",
+    "notes": [
+      "Iron Horse raid opened 2020-06-30; item belongs to the TU10 content drop."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Regulus"
+    ]
+  },
+  {
+    "id": "the-ravenous",
+    "name": "The Ravenous",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2020-06-16",
+      "update": "Title Update 10",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Geri and Freki",
+        "text": "On trigger-pull, fire both barrels at once. When fired from the right shoulder, hits add offensive primers, and defensive primers when fired from the left shoulder. Hits from one shoulder will detonate all of the opposite shoulder's primers when present. When detonated, each offensive primer deals 100% weapon damage, while each defensive primer grants +4% bonus armor and +10% amplified damage to armor plates for 5s. Primer effectiveness is doubled at 10 stacks.",
+        "stats": [
+          "Damage Amplification",
+          "Bonus Armor",
+          "Explosive Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Raid Operation Iron Horse (0.03% first weekly boss, 10% raid chest); Toxic Dark Zone Hunters (2%); Red Moon Rising event",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): each offensive primer 75% weapon damage, no doubling. Now 100% and doubled at 10 stacks (ProtoTrack). Change date unconfirmed.",
+      "Iron Horse raid opened 2020-06-30; item belongs to the TU10 content drop."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/The_Ravenous"
+    ]
+  },
+  {
+    "id": "vile",
+    "name": "Vile",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2020-06-16",
+      "update": "Title Update 10",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Toxic Delivery",
+        "text": "Status effects also apply a damage over time debuff for 10s. Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+        "stats": [
+          "Status Effects",
+          "Burn",
+          "Bleed",
+          "Shock",
+          "Skill Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Status Effects",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, mask targeted loot; was Season 2 level 90 reward",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Vile"
+    ]
+  },
+  {
+    "id": "backfire",
+    "name": "Backfire",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2020-09-22",
+      "update": "Title Update 11",
+      "label": "TU11 · Concealed Agenda"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Payment in Kind",
+        "text": "Dealing damage to enemies adds a stack of +2% critical hit damage, up to 100 stacks, lasting 10s. On reload apply a 10s bleed to yourself, which deals 0.5% armor damage per stack.",
+        "stats": [
+          "Critical Hit Damage",
+          "Bleed",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, SMG targeted loot, Outcasts kill squad blueprint",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (Gear Attribute Sheet snapshot): +1% critical hit damage per stack, up to 200 stacks. Now +2%, up to 100 stacks (ProtoTrack, Oct 2026). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Backfire"
+    ]
+  },
+  {
+    "id": "memento",
+    "name": "Memento",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2020-09-22",
+      "update": "Title Update 11",
+      "label": "TU11 · Concealed Agenda"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Kill Confirmed",
+        "text": "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long term buff, the first of which scales with the number of core attributes equipped, and lasts 10s. Red - +5% Weapon Damage Blue - +10% Bonus Armor Yellow - +5% Skill Efficiency For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks.",
+        "stats": [
+          "Weapon Damage",
+          "Bonus Armor",
+          "Skill Efficiency",
+          "Armor Regeneration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, backpack targeted loot, Brooklyn boss Romeo (8%)",
+    "confidence": "confirmed",
+    "notes": [
+      "Was Season 3 (Concealed Agenda) level 90 reward; general loot pool since Year 6."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Memento"
+    ]
+  },
+  {
+    "id": "ridgeways-pride",
+    "name": "Ridgeway's Pride",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2020-09-22",
+      "update": "Title Update 11",
+      "label": "TU11 · Concealed Agenda"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Bleeding Edge",
+        "text": "Shooting enemies within 15m applies bleed to the target. Repair 3-48% of your armor per second for every enemy that is bleeding within 15m. Repair strength per number of bleeding enemies: 1:3% 2:6% 3:12% 4:24% 5:48%",
+        "stats": [
+          "Bleed",
+          "Status Effects",
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic quest via The Summit (floor parts), then chest targeted loot",
+    "confidence": "confirmed",
+    "notes": [
+      "Fandom TU22 era text lists repair range 'within 15m'; the Gear Attribute Sheet snapshot says 10m. Current value 15m."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Ridgeway's_Pride"
+    ]
+  },
+  {
+    "id": "capacitor",
+    "name": "Capacitor",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2020-12-08",
+      "update": "Title Update 12",
+      "label": "TU12 · End of Watch"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Capacitance",
+        "text": "Shooting enemies builds stacks to a cap of 40. Each stack grants 1.5% Skill Damage. After 5 seconds, stacks decay 1 per second. For each skill tier gain 7.5% weapon damage.",
+        "stats": [
+          "Skill Damage",
+          "Weapon Damage",
+          "Skill Tier"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Summit (5 challenges in one ascent) for first copy, then AR targeted loot; Black Tusk kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Sheet snapshot wording: 7.5% Weapon Damage per utility core; current wording per skill tier."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Capacitor"
+    ]
+  },
+  {
+    "id": "scorpio",
+    "name": "Scorpio",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2020-12-08",
+      "update": "Title Update 12",
+      "label": "TU12 · End of Watch"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Septic Shock",
+        "text": "Shooting a target applies stacks of venom, which last for 10s. Increasing stacks adds more severe debuffs to the target. 2 - Poison 4 - Disorient 6 - Shock 9 - Target takes additional 20% damage (from all sources). Stacks no longer increase. Duration of Status Effects is based on percentage of pellets hit on applying shot.",
+        "stats": [
+          "Status Effects",
+          "Disorient",
+          "Shock",
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Armor",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Brooklyn boss Papa (8%), exotic caches, shotgun targeted loot",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): 1 Poison, 3 Disorient, 6 Shock, 7 +20% damage. Now 2/4/6/9 (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Scorpio"
+    ]
+  },
+  {
+    "id": "waveform",
+    "name": "Waveform",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2020-12-08",
+      "update": "Title Update 12",
+      "label": "TU12 · End of Watch"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Alternating Current",
+        "text": "Generate a stack of 3% skill damage on one of your skills every second, capping at 10 stacks. After 10 seconds at the cap the stacks transfer to your other skill. The process then repeats ad-infinitum.",
+        "stats": [
+          "Skill Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Damage",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Skill Haste",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, holster targeted loot, Outcasts completion blueprint, Brooklyn boss Alpha (8%)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Waveform"
+    ]
+  },
+  {
+    "id": "bluescreen",
+    "name": "Bluescreen",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2022-05-12",
+      "update": "Title Update 15",
+      "label": "TU15 · Hidden Alliance"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Disruptor Rounds",
+        "text": "Shooting an enemy marks that enemy and adds a stack to the agent up to a count of 50. Shooting a marked enemy refreshes the mark and adds stacks to the agent. When you deploy a non- shield skill, remove all stacks on agent and all marked targets trigger an effect. 1 - 10 Stacks - Pulse marked targets for 5 seconds 11 - 25 Stacks - Pulse and Disrupt marked targets for 5 seconds. 26 - 49 Stacks - Pulse, Disrupt, and Disorient marked targets for 5 seconds. 50 Stacks - Pulse, Disrupt, and Disorient marked targets and all hostiles within 10 meters of the marked targets for 5 seconds. This effect will trigger immediately if any marked enemy is killed.",
+        "stats": [
+          "Pulse",
+          "Disrupt",
+          "Disorient",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "True Sons completion blueprint (Manhunt Captain Lewis); LMG targeted loot",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Bluescreen"
+    ]
+  },
+  {
+    "id": "catharsis",
+    "name": "Catharsis",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2022-05-12",
+      "update": "Title Update 15",
+      "label": "TU15 · Hidden Alliance"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Vicious Cycle",
+        "text": "Taking damage builds stacks to a cap of 30. Each stack grants 1.5% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud.",
+        "stats": [
+          "Weapon Damage",
+          "Armor Repair",
+          "Armor Regeneration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Incoming Repairs",
+        "value": 20,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Armor Regeneration",
+        "value": 4925,
+        "unit": "HP/s",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, mask targeted loot, True Sons kill squad blueprint",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (Gear Attribute Sheet snapshot): 1% Weapon Damage per stack. Now 1.5% (ProtoTrack, Oct 2026). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Catharsis"
+    ]
+  },
+  {
+    "id": "dread-edict",
+    "name": "Dread Edict",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2022-05-12",
+      "update": "Title Update 15",
+      "label": "TU15 · Hidden Alliance"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Full Stop",
+        "text": "Shooting enemies builds stacks to a cap of 20. Headshots grant 2 stacks. Each stack grants 2% Weapon Damage and 5% Headshot Damage. On reload, clear all stacks and gain 5% of your max armor as temp armor for 10 seconds for each stack removed. Headshot kills with Dread Edict restore all bullets in the magazine. This does not count as a reload.",
+        "stats": [
+          "Weapon Damage",
+          "Headshot Damage",
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 111,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "True Sons kill squad blueprint, MMR targeted loot, exotic caches",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Dread_Edict"
+    ]
+  },
+  {
+    "id": "bloody-knuckles",
+    "name": "Bloody Knuckles",
+    "kind": "exotic",
+    "category": "Gloves",
+    "added": {
+      "date": "2022-09-13",
+      "update": "Title Update 16",
+      "label": "TU16 · Price of Power"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Over the Top",
+        "text": "Damaging an enemy with a grenade or striking an enemy with a melee attack activates Seeing Red Seeing Red grants +25% weapon damage and +100% to melee damage. Seeing Red lasts 20 seconds and has a 60 second cooldown after completion. While in cooldown, damaging an enemy with a melee attack or hitting an enemy with the effect of a grenade will complete the cooldown instantly.",
+        "stats": [
+          "Weapon Damage",
+          "Melee Damage",
+          "Explosive Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, gloves targeted loot, Rikers kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Bloody_Knuckles"
+    ]
+  },
+  {
+    "id": "busy-little-bee",
+    "name": "Busy Little Bee",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2022-09-13",
+      "update": "Title Update 16",
+      "label": "TU16 · Price of Power"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Busy Little Bee",
+        "text": "Each shot to a different target will give 1 stack, up to 10, each stack will give 20% weapon damage increase. Stacks will activate once the agent switches weapons and will last for 10 seconds.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, pistol targeted loot, True Sons kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Busy_Little_Bee"
+    ]
+  },
+  {
+    "id": "doctor-home",
+    "name": "Doctor Home",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2022-09-13",
+      "update": "Title Update 16",
+      "label": "TU16 · Price of Power"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Doctor Home",
+        "text": "Shooting an enemy with this weapon will apply a mark for 5 seconds. If a marked target is killed it will give a 10% Armor repair kit which applies to the whole party. The Kit will not give bonus armor.",
+        "stats": [
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "General Anderson Manhunt blueprint (Pentco Fairview Power Plant), then rifle targeted loot",
+    "confidence": "confirmed",
+    "notes": [
+      "TU20.2 reverted an earlier change: the repair kit drops on kill again, not on headshot kill."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Doctor_Home"
+    ]
+  },
+  {
+    "id": "ninjabike-messenger-backpack",
+    "name": "NinjaBike Messenger Backpack",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2023-02-28",
+      "update": "Title Update 17",
+      "label": "TU17 · Reign of Fire"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Resourceful",
+        "text": "Slots in with any equipped Gear Set and or Brand Set item to fulfill a requirement towards unlocking a Gear Sets bonus. Can unlock bonuses from multiple sets simultaneously.",
+        "stats": []
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, backpack targeted loot, Rikers kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Talent has no stat; it counts as a Gear Set / Brand Set piece."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/NinjaBike_Messenger_Backpack"
+    ]
+  },
+  {
+    "id": "sacrum-imperium",
+    "name": "Sacrum Imperium",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2023-02-28",
+      "update": "Title Update 17",
+      "label": "TU17 · Reign of Fire"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "The Trap",
+        "text": "Tags enemies when in crosshair (maximum of 10) If Agent kills any marked target with a headshot, all other targets will have 50% movement speed decreased and receive burn for 10 seconds. Cooldown 30 seconds. Killing another enemy with a headshot will shorten the cooldown for 10 seconds. Targets are marked after 1 seconds in crosshair.",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 111,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Hyenas kill squad blueprint, MMR targeted loot, exotic caches",
+    "confidence": "disputed",
+    "notes": [
+      "Mark time in scope: sheet snapshot 2s, TU17.2 changed it to 0.5s, ProtoTrack Oct 2026 shows 1s. Unresolved."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Sacrum_Imperium"
+    ]
+  },
+  {
+    "id": "shocker-punch",
+    "name": "Shocker Punch",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2023-06-08",
+      "update": "Year 5 Season 1",
+      "label": "Y5S1 · Broken Wings"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Defibrillator",
+        "text": "While Shocker Punch is equipped, the stun received by the agent from the Shock status effect will be reduced by 50%. Using a shield will give 100% to melee damage. Using St. Elmo's Engine with the holster will give 100% extra melee damage and will make the next melee attack to apply Shock to the target. Using all three items will offer all of the above mentioned bonuses and the Shock from the melee attack will have a 5m radius, starting from the first target. 15 seconds cooldown.",
+        "stats": [
+          "Shock",
+          "Melee Damage",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Explosive Resistance",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, holster targeted loot",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Shocker_Punch"
+    ]
+  },
+  {
+    "id": "st-elmos-engine",
+    "name": "St. Elmo's Engine",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2023-06-08",
+      "update": "Year 5 Season 1",
+      "label": "Y5S1 · Broken Wings"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Actum Est",
+        "text": "Shooting an enemy with this weapon will give 1 stack. At 100 stacks the next magazine will be 100% filled with shock ammo.",
+        "stats": [
+          "Shock",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Brooklyn boss Bravo (8%), exotic caches, AR targeted loot, True Sons kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/St._Elmo's_Engine"
+    ]
+  },
+  {
+    "id": "collector",
+    "name": "Collector",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2023-10-03",
+      "update": "Year 5 Season 2",
+      "label": "Y5S2 · Puppeteers"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Hoarder",
+        "text": "+3 Grenade Capacity +50% Grenade Radius +35% Grenade Damage +25% Grenade Damage for each extra enemy caught in the blast. Automatically regenerate a grenade every 30s, if you have less than 2 grenades in your inventory.",
+        "stats": [
+          "Explosive Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, chest targeted loot, Outcasts kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "TU19.1 reworded the regeneration line to: regenerate a grenade every 30s while holding fewer than 2."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Collector"
+    ]
+  },
+  {
+    "id": "iron-lung",
+    "name": "Iron Lung",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2023-10-03",
+      "update": "Year 5 Season 2",
+      "label": "Y5S2 · Puppeteers"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Ardent",
+        "text": "Shooting heats up the weapon, filling up heat meter. The meter is equivalent to 50% of the weapon's standard Magazine Size. When the meter is full, rounds shot by the weapon ignite enemies. When not shooting, the meter depletes over time. Reloading or swapping the weapon fully depletes the meter.",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Brooklyn boss October (8%), exotic caches, Cleaners kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Iron_Lung"
+    ]
+  },
+  {
+    "id": "ouroboros",
+    "name": "Ouroboros",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2023-10-03",
+      "update": "Year 5 Season 2",
+      "label": "Y5S2 · Puppeteers"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Rule Them All",
+        "text": "When the agent has a Status Effect applied to them, 50% of the ammo in their next magazine will apply the same Status Effect to their targets. This effect will only occur during combat.",
+        "stats": [
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Incursion Paradise Lost (1% bosses, 10% final chest)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Ouroboros"
+    ]
+  },
+  {
+    "id": "mosquito",
+    "name": "Mosquito",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2024-02-06",
+      "update": "Year 5 Season 3",
+      "label": "Y5S3 · Vanguard"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Mosquito Song",
+        "text": "Hitting an enemy applies a stack. Stacks are shared between players. At 5 stacks, the enemy will forcefully target the last player to apply a stack for 5s and take 25% more damage to armor. Stacks deplete every 5s. Activating the effect on an enemy will remove all stacks from other enemies.",
+        "stats": [
+          "Damage to Armor",
+          "Increased Threat"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, pistol targeted loot",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): effect at 10 stacks, no armor-damage bonus. Now 5 stacks and +25% damage to armor (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Mosquito"
+    ]
+  },
+  {
+    "id": "rugged-gauntlets",
+    "name": "Rugged Gauntlets",
+    "kind": "exotic",
+    "category": "Gloves",
+    "added": {
+      "date": "2024-02-06",
+      "update": "Year 5 Season 3",
+      "label": "Y5S3 · Vanguard"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Iron Grip",
+        "text": "-50% Recoil Penalty when hip-firing. -50% Recoil Penalty when blind-firing from cover.",
+        "stats": [
+          "Accuracy"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, gloves targeted loot, Outcasts completion blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Rugged_Gauntlets"
+    ]
+  },
+  {
+    "id": "vindicator",
+    "name": "Vindicator",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2024-02-06",
+      "update": "Year 5 Season 3",
+      "label": "Y5S3 · Vanguard"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Ortiz Assault Interface",
+        "text": "While scoped, the weapon will highlight a random body section of each enemy. The weapon amplifies damage by +60% Weapon Damage to highlighted body sections.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Descent NSA shop (350 NSA credits); attributes reroll in the shop every 24h",
+    "confidence": "single-source",
+    "notes": [
+      "Older value (sheet snapshot): +40% weapon damage on highlighted body section. Now +60% (ProtoTrack). Change date unconfirmed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Vindicator"
+    ]
+  },
+  {
+    "id": "acostas-kneepads",
+    "name": "Acosta's Kneepads",
+    "kind": "exotic",
+    "category": "Kneepads",
+    "added": {
+      "date": "2024-06-11",
+      "update": "Year 6 Season 1",
+      "label": "Y6S1 · First Rogue"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Escape Plan",
+        "text": "Vaulting grants +10% Movement Speed for 3s. After not moving for 5s, receive +20% Movement Speed for 5s. Being applied a Status Effect grants +10% Movement Speed for 5s. Max Movement Speed bonus is 20%. The bonuses do not stack with Movement Speed bonuses from other sources. -50% Movement Impairment penalty from Status Effects.",
+        "stats": []
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, kneepads targeted loot",
+    "confidence": "confirmed",
+    "notes": [
+      "Talent has no PvE stat in the shared vocabulary; it grants Movement Speed."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Acosta's_Kneepads"
+    ]
+  },
+  {
+    "id": "overlord",
+    "name": "Overlord",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2024-06-11",
+      "update": "Year 6 Season 1",
+      "label": "Y6S1 · First Rogue"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Capitulate",
+        "text": "Hitting an enemy applies -4% Movement Speed for each pellet hit for 5 seconds. Shooting the enemy again will reapply the stacks.",
+        "stats": [
+          "Ensnare",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Armor",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, shotgun targeted loot, Hyenas kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Overlord"
+    ]
+  },
+  {
+    "id": "centurions-scabbard",
+    "name": "Centurion's Scabbard",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2024-10-29",
+      "update": "Year 6 Season 2",
+      "label": "Y6S2 · Shades of Red"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Counter",
+        "text": "Swapping weapons will give the following groups of bonuses one by one, in order: 1. +20% Rate of Fire, +20% Weapon Damage 2. +50% Magazine Size, +50% Reload Speed The bonuses remain active for 12s or until the next weapon swap. Swapping to your sidearm will not trigger the next group of bonuses.",
+        "stats": [
+          "Rate of Fire",
+          "Weapon Damage",
+          "Magazine Size",
+          "Reload Speed"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Weapon Handling",
+        "value": 8,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, holster targeted loot, Hyenas kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Centurion's_Scabbard"
+    ]
+  },
+  {
+    "id": "provocator",
+    "name": "Provocator",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2024-10-29",
+      "update": "Year 6 Season 2",
+      "label": "Y6S2 · Shades of Red"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Challenger",
+        "text": "Receive +25% Damage Resistance from enemies within 20m.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Armor Regeneration",
+        "value": 4925,
+        "unit": "HP/s",
+        "fixed": true
+      },
+      {
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Manhunt climax mission Space Administration HQ: Theo Parnell (guaranteed on first Master clear)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Provocator"
+    ]
+  },
+  {
+    "id": "strega",
+    "name": "Strega",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2024-10-29",
+      "update": "Year 6 Season 2",
+      "label": "Y6S2 · Shades of Red"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Unnerve",
+        "text": "Killing an enemy will apply a mark on every enemy within 20m of it. Multiple marks can be applied to the same enemy. Max number of marks that can be applied to an enemy is 5. All marks on an enemy will disappear 10s after the last one has been applied. Deal +15% Amplified Damage per mark to marked enemies.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Brooklyn boss Delta (8%), exotic caches, AR targeted loot, Hyenas kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Strega"
+    ]
+  },
+  {
+    "id": "birdies-quick-fix-pack",
+    "name": "Birdie's Quick Fix Pack",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2025-02-25",
+      "update": "Year 6 Season 3",
+      "label": "Y6S3 · Burden of Truth"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Combat Medic",
+        "text": "+80% Revive Speed -50% Weakened Debuff timer +45% Hive Efficiency Provides +50% Damage Resistance to both agents while reviving or being revived, and for 5s after a successful Hive Revive, or 10s after a Manual Revive. Any successful revives provide +1 Skill Tier for 5s. Revives at Skill Tier 6 grant Overcharge for 15s.",
+        "stats": [
+          "Damage Resistance",
+          "Skill Tier",
+          "Overcharge",
+          "Skill Haste"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Haste",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Repair Skills",
+        "value": 20,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Manhunt climax mission Roosevelt Island: Alani Kelso (guaranteed on first Master clear, drops on any difficulty)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Birdie's_Quick_Fix_Pack"
+    ]
+  },
+  {
+    "id": "exodus-gloves",
+    "name": "Exodus Gloves",
+    "kind": "exotic",
+    "category": "Gloves",
+    "added": {
+      "date": "2025-02-25",
+      "update": "Year 6 Season 3",
+      "label": "Y6S3 · Burden of Truth"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Smoke Screen",
+        "text": "On Armor break, drop a Smoke Bomb at your feet, concealing you from enemies for 3s. Cooldown: 40s",
+        "stats": []
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Y6S3 season pass rank 29; exotic caches, gloves targeted loot, True Sons completion blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "Talent grants concealment only; no stat tag applies."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Exodus_Gloves"
+    ]
+  },
+  {
+    "id": "oxpecker",
+    "name": "Oxpecker",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2025-02-25",
+      "update": "Year 6 Season 3",
+      "label": "Y6S3 · Burden of Truth"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Symbiosis",
+        "text": "While having a Shield deployed, lose Shield Health at a rate of 10% per second. Your Shield receives repairs of 25% of the damage dealt by this weapon.",
+        "stats": [
+          "Shield Health",
+          "Skill Health"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y6S3 season pass; exotic caches, SMG targeted loot, Hyenas kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Oxpecker"
+    ]
+  },
+  {
+    "id": "nimble-holster",
+    "name": "Nimble Holster",
+    "kind": "exotic",
+    "category": "Holster",
+    "added": {
+      "date": "2025-05-27",
+      "update": "Year 7 Season 1",
+      "label": "Y7S1 · Crossroads"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Bob and Weave",
+        "text": "Receive repairs of 5% of your Total Armor for every 1m run in cover-to-cover. Damage taken while doing a cover-to-cover is healed over 10s.",
+        "stats": [
+          "Armor Repair",
+          "Health"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Y7S1 season pass rank 29; exotic caches, Outcasts completion blueprint",
+    "confidence": "confirmed",
+    "notes": [
+      "PvE 5% repairs per metre, PvP 3% (Y7S1 notes)."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Nimble_Holster"
+    ]
+  },
+  {
+    "id": "pakhan",
+    "name": "Pakhan",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2025-05-27",
+      "update": "Year 7 Season 1",
+      "label": "Y7S1 · Crossroads"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Pakhan",
+        "text": "Each kill with this weapon gains a stack of 75% Base Magazine Size increase to the next magazine, up to 4 stacks.",
+        "stats": [
+          "Magazine Size"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y7S1 season pass; exotic caches, True Sons kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Pakhan"
+    ]
+  },
+  {
+    "id": "the-catalyst",
+    "name": "The Catalyst",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2025-05-27",
+      "update": "Battle for Brooklyn",
+      "label": "DLC · Battle for Brooklyn"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Chemical Agent",
+        "text": "Catalysis: Dealing and receiving status effects (Burn, Bleed, Shock, EMP/Disrupt, Poison, and Blind/Disorient) builds stacks of Catalysis to a maximum of 12. Each stack grants +2% weapon damage and +2% status effects. Each enemy within 25 meters that is affected by a status effect grants +1 stack/sec. Being affected by status effects grants +2 stacks/sec. Stacks decay at 1 stack/sec after 5s if no enemies in the radius or you are affected by status effects. Reactant: At max stacks, killing a status-affected enemy grants +25% bonus armor and +20% reload speed for 5s. Stabilizer: While burning, you can maintain ADS without disruption.",
+        "stats": [
+          "Weapon Damage",
+          "Status Effects",
+          "Bonus Armor",
+          "Reload Speed",
+          "Burn",
+          "Bleed",
+          "Shock",
+          "Disrupt",
+          "Blind",
+          "Disorient"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Status Effects",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Battle for Brooklyn final mission drop, Brooklyn boss Charlie (8%), Army Terminal",
+    "confidence": "single-source",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/The_Catalyst"
+    ]
+  },
+  {
+    "id": "tinkerer",
+    "name": "Tinkerer",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2025-05-27",
+      "update": "Year 7 Season 1",
+      "label": "Y7S1 · Crossroads"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Abridged",
+        "text": "If your Primary and Secondary weapons are not Exotic or Named and of the same type, the Secondary Weapon's talent will also be applied to the Primary Weapon. Does not apply if the Primary or Secondary Weapon's Talent includes weapon swapping. Does not apply if the Primary and Secondary Weapons' Talents are the same.",
+        "stats": []
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Manhunt climax mission Crossroads: Potomac Event Center (guaranteed on first Master clear)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Tinkerer"
+    ]
+  },
+  {
+    "id": "overdogs",
+    "name": "Overdogs",
+    "kind": "exotic",
+    "category": "Gloves",
+    "added": {
+      "date": "2025-09-09",
+      "update": "Year 7 Season 2",
+      "label": "Y7S2 · The Pact"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Weakest Link",
+        "text": "Amplifies Weapon Damage by 30% to the lowest ranking enemies currently in combat, as per the Tier hierarchy. Tier 1: Hunter, Rogue, Leader, Tank, Shield, Heavy Weapons, RPG, Medic, Controller, Warhound, Marauder Tier 2: Support, Engineer, Bodyguard, Immobilizer, Bomber, Mini Tank, Drone Operator. Tier 3: Any other enemy or skill proxy",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, gloves targeted loot, Hyenas completion blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Overdogs"
+    ]
+  },
+  {
+    "id": "shroud",
+    "name": "Shroud",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2025-09-09",
+      "update": "Year 7 Season 2",
+      "label": "Y7S2 · The Pact"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "High Priority Target",
+        "text": "Amplifies Weapon Damage by 125% to the highest ranking enemies currently in combat, as per the Tier hierarchy. Tier 1: Hunter, Rogue, Leader, Tank, Shield, Heavy Weapons, RPG, Medic, Controller, Warhound, Marauder Tier 2: Support, Engineer, Bodyguard, Immobilizer, Bomber, Mini Tank, Drone Operator Tier 3: Any other enemy or skill proxy",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 111,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y7S2 season pass; exotic caches, MMR targeted loot, Outcasts kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Shroud"
+    ]
+  },
+  {
+    "id": "tempest",
+    "name": "Tempest",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2025-09-09",
+      "update": "Year 7 Season 2",
+      "label": "Y7S2 · The Pact"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Restrained",
+        "text": "Deal 25% Amplified Damage for 20s after your Shield gets broken.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Manhunt climax mission The Pact (guaranteed on first Master clear); Summit floor 100",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Tempest"
+    ]
+  },
+  {
+    "id": "blacklisters",
+    "name": "Blacklisters",
+    "kind": "exotic",
+    "category": "Kneepads",
+    "added": {
+      "date": "2025-11-11",
+      "update": "Year 7 Season 2.3",
+      "label": "Y7S2.3 · The Pact Climax"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Ostracize",
+        "text": "Shooting an enemy applies a mark. Only one mark can be active at a time. The mark disappears after 15s, or when the marked enemy dies. Receive 600% Amplified Damage from the marked enemy. Deal 20% Amplified Damage to unmarked enemies. If only one enemy remains in combat, the mark disappears and cannot be reapplied.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Manhunt climax mission The Pact (Tidal Basin: The Summit), guaranteed on first Master clear; Black Tusk kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Blacklisters"
+    ]
+  },
+  {
+    "id": "beacon",
+    "name": "Beacon",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2025-12-02",
+      "update": "Year 7 Season 3",
+      "label": "Y7S3 · Mutiny"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Bond",
+        "text": "Both you and Allies receive +30% Critical Hit Damage, +15% Skill Efficiency and +2% Armor Regen when an Ally is within 10m of you. Receive +15% Critical Hit Damage, +8% Skill Efficiency and +1% Armor Regen when one of your Skills is within 10m of you. Only the highest group of buffs can be active at one time.",
+        "stats": [
+          "Critical Hit Damage",
+          "Skill Efficiency",
+          "Armor Regeneration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Exotic caches, chest targeted loot, Rikers kill squad blueprint",
+    "confidence": "disputed",
+    "notes": [
+      "Launch notes (Y7S3, Fandom): skill-bonus group +7.5% Skill Efficiency. ProtoTrack Oct 2026 lists +8%. Unresolved."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Beacon"
+    ]
+  },
+  {
+    "id": "bittersweet",
+    "name": "Bittersweet",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2025-12-02",
+      "update": "Year 7 Season 3",
+      "label": "Y7S3 · Mutiny"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Transfusion",
+        "text": "Hitting headshots builds stacks, up to a max of 8. When shooting an Ally or Skill, repair them for 50% of the weapon's Total Damage value for each stack. Healed Allies will receive 50% of your Repair Skills bonus as Bonus Armor for each stack for 10s. All hits are guaranteed headshots for 8s after healing an Ally or Skill while at maximum stacks.",
+        "stats": [
+          "Armor Repair",
+          "Bonus Armor",
+          "Repair Skills",
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 17,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Exotic caches, rifle targeted loot, Cleaners kill squad blueprint",
+    "confidence": "disputed",
+    "notes": [
+      "Y7S3 launch notes (Fandom): healed allies receive 200% of Repair Skills as Bonus Armor per stack and repair is 50% of the shot damage. ProtoTrack Oct 2026: 50% of Repair Skills bonus and 50% of total damage. Possible later nerf, no patch note found."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Bittersweet"
+    ]
+  },
+  {
+    "id": "sheriff",
+    "name": "Sheriff",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2025-12-02",
+      "update": "Year 7 Season 3",
+      "label": "Y7S3 · Mutiny"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Autentico",
+        "text": "+35% Weapon Damage +100% Accuracy No Damage Drop Off. These bonuses are built into the weapon's base stats.",
+        "stats": [
+          "Weapon Damage",
+          "Accuracy"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Armor",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Manhunt climax mission United Ironworks: General Anderson (guaranteed on first Master clear); Black Tusk kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Sheriff"
+    ]
+  },
+  {
+    "id": "big-alejandro",
+    "name": "Big Alejandro",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2026-03-03",
+      "update": "10th Anniversary Event",
+      "label": "10th Anniversary Event"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Cover Shooter",
+        "text": "Every bullet fired while in cover increases Weapon Damage by 1% up to 100%. The bonus lasts for 15s. Getting a kill with this weapon while in cover resets the duration. The bonus damage is cancelled by reloading. swapping weapons or exiting combat.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Targets out of Cover",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "10th Anniversary Event pass (tier 46) and anniversary caches; now exotic caches and LMG targeted loot",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Big_Alejandro"
+    ]
+  },
+  {
+    "id": "harrier-pride",
+    "name": "Harrier Pride",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2026-03-03",
+      "update": "10th Anniversary Event",
+      "label": "10th Anniversary Event"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Rebalance",
+        "text": "Getting kills and hitting enemies 3 times builds Red stacks. Each stack provides 0.5% Weapon Damage. Getting hit 3 times builds Blue stacks. Each stack provides 0.5% Damage Resistance. Upon reaching 80 stacks in total, lose all stacks and receive a separate bonus of 0.5% Damage Resistance per Red stack and 0.5% Weapon Damage per Blue stack until the next time the stack cap is reached.",
+        "stats": [
+          "Weapon Damage",
+          "Damage Resistance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      }
+    ],
+    "obtain": "10th Anniversary Event pass and caches; now exotic caches and backpack targeted loot",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Harrier_Pride"
+    ]
+  },
+  {
+    "id": "agitator",
+    "name": "Agitator",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2026-04-02",
+      "update": "Year 8 Season 1",
+      "label": "Y8S1 · Rise Up"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Perturb",
+        "text": "While this weapon is holstered, generate 50% less Threat when shooting. Keeping this weapon holstered for 10s will prime it. While primed, swapping to this weapon grants +25% Rate of Fire, +30% Weapon Damage and you generate 100% more Threat when shooting for 20s. Swapping from this weapon before the timer ends removes the bonuses.",
+        "stats": [
+          "Rate of Fire",
+          "Weapon Damage",
+          "Increased Threat",
+          "Reduced Threat"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y8S1 season pass; exotic caches, AR targeted loot, True Sons completion blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Agitator"
+    ]
+  },
+  {
+    "id": "investor",
+    "name": "Investor",
+    "kind": "exotic",
+    "category": "Mask",
+    "added": {
+      "date": "2026-04-02",
+      "update": "Year 8 Season 1",
+      "label": "Y8S1 · Rise Up"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Slotted",
+        "text": "Receive bonuses for each non-Core Attribute on this item, depending on their color: Red: +10% Critical Hit Damage Yellow: +5% Skill Efficiency Blue: +1% Armor Regen This item can feature any Core Attribute. This item features a third random Attribute instead of having a Gear Mod Slot. This item cannot feature the Headshot Damage, Health or Skill Repair Attributes.",
+        "stats": [
+          "Critical Hit Damage",
+          "Skill Efficiency",
+          "Armor Regeneration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Random Core Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y8S1 season pass; exotic caches, True Sons completion blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Investor"
+    ]
+  },
+  {
+    "id": "whiplash",
+    "name": "Whiplash",
+    "kind": "exotic",
+    "category": "Pistol",
+    "added": {
+      "date": "2026-04-02",
+      "update": "Year 8 Season 1",
+      "label": "Y8S1 · Rise Up"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Faster Than Reloading",
+        "text": "Having this weapon holstered for 5s reloads and primes it. While primed, swapping to this weapon reloads your Primary and Secondary weapons and grants +20% Rate of Fire and +50% Weapon Damage until its magazine is emptied. Reloading or swapping from this weapon before its magazine is emptied will remove its stat bonuses.",
+        "stats": [
+          "Rate of Fire",
+          "Weapon Damage",
+          "Reload Speed"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Pistol Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Manhunt climax mission Rise Up: The Pentagon, The Director (guaranteed on first Master clear)",
+    "confidence": "confirmed",
+    "notes": [
+      "Rise Up climax mission opened 2026-05-26."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Whiplash"
+    ]
+  },
+  {
+    "id": "caduceus",
+    "name": "Caduceus",
+    "kind": "exotic",
+    "category": "Assault Rifle",
+    "added": {
+      "date": "2026-06-16",
+      "update": "Year 8 Season 2",
+      "label": "Y8S2 · Into the Dark"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Caduceus",
+        "text": "Critical hits repair you and your allies for 3% of the hit's dealt damage.",
+        "stats": [
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Damage to Health",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y8S2 season pass; exotic caches, AR targeted loot, Cleaners kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Caduceus"
+    ]
+  },
+  {
+    "id": "nurses-kneepads",
+    "name": "Nurse's Kneepads",
+    "kind": "exotic",
+    "category": "Kneepads",
+    "added": {
+      "date": "2026-06-16",
+      "update": "Year 8 Season 2",
+      "label": "Y8S2 · Into the Dark"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Impervious",
+        "text": "Both you and Allies within 10m of you receive +40% Hazard Protection.",
+        "stats": [
+          "Hazard Protection"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 6,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Damage",
+        "value": 12,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Y8S2 season pass; exotic caches, Hyenas kill squad blueprint",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Nurse's_Kneepads"
+    ]
+  },
+  {
+    "id": "underboss",
+    "name": "Underboss",
+    "kind": "exotic",
+    "category": "SMG",
+    "added": {
+      "date": "2026-06-16",
+      "update": "Year 8 Season 2",
+      "label": "Y8S2 · Into the Dark"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Gangland Hit",
+        "text": "Shooting an enemy with this weapon applies a mark. You can only apply one mark at a time. Shooting another enemy will transfer the mark. More marks can be applied on the same enemy by other agents using this weapon. Maximum amount of marks that can be applied on an enemy is 4. This weapon deals +20% Amplified Damage to marked enemies. The bonus is increased by 5% for each extra mark on the enemy other than your own.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Critical Hit Chance",
+        "value": 21,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Manhunt climax mission Into the Dark: Tens Nightclub (guaranteed on first Master clear)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Underboss"
+    ]
+  },
+  {
+    "id": "prima-donna",
+    "name": "Prima Donna",
+    "kind": "exotic",
+    "category": "Marksman Rifle",
+    "added": {
+      "date": "2026-07-21",
+      "update": "Year 8 Season 2.2",
+      "label": "Y8S2.2 · Paradise Lost update"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "You can look ... but you can't touch",
+        "text": "You can look ...: When out of combat, receive 10 stacks. This weapon deals +12.5% Amplified Damage per stack. ... but you can't touch: 1 stack is automatically consumed to fully repair one instance of damage you receive. 1 stack replenishes every 3s.",
+        "stats": [
+          "Damage Amplification",
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Marksman Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Incursion Paradise Lost (1% bosses, 10% final chest)",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Prima_Donna"
+    ]
+  },
+  {
+    "id": "steel-and-sons-acr",
+    "name": "Steel & Sons ACR",
+    "kind": "exotic",
+    "category": "Rifle",
+    "added": {
+      "date": "2026-08-11",
+      "update": "Year 8 Season 2.3",
+      "label": "Y8S2.3 · Broken Rain"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Shakedown",
+        "text": "Body shots add 1 stack to the enemy for 10s. Max stacks: 4. Hitting a different enemy removes all stacks. This weapon deals +4% Amplified Damage per stack. Your next headshot on an enemy with stacks consumes all stacks, dealing +11% Amplified Damage per stack. Destroying an enemy's weakpoint causes them to take +30% Amplifie Damage from you for 5s.",
+        "stats": [
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Rifle Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Incursion Broken Rain (1% Iris Steel, 3% Marguerite Steel, 10% final chest); Red Moon Rising event",
+    "confidence": "disputed",
+    "notes": [
+      "Talent name: Fandom says 'Confirm & Execute', ProtoTrack says 'Shakedown'; in-game name unresolved.",
+      "Y8S3 (Ubisoft): max stacks 3 -> 4; weak point kill amplification 10% -> 30%."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Steel_&_Sons_ACR"
+    ]
+  },
+  {
+    "id": "fafnir",
+    "name": "Fafnir",
+    "kind": "exotic",
+    "category": "Shotgun",
+    "added": {
+      "date": "2026-08-27",
+      "update": "Year 8 Season 3",
+      "label": "Y8S3 · Red Horizon"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Dragon's Breath",
+        "text": "This weapon fires Dragon's Breath shells. Each shot has a 40% chance of applying Burn to the enemy. An enemy cannot be applied Burn if they are burning already. Weapon Damage is Amplified by 50% of your Status Effects bonus.",
+        "stats": [
+          "Burn",
+          "Status Effects",
+          "Damage Amplification"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Y8S3 season pass; exotic caches, Red Moon Rising event",
+    "confidence": "confirmed",
+    "notes": [
+      "PTS values (10% burn chance, 30% of Status Effects bonus) were raised for release to 40% and 50%."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Fafnir",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes"
+    ]
+  },
+  {
+    "id": "iron-will",
+    "name": "Iron Will",
+    "kind": "exotic",
+    "category": "Chest",
+    "added": {
+      "date": "2026-08-27",
+      "update": "Year 8 Season 3",
+      "label": "Y8S3 · Red Horizon"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Resolved",
+        "text": "Your next body shot will be considered a headshot. Cooldown: 2s Requires: Equipped: Marksman Rifle, Rifle or Pistol",
+        "stats": [
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Headshot Damage",
+        "value": 10,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Weapon Handling",
+        "value": 8,
+        "unit": "%",
+        "fixed": true
+      }
+    ],
+    "obtain": "Y8S3 season pass tier 29; exotic caches, Red Moon Rising event",
+    "confidence": "confirmed",
+    "notes": [
+      "PTS cooldown 1s (PvE) was raised to 2s for release. Added together with the Determined talent change."
+    ],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Iron_Will",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes"
+    ]
+  },
+  {
+    "id": "sarru",
+    "name": "Sarru",
+    "kind": "exotic",
+    "category": "Backpack",
+    "added": {
+      "date": "2026-09-24",
+      "update": "Year 8 Season 3.1",
+      "label": "Y8S3.1 · Red Moon Rising"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "gear",
+        "name": "Decoy King",
+        "text": "While in combat, the Moon will cycle through its phases every 5s. There are 8 Moon phases. Starting from a New Moon, all damage you deal will be Amplified by 5%. The value of the Amplifier will increase by 5% each phase until reaching 25% during a Full Moon, then it will decrease as the Moon returns to being a New Moon, restarting the cycle. During a Full Moon, deploying a Decoy will grant it Overcharge and the cycle will pause for 10s.",
+        "stats": [
+          "Damage Amplification",
+          "Overcharge"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Total Armor",
+        "value": 170000,
+        "unit": null,
+        "fixed": true
+      },
+      {
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null,
+        "fixed": true
+      }
+    ],
+    "obtain": "Red Moon Rising event: random drop from XB-35 'Phoebe' Marauder in the Toxic Dark Zone",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Sarru",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes"
+    ]
+  },
+  {
+    "id": "vertigo",
+    "name": "Vertigo",
+    "kind": "exotic",
+    "category": "LMG",
+    "added": {
+      "date": "2026-09-24",
+      "update": "Year 8 Season 3.1",
+      "label": "Y8S3.1 · Red Moon Rising"
+    },
+    "bonuses": [],
+    "talents": [
+      {
+        "slot": "weapon",
+        "name": "Startling",
+        "text": "Whenever this weapon makes an enemy Suppressed, the enemy is applied Disorient, and you and allies receive +30% Damage to Targets Out of Cover for 15s.",
+        "stats": [
+          "Disorient",
+          "Status Effects",
+          "Damage to Targets out of Cover"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [
+      {
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%",
+        "fixed": true
+      },
+      {
+        "stat": "Random Attribute",
+        "value": null,
+        "unit": null,
+        "fixed": false
+      }
+    ],
+    "obtain": "Red Moon Rising event: random drop from XB-35 'Phoebe' Marauder in the Toxic Dark Zone",
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/exotic-gear.php",
+      "https://thedivision.fandom.com/wiki/Vertigo",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes"
+    ]
+  }
+]

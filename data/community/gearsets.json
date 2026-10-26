@@ -1,0 +1,2020 @@
+[
+  {
+    "id": "ongoing-directive",
+    "name": "Ongoing Directive",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-04-05",
+      "update": "Title Update 2",
+      "label": "TU2 · Tidal Basin"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Status Effects",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Reload Speed",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Rules of Engagement",
+        "text": "Shooting an enemy that has a status effect marks it for 10 seconds. Killing a marked enemy gives your active weapon a full magazine of Hollow-Point Ammo and gives the rest of the group a half magazine. Hollow-Point Ammo grants +40% Weapon Damage and applies Bleed.",
+        "stats": [
+          "Weapon Damage",
+          "Bleed",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Parabellum Rounds",
+        "text": "Increases the Hollow-Point Ammo Weapon Damage bonus from 40% to 60%. Applies to you only, not to the group.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Trauma Specialist",
+        "text": "Increases the duration of Bleed applied by Hollow-Point Ammo by 50% and its Bleed damage by 100%.",
+        "stats": [
+          "Bleed",
+          "Bleed Damage",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 (PTS, matches Grindout): Hollow-Point Ammo 20% -> 40%, Parabellum Rounds 50% -> 60%.",
+      "NamuWiki and Grindout agree on the 2pc/3pc; the Y8S3 talent values come from AllThings.how (PTS) and Grindout, not from the final Ubisoft notes, which name no numbers."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://en.namu.wiki/w/%ED%86%B0%20%ED%81%B4%EB%9E%9C%EC%8B%9C%EC%9D%98%20%EB%94%94%EB%B9%84%EC%A0%84%202/%EB%B3%B4%ED%98%B8%EC%9E%A5%EA%B5%AC%20%EC%84%B8%ED%8A%B8",
+      "https://www.gamerevolution.com/guides/520739-the-division-2-1-05-update-patch-notes-ps4-xbox-one-pc"
+    ]
+  },
+  {
+    "id": "hard-wired",
+    "name": "Hard Wired",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-04-05",
+      "update": "Title Update 2",
+      "label": "TU2 · Tidal Basin"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Skill Haste",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Feedback Loop",
+        "text": "Using or cancelling a skill reduces the cooldown of your other skill by 30 seconds and grants +10% Skill Damage and +10% Repair Skills for 20 seconds. Can trigger once every 10 seconds.",
+        "stats": [
+          "Skill Cooldown",
+          "Skill Damage",
+          "Repair Skills"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Positive Reinforcement",
+        "text": "Increases the Feedback Loop Skill Damage and Repair Skills bonus from +10% to +25%.",
+        "stats": [
+          "Skill Damage",
+          "Repair Skills"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Short Circuit",
+        "text": "Reduces the Feedback Loop trigger cooldown from 10 seconds to 5 seconds.",
+        "stats": [
+          "Skill Cooldown"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "disputed",
+    "notes": [
+      "Conflict on the Feedback Loop trigger cooldown: Fandom wiki and NamuWiki give 10 s base and Short Circuit 10 s -> 5 s; Grindout and older guides give 20 s base and Short Circuit 20 s -> 10 s. The newer wiki values are used.",
+      "The dossier noted that the Steam guide swaps the chest and backpack names; Fandom, Grindout and two other sources agree on Positive Reinforcement = chest, Short Circuit = backpack."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://thedivision.fandom.com/wiki/Hard_Wired",
+      "https://en.namu.wiki/w/%ED%86%B0%20%ED%81%B4%EB%9E%9C%EC%8B%9C%EC%9D%98%20%EB%94%94%EB%B9%84%EC%A0%84%202/%EB%B3%B4%ED%98%B8%EC%9E%A5%EA%B5%AC%20%EC%84%B8%ED%8A%B8",
+      "https://www.gamerevolution.com/guides/520739-the-division-2-1-05-update-patch-notes-ps4-xbox-one-pc"
+    ]
+  },
+  {
+    "id": "true-patriot",
+    "name": "True Patriot",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-04-05",
+      "update": "Title Update 2",
+      "label": "TU2 · Tidal Basin"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Weapon Handling",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Magazine Size",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Red, White and Blue",
+        "text": "Every 2 seconds, enemies you shoot receive the next debuff in the cycle. Red: they take +15% damage. White: shooting them repairs 2% of your armor once per second. Blue: they deal -10% damage. An enemy that dies while carrying all three debuffs explodes in a 5 m radius for damage equal to its health plus armor (reduced against named enemies).",
+        "stats": [
+          "Damage Amplification",
+          "Armor Repair"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Waving the Flag",
+        "text": "The debuff cycle rotates every 1 second instead of every 2 seconds.",
+        "stats": [
+          "Damage Amplification",
+          "Armor Repair"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Patriotic Boost",
+        "text": "Increases the debuff strengths: Red from 15% to 30%, White from 2% to 5%, Blue from 10% to 20%.",
+        "stats": [
+          "Damage Amplification",
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 changes (AllThings.how PTS, Fandom, Grindout agree): 2pc Ammo Capacity 30% -> Weapon Handling 15%; Red 8% -> 15%; Blue 8% -> 10%; Waving the Flag 1.5 s -> 1 s; Patriotic Boost now 30/5/20%.",
+      "Fandom's gear set list page still shows the pre-Y8S3 numbers (8/2/8, Patriotic Boost 12/3/12)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://thedivision.fandom.com/wiki/True_Patriot",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes"
+    ]
+  },
+  {
+    "id": "aces-and-eights",
+    "name": "Aces & Eights",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-05",
+      "update": "Title Update 3",
+      "label": "TU3 · Operation Dark Hours"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Marksman Rifle Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Rifle Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Headshot Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Dead Man's Hand",
+        "text": "Hitting an enemy with a Marksman Rifle reveals a card; headshots reveal an additional card. Once five cards are revealed, the hand is evaluated and your next shots deal +75% damage: Four of a Kind amplifies the next 4 shots, Full House the next 3, Aces and Eights the next 2.",
+        "stats": [
+          "Weapon Damage",
+          "Marksman Rifle Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "No Limit",
+        "text": "Increases the Dead Man's Hand damage bonus from 75% to 100%.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Ace in the Sleeve",
+        "text": "Adds 1 additional amplified shot when your hand is revealed.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 (AllThings.how PTS, Grindout): 2pc 15% -> 30%, Dead Man's Hand 30% -> 75%, No Limit 50% -> 100%. Ubisoft's Y8S3 PTS notes confirm only that Aces & Eights was buffed, without numbers.",
+      "Introduction day is not confirmed: TU3 went live 2019-05-14 and the raid Operation Dark Hours opened 2019-05-16; PCGamesN places the three sets after the raid. Month only."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/1bxX2xFH9oRij6ylkyY1yZ/red-horizon-pts-developer-notes",
+      "https://www.pcgamesn.com/the-division-2/the-division-2-new-gear-sets",
+      "https://www.dsogaming.com/news/the-division-2-title-update-3-now-available-for-download-full-patch-release-notes/"
+    ]
+  },
+  {
+    "id": "tip-of-the-spear",
+    "name": "Tip of the Spear",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-05",
+      "update": "Title Update 3",
+      "label": "TU3 · Operation Dark Hours"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Signature Weapon Damage",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Damage",
+        "value": 10,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Aggressive Recon",
+        "text": "Killing an enemy with your Signature Weapon grants +15% Signature Weapon Damage for 10 seconds and +25% Reload Speed on your next reload (does not stack). Every 60 seconds you automatically receive Signature Weapon ammo.",
+        "stats": [
+          "Signature Weapon Damage",
+          "Reload Speed"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Specialized Destruction",
+        "text": "Increases the Signature Weapon Damage bonus from 15% to 30%. Every 3rd Signature Weapon kill generates Signature Weapon ammo.",
+        "stats": [
+          "Signature Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Signature Moves",
+        "text": "Gain +50% Weapon Damage for 15 seconds when your Signature Weapon runs empty. Doubles the ammo generated by Aggressive Recon.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Introduction day not confirmed (see Aces & Eights); month only."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.pcgamesn.com/the-division-2/the-division-2-new-gear-sets"
+    ]
+  },
+  {
+    "id": "negotiators-dilemma",
+    "name": "Negotiator's Dilemma",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2019-05",
+      "update": "Title Update 3",
+      "label": "TU3 · Operation Dark Hours"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Critical Hit Chance",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Critical Hit Damage",
+        "value": 20,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Crowd Control",
+        "text": "Critical hits mark enemies for 20 seconds, up to 3 marks. Critical hits against a marked enemy pass 60% of the damage dealt to all other marked enemies. Every time a marked enemy dies you gain +10% Critical Hit Damage, up to 10 stacks, until combat ends.",
+        "stats": [
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Target Rich Environment",
+        "text": "Increases the number of marks from 3 to 5.",
+        "stats": [
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Critical Measures",
+        "text": "Increases the damage passed to the other marked enemies from 60% to 100%.",
+        "stats": [
+          "Critical Hit Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "disputed",
+    "notes": [
+      "4pc talent name: ProtoTrack, the AllThings.how Y8S3 PTS table and ImmortalBoost say Crowd Control; Grindout and one Fandom page say Hostile Negotiations (the dossier used the latter). Crowd Control is used; the trigger text is identical.",
+      "Chest/backpack assignment: Grindout and ImmortalBoost put the mark count on the chest and the damage share on the backpack; Kingboost/LFCarry reverse the names (Critical Measures on the chest). Dossier assignment kept.",
+      "Backpack value: 100% (Grindout, ImmortalBoost, newer Fandom page) versus 112% (NamuWiki, older Fandom page). 100% used.",
+      "Y8S3 (AllThings.how PTS): Critical Hit Damage on kill 2% (20 stacks) -> 10% (10 stacks).",
+      "Introduction day not confirmed (see Aces & Eights); month only."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://immortalboost.com/division-2-boost/product/negotiators-dilemma-gear-set/",
+      "https://en.namu.wiki/w/%ED%86%B0%20%ED%81%B4%EB%9E%9C%EC%8B%9C%EC%9D%98%20%EB%94%94%EB%B9%84%EC%A0%84%202/%EB%B3%B4%ED%98%B8%EC%9E%A5%EA%B5%AC%20%EC%84%B8%ED%8A%B8"
+    ]
+  },
+  {
+    "id": "striker-s-battlegear",
+    "name": "Striker's Battlegear",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-03-03",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Weapon Handling",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Rate of Fire",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Striker's Gamble",
+        "text": "Each weapon hit grants +0.65% Weapon Damage, up to 100 stacks. You lose 1 stack per second while at 50 stacks or fewer and 2 stacks per second between 50 and 100 stacks.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Press the Advantage",
+        "text": "Increases the maximum stacks of Striker's Gamble from 100 to 200. Between 100 and 200 stacks you lose 3 stacks per second.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Risk Management",
+        "text": "Increases the Weapon Damage gained per stack of Striker's Gamble from 0.65% to 0.9%.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Resolved dispute: Risk Management was 1% from TU16 and was lowered to 0.9% in Y6S2 (Y6S2 PTS phase 2 notes, mirrored on r/thedivision). Skycoach and NamuWiki give 0.9%; Grindout and one Fandom page still show the old 1%.",
+      "Added to the Division 2 with Warlords of New York (TU8, released 2020-03-03); single source for the set assignment (NamuWiki)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://skycoach.gg/blog/division-2/articles/best-gear-sets",
+      "https://en.namu.wiki/w/%ED%86%B0%20%ED%81%B4%EB%9E%9C%EC%8B%9C%EC%9D%98%20%EB%94%94%EB%B9%84%EC%A0%84%202/%EB%B3%B4%ED%98%B8%EC%9E%A5%EA%B5%AC%20%EC%84%B8%ED%8A%B8",
+      "https://lr.sudovanilla.org/r/thedivision/comments/1fvd5rm/y6s2_pts_patch_notes_phase_2",
+      "https://thedivision.fandom.com/wiki/Title_Update_16"
+    ]
+  },
+  {
+    "id": "system-corruption",
+    "name": "System Corruption",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-03-03",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Armor on Kill",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Disrupt Resistance",
+        "value": 40,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Pulse Resistance",
+        "value": 40,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Hackstep Protocol",
+        "text": "Replaces Armor Kits with an ability that has unlimited uses and a 20 second cooldown: it repairs 20% of your armor, grants 50% Bonus Armor and hides your nameplate for 5 seconds. For every 5% Bonus Armor received you gain +2% Weapon Damage, up to +20%.",
+        "stats": [
+          "Armor Repair",
+          "Bonus Armor",
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Compiler Optimization",
+        "text": "Reduces the Hackstep Protocol cooldown from 20 seconds to 15 seconds.",
+        "stats": [
+          "Armor Repair",
+          "Bonus Armor"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Multithreaded Execution",
+        "text": "Increases the Bonus Armor granted by Hackstep Protocol from 50% to 100%.",
+        "stats": [
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Added with Warlords of New York (TU8, 2020-03-03); single source for the set assignment (NamuWiki)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://en.namu.wiki/w/%ED%86%B0%20%ED%81%B4%EB%9E%9C%EC%8B%9C%EC%9D%98%20%EB%94%94%EB%B9%84%EC%A0%84%202/%EB%B3%B4%ED%98%B8%EC%9E%A5%EA%B5%AC%20%EC%84%B8%ED%8A%B8"
+    ]
+  },
+  {
+    "id": "eclipse-protocol",
+    "name": "Eclipse Protocol",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-06-23",
+      "update": "Title Update 10",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Status Effects",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Haste",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Hazard Protection",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Indirect Transmission",
+        "text": "When an enemy dies, its status effects spread to enemies within 10 m and refresh 50% of their duration.",
+        "stats": [
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Proliferation",
+        "text": "Increases the spread range from 10 m to 15 m and the duration refresh from 50% to 75%.",
+        "stats": [
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Symptom Aggravator",
+        "text": "Deal +30% damage to targets affected by a status effect.",
+        "stats": [
+          "Status Effects",
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Date: Season 2 Keener's Legacy started 2020-06-23 (TU10 itself shipped 2020-06-16 as update 1.24); GameSpot lists Eclipse Protocol under Season 2. The dossier only had 'June 2020'.",
+      "Original TU10 values were 15 m spread and 20 m chest range; current Grindout and Skycoach agree on 10 m -> 15 m."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://skycoach.gg/blog/division-2/articles/best-gear-sets",
+      "https://gamespot.com/articles/the-division-2-update-10-patch-notes-new-exotics-w/1100-6478486/"
+    ]
+  },
+  {
+    "id": "foundry-bulwark",
+    "name": "Foundry Bulwark",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-06-30",
+      "update": "Title Update 10",
+      "label": "TU10 · Operation Iron Horse"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Total Armor",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Armor Regeneration",
+        "value": 1,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Shield Health",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Makeshift Repairs",
+        "text": "Whenever you or your shield take damage, 25% of that damage is repaired over 10 seconds on both you and your shield.",
+        "stats": [
+          "Armor Repair",
+          "Shield Health"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Process Refinery",
+        "text": "Increases the Makeshift Repairs repair amount from 25% to 35%.",
+        "stats": [
+          "Armor Repair",
+          "Shield Health"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Improved Materials",
+        "text": "Reduces the Makeshift Repairs repair time from 10 seconds to 5 seconds.",
+        "stats": [
+          "Armor Repair",
+          "Shield Health"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "disputed",
+    "notes": [
+      "Values 25% / 10 s, chest 25% -> 35%, backpack 10 s -> 5 s come from the Title Update 20 PTS notes (mp1st) and Grindout; the original TU10 values were 20% / 15 s with chest 20% -> 30%. A Steam guide (2026-04) and the main Fandom page still show 20-25% / 15 s.",
+      "Talent names and slots conflict: TU20 PTS notes define Process Refinery = amount (25% -> 35%) and Improved Materials = time (10 s -> 5 s). The TU10-era GameSpot text puts Process Refinery on the chest; the Fandom TU20 page puts Improved Materials (time) on the chest. The dossier had the names the other way round (chest Improved Materials, backpack Process Refinery).",
+      "3pc Armor Regeneration changed from 3% to 1% and Shield Health +50% was added in TU10.1 (2020-07-21).",
+      "Date: Operation Iron Horse level 40 raid 2020-06-30 (the sets drop from it); TU10 itself was 2020-06-16."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://mp1st.com/news/the-division-2-title-update-20-pts-patch-notes-for-pvp-and-pve-revealed",
+      "https://thedivision.fandom.com/wiki/Foundry_Bulwark",
+      "https://www.thesixthaxis.com/2020/07/09/division-2-update-10-1-bug-fixes/",
+      "https://steamcommunity.com/sharedfiles/filedetails/?id=3505676552"
+    ]
+  },
+  {
+    "id": "future-initiative",
+    "name": "Future Initiative",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-06-30",
+      "update": "Title Update 10",
+      "label": "TU10 · Operation Iron Horse"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Repair Skills",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Haste",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Duration",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Ground Control",
+        "text": "While your armor is full, you and your allies gain +15% Weapon Damage and +15% Skill Damage. When you repair an ally, you and allies within 5 m are repaired for 60% of that amount.",
+        "stats": [
+          "Weapon Damage",
+          "Skill Damage",
+          "Armor Repair"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Tactical Superiority",
+        "text": "Increases the Ground Control damage bonus from 15% to 25%.",
+        "stats": [
+          "Weapon Damage",
+          "Skill Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Strategic Combat Support",
+        "text": "Increases the Ground Control proximity repair from 60% to 120%.",
+        "stats": [
+          "Armor Repair"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Backpack name: Fandom set page and gear list say Strategic Combat Support; Skycoach and the Fandom TU10 page say Advanced Combat Tactics. Strategic Combat Support used.",
+      "Date: Operation Iron Horse level 40 raid 2020-06-30; TU10 itself was 2020-06-16."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://skycoach.gg/blog/division-2/articles/best-gear-sets",
+      "https://thedivision.fandom.com/wiki/Future_Initiative",
+      "https://thedivision.fandom.com/wiki/Title_Update_10"
+    ]
+  },
+  {
+    "id": "hunter-s-fury",
+    "name": "Hunter's Fury",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-09-22",
+      "update": "Title Update 11",
+      "label": "TU11 · Concealed Agenda"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Shotgun Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "SMG Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Armor on Kill",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Health on Kill",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Apex Predator",
+        "text": "Enemies within 15 m are debuffed and take +20% Weapon Damage from you. Killing a debuffed enemy disorients enemies within 5 m and grants +5% Weapon Damage for 10 seconds, stacking up to 5 times.",
+        "stats": [
+          "Weapon Damage",
+          "Disorient",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Endless Hunger",
+        "text": "Increases the stack duration from 10 seconds to 30 seconds.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Overwhelming Force",
+        "text": "Increases the disorient radius from 5 m to 10 m.",
+        "stats": [
+          "Disorient",
+          "Status Effects"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://mp1st.com/news/the-divission-2-update-1-27-september-22"
+    ]
+  },
+  {
+    "id": "rigger",
+    "name": "Rigger",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2020-12-08",
+      "update": "Title Update 12",
+      "label": "TU12 · End of Watch"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Skill Haste",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Duration",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Tend and Befriend",
+        "text": "Interacting with a placed skill (placing it, switching its target or healing with it) grants +25% Skill Damage for 10 seconds. Cannot be refreshed while active.",
+        "stats": [
+          "Skill Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Best Buds",
+        "text": "Increases the Skill Damage bonus from 25% to 50%.",
+        "stats": [
+          "Skill Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Complete Uptime",
+        "text": "Cancelling a skill resets its cooldown.",
+        "stats": [
+          "Skill Cooldown"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.gamewatcher.com/the-division-2-title-update-12-patch-notes",
+      "https://thedivision.fandom.com/wiki/Rigger"
+    ]
+  },
+  {
+    "id": "heartbreaker",
+    "name": "Heartbreaker",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2022-05-12",
+      "update": "Title Update 15",
+      "label": "TU15 · Hidden Alliance"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Assault Rifle Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "LMG Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Heartstopper",
+        "text": "Headshots apply Pulse to the enemy for 5 seconds. Weapon hits on pulsed enemies grant a stack of +1% Bonus Armor and +1% Weapon Damage, up to 50 stacks. You lose 2 stacks per second.",
+        "stats": [
+          "Pulse",
+          "Status Effects",
+          "Bonus Armor",
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Max BPM",
+        "text": "Increases the maximum stacks of Heartstopper from 50 to 100.",
+        "stats": [
+          "Bonus Armor",
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Cold",
+        "text": "Increases the Bonus Armor gained per stack from 1% to 2%.",
+        "stats": [
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "One source (NamuWiki, per the dossier) shows 1.1% damage per stack; Fandom and Grindout show 1%. 1% used."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://thedivision.fandom.com/wiki/Heartbreaker",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-update-1-38-released-for-tu15-season-9-this-may-12"
+    ]
+  },
+  {
+    "id": "umbra-initiative",
+    "name": "Umbra Initiative",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2022-09-13",
+      "update": "Title Update 16",
+      "label": "TU16 · Price of Power"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Critical Hit Chance",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Reload Speed",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "From the Shadows / Into the Light",
+        "text": "From the Shadows: while in cover you gain 10 stacks per second, up to 50; each stack gives +1% Critical Hit Damage and +0.3% Rate of Fire. Out of cover you lose 2 stacks per second (1 per second while sprinting). Into the Light: while out of cover and in combat you gain 10 stacks per second, up to 50; each stack gives +0.8% Armor Regeneration. In cover you lose 10 stacks per second.",
+        "stats": [
+          "Critical Hit Damage",
+          "Rate of Fire",
+          "Armor Regeneration"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "From the Shadows",
+        "text": "Increases the maximum From the Shadows stacks from 50 to 100 and the stack gain from 10 to 20 per second.",
+        "stats": [
+          "Critical Hit Damage",
+          "Rate of Fire"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Into the Light",
+        "text": "Increases the maximum Into the Light stacks from 50 to 100 and the stack gain and consumption from 10 to 20 per second.",
+        "stats": [
+          "Armor Regeneration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://mp1st.com/news/the-division-2-update-1-44-released-for-season-10-this-september-13"
+    ]
+  },
+  {
+    "id": "hotshot",
+    "name": "Hotshot",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2023-02-28",
+      "update": "Title Update 17",
+      "label": "TU17 · Reign of Fire"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Marksman Rifle Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Headshot Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Headache",
+        "text": "Consecutive Marksman Rifle headshots build a chain. The 1st headshot amplifies your next headshot by 80%. The 2nd grants +10% Armor (as Bonus Armor while armor is full, up to +50%). The 3rd refills your magazine. From the 4th headshot on, all three bonuses apply with every headshot. A miss resets the chain.",
+        "stats": [
+          "Headshot Damage",
+          "Bonus Armor",
+          "Total Armor"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Daring",
+        "text": "Increases the maximum Bonus Armor from Headache from 50% to 100%.",
+        "stats": [
+          "Bonus Armor"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Blessed",
+        "text": "Allows one miss before the Headache chain is reset.",
+        "stats": [
+          "Headshot Damage",
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 (AllThings.how PTS, Grindout): first-headshot bonus 20% -> 80%; the +30% Weapon Handling moved from the 2pc to the 3pc. Ubisoft's Y8S3 PTS notes only say Hotshot was buffed."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/1bxX2xFH9oRij6ylkyY1yZ/red-horizon-pts-developer-notes",
+      "https://mp1st.com/news/the-division-2-update-1-50-blazes-out-for-season-11-title-update-17-this-feb-28"
+    ]
+  },
+  {
+    "id": "cavalier",
+    "name": "Cavalier",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2023-06-08",
+      "update": "Year 5 Season 1",
+      "label": "Y5S1 · Broken Wings"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Hazard Protection",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 40,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Charging / Charged",
+        "text": "Each second you spend out of cover in combat reduces incoming skill damage by 5%, up to 50%. When fully charged you are immune to movement-speed debuffs, and for 10 seconds you share your Hazard Protection and damage reduction with allies. Afterwards the charge starts over.",
+        "stats": [
+          "Damage Resistance",
+          "Hazard Protection"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Overcharging",
+        "text": "Increases the maximum Charging damage protection from 50% to 70%.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Safe Charging",
+        "text": "Charging grants 10% protection per second instead of 5%.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Launch values (TU18, 2023-06) were Charging 5% per second up to 40% and Overcharging 50%; Sportskeeda, ImmortalBoost, Grindout and the current Fandom page give 50% / 70% now. The patch that raised them was not identified.",
+      "The 3pc was 'Incoming Repairs' at launch; current sources call it Repair Skills (Y8S3 removed the Incoming Repairs bonus from the Brand Set pool).",
+      "Date: servers went down 2023-06-08 for the Y5S1 / TU18 rollout; Ubisoft's launch article is dated 2023-06-09."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.psu.com/news/the-division-2-update-1-54-patch-notes-unleashed-for-y5s1-broken-wings-content/",
+      "https://thedivision.fandom.com/wiki/Cavalier",
+      "https://www.sportskeeda.com/mmo/all-new-named-gear-pieces-the-division-2-year-5-season-1-broken-wings-2"
+    ]
+  },
+  {
+    "id": "ortiz-exuro",
+    "name": "Ortiz: Exuro",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2023-10-03",
+      "update": "Year 5 Season 2",
+      "label": "Y5S2 · Puppeteers"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Burn Duration",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Health",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Burn Damage",
+        "value": 40,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Ortiz Incinerator Turret Prototype",
+        "text": "The Incinerator Turret rotates 360 degrees. You are immune to its fire. When the turret is destroyed or disabled it explodes.",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Chain Combustion",
+        "text": "Enemies ignited by the turret ignite other enemies within 10 m.",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Heatstroke",
+        "text": "Deal +40% Weapon Damage to enemies ignited by the turret. Increases the turret range by 25%.",
+        "stats": [
+          "Weapon Damage",
+          "Burn"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 (AllThings.how PTS, Grindout): Chain Combustion range 2 m -> 10 m; Heatstroke 25% -> 40%. AllThings notes Heatstroke is an amplifier although the in-game text says weapon damage."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://sportskeeda.com/mmo/the-division-2-year-5-season-2-puppeteers-release-date-incursion-details",
+      "https://mp1st.com/news/the-division-2-update-1-59-for-oct-3-brings-y5s2-title-update-19-patch-notes-new-content-listed"
+    ]
+  },
+  {
+    "id": "aegis",
+    "name": "Aegis",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2024-02-06",
+      "update": "Year 5 Season 3",
+      "label": "Y5S3 · Vanguard"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Health",
+        "value": 70,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Total Armor",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Stoic",
+        "text": "Gain +3% Damage Resistance for each enemy that targets you, multiplied by 1.X where X is the number of Agents in your group.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Deceit",
+        "text": "Enemies that target your Decoy count towards Stoic.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Polyethylene Plating",
+        "text": "Increases the Damage Resistance per targeting enemy from 3% to 4%.",
+        "stats": [
+          "Damage Resistance"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "2pc Health is a flat value (+70 Health) in Ubisoft's Y5S3 article, shown as +70% in Grindout/ProtoTrack; the percentage form is kept as in the current sources."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/4Q5mYbSvaH9H3YZtMiraHs/year-5-season-3-vanguard",
+      "https://news.ubisoft.com/en-us/article/1GJMKtAaxbm8JkQ5P1oVU0/the-division-2-year-5-season-3-vanguard-starts-today"
+    ]
+  },
+  {
+    "id": "breaking-point",
+    "name": "Breaking Point",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2024-06-11",
+      "update": "Year 6 Season 1",
+      "label": "Y6S1 · First Rogue"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Marksman Rifle Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Rifle Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Headshot Damage",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "On Point",
+        "text": "Hitting a shot with a Rifle or Marksman Rifle grants a stack (up to the weapon's magazine size). Reloading grants +2% Weapon Handling and +4% Weapon Damage per stack for 20 seconds; no new stacks build while the effect is active. When the timer runs out your magazine is refilled. Switching weapons ends the effect and clears the stacks.",
+        "stats": [
+          "Weapon Handling",
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Point of No Return",
+        "text": "Increases the On Point duration from 20 seconds to 40 seconds.",
+        "stats": [
+          "Weapon Handling",
+          "Weapon Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Point of Honor",
+        "text": "Increases the Weapon Damage per On Point stack from 4% to 9%.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Resolved: On Point is +2% Weapon Handling and +4% Weapon Damage per stack (Grindout, Skycoach, MP1st Y6S1, current Fandom page); the 2% weapon damage in Grindout's table is an error.",
+      "Backpack 4% -> 9% is given by the current Fandom Breaking Point page and Grindout; pre-Y8S3 sources (Y6S1 notes, Steam guide, Fandom list page) show 4% -> 6%, and the AllThings.how PTS table does not list the backpack. 9% used as the post-Y8S3 value.",
+      "3pc Weapon Handling is 30% after Y8S3 (15% before; ProtoTrack and Fandom agree on 30%).",
+      "Y8S3 (AllThings.how PTS): 2pc 25% -> 30%; On Point 10 s -> 20 s; Point of No Return 15 s -> 40 s."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://thedivision.fandom.com/wiki/Breaking_Point",
+      "https://mp1st.com/news/the-division-2-update-1-71-ushers-in-y6s1-and-title-update-21-this-june-11"
+    ]
+  },
+  {
+    "id": "virtuoso",
+    "name": "Virtuoso",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2024-10-29",
+      "update": "Year 6 Season 2",
+      "label": "Y6S2 · Shades of Red"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Weapon Handling",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Magazine Size",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Damage",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Symphony",
+        "text": "Killing an enemy beyond 25 m grants, for 15 seconds, +40% damage with Shotguns, SMGs and Pistols, +20% with Assault Rifles and LMGs, and 25% Bonus Armor. Killing an enemy within 25 m grants, for 15 seconds, +40% damage with Marksman Rifles and Rifles, +20% with Assault Rifles and LMGs, and +30% Headshot Damage. Kills at both distances build stacks; at 4 stacks both bonuses apply at the same time, multiplied by 1.5, for 15 seconds.",
+        "stats": [
+          "Shotgun Damage",
+          "SMG Damage",
+          "Pistol Damage",
+          "Assault Rifle Damage",
+          "LMG Damage",
+          "Marksman Rifle Damage",
+          "Rifle Damage",
+          "Bonus Armor",
+          "Headshot Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Fortissimo",
+        "text": "Doubles the Weapon Damage bonuses of Symphony.",
+        "stats": [
+          "Shotgun Damage",
+          "SMG Damage",
+          "Pistol Damage",
+          "Assault Rifle Damage",
+          "LMG Damage",
+          "Marksman Rifle Damage",
+          "Rifle Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Accelerando",
+        "text": "Reduces the stacks required for the combined Symphony bonus from 4 to 3.",
+        "stats": [
+          "Shotgun Damage",
+          "SMG Damage",
+          "Pistol Damage",
+          "Assault Rifle Damage",
+          "LMG Damage",
+          "Marksman Rifle Damage",
+          "Rifle Damage",
+          "Bonus Armor",
+          "Headshot Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-update-1-80-deployed-for-y6s2-shades-of-red-this-oct-29"
+    ]
+  },
+  {
+    "id": "refactor",
+    "name": "Refactor",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2025-02-25",
+      "update": "Year 6 Season 3",
+      "label": "Y6S3 · Burden of Truth"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Status Effects",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Damage",
+        "value": 25,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Return to Sender",
+        "text": "You are repaired for 10% of the damage your skills deal, and your allies for 20%.",
+        "stats": [
+          "Armor Repair"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Increased Interest",
+        "text": "Increases the repair from your skill damage from 10% to 25% for you and from 20% to 35% for allies.",
+        "stats": [
+          "Armor Repair"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Over-engineered",
+        "text": "While your armor is full, repairs from Return to Sender are converted to Bonus Armor, up to 80% of your Total Armor. Does not apply to allies.",
+        "stats": [
+          "Bonus Armor"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Resolved: 3pc is +25% Skill Damage (Ubisoft Y6S3, Grindout, ProtoTrack, Fandom); the Steam guide's 15% is outdated or PvP.",
+      "Ubisoft's Y6S3 article lists the chest as 'PvE 5% -> 15% / 10% -> 20%, PvP 10% -> 25% / 20% -> 35%', but its base values are PvE 10%/20% and PvP 5%/10%, so the PvE/PvP labels in that article are swapped. PvE chest is 10% -> 25% and 20% -> 35% (Grindout, current Fandom Refactor page).",
+      "Date: season launched 2025-02-25 (Ubisoft article dated 2025-02-24 announces it)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/5V9sBiXBdAwdb9Migm4zZW/year-6-season-3-burden-of-truth",
+      "https://thedivision.fandom.com/wiki/Refactor",
+      "https://news.ubisoft.com/en-us/article/2FHrPWGny0AhAF73S7LNKR/the-division-2-new-season-burden-of-truth-launches-february-25"
+    ]
+  },
+  {
+    "id": "measured-assembly",
+    "name": "Measured Assembly",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2025-05-27",
+      "update": "Year 7 Season 1",
+      "label": "Y7S1 · Crossroads"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Skill Haste",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 60,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Explosive Resistance",
+        "value": 40,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Huddle",
+        "text": "Gain +1 Skill Tier for each ally Agent within range of your Hive. At Skill Tier 6, if an ally stays within range of your Hive or Smart Cover for 4 seconds, you gain Overcharge for 15 seconds (40 second cooldown). Mortars and enemy skills entering that range are destroyed (10 second cooldown, 20% faster per ally in range).",
+        "stats": [
+          "Skill Tier",
+          "Overcharge"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Hivemind",
+        "text": "Reduces the Overcharge cooldown from 40 seconds to 25 seconds.",
+        "stats": [
+          "Overcharge"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Smart Cooperation",
+        "text": "Reduces the cooldown for destroying mortars and enemy skills from 10 seconds to 1 second.",
+        "stats": [
+          "Skill Tier"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Date: Ubisoft's Crossroads article is dated 2025-05-26 (maintenance); the season and the Battle for Brooklyn DLC went live 2025-05-27."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/HP67k5N5kneQmSCVlVMmi/the-division-2-crossroads",
+      "https://thedivision.fandom.com/wiki/Measured_Assembly"
+    ]
+  },
+  {
+    "id": "tipping-scales",
+    "name": "Tipping Scales",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2025-09-09",
+      "update": "Year 7 Season 2",
+      "label": "Y7S2 · The Pact"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Magazine Size",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "LMG Damage",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Throttle Control",
+        "text": "Firing your weapon builds up to 50 stacks, each giving +0.5% Weapon Handling and +5% Critical Hit Damage. While you are not shooting you lose 6 stacks per second, unless an enemy is suppressed.",
+        "stats": [
+          "Weapon Handling",
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Sustainability",
+        "text": "Increases the maximum stacks from 50 to 75.",
+        "stats": [
+          "Weapon Handling",
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Snowball",
+        "text": "Increases the Critical Hit Damage per stack from 5% to 8%.",
+        "stats": [
+          "Critical Hit Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3 (AllThings.how PTS): Critical Hit Damage per stack 4% -> 5%; Snowball 4% -> 7% became 5% -> 8% (AllThings.how)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-y7s2-the-pact-update-patch-2-10",
+      "https://thedivision.fandom.com/wiki/Tipping_Scales"
+    ]
+  },
+  {
+    "id": "concentrated-company",
+    "name": "Concentrated Company",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2025-12-02",
+      "update": "Year 7 Season 3",
+      "label": "Y7S3 · Mutiny"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Weapon Damage",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Camaraderie",
+        "text": "Shooting an enemy marks it for 10 seconds (up to 4 marks). When a marked enemy dies, you gain one stack for each ally or skill that contributed to the kill, each giving +3% Weapon Damage and +3% Critical Hit Damage. Maximum 35 stacks; stacks decay every 10 seconds.",
+        "stats": [
+          "Weapon Damage",
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "All for One",
+        "text": "Increases the number of marks you can place from 4 to 8.",
+        "stats": [
+          "Weapon Damage",
+          "Critical Hit Damage"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "One for All",
+        "text": "Increases the Weapon Damage per Camaraderie stack from 3% to 6%.",
+        "stats": [
+          "Weapon Damage"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Launch values (Ubisoft Y7S3): mark 7 s, Critical Hit Damage 2% per stack, One for All 3% -> 5%. Y8S3: mark 10 s, Critical Hit Damage 3% (AllThings.how PTS). One for All 3% -> 6% is given by Grindout and the current Fandom page; the Steam guide (April) still shows 5%.",
+      "Date: Division Dispatch gives 2025-12-02; Ubisoft's article is dated 2025-12-01."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://allthings.how/every-gear-and-brand-set-change-in-the-division-2-s-red-horizon-y8s3-pts/",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/5fLsSWyLeFsYWiBxlByY4K/the-division-2-mutiny",
+      "https://thedivision.fandom.com/wiki/Concentrated_Company",
+      "https://thedivisiondispatch.com/2025/12/02/%F0%9F%93%84-season-3-mutiny-launch-december-2-2025/"
+    ]
+  },
+  {
+    "id": "core-strength",
+    "name": "Core Strength",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2026-04-02",
+      "update": "Year 8 Season 1",
+      "label": "Y8S1 · Rise Up"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Weapon Handling",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Damage",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Total Armor",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Efficiency",
+        "value": 5,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Core Exercise",
+        "text": "For each Core attribute (red, blue, yellow), you also receive 40% of the bonuses of the other two Core attributes. Skill Tiers count as 15% Skill Efficiency when applied this way. All pieces except the backpack roll random Core attributes.",
+        "stats": [
+          "Weapon Damage",
+          "Total Armor",
+          "Skill Tier",
+          "Skill Efficiency"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Inner Core",
+        "text": "Increases the share of the other Core attributes' bonuses you receive from 40% to 75%.",
+        "stats": [
+          "Weapon Damage",
+          "Total Armor",
+          "Skill Tier"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Outer Core",
+        "text": "The backpack carries all three Core attributes.",
+        "stats": [
+          "Weapon Damage",
+          "Total Armor",
+          "Skill Tier"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Resolved: 2pc is +10% Weapon Handling (Ubisoft Rise Up article, Grindout, ProtoTrack, Fandom); the Steam guide's Weapon Damage is outdated.",
+      "Date: Rise Up went live 2026-04-02 (update 2.24); Ubisoft's article is dated 2026-04-01. Ubisoft's Rise Up article lists Core Strength as the season's gear set."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/fr-fr/game/the-division/the-division-2/news-updates/15OjYSjEhS2rUfiDINkRxD/the-division-2-rise-up",
+      "https://mp1st.com/news/the-division-2-year-8-rise-up-update-unleashed-via-patch-2-24",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/66V3C2syuDtwNoYQmnVHbW/play-the-division-2-rise-up-today"
+    ]
+  },
+  {
+    "id": "ortiz-reficere",
+    "name": "Ortiz: Reficere",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2026-06-16",
+      "update": "Year 8 Season 2",
+      "label": "Y8S2 · Into the Dark"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Skill Efficiency",
+        "value": 8,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 60,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Ortiz Rapid Application Nanite Prototype",
+        "text": "Healing skills have their duration and range reduced by 90% but their healing efficiency increased by 150%. When you heal an ally with a skill, that ally gains 30% Hazard Protection for 10 seconds (10 second cooldown per ally).",
+        "stats": [
+          "Repair Skills",
+          "Skill Duration",
+          "Hazard Protection"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Overcharged Nanites",
+        "text": "Increases the healing efficiency bonus from 150% to 225%.",
+        "stats": [
+          "Repair Skills"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "Improved Dampeners",
+        "text": "Reduces the duration and range penalty from 90% to 25%.",
+        "stats": [
+          "Skill Duration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Live values -90% / +150% (Grindout, Skycoach, KeenGamer launch guide); the Into the Dark PTS notes had -75% / +100%, chest 100% -> 150%, backpack 75% -> 25%. Chest 150% -> 225% and backpack 90% -> 25% follow the live base values (Grindout)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/7MbnFYZZj4a5pgeUlrMOY6/into-the-dark-pts-patch-notes",
+      "https://www.keengamer.com/articles/guides/the-division-2-y8s2-into-the-dark-full-update-guide/",
+      "https://skycoach.gg/blog/division-2/articles/best-gear-sets"
+    ]
+  },
+  {
+    "id": "ember-engine",
+    "name": "Ember Engine",
+    "kind": "gearset",
+    "category": null,
+    "added": {
+      "date": "2026-08-27",
+      "update": "Year 8 Season 3",
+      "label": "Y8S3 · Red Horizon"
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stat": "Skill Efficiency",
+        "value": 8,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Status Effects",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [
+      {
+        "slot": "4pc",
+        "name": "Spontaneous Combustion",
+        "text": "Every status effect you apply has a 40% chance to also apply Burn. If the original status effect was Burn, the enemy takes +25% Burn Damage for the duration of that Burn.",
+        "stats": [
+          "Burn",
+          "Burn Damage",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "chest",
+        "name": "Flashpoint",
+        "text": "Increases the Spontaneous Combustion Burn chance from 40% to 60%.",
+        "stats": [
+          "Burn",
+          "Status Effects"
+        ]
+      },
+      {
+        "slot": "backpack",
+        "name": "White Hot",
+        "text": "Increases the duration of the Spontaneous Combustion Burn Damage debuff by 50%.",
+        "stats": [
+          "Burn Damage",
+          "Burn Duration"
+        ]
+      }
+    ],
+    "namedItems": [],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Resolved: live values are 40% / 60% (Ubisoft Red Horizon launch article, MP1st patch 2.34, KeenGamer, Ubisoft PTS developer notes: chance raised from 20% to 40% and Flashpoint from 40% to 60% between the first PTS and release). The Ubisoft PTS notes (20% / 40%) and Grindout's table (20% base) are outdated.",
+      "AllThings.how's 15% Skill Efficiency at 2pc is wrong: Ubisoft, MP1st, KeenGamer, Grindout, ProtoTrack give 8%.",
+      "PvP values (not used): 8% chance, Flashpoint 12%, White Hot +12%.",
+      "Date: Ubisoft's announcement is dated 2026-08-26; patch 2.34 was deployed 2026-08-27 (MP1st, KeenGamer)."
+    ],
+    "sources": [
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://prototrack.gg/division2-sets.php",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/4mrYiFPIyKpzpoqshDQk80/the-division-2-red-horizon",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/1bxX2xFH9oRij6ylkyY1yZ/red-horizon-pts-developer-notes",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-red-horizon-update-deployed-on-august-27-patch-2-34",
+      "https://www.keengamer.com/articles/guides/the-division-2-y8s3-red-horizon-full-update-guide/"
+    ]
+  }
+]

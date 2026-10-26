@@ -1,0 +1,2613 @@
+[
+  {
+    "id": "511-tactical",
+    "name": "5.11 Tactical",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Protection from Elites",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Increased Threat",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Hazard Protection",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Deathgrips",
+        "slot": "Gloves",
+        "attribute": {
+          "stat": "Armor on Kill",
+          "value": 10,
+          "unit": "%"
+        },
+        "talent": null
+      },
+      {
+        "name": "Keeper",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Protector",
+          "text": "When your shield is damaged, you gain +25% bonus armor and all other allies gain +35% of your armor as bonus armor for 3s. Cooldown: 3s.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: Health and Incoming Repairs bonuses removed; 1pc is now 12% Protection from Elites (PvP 10%), 2pc 100% Increased Threat (Fandom pre-Y8S3 table: 30% Health / 30% Incoming Repairs).",
+      "Keeper is new in Y8S3 (named backpack, Ubisoft Red Horizon notes).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-red-horizon-update-deployed-on-august-27-patch-2-34"
+    ]
+  },
+  {
+    "id": "airaldi-holdings",
+    "name": "Airaldi Holdings",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Marksman Rifle Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Headshot Damage",
+        "value": 26,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Damage to Armor",
+        "value": 5,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Pristine Example",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Focus",
+          "text": "Increases total weapon damage by 6% every second you are aiming while scoped 8x or higher, up to 60%. Requires a scope with 8x magnification or higher.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Melon Baller",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Concussion",
+          "text": "Headshots increase total weapon damage by 20% for 1.5s (5s with marksman rifles). Headshot kills increase total weapon damage by 15% for 10s.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: 2pc Headshot Damage raised from 13% to 26% in PvE (KeenGamer; PTS table showed 13%). The dossier's 26% is the current value, not a launch deviation.",
+      "Melon Baller is new in Y8S3 (named backpack, Ubisoft Red Horizon notes).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-red-horizon-update-deployed-on-august-27-patch-2-34"
+    ]
+  },
+  {
+    "id": "alps-summit-armament",
+    "name": "Alps Summit Armament",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Repair Skills",
+        "value": 18,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Duration",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Haste",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Percussive Maintenance",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Tech Support",
+          "text": "Skill kills increase total skill damage by 25% for 27s.",
+          "stats": [
+            "Skill Damage"
+          ]
+        }
+      },
+      {
+        "name": "Motherly Love",
+        "slot": "Gloves",
+        "attribute": {
+          "stat": "Skill Health",
+          "value": 25,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Name spelled 'Alps Summit Armaments' by ProtoTrack and Ubisoft notes, 'Alps Summit Armament' by Fandom; the singular is used here.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "badger-tuff",
+    "name": "Badger Tuff",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Shotgun Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Armor on Kill",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Total Armor",
+        "value": 15,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Zero F's",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Unbreakable",
+          "text": "When your armor is depleted, repair 100% of your armor. Cooldown: 55s.",
+          "stats": [
+            "Armor Repair"
+          ]
+        }
+      },
+      {
+        "name": "Ammo Dump",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Ammo Capacity",
+          "value": 10,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "china-light-industries-corporation",
+    "name": "China Light Industries Corporation",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Explosive Damage",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Status Effects",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Haste",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Strategic Alignment",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Shock and Awe",
+          "text": "Applying a status effect to an enemy increases total skill damage and repair by 20% for 27s.",
+          "stats": [
+            "Skill Damage",
+            "Repair Skills",
+            "Status Effects"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: now 2pc 20% Status Effects (PvP 8%), 3pc 30% Skill Haste (PvP 20%); Fandom pre-Y8S3 table had 2pc 20% Skill Haste and 3pc 25% Status Effects.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "douglas-and-harding",
+    "name": "Douglas & Harding",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Pistol Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Health",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Accuracy",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Punch Drunk",
+        "slot": "Mask",
+        "attribute": {
+          "stat": "Headshot Damage",
+          "value": 20,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "fenris-group-ab",
+    "name": "Fenris Group AB",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Assault Rifle Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Magazine Size",
+        "value": 32,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Stability",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Ferocious Calm",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Overwatch",
+          "text": "After staying in cover for 8s, increases you and your allies' total weapon and skill damage by 14% as long as you remain in cover or in a cover-to-cover move.",
+          "stats": [
+            "Weapon Damage",
+            "Skill Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Fandom's brand table still shows 30% Magazine Size at 2pc; ProtoTrack, Grindout and the Y8S3 PTS table (Allthings.how) show 32%.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "gila-guard",
+    "name": "Gila Guard",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Total Armor",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Hazard Protection",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Armor Regeneration",
+        "value": 2,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Pointman",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Vanguard",
+          "text": "Deploying a shield makes it invulnerable for 5s and grants 50% of your armor as bonus armor to all other allies for 20s. Cooldown: 25s.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      },
+      {
+        "name": "Nightwatcher",
+        "slot": "Mask",
+        "attribute": {
+          "stat": "Scanner Pulse Haste",
+          "value": 100,
+          "unit": "%"
+        },
+        "talent": null
+      },
+      {
+        "name": "Chill Out",
+        "slot": "Mask",
+        "attribute": {
+          "stat": "Mod Slot",
+          "value": 1,
+          "unit": null
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Seasonal: Chill Out (Christmas event mask, grants an additional mod slot; community sheet lists it as 'Christmas Event Item').",
+      "Nightwatcher is listed by ProtoTrack (+100% Scanner Pulse Haste) and by the community Gear Attribute Sheet and Fandom; the dossier's claim that ProtoTrack omits it was wrong.",
+      "Nightwatcher: the Gear Attribute Sheet shows Scanner Pulse Haste as a unique attribute without a value; the value comes from ProtoTrack only.",
+      "Mod Slot has no percentage; recorded as value 1 with unit null.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "murakami-industries",
+    "name": "Murakami Industries",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Duration",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Repair Skills",
+        "value": 35,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Damage",
+        "value": 18,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Emperor's Guard",
+        "slot": "Kneepads",
+        "attribute": {
+          "stat": "Armor Regeneration",
+          "value": 1,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: the PTS table showed 2pc 13% Skill Damage and 3pc 52% Repair Skills; the live values reverted to 35% Repair Skills (2pc) and 18% Skill Damage (3pc) (KeenGamer, ProtoTrack, Grindout, Fandom)."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "overlord-armaments",
+    "name": "Overlord Armaments",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Rifle Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Accuracy",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Fox's Prayer",
+        "slot": "Kneepads",
+        "attribute": {
+          "stat": "Damage to Targets out of Cover",
+          "value": 8,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds"
+    ]
+  },
+  {
+    "id": "petrov-defense-group",
+    "name": "Petrov Defense Group",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "LMG Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Weapon Handling",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Ammo Capacity",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Vedmedytsya Vest",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Braced",
+          "text": "While in cover, weapon handling is increased by +50%.",
+          "stats": [
+            "Weapon Handling"
+          ]
+        }
+      },
+      {
+        "name": "Contractor's Gloves",
+        "slot": "Gloves",
+        "attribute": {
+          "stat": "Damage to Armor",
+          "value": 8,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Vedmedytsya Vest resolved: Petrov named chest with Perfect Braced (ProtoTrack, Gear Attribute Sheet - drop 'Gunner Field Research', Fandom Petrov set item list). The Medium guide's 'Berserk' claim has no second source.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "providence-defense",
+    "name": "Providence Defense",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Headshot Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Critical Hit Chance",
+        "value": 8,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Critical Hit Damage",
+        "value": 13,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "The Sacrifice",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Glass Cannon",
+          "text": "All damage you deal is amplified by 30%. All damage you take is amplified by 60%.",
+          "stats": [
+            "Damage Amplification"
+          ]
+        }
+      },
+      {
+        "name": "The Gift",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Vigilance",
+          "text": "Increases total weapon damage by 25%. Taking damage disables this buff for 3s.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "richter-and-kaiser-gmbh",
+    "name": "Richter & Kaiser GmbH",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Haste",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Explosive Resistance",
+        "value": 40,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 52,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Forge",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Shield Health",
+          "value": 50,
+          "unit": "%"
+        },
+        "talent": null
+      },
+      {
+        "name": "Rushdown",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Tag Team",
+          "text": "The last enemy you have damaged with a skill is marked. Dealing weapon damage to that enemy consumes the mark to reduce active cooldowns by 12s. Cooldown: 4s.",
+          "stats": [
+            "Skill Cooldown"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Rushdown is new in Y8S3 (named chest). Ubisoft's notes name the talent 'Tag Team'; ProtoTrack writes 'Perfect Tag Team'.",
+      "3pc Repair Skills was raised from 40% to 52% in Y7S1 (Ubisoft Crossroads notes).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-red-horizon-update-deployed-on-august-27-patch-2-34"
+    ]
+  },
+  {
+    "id": "sokolov-concern",
+    "name": "Sokolov Concern",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "SMG Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Critical Hit Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Critical Hit Chance",
+        "value": 8,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Firm Handshake",
+        "slot": "Gloves",
+        "attribute": {
+          "stat": "Status Effects",
+          "value": 16,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "wyvern-wear",
+    "name": "Wyvern Wear",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Damage",
+        "value": 8,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Status Effects",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Duration",
+        "value": 45,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Impetus",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Kinetic Momentum",
+          "text": "When in combat, each skill generates a stack while active or not on cooldown. Stacks increase your total skill damage by 1.5% and total skill repair by 2%. Up to 18 stacks per skill. Lost when on cooldown.",
+          "stats": [
+            "Skill Damage",
+            "Repair Skills"
+          ]
+        }
+      },
+      {
+        "name": "Claws Out",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Melee Damage",
+          "value": 500,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Claws Out carries a second unique attribute: +11% Pistol Damage (ProtoTrack); the schema holds one attribute per item.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "yaahl-gear",
+    "name": "Yaahl Gear",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2019-03-15",
+      "update": "Base game (launch)",
+      "label": "Launch · Base game"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Hazard Protection",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Weapon Damage",
+        "value": 12,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Pulse Resistance",
+        "value": 40,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "The Hollow Man",
+        "slot": "Mask",
+        "attribute": {
+          "stat": "Damage to Health",
+          "value": 14,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "2pc Weapon Damage resolved to 12%: Grindout and the Fandom brand table (edited 2026-09-16, after the Y8S3 launch) show 12%; ProtoTrack and Fandom's Yaahl Gear page (last value update 'TU22', 2025-02) show 10%.",
+      "Y8S3 raised several weapon-damage bonuses by the same 20% step (Walker, Harris 5->6, Imminence 5->6, Hana-U 15->18), so 10->12 fits; no official Ubisoft table lists Yaahl, so this stays an inference from two sources against one."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.invenglobal.com/articles/7812/the-division-2-guide-list-of-all-brand-sets-and-recommended-builds",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "ceska-vyroba-sro",
+    "name": "Česká Výroba s.r.o.",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-03-02",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Critical Hit Chance",
+        "value": 8,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Shotgun Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Hazard Protection",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Devil's Due",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Clutch",
+          "text": "If you are below 20% armor, critical hits repair 2.5% missing armor. Kills allow you to repair up to 100% armor for 4-10s, based on your number of red core attributes.",
+          "stats": [
+            "Armor Repair"
+          ]
+        }
+      },
+      {
+        "name": "Turmoil",
+        "slot": "Kneepads",
+        "attribute": null,
+        "talent": {
+          "name": "Bewildered",
+          "text": "When dealing weapon damage to an enemy, 50% of the damage is dealt to another enemy within 30m instead. When there are no enemies nearby, deal damage normally. Does not apply to armor plates. Also grants +12% Critical Hit Damage and +6% Critical Hit Chance.",
+          "stats": [
+            "Critical Hit Damage",
+            "Critical Hit Chance"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: 2pc is now 24% Shotgun Damage (PvP 12%), 3pc 30% Hazard Protection (Fandom pre-Y8S3 table: 20% Hazard Protection / 90% Health).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-march-2-title-update-8-patch-notes",
+      "https://mein-mmo.de/en/the-division-2-introduces-4-new-brand-sets-for-more-build-diversity-here-is-what-they-can-do,474097/"
+    ]
+  },
+  {
+    "id": "golan-gear-ltd",
+    "name": "Golan Gear Ltd",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-03-02",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Explosive Resistance",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Armor Regeneration",
+        "value": 1.5,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Increased Threat",
+        "value": 150,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Anarchist's Cookbook",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Wicked",
+          "text": "Applying a status effect increases total weapon damage by 18% for 27s.",
+          "stats": [
+            "Weapon Damage",
+            "Status Effects"
+          ]
+        }
+      },
+      {
+        "name": "Hunter-Killer",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Intimidate",
+          "text": "While you have bonus armor, gain 3 stacks each second up to a max of 10. Each stack increases weapon damage by 4% to enemies within 10m. All stacks are lost when you have no bonus armor.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Hunter-Killer resolved: Golan Gear named chest, Perfect Intimidate (ProtoTrack, Gear Attribute Sheet - drop 'Haven Hunter Crate / Light Zone', Fandom Golan Gear item list). The Medium guide's 'Manhattan Hunters, no brand' claim has no second source.",
+      "The Gear Attribute Sheet shows older Hunter-Killer numbers (1 stack per second, max 8, 5% each); ProtoTrack's 3 stacks per second, max 10, 4% is taken as current.",
+      "Y8S3: Increased Threat was removed from Imminence Armaments and spread across blue-core brands; Golan 3pc is now 150% Increased Threat (Fandom pre-Y8S3 table: 10% Total Armor).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-march-2-title-update-8-patch-notes",
+      "https://mein-mmo.de/en/the-division-2-introduces-4-new-brand-sets-for-more-build-diversity-here-is-what-they-can-do,474097/"
+    ]
+  },
+  {
+    "id": "grupo-sombra-sa",
+    "name": "Grupo Sombra S.A.",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-03-02",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Critical Hit Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Explosive Damage",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Headshot Damage",
+        "value": 39,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Door-Kicker's Knock",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Spark",
+          "text": "Damaging enemies with a skill increases total weapon damage by 18% for 20s.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Festive Delivery",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Fireworks Show",
+          "text": "Concussion Grenades become Festive Grenades. Hitting an enemy with a Festive Grenade causes explosions around two other enemies within 20m.",
+          "stats": [
+            "Explosive Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Seasonal: Festive Delivery (holiday-event backpack with a non-Perfect talent).",
+      "Y8S3: 3pc Headshot Damage raised from 13% to 39% in PvE (KeenGamer). Not a launch deviation.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-march-2-title-update-8-patch-notes",
+      "https://mein-mmo.de/en/the-division-2-introduces-4-new-brand-sets-for-more-build-diversity-here-is-what-they-can-do,474097/"
+    ]
+  },
+  {
+    "id": "hana-u-corporation",
+    "name": "Hana-U Corporation",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-03-02",
+      "update": "Title Update 8",
+      "label": "TU8 · Warlords of New York"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Haste",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Damage",
+        "value": 18,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Force Multiplier",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Combined Arms",
+          "text": "Shooting an enemy increases total skill damage by 30% for 3s.",
+          "stats": [
+            "Skill Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Fandom's Hana-U page shows 19% Weapon Damage at 3pc (older figure); ProtoTrack, Grindout and the Y8S3 PTS table show 18%.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-march-2-title-update-8-patch-notes",
+      "https://mein-mmo.de/en/the-division-2-introduces-4-new-brand-sets-for-more-build-diversity-here-is-what-they-can-do,474097/"
+    ]
+  },
+  {
+    "id": "walker-harris-and-co",
+    "name": "Walker, Harris & Co.",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-06-23",
+      "update": "Title Update 10 · Year 2 Season 2",
+      "label": "TU10 · Keener's Legacy"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Weapon Damage",
+        "value": 6,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Damage to Armor",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Damage to Health",
+        "value": 10,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Matador",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Adrenaline Rush",
+          "text": "Whenever you are within 10m of an enemy, gain 23% bonus armor for 5s. Stacks up to 3 times. Cooldown: 5s.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      },
+      {
+        "name": "Chainkiller",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Headhunter",
+          "text": "After killing an enemy with a headshot, your next weapon hit within 30s deals an additional 150% of that killing blow's damage. Damage is capped to 800% of your weapon damage. This is raised to 1250% if your headshot damage is greater than 150%.",
+          "stats": [
+            "Weapon Damage",
+            "Headshot Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Date: Title Update 10 deployed 2020-06-16; the brand set belongs to the Season 2 rewards, which started 2020-06-23 (Fandom Title Update 10 page).",
+      "1pc Weapon Damage raised from 5% to 6% in Y8S3 (Fandom edit history).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://gamespot.com/articles/the-division-2-update-10-patch-notes-new-exotics-w/1100-6478486/",
+      "https://thedivision.fandom.com/wiki/Title_Update_10",
+      "https://thedivision.fandom.com/wiki/Walker,_Harris_%26_Co."
+    ]
+  },
+  {
+    "id": "belstone-armory",
+    "name": "Belstone Armory",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-09-22",
+      "update": "Title Update 11 · Year 2 Season 3",
+      "label": "TU11 · Concealed Agenda"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Armor Regeneration",
+        "value": 1,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Increased Threat",
+        "value": 100,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Protection from Elites",
+        "value": 36,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Everyday Carrier",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Efficient",
+          "text": "Using an armor kit has a 75% chance to not consume the armor kit. Specialization armor kit bonuses are increased by 100%. Requires 10 seconds to arm the talent.",
+          "stats": [
+            "Armor Repair"
+          ]
+        }
+      },
+      {
+        "name": "Liquid Engineer",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Bloodsucker",
+          "text": "Killing an enemy adds a stack of +12% bonus armor for 10s. Max stack is 10.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: 2pc and 3pc are now 100% Increased Threat and 36% Protection from Elites (PvP 20%); Fandom pre-Y8S3 table had 10% Armor on Kill and 45% Incoming Repairs.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-divission-2-update-1-27-september-22"
+    ]
+  },
+  {
+    "id": "empress-international",
+    "name": "Empress International",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2020-12-08",
+      "update": "Title Update 12 · Year 2 Season 4",
+      "label": "TU12 · End of Watch"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Health",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Efficiency",
+        "value": 8,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Caesar's Guard",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Skilled",
+          "text": "Skill kills have a 30% chance to reset skill cooldowns. If no skills were on cooldown, you instead gain a one-time buff that immediately refreshes a skill's cooldown when it goes on cooldown.",
+          "stats": [
+            "Skill Cooldown"
+          ]
+        }
+      },
+      {
+        "name": "Battery Pack",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Calculated",
+          "text": "Kills from cover reduce skill cooldowns by 15%.",
+          "stats": [
+            "Skill Cooldown"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Caesar's Guard second sentence is from the Gear Attribute Sheet; ProtoTrack lists only the 30% reset.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.gamewatcher.com/the-division-2-title-update-12-patch-notes",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "uzina-getica",
+    "name": "Uzina Getica",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2022-05-12",
+      "update": "Title Update 15 · Season 9",
+      "label": "TU15 · Hidden Alliance"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Total Armor",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Armor on Kill",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Hazard Protection",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "The Setup",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Opportunistic",
+          "text": "Enemies you hit take 15% more damage from all sources for 5s. Requires using Marksman or Shotgun weapons only.",
+          "stats": [
+            "Damage Amplification"
+          ]
+        }
+      },
+      {
+        "name": "Closer",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Spotter",
+          "text": "Amplifies total weapon and skill damage by 20% to pulsed enemies.",
+          "stats": [
+            "Weapon Damage",
+            "Skill Damage",
+            "Status Effects"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-update-1-38-released-for-tu15-season-9-this-may-12",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "brazos-de-arcabuz",
+    "name": "Brazos de Arcabuz",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2022-09-13",
+      "update": "Title Update 16 · Season 10",
+      "label": "TU16 · Price of Power"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Haste",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null
+      },
+      {
+        "pieces": 3,
+        "stat": "Magazine Size",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Hermano",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Overclock",
+          "text": "Allies within 15m of your deployed skills gain +30% reload speed and have their active cooldowns reduced by 0.6s each second.",
+          "stats": [
+            "Reload Speed",
+            "Skill Cooldown"
+          ]
+        }
+      },
+      {
+        "name": "Picaro's Holster",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Weapon Damage",
+          "value": 10,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-1-44-released-for-season-10-this-september-13",
+      "https://docs.google.com/spreadsheets/d/1REi6cA7oSzT7h0O9YD6uxAbnCTmE-YKMDctsKogzXC8/pubhtml"
+    ]
+  },
+  {
+    "id": "habsburg-guard",
+    "name": "Habsburg Guard",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2023-02-28",
+      "update": "Title Update 17 · Season 11",
+      "label": "TU17 · Reign of Fire"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Headshot Damage",
+        "value": 13,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Marksman Rifle Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Status Effects",
+        "value": 25,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "The Courier",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Creeping Death",
+          "text": "When you apply a status effect, it is also applied to all enemies within 10m of your target. Cooldown: 10s.",
+          "stats": [
+            "Status Effects"
+          ]
+        }
+      },
+      {
+        "name": "Cherished",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Trauma",
+          "text": "Applies blind to an enemy hit in the head. Cooldown: 20s. Applies bleed to an enemy hit in the chest. Cooldown: 20s.",
+          "stats": [
+            "Blind",
+            "Bleed",
+            "Status Effects"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-1-50-blazes-out-for-season-11-title-update-17-this-feb-28",
+      "https://thedivision.fandom.com/wiki/Habsburg_Guard"
+    ]
+  },
+  {
+    "id": "electrique",
+    "name": "Electrique",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2023-06-08",
+      "update": "Year 5 Season 1",
+      "label": "Y5S1 · Broken Wings"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Status Effects",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Hazard Protection",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Efficiency",
+        "value": 8,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Lavoisier",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Galvanize",
+          "text": "Applying blind, ensnare, confuse or shock to an enemy grants 50% of your armor as bonus armor to you and all allies within 30m of that enemy for 10s.",
+          "stats": [
+            "Bonus Armor",
+            "Status Effects"
+          ]
+        }
+      },
+      {
+        "name": "Henri",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Companion",
+          "text": "While you are within 10m of an ally or skill, total weapon damage is increased by 20%.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Snow Machine",
+        "slot": "Kneepads",
+        "attribute": null,
+        "talent": {
+          "name": "Flurry",
+          "text": "Every status effect you apply will also apply snowfall to the target.",
+          "stats": [
+            "Status Effects"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Seasonal: Snow Machine (holiday-event kneepads with a non-Perfect talent).",
+      "Y8S3: 2pc Shock Resistance and 3pc SMG Damage replaced by 20% Hazard Protection (PvP 20%) and 8% Skill Efficiency (PvP 6%) (Fandom pre-Y8S3 table).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.psu.com/news/the-division-2-update-1-54-patch-notes-unleashed-for-y5s1-broken-wings-content/",
+      "https://thedivision.fandom.com/wiki/Electrique"
+    ]
+  },
+  {
+    "id": "lengmo",
+    "name": "Lengmo",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2023-10-03",
+      "update": "Year 5 Season 2",
+      "label": "Y5S2 · Puppeteers"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Reload Speed",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "LMG Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Backbone",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Unstoppable Force",
+          "text": "Killing an enemy increases total weapon damage by 7% for 15s. Stacks up to 5 times. Grenade kills add 2 stacks.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Carpenter",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Mad Bomber",
+          "text": "Grenade radius is increased by 75%. Grenades that kill an enemy are refunded. Grenades can be cooked by holding the fire button, making them explode earlier. Gain +15% bonus armor while aiming grenades.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Launch values (Y5S2) were 20% Explosive Resistance / 10% Skill Health / 15% LMG Damage; reworked to 15% Reload Speed / 24% LMG Damage (PvP 12%) / 30% Weapon Handling.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-update-1-59-for-oct-3-brings-y5s2-title-update-19-patch-notes-new-content-listed",
+      "https://www.ginx.tv/en/?p=54758"
+    ]
+  },
+  {
+    "id": "palisade-steelworks",
+    "name": "Palisade Steelworks",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2024-02-06",
+      "update": "Year 5 Season 3",
+      "label": "Y5S3 · Vanguard"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Armor on Kill",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Protection from Elites",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Tier",
+        "value": 1,
+        "unit": null
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Proxy",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Tamper Proof",
+          "text": "Enemies that walk within 3m of your hive, turret, remote pulse or decoy are shocked. Arm time: 2s. Cooldown per skill: 8s.",
+          "stats": [
+            "Shock",
+            "Status Effects"
+          ]
+        }
+      },
+      {
+        "name": "Combustor",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfectly Explosive Delivery",
+          "text": "Whenever you throw a skill, 1.5s after landing it creates an explosion damaging enemies within 5m. Afterwards explosions occur every 5s. Damage scales with skill tier, dealing 25-100% of the damage of a concussion grenade. Occurs once per skill. Applies to Remote Pulse, all Turrets, all Hives, Explosive Seeker, Cluster Seeker, Mender Seeker, Decoy and all Traps.",
+          "stats": [
+            "Explosive Damage",
+            "Skill Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y8S3: 2pc changed from +60% Health to 24% Protection from Elites (PvP 15%).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.sportskeeda.com/mmo/the-division-2-year-5-season-3-release-date-patch-notes",
+      "https://www.sportskeeda.com/mmo/all-new-weapons-armor-set-the-division-2-year-5-season-3"
+    ]
+  },
+  {
+    "id": "zwiadowka-sp-z-oo",
+    "name": "Zwiadowka Sp. z o.o.",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2024-06-11",
+      "update": "Year 6 Season 1",
+      "label": "Y6S1 · First Rogue"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Magazine Size",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Rifle Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Weapon Handling",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Bober",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Entrench",
+          "text": "If you are below 30% armor, headshots from cover repair 30% of your armor. Cooldown: 1s.",
+          "stats": [
+            "Armor Repair"
+          ]
+        }
+      },
+      {
+        "name": "Eagle's Grasp",
+        "slot": "Gloves",
+        "attribute": {
+          "stat": "Weapon Handling",
+          "value": 15,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Y6S1 PTS notes listed Bober with a 2s cooldown and 20% Rifle Damage at 2pc; ProtoTrack shows 1s and the current 24%.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-year-6-season-1-launches-june-11-patch-notes-and-new-content-listed",
+      "https://mp1st.com/news/the-division-2-year-6-season-1-pts-patch-notes-schedule-download-size-revealed"
+    ]
+  },
+  {
+    "id": "legatus-spa",
+    "name": "Legatus S.p.A.",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2024-10-29",
+      "update": "Year 6 Season 2",
+      "label": "Y6S2 · Shades of Red"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Magazine Size",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "SMG Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Optimal Range",
+        "value": 105,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Vigil",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Versatile",
+          "text": "Amplifies total weapon damage for 10s when swapping between your primary and secondary weapons if they are different: 45% to enemies within 15m for Shotguns and SMGs; 40% to enemies further than 25m for Rifles and Marksman Rifles; 15% to enemies between 15-25m for LMGs and Assault Rifles. At most once per 5s per weapon type.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Visionario",
+        "slot": "Mask",
+        "attribute": {
+          "stat": "Optimal Range",
+          "value": 50,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Launch notes (Y6S2) listed Vigil with 45% / 45% / 20% bands; ProtoTrack's current bands are 45% / 40% / 15%.",
+      "Y8S3: 1pc 30% Swap Speed -> 15% Magazine Size (PvP 10%), 2pc 70% Optimal Range -> 24% SMG Damage (PvP 12%), 3pc 15% Weapon Damage -> 105% Optimal Range (PvP 75%).",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-update-1-80-deployed-for-y6s2-shades-of-red-this-oct-29"
+    ]
+  },
+  {
+    "id": "shiny-monkey-gear",
+    "name": "Shiny Monkey Gear",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2025-02-25",
+      "update": "Year 6 Season 3",
+      "label": "Y6S3 · Burden of Truth"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Skill Duration",
+        "value": 15,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Efficiency",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Repair Skills",
+        "value": 52,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Axel",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Energize",
+          "text": "Using an armor kit grants +1 skill tier for 15s. If already at skill tier 6, grants overcharge. Cooldown: 30s.",
+          "stats": [
+            "Skill Tier",
+            "Overcharge"
+          ]
+        }
+      },
+      {
+        "name": "Grease",
+        "slot": "Kneepads",
+        "attribute": {
+          "stat": "Status Effects",
+          "value": 16,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/5V9sBiXBdAwdb9Migm4zZW/year-6-season-3-burden-of-truth",
+      "https://news.ubisoft.com/en-us/article/2FHrPWGny0AhAF73S7LNKR/the-division-2-new-season-burden-of-truth-launches-february-25",
+      "https://thedivision.fandom.com/wiki/Shiny_Monkey_Gear"
+    ]
+  },
+  {
+    "id": "imminence-armaments",
+    "name": "Imminence Armaments",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2025-05-27",
+      "update": "Year 7 Season 1",
+      "label": "Y7S1 · Crossroads"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Weapon Damage",
+        "value": 6,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Pistol Damage",
+        "value": 48,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Health",
+        "value": 30,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Cap'n",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Leadership",
+          "text": "Performing a cover to cover grants 20% of your armor as bonus armor to you and all allies for 10s. This is tripled if you end within 10m of an enemy. Cooldown: 10s.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      },
+      {
+        "name": "Cloak",
+        "slot": "Kneepads",
+        "attribute": {
+          "stat": "Reduced Threat",
+          "value": 50,
+          "unit": "%"
+        },
+        "talent": null
+      },
+      {
+        "name": "Trick Shot",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Reassigned",
+          "text": "Killing an enemy adds 1 round of a random special ammo into your sidearm. Cooldown: 8s.",
+          "stats": []
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Trick Shot is new in Y8S3 (named chest). Ubisoft's notes name the talent 'Perfect Reassigned'; ProtoTrack writes 'Perfectly Reassigned'.",
+      "Y8S3: Increased Threat removed (previously 2pc +100% Increased Threat); 2pc now 48% Pistol Damage (PvP 22%), 3pc 30% Skill Health. Launch values were 5% Weapon Damage / 100% Increased Threat / 60% Pistol Damage.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/HP67k5N5kneQmSCVlVMmi/the-division-2-crossroads",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-red-horizon-update-deployed-on-august-27-patch-2-34",
+      "https://thedivision.fandom.com/wiki/Imminence_Armaments"
+    ]
+  },
+  {
+    "id": "urban-lookout",
+    "name": "Urban Lookout",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2025-09-09",
+      "update": "Year 7 Season 2",
+      "label": "Y7S2 · The Pact"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Weapon Handling",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Marksman Rifle Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Duration",
+        "value": 45,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Sleight",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Protected Reload",
+          "text": "Grants +40% bonus armor while reloading. Grants 0-30% of your armor as bonus armor to all other allies when they are reloading, based on your blue core attribute.",
+          "stats": [
+            "Bonus Armor"
+          ]
+        }
+      },
+      {
+        "name": "Spot-On",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Accuracy",
+          "value": 38,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Launch values (Y7S2) were 10% Accuracy / 30% Skill Duration / 30% MMR Damage; reworked in Y8S3.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-servers-down-sept-9-usher-in-y7s2",
+      "https://mp1st.com/title-updates-and-patches/the-division-2-y7s2-the-pact-update-patch-2-10"
+    ]
+  },
+  {
+    "id": "unit-alloys",
+    "name": "Unit Alloys",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2025-12-02",
+      "update": "Year 7 Season 3",
+      "label": "Y7S3 · Mutiny"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Rate of Fire",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Assault Rifle Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Magazine Size",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Equalizer",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Obliterate",
+          "text": "Critical hits increase total weapon damage by 1% for 10s. Stacks up to 24 times.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Salvo",
+        "slot": "Holster",
+        "attribute": {
+          "stat": "Rate of Fire",
+          "value": 5,
+          "unit": "%"
+        },
+        "talent": null
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Salvo was lowered from 8% to 5% Rate of Fire at launch (Y7S3 patch notes).",
+      "Not in Fandom's brand category list; values from ProtoTrack, Grindout and the Fandom brand table.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://thedivisiondispatch.com/2025/12/02/%F0%9F%93%84-season-3-mutiny-launch-december-2-2025/",
+      "https://www.sportskeeda.com/mmo/the-division-2-year-7-season-3-mutiny-companions-new-gear-sets-seasonal-modifier"
+    ]
+  },
+  {
+    "id": "royal-works",
+    "name": "Royal Works",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2026-04-02",
+      "update": "Year 8 Season 1",
+      "label": "Y8S1 · Rise Up"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Weapon Handling",
+        "value": 5,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "LMG Damage",
+        "value": 24,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Accuracy",
+        "value": 50,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Robin",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Gunslinger",
+          "text": "Weapon swapping increases total weapon damage by 28% for 5s. This buff is lost for 5s if you weapon swap while it is active.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      },
+      {
+        "name": "Bulldog",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Composure",
+          "text": "While in cover, increases total weapon damage by 20%.",
+          "stats": [
+            "Weapon Damage"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Ubisoft's Y8S1 notes call Bulldog a 'Named Holster'; ProtoTrack, Fandom and Sportskeeda list it as a backpack, which is used here.",
+      "Y8S1 launch values were 5% Weapon Handling / 32.5% Magazine Size / 15% Critical Damage; 2pc and 3pc reworked in Y8S3.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://mp1st.com/news/the-division-2-year-8-rise-up-update-unleashed-via-patch-2-24",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/66V3C2syuDtwNoYQmnVHbW",
+      "https://thedivision.fandom.com/wiki/Royal_Works"
+    ]
+  },
+  {
+    "id": "edelweiss-gpz",
+    "name": "Edelweiss GPz",
+    "kind": "brandset",
+    "category": null,
+    "added": {
+      "date": "2026-06-16",
+      "update": "Year 8 Season 2",
+      "label": "Y8S2 · Into the Dark"
+    },
+    "bonuses": [
+      {
+        "pieces": 1,
+        "stat": "Repair Skills",
+        "value": 18,
+        "unit": "%"
+      },
+      {
+        "pieces": 2,
+        "stat": "Skill Haste",
+        "value": 20,
+        "unit": "%"
+      },
+      {
+        "pieces": 3,
+        "stat": "Skill Efficiency",
+        "value": 8,
+        "unit": "%"
+      }
+    ],
+    "talents": [],
+    "namedItems": [
+      {
+        "name": "Benefactor",
+        "slot": "Chest",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Empathic Resolve",
+          "text": "Repairing an ally increases their total weapon and skill damage by 3-20% for 20s (1-15% if self). Effectiveness increased by your skill tier.",
+          "stats": [
+            "Weapon Damage",
+            "Skill Damage"
+          ]
+        }
+      },
+      {
+        "name": "Momma Badger",
+        "slot": "Backpack",
+        "attribute": null,
+        "talent": {
+          "name": "Perfect Safeguard",
+          "text": "While at full armor, increases total skill repair by 160%.",
+          "stats": [
+            "Repair Skills"
+          ]
+        }
+      }
+    ],
+    "attributes": [],
+    "obtain": null,
+    "confidence": "confirmed",
+    "notes": [
+      "Fandom's brand table lists 1pc as 8% Repair Skills (typo); Ubisoft's Y8S2 PTS notes, ProtoTrack and Grindout list 18%.",
+      "Benefactor duration: ProtoTrack 20s; Ubisoft's Y8S2 PTS notes said 10s.",
+      "Named-item talent numbers: ProtoTrack (Y8S3) is the only source for the exact current values unless a patch-note source is listed; the community Gear Attribute Sheet carries older values."
+    ],
+    "sources": [
+      "https://prototrack.gg/division2-sets.php",
+      "https://grindout.com/division-2/guides/gear-sets-and-brand-sets",
+      "https://thedivision.fandom.com/wiki/Brand_Sets/Tom_Clancy's_The_Division_2",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/hdUs80E1Fc9nHAhckksLw/red-horizon-pts-patch-notes",
+      "https://www.ubisoft.com/en-us/game/the-division/the-division-2/news-updates/7MbnFYZZj4a5pgeUlrMOY6/into-the-dark-pts-patch-notes",
+      "https://www.ubisoft.com/de-de/game/the-division/the-division-2/news-updates/2ViysTJslvmkyLSK0sFRRD/the-division-2-into-the-dark-fight-hyenas-venture-into-dark-zones-and-a-new-toxic-pve-experience"
+    ]
+  }
+]

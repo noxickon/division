@@ -1,0 +1,1740 @@
+<!doctype html>
+<html lang="de" data-hm-scheme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Division 2 Codex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;600;650&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --hm-font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --hm-font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --hm-inset: oklch(0.12 0.003 255);
+  --hm-canvas: oklch(0.145 0.003 255);
+  --hm-shell: oklch(0.168 0.003 255);
+  --hm-card: oklch(0.192 0.003 255);
+  --hm-overlay: oklch(0.235 0.003 255);
+  --hm-control: oklch(1 0 0 / 0.048);
+  --hm-hover: oklch(1 0 0 / 0.08);
+  --hm-pressed: oklch(1 0 0 / 0.118);
+  --hm-line-subtle: color-mix(in oklab, var(--hm-fg) 8%, transparent);
+  --hm-line: oklch(0.275 0.003 255);
+  --hm-line-strong: oklch(0.37 0.003 255);
+  --hm-line-contrast: oklch(0.52 0.003 255);
+  --hm-fg: oklch(0.95 0 0);
+  --hm-fg-2: oklch(0.83 0 0);
+  --hm-fg-3: oklch(0.74 0 0);
+  --hm-fg-disabled: oklch(0.47 0 0);
+  --hm-on-accent: oklch(0.27 0.12 276);
+  --hm-accent: oklch(0.82 0.08 282);
+  --hm-accent-subtle: oklch(0.78 0.09 282 / 0.24);
+  --hm-accent-subtle-fg: oklch(0.87 0.06 282);
+  --hm-accent-line: oklch(0.8 0.08 282 / 0.35);
+  --hm-focus: oklch(0.83 0.08 282);
+  --hm-success-bg: oklch(0.68 0.15 155 / 0.14);
+  --hm-success-line: oklch(0.68 0.15 155 / 0.42);
+  --hm-success-fg: oklch(0.82 0.13 155);
+  --hm-warning-bg: oklch(0.78 0.15 80 / 0.14);
+  --hm-warning-line: oklch(0.78 0.15 80 / 0.42);
+  --hm-warning-fg: oklch(0.86 0.13 85);
+  --hm-danger-bg: oklch(0.64 0.2 25 / 0.15);
+  --hm-danger-line: oklch(0.64 0.2 25 / 0.45);
+  --hm-danger-fg: oklch(0.78 0.13 25);
+  --hm-info-bg: oklch(0.68 0.13 240 / 0.15);
+  --hm-info-line: oklch(0.68 0.13 240 / 0.42);
+  --hm-info-fg: oklch(0.81 0.1 240);
+  --hm-shadow-card: 0 1px 2px oklch(0 0 0 / 0.4);
+  --hm-shadow-overlay: 0 16px 40px oklch(0 0 0 / 0.6), 0 2px 6px oklch(0 0 0 / 0.35);
+  --hm-radius-sm: 0.375rem;
+  --hm-radius-md: 0.5rem;
+  --hm-radius-lg: 0.75rem;
+  --hm-control-h: 2.5rem;
+  --hm-duration-feedback: 150ms;
+
+  --gearset-tile: #105446;
+  --brand-tile: #b45f06;
+  --exotic-tile: oklch(0.45 0.14 35);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--hm-canvas);
+  color: var(--hm-fg);
+  font-family: var(--hm-font-sans);
+  font-feature-settings: 'cv11', 'ss01';
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--hm-focus); outline-offset: 2px; }
+
+.page { max-width: 90rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+.masthead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 0.75rem 2rem; margin-bottom: 1.25rem; }
+.masthead h1 { margin: 0; font-size: 1.875rem; line-height: 2.25rem; letter-spacing: -0.021em; font-weight: 650; }
+.masthead p { margin: 0.25rem 0 0; color: var(--hm-fg-3); font-size: 0.875rem; line-height: 1.25rem; }
+.mast-side { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.counts { display: flex; gap: 1.5rem; color: var(--hm-fg-3); font-size: 0.8125rem; }
+.counts b { display: block; color: var(--hm-fg); font-size: 1.375rem; line-height: 1.5rem; font-weight: 620; letter-spacing: -0.017em; }
+
+/* Sticky-Kopf: Zeile mit Ansicht/Modus/Sprache bleibt immer oben, die Filterleiste des Codex direkt darunter */
+.nav {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between;
+  margin: 0 -1rem; padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 1rem 0.5rem;
+  background: color-mix(in oklab, var(--hm-canvas) 90%, transparent);
+  backdrop-filter: blur(12px);
+}
+.nav-brand { display: none; font-weight: 650; font-size: 0.9375rem; letter-spacing: -0.011em; margin-right: 0.25rem; }
+.nav.stuck .nav-brand { display: inline; }
+.nav-left { display: flex; align-items: center; gap: 0.75rem; }
+
+.toolbar {
+  position: sticky; top: var(--nav-h, 3rem); z-index: 20;
+  display: grid; gap: 0.75rem;
+  margin: 0 -1rem 1.5rem; padding: 0.5rem 1rem 0.75rem;
+  background: color-mix(in oklab, var(--hm-canvas) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hm-line-subtle);
+}
+#formulaView { margin-top: 1rem; }
+.card, .f-card, .tool { scroll-margin-top: calc(var(--sticky-h, 4rem) + 1rem); }
+.toolbar-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+
+.field {
+  height: var(--hm-control-h); padding: 0 0.875rem;
+  background: var(--hm-control); color: var(--hm-fg);
+  border: 1px solid var(--hm-line); border-radius: var(--hm-radius-md);
+  font: inherit; font-size: 0.875rem;
+}
+.field:hover { border-color: var(--hm-line-strong); }
+.field::placeholder { color: var(--hm-fg-3); }
+.search { flex: 1 1 18rem; min-width: 0; }
+.stat-select { flex: 1 1 14rem; min-width: 0; cursor: pointer; }
+.sort-select { flex: 0 1 11rem; cursor: pointer; }
+select.field option, select.field optgroup { background: var(--hm-overlay); color: var(--hm-fg); }
+
+.segments { display: flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.25rem; background: var(--hm-inset); border: 1px solid var(--hm-line-subtle); border-radius: var(--hm-radius-md); }
+.segments button {
+  height: 2rem; padding: 0 0.75rem; border: 0; border-radius: var(--hm-radius-sm);
+  background: transparent; color: var(--hm-fg-2); font: inherit; font-size: 0.8125rem; font-weight: 550; cursor: pointer;
+  transition: background-color var(--hm-duration-feedback) ease, color var(--hm-duration-feedback) ease;
+}
+.segments button:hover { background: var(--hm-hover); color: var(--hm-fg); }
+.segments button[aria-pressed='true'] { background: var(--hm-overlay); color: var(--hm-fg); box-shadow: var(--hm-shadow-card); }
+.segments.mode button[data-mode='pvp'][aria-pressed='true'] { color: var(--hm-warning-fg); }
+
+.result-count { margin-left: auto; color: var(--hm-fg-3); font-size: 0.8125rem; }
+.clear { height: 2rem; padding: 0 0.75rem; border: 1px solid var(--hm-line); border-radius: var(--hm-radius-sm); background: transparent; color: var(--hm-fg-2); font: inherit; font-size: 0.8125rem; cursor: pointer; }
+.clear:hover { background: var(--hm-hover); color: var(--hm-fg); }
+
+.pvp-note { padding: 0.5rem 0.75rem; margin: -0.75rem 0 1rem; border: 1px solid var(--hm-warning-line); border-radius: var(--hm-radius-md); background: var(--hm-warning-bg); color: var(--hm-warning-fg); font-size: 0.8125rem; }
+
+.group { margin-bottom: 2rem; }
+.group-head { display: flex; align-items: baseline; gap: 0.75rem; margin: 0 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--hm-line-subtle); }
+.group-head h2 { margin: 0; font-size: 1rem; line-height: 1.375rem; font-weight: 600; letter-spacing: -0.011em; }
+.group-head span { color: var(--hm-fg-3); font-size: 0.8125rem; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: 0.75rem; align-items: start; }
+
+.card { background: var(--hm-card); border: 1px solid var(--hm-line-subtle); border-radius: var(--hm-radius-lg); box-shadow: var(--hm-shadow-card); overflow: hidden; }
+.card-head { display: flex; gap: 0.75rem; padding: 1rem 1rem 0.75rem; }
+.tile { flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--hm-radius-md); color: #fff; font-size: 0.8125rem; font-weight: 650; }
+.tile img { width: 2rem; height: 2rem; object-fit: contain; }
+.tile[data-kind='gearset'] { background: var(--gearset-tile); }
+.tile[data-kind='brandset'] { background: var(--brand-tile); }
+.tile[data-kind='exotic'] { background: var(--exotic-tile); }
+.card-title { min-width: 0; }
+.card-title h3 { margin: 0; font-size: 1rem; line-height: 1.375rem; font-weight: 600; letter-spacing: -0.011em; }
+.card-title .alt-name { color: var(--hm-fg-3); font-size: 0.8125rem; font-weight: 450; }
+.meta { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; align-items: center; margin-top: 0.25rem; color: var(--hm-fg-3); font-size: 0.8125rem; line-height: 1.125rem; }
+
+.badge { display: inline-flex; align-items: center; height: 1.25rem; padding: 0 0.375rem; border: 1px solid var(--tone-line); border-radius: 0.3125rem; background: var(--tone-bg); color: var(--tone-fg); font-size: 0.75rem; font-weight: 550; letter-spacing: 0.01em; white-space: nowrap; }
+.badge[data-tone='gearset'] { --tone-bg: var(--hm-success-bg); --tone-line: var(--hm-success-line); --tone-fg: var(--hm-success-fg); }
+.badge[data-tone='brandset'] { --tone-bg: var(--hm-warning-bg); --tone-line: var(--hm-warning-line); --tone-fg: var(--hm-warning-fg); }
+.badge[data-tone='exotic'] { --tone-bg: var(--hm-danger-bg); --tone-line: var(--hm-danger-line); --tone-fg: var(--hm-danger-fg); }
+.badge[data-tone='new'] { --tone-bg: var(--hm-accent-subtle); --tone-line: var(--hm-accent-line); --tone-fg: var(--hm-accent-subtle-fg); }
+.badge[data-tone='info'] { --tone-bg: var(--hm-info-bg); --tone-line: var(--hm-info-line); --tone-fg: var(--hm-info-fg); }
+.badge[data-tone='neutral'] { --tone-bg: var(--hm-control); --tone-line: var(--hm-line); --tone-fg: var(--hm-fg-2); }
+.badge[data-tone='pvp'] { --tone-bg: var(--hm-warning-bg); --tone-line: var(--hm-warning-line); --tone-fg: var(--hm-warning-fg); }
+
+.scales { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.375rem; }
+/* Farbfamilien der Effekte: Waffenschaden rot, Krit/Kopfschuss orange, Ziel gelb, Statuseffekte lila, Skills tuerkis, Ruestung blau */
+[data-family='weapon'] { --fam-fg: oklch(0.78 0.13 25); --fam-bg: oklch(0.64 0.2 25 / 0.16); }
+[data-family='crit'] { --fam-fg: oklch(0.82 0.12 55); --fam-bg: oklch(0.72 0.15 55 / 0.16); }
+[data-family='target'] { --fam-fg: oklch(0.87 0.12 95); --fam-bg: oklch(0.8 0.13 95 / 0.14); }
+[data-family='status'] { --fam-fg: oklch(0.8 0.11 310); --fam-bg: oklch(0.65 0.17 310 / 0.18); }
+[data-family='skill'] { --fam-fg: oklch(0.83 0.1 195); --fam-bg: oklch(0.7 0.12 195 / 0.16); }
+[data-family='armor'] { --fam-fg: oklch(0.8 0.1 250); --fam-bg: oklch(0.65 0.13 250 / 0.18); }
+a.scale { display: inline-flex; align-items: center; height: 1.25rem; padding: 0 0.375rem; border-radius: 0.3125rem; background: var(--fam-bg, var(--hm-info-bg)); color: var(--fam-fg, var(--hm-info-fg)); font-size: 0.6875rem; font-weight: 550; text-decoration: none; white-space: nowrap; }
+a.scale:hover { filter: brightness(1.25); }
+/* Akzentstrich links: gerade Kante (linke Ecken ohne Rundung), 3 px breit */
+.talent[data-family] { box-shadow: inset 3px 0 0 color-mix(in oklab, var(--fam-fg) 60%, transparent); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+a.scale::before { content: '↗'; margin-right: 0.25rem; opacity: 0.7; }
+
+.section { padding: 0.75rem 1rem; border-top: 1px solid var(--hm-line-subtle); }
+.section-label { margin: 0 0 0.375rem; color: var(--hm-fg-3); font-size: 0.75rem; line-height: 1rem; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; }
+.rows { display: grid; gap: 0.125rem; margin: 0; padding: 0; list-style: none; }
+.row { display: grid; grid-template-columns: 3.25rem 1fr; gap: 0.5rem; padding: 0.25rem 0.5rem; margin: 0 -0.5rem; border-radius: var(--hm-radius-sm); font-size: 0.875rem; line-height: 1.25rem; }
+.row-key { color: var(--hm-fg-3); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.row-val { color: var(--hm-fg-2); }
+.row-val strong { color: var(--hm-fg); font-weight: 550; font-variant-numeric: tabular-nums; }
+.row .hint { color: var(--hm-fg-3); font-size: 0.8125rem; }
+.row .scales { margin-top: 0.125rem; }
+.row-val .bonus + .bonus { margin-top: 0.375rem; }
+
+.talent { padding: 0.5rem; margin: 0 -0.5rem; border-radius: var(--hm-radius-sm); }
+.talent + .talent { margin-top: 0.25rem; }
+.talent-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; }
+.talent-head strong { font-size: 0.875rem; font-weight: 600; }
+.talent p { margin: 0.25rem 0 0; color: var(--hm-fg-2); font-size: 0.875rem; line-height: 1.25rem; white-space: pre-line; }
+.talent p strong { color: var(--hm-fg); font-weight: 600; }
+
+.hit { background: var(--hm-accent-subtle); box-shadow: inset 3px 0 0 var(--hm-accent); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.hit .row-val, .hit p { color: var(--hm-fg); }
+.talent.hit[data-family] { box-shadow: inset 3px 0 0 var(--hm-accent); }
+
+details.more { padding: 0.5rem 1rem 0.75rem; border-top: 1px solid var(--hm-line-subtle); color: var(--hm-fg-3); font-size: 0.8125rem; line-height: 1.125rem; }
+details.more summary { cursor: pointer; padding: 0.25rem 0; }
+details.more summary:hover { color: var(--hm-fg-2); }
+details.more p { margin: 0.25rem 0 0; }
+details.more code { font-family: var(--hm-font-mono); font-size: 0.75rem; overflow-wrap: anywhere; }
+
+.empty { padding: 4rem 1rem; text-align: center; color: var(--hm-fg-3); }
+
+/* Hinweis auf Standard-Statuseffekt und Schaden-ueber-Zeit-Rechner */
+.applies { margin: 0.5rem 0 0 !important; padding: 0.375rem 0.625rem; border-left: 3px solid var(--hm-warning-line); border-radius: 0 var(--hm-radius-sm) var(--hm-radius-sm) 0; background: var(--hm-warning-bg); color: var(--hm-fg-2) !important; font-size: 0.8125rem !important; line-height: 1.25rem !important; }
+.applies a { color: var(--hm-warning-fg); white-space: nowrap; }
+.dot-table td .bar { display: block; height: 0.375rem; margin-top: 0.375rem; max-width: 18rem; }
+.dot-table tr.dot-ref td { background: color-mix(in oklab, var(--hm-warning-bg) 60%, transparent); }
+.dot-table .hint { color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 450; }
+#f-dot .check { margin-top: 0.75rem; }
+#f-dot .tool-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+
+/* Skill-Familien: feste Farbe je Familie in Rechner- und FAQ-Tabellen */
+.skill-tag { display: inline-flex; align-items: center; height: 1.25rem; margin-right: 0.25rem; padding: 0 0.4375rem; border-radius: 0.3125rem; background: var(--sk-bg); color: var(--sk-fg); font-size: 0.6875rem; font-weight: 650; letter-spacing: 0.02em; white-space: nowrap; vertical-align: 1px; }
+.skill-tag[data-skill='turret'] { --sk-fg: oklch(0.8 0.13 35); --sk-bg: oklch(0.65 0.18 35 / 0.18); }
+.skill-tag[data-skill='drone'] { --sk-fg: oklch(0.84 0.12 75); --sk-bg: oklch(0.72 0.14 75 / 0.18); }
+.skill-tag[data-skill='seeker'] { --sk-fg: oklch(0.86 0.13 115); --sk-bg: oklch(0.75 0.15 115 / 0.16); }
+.skill-tag[data-skill='sticky'] { --sk-fg: oklch(0.82 0.13 155); --sk-bg: oklch(0.68 0.15 155 / 0.18); }
+.skill-tag[data-skill='chem'] { --sk-fg: oklch(0.83 0.1 195); --sk-bg: oklch(0.7 0.12 195 / 0.18); }
+.skill-tag[data-skill='hive'] { --sk-fg: oklch(0.81 0.1 240); --sk-bg: oklch(0.68 0.13 240 / 0.18); }
+.skill-tag[data-skill='trap'] { --sk-fg: oklch(0.8 0.1 275); --sk-bg: oklch(0.66 0.14 275 / 0.2); }
+.skill-tag[data-skill='firefly'] { --sk-fg: oklch(0.8 0.12 315); --sk-bg: oklch(0.65 0.17 315 / 0.2); }
+.skill-tag[data-skill='pulse'] { --sk-fg: oklch(0.8 0.12 355); --sk-bg: oklch(0.65 0.17 355 / 0.2); }
+.skill-tag[data-skill='status'] { --sk-fg: var(--hm-fg-2); --sk-bg: var(--hm-control); }
+
+/* Talent-Ansicht */
+.t-intro { max-width: 80ch; margin: -0.5rem 0 1.5rem; color: var(--hm-fg-3); font-size: 0.875rem; line-height: 1.375rem; }
+.t-card .card-head { padding-bottom: 0.5rem; }
+.t-req { margin: 0 0 0.25rem !important; color: var(--hm-warning-fg) !important; font-size: 0.8125rem !important; }
+.t-req strong { color: var(--hm-warning-fg) !important; }
+.t-origins { display: grid; gap: 0.25rem; margin: 0.5rem 0 0; padding: 0; list-style: none; color: var(--hm-fg-3); font-size: 0.8125rem; line-height: 1.25rem; }
+.t-origins strong { color: var(--hm-fg-2); font-weight: 550; }
+button.link { padding: 0; border: 0; background: none; color: var(--hm-accent); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+button.link:hover { color: var(--hm-fg); }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--hm-line-subtle); color: var(--hm-fg-3); font-size: 0.8125rem; line-height: 1.25rem; }
+footer a { color: var(--hm-fg-2); }
+
+/* Formel-Ansicht */
+.formulas { display: grid; gap: 1.5rem; }
+.f-head h2 { margin: 0; font-size: 1.375rem; line-height: 1.75rem; font-weight: 650; letter-spacing: -0.017em; }
+.f-head p { margin: 0.375rem 0 0; max-width: 75ch; color: var(--hm-fg-2); }
+
+/* Werkzeug: Rechner, hervorgehoben vor der Referenz */
+.tool { background: color-mix(in oklab, var(--hm-accent) 7%, var(--hm-card)); border: 1px solid var(--hm-accent-line); border-radius: var(--hm-radius-lg); box-shadow: var(--hm-shadow-card); overflow: hidden; }
+.tool-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--hm-line-subtle); }
+.tool-head h2 { margin: 0; font-size: 1.125rem; line-height: 1.5rem; font-weight: 650; }
+.tool-head p { margin: 0; color: var(--hm-fg-3); font-size: 0.8125rem; }
+.tool-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.tool-inputs { padding: 1rem 1.25rem 1.25rem; border-right: 1px solid var(--hm-line-subtle); }
+.tool-result { padding: 1rem 1.25rem 1.25rem; background: color-mix(in oklab, var(--hm-inset) 60%, transparent); }
+.tool-label { margin: 0 0 0.5rem; color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; }
+.tool-summary { margin: 0 0 0.875rem; font-size: 1rem; line-height: 1.5rem; }
+.tool-summary strong { color: var(--hm-success-fg); }
+.tool-note { margin: 0.875rem 0 0; color: var(--hm-fg-3); font-size: 0.8125rem; line-height: 1.25rem; }
+.tool-reset { margin-top: 0.75rem; }
+
+/* Referenz: Inhaltsverzeichnis links, Abschnitte rechts */
+.f-layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.f-toc { position: sticky; top: calc(var(--sticky-h, 4rem) + 1rem); }
+.f-toc p { margin: 0 0 0.5rem; color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; }
+.f-toc nav { display: grid; gap: 0.125rem; }
+.f-toc a { padding: 0.375rem 0.625rem; border-radius: 0 var(--hm-radius-sm) var(--hm-radius-sm) 0; color: var(--hm-fg-2); font-size: 0.875rem; text-decoration: none; border-left: 3px solid transparent; }
+.f-toc a[data-family] { border-left-color: color-mix(in oklab, var(--fam-fg) 35%, transparent); }
+.f-toc a:hover { background: var(--hm-hover); color: var(--hm-fg); }
+.f-toc a[aria-current='true'] { color: var(--hm-fg); background: var(--hm-control); border-left-color: var(--hm-accent); }
+.f-toc a[data-family][aria-current='true'] { border-left-color: var(--fam-fg); }
+.f-sections { display: grid; gap: 1rem; }
+.f-card > p, .f-card > ul { max-width: 80ch; }
+.f-card { background: var(--hm-card); border: 1px solid var(--hm-line-subtle); border-radius: var(--hm-radius-lg); padding: 1.25rem 1.25rem 1rem; }
+/* FAQ-Karten: Themenfarbe als gerader Streifen links, Rundung nur rechts */
+.f-card[data-family] { border-left: 3px solid var(--fam-fg); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.f-topic { display: inline-flex; align-items: center; height: 1.25rem; margin-bottom: 0.5rem; padding: 0 0.5rem; border-radius: 0.3125rem; background: var(--fam-bg); color: var(--fam-fg); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.f-card:target { box-shadow: 0 0 0 2px var(--hm-accent-line); }
+.f-card h2 { margin: 0 0 0.5rem; font-size: 1.125rem; line-height: 1.5rem; font-weight: 600; letter-spacing: -0.014em; }
+.f-card h3 { margin: 1rem 0 0.375rem; font-size: 0.9375rem; font-weight: 600; }
+.f-card p, .f-card li { color: var(--hm-fg-2); font-size: 0.9rem; line-height: 1.4rem; }
+.f-card p { margin: 0.375rem 0; }
+.f-card ul { margin: 0.375rem 0; padding-left: 1.25rem; }
+.f-card strong { color: var(--hm-fg); font-weight: 600; }
+.lead { color: var(--hm-fg) !important; font-size: 0.975rem !important; }
+.formula { margin: 0.625rem 0; padding: 0.75rem 0.875rem; background: var(--hm-inset); border: 1px solid var(--hm-line-subtle); border-radius: var(--hm-radius-md); font-family: var(--hm-font-mono); font-size: 0.8125rem; line-height: 1.375rem; color: var(--hm-fg); overflow-x: auto; white-space: pre; }
+.example { margin: 0.625rem 0; padding: 0.625rem 0.875rem; border-left: 3px solid var(--hm-success-line); background: var(--hm-success-bg); border-radius: 0 var(--hm-radius-sm) var(--hm-radius-sm) 0; }
+.example p { margin: 0.25rem 0; }
+.example .label { color: var(--hm-success-fg); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.caveat { margin: 0.625rem 0; padding: 0.5rem 0.875rem; border-left: 3px solid var(--hm-warning-line); background: var(--hm-warning-bg); border-radius: 0 var(--hm-radius-sm) var(--hm-radius-sm) 0; }
+.f-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.85rem; }
+.f-table th, .f-table td { text-align: left; padding: 0.375rem 0.5rem; border-bottom: 1px solid var(--hm-line-subtle); vertical-align: top; }
+.f-table th { color: var(--hm-fg-3); font-weight: 550; font-size: 0.75rem; letter-spacing: 0.03em; text-transform: uppercase; }
+.f-table td { color: var(--hm-fg-2); }
+.f-table td:first-child { color: var(--hm-fg); font-weight: 550; }
+.table-wrap { overflow-x: auto; }
+.toc { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.toc a { padding: 0.25rem 0.625rem; border: 1px solid var(--hm-line); border-radius: 999px; color: var(--hm-fg-2); font-size: 0.8125rem; text-decoration: none; }
+.toc a:hover { background: var(--hm-hover); color: var(--hm-fg); }
+
+.calc { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr)); gap: 0.625rem; margin: 0.75rem 0; }
+.calc label { display: grid; gap: 0.25rem; color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 550; }
+.calc input { width: 100%; }
+.calc-out { display: grid; gap: 0.25rem; margin-top: 0.5rem; }
+.bar-row { display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr 4.5rem; gap: 0.625rem; align-items: center; font-size: 0.85rem; }
+.bar-row span:first-child { color: var(--hm-fg-2); }
+.bar { height: 0.625rem; border-radius: 999px; background: var(--hm-inset); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--hm-accent); border-radius: 999px; }
+.bar-row.best .bar i { background: var(--hm-success-fg); }
+.bar-row b { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 64rem) {
+  .f-layout { grid-template-columns: 1fr; }
+  .f-toc { position: static; }
+  .f-toc nav { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .f-toc a { border: 1px solid var(--hm-line); border-radius: 999px; padding: 0.25rem 0.625rem; font-size: 0.8125rem; }
+  .f-toc a[aria-current='true'] { border-color: var(--hm-accent-line); }
+  .tool-body { grid-template-columns: 1fr; }
+  .tool-inputs { border-right: 0; border-bottom: 1px solid var(--hm-line-subtle); }
+}
+@media (max-width: 40rem) {
+  .page { padding-top: 1.25rem; }
+  .masthead h1 { font-size: 1.375rem; line-height: 1.75rem; }
+  .toolbar { position: static; backdrop-filter: none; background: transparent; border-bottom: 0; padding-block: 0.75rem 0; }
+  .nav { border-bottom: 1px solid var(--hm-line-subtle); flex-wrap: wrap; gap: 0.25rem; padding-block: calc(0.375rem + env(safe-area-inset-top, 0px)) 0.375rem; }
+  .nav .toolbar-row { flex-wrap: nowrap; gap: 0.25rem; }
+  .nav .segments { padding: 0.125rem; gap: 0.125rem; }
+  .nav .segments button { height: 1.875rem; padding: 0 0.4375rem; font-size: 0.75rem; }
+  .nav.stuck .nav-brand { display: none; }
+  .result-count { margin-left: 0; width: 100%; }
+  .bar-row { grid-template-columns: 1fr 4rem; }
+  .bar-row .bar { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div>
+      <h1>Division 2 Codex</h1>
+      <p id="subtitle"></p>
+    </div>
+    <div class="mast-side">
+      <div class="counts" id="counts"></div>
+    </div>
+  </header>
+
+  <div class="nav" id="nav">
+    <div class="nav-left">
+      <span class="nav-brand">Division 2 Codex</span>
+      <div class="segments" id="views" role="group">
+        <button type="button" data-view="codex"></button>
+        <button type="button" data-view="talents"></button>
+        <button type="button" data-view="formulas"></button>
+        <button type="button" data-view="faq"></button>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="segments mode" id="modes" role="group" aria-label="PvE / PvP">
+        <button type="button" data-mode="pve">PvE</button>
+        <button type="button" data-mode="pvp">PvP</button>
+      </div>
+      <div class="segments" id="langs" role="group" aria-label="Sprache / Language">
+        <button type="button" data-lang="de">DE</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="codexView">
+    <div class="toolbar" role="search">
+      <div class="toolbar-row">
+        <input class="field search" id="q" type="search" autocomplete="off">
+        <select class="field stat-select" id="scale"></select>
+        <select class="field sort-select" id="type"></select>
+        <select class="field sort-select" id="sort"></select>
+      </div>
+      <div class="toolbar-row">
+        <div class="segments" id="kinds" role="group"></div>
+        <button type="button" class="clear" id="clear" hidden></button>
+        <span class="result-count" id="resultCount" aria-live="polite"></span>
+      </div>
+    </div>
+    <p class="pvp-note" id="pvpNote" hidden></p>
+    <main id="list"></main>
+  </div>
+
+  <div id="talentView" hidden>
+    <div class="toolbar" role="search">
+      <div class="toolbar-row">
+        <input class="field search" id="tq" type="search" autocomplete="off">
+        <select class="field stat-select" id="tscale"></select>
+        <select class="field sort-select" id="tsource"></select>
+        <select class="field sort-select" id="tweapon"></select>
+      </div>
+      <div class="toolbar-row">
+        <div class="segments" id="tslots" role="group"></div>
+        <button type="button" class="clear" id="tclear" hidden></button>
+        <span class="result-count" id="tcount" aria-live="polite"></span>
+      </div>
+    </div>
+    <p class="t-intro" id="tintro"></p>
+    <main id="tlist"></main>
+  </div>
+
+  <div id="faqView" hidden>
+    <div class="formulas" id="faq"></div>
+  </div>
+
+  <div id="formulaView" hidden>
+    <div class="formulas" id="formulas"></div>
+  </div>
+
+  <footer id="footer"></footer>
+</div>
+
+<script type="application/json" id="data">/*DATA*/</script>
+<script type="application/json" id="talentData">/*TALENTS*/</script>
+<script>
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const ICONS = /*ICONS*/;
+const META = /*META*/;
+const TALENTS = JSON.parse(document.getElementById('talentData').textContent);
+const DOT = /*DOT*/;
+const ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/master/public/icons/brands/';
+
+const UI = {
+  de: {
+    subtitle: (build) => `Gear-Sets, Brand-Sets, Exotics und Schadensformeln · direkt aus den Spieldaten (Build ${build})`,
+    views: { codex: 'Codex', talents: 'Talente', formulas: 'Formeln', faq: 'FAQ' },
+    tal: {
+      count: 'Talente',
+      search: 'Talente durchsuchen …',
+      intro: 'Talente für gelbe Items (High-End): was zufällig auf Waffen, Westen und Rucksäcken würfeln kann, plus die Talente der Named Items. Gear-Set- und Exotic-Talente gehören zu genau einem Item und stehen im Codex.',
+      anySource: 'Jede Herkunft', anyWeapon: 'Jeder Waffentyp',
+      source: { roll: 'Würfelbar', named: 'Named Item', gearset: 'Gear-Set', exotic: 'Exotic', augment: 'Augment' },
+      sourceHint: { roll: 'kann zufällig auf diesem Slot würfeln', named: 'nur auf diesem Named Item', gearset: 'Teil eines Gear-Sets', exotic: 'nur auf diesem Exotic', augment: 'Augment auf Prototyp-Items' },
+      groups: { weapon: 'Waffen', Chest: 'Weste', Backpack: 'Rucksack', Mask: 'Maske', Gloves: 'Handschuhe', Holster: 'Holster', Kneepads: 'Knieschoner', Set: 'Gear-Set (4 Teile)', Prototype: 'Prototyp-Items (Augments)' },
+      slotsAll: 'Alle', allWeapons: 'Alle Waffen',
+      requirement: 'Bedingung',
+      perfect: 'Perfekte Version', perfectOf: 'Perfekte Version von',
+      on: 'auf', from: 'aus',
+      empty: 'Kein Talent passt. Anderer Filter oder weniger Wörter?',
+    },
+    counts: { gearset: 'Gear-Sets', brandset: 'Brand-Sets', exotic: 'Exotics' },
+    search: 'Namen, Talente, Named Items durchsuchen …',
+    anyScale: 'Betrifft … (alle)',
+    anyType: 'Jeder Exotic-Typ', weapons: 'Waffen', gear: 'Ausrüstung',
+    sort: { old: 'Älteste zuerst', new: 'Neueste zuerst', name: 'Name A–Z' },
+    kinds: { all: 'Alle', gearset: 'Gear-Sets', brandset: 'Brand-Sets', 'exotic-weapon': 'Exotic-Waffen', 'exotic-gear': 'Exotic-Ausrüstung' },
+    reset: 'Zurücksetzen',
+    of: (a, b) => `${a} von ${b}`,
+    empty: 'Nichts gefunden. Anderer Filter oder weniger Wörter?',
+    pvpNote: 'PvP-Ansicht: Werte, die im PvP anders sind, sind markiert. Alles andere gilt in PvE und PvP gleich.',
+    kind: { gearset: 'Gear-Set', brandset: 'Brand-Set', exotic: 'Exotic' },
+    newBadge: 'Neu', pvpBadge: 'PvP-Wert',
+    setBonuses: 'Set-Boni', attributes: 'Feste Attribute', talents: 'Talente', exoticTalents: 'Exotic-Talente', named: 'Named Items',
+    pieces: (n) => `${n} Teile`, piece1: '1 Teil',
+    slot: { '4pc': '4 Teile', chest: 'Weste', backpack: 'Rucksack', exotic: 'Talent', holstered: 'Im Holster' },
+    rolls: 'zufällig', fixed: 'fest', maxRoll: 'Höchstwert', varies: 'Wert nicht in den Daten',
+    legacy: 'Ältere Talente in den Spieldaten – nicht mehr mit dem Item verknüpft, vermutlich entfernt:',
+    more: 'Herkunft & Quelle', obtain: 'So bekommst du es', obtainNote: '(Community-Angabe, englisch)', source: 'Spieldatei', tags: 'Spiel-Tags',
+    unknownDate: 'Datum unbekannt',
+    formulas: {
+      title: 'Wie Schaden berechnet wird',
+      lead: (build) => `Alle Formeln stehen so in den Spieldateien (Build ${build}). Die wichtigste Regel: Boni im selben Topf werden addiert, verschiedene Töpfe werden multipliziert. Ein Bonus in einem fast leeren Topf bringt deshalb mehr als derselbe Bonus in einem vollen.`,
+      calcTitle: 'Rechner: Welcher Stat bringt mir am meisten?',
+      calcHint: 'Werte aus deinem Charaktermenü eintragen – das Ergebnis aktualisiert sich sofort.',
+      inputs: 'Deine aktuellen Werte',
+      result: 'Ergebnis: +10 Prozentpunkte in …',
+      best: (name, gain) => `Am meisten bringt dir gerade <strong>${name}</strong>: <strong>+${gain} %</strong> durchschnittlicher Schaden pro Schuss.`,
+      none: 'Trag Werte ein, um einen Vergleich zu sehen.',
+      note: 'Rechnet mit den Töpfen aus den Spieldaten: Waffenschaden, Gesamtwaffenschaden, Verstärkt, Krit (Chance × Schaden, Krit-Chance max. 60 %), Ziele ohne Deckung, Schaden an Rüstung. Kopfschuss ist nicht enthalten, weil die Trefferquote am Kopf vom Spielstil abhängt.',
+      reset: 'Beispielwerte',
+      rules: 'Regeln im Detail',
+      toc: 'Inhalt',
+    },
+    footer: (m) => `Fan-Projekt, nicht mit Ubisoft verbunden. Namen, Talente, Set-Boni und PvP-Werte stammen direkt aus den Spieldateien (Build ${m.build}, ausgelesen am ${m.extracted}). „Seit wann“, Bezugsquellen und Höchstwerte fester Exotic-Attribute stammen aus Community-Quellen. Icons von <a href="https://github.com/mxswat/mx-division-builds">mx-division-builds</a> (mxswat, CC BY-NC-SA 4.0). Anleitung zum Aktualisieren: <a href="docs/datamining.md">docs/datamining.md</a>.`,
+  },
+  en: {
+    subtitle: (build) => `Gear sets, brand sets, exotics and damage formulas · straight from the game files (build ${build})`,
+    views: { codex: 'Codex', talents: 'Talents', formulas: 'Formulas', faq: 'FAQ' },
+    tal: {
+      count: 'Talents',
+      search: 'Search talents…',
+      intro: 'Talents for yellow (high-end) items: what can roll randomly on weapons, chests and backpacks, plus the talents of named items. Gear set and exotic talents belong to one specific item and are listed in the codex.',
+      anySource: 'Any source', anyWeapon: 'Any weapon type',
+      source: { roll: 'Rollable', named: 'Named item', gearset: 'Gear set', exotic: 'Exotic', augment: 'Augment' },
+      sourceHint: { roll: 'can roll randomly on this slot', named: 'only on this named item', gearset: 'part of a gear set', exotic: 'only on this exotic', augment: 'augment on prototype items' },
+      groups: { weapon: 'Weapons', Chest: 'Chest', Backpack: 'Backpack', Mask: 'Mask', Gloves: 'Gloves', Holster: 'Holster', Kneepads: 'Kneepads', Set: 'Gear set (4 pieces)', Prototype: 'Prototype items (augments)' },
+      slotsAll: 'All', allWeapons: 'All weapons',
+      requirement: 'Requirement',
+      perfect: 'Perfect version', perfectOf: 'Perfect version of',
+      on: 'on', from: 'from',
+      empty: 'No talent matches. Try another filter or fewer words.',
+    },
+    counts: { gearset: 'Gear sets', brandset: 'Brand sets', exotic: 'Exotics' },
+    search: 'Search names, talents, named items…',
+    anyScale: 'Related to… (any)',
+    anyType: 'Any exotic type', weapons: 'Weapons', gear: 'Gear',
+    sort: { old: 'Oldest first', new: 'Newest first', name: 'Name A–Z' },
+    kinds: { all: 'All', gearset: 'Gear sets', brandset: 'Brand sets', 'exotic-weapon': 'Exotic weapons', 'exotic-gear': 'Exotic gear' },
+    reset: 'Reset',
+    of: (a, b) => `${a} of ${b}`,
+    empty: 'Nothing matches. Try another filter or fewer words.',
+    pvpNote: 'PvP view: values that differ in PvP are marked. Everything else is the same in PvE and PvP.',
+    kind: { gearset: 'Gear set', brandset: 'Brand set', exotic: 'Exotic' },
+    newBadge: 'New', pvpBadge: 'PvP value',
+    setBonuses: 'Set bonuses', attributes: 'Fixed attributes', talents: 'Talents', exoticTalents: 'Exotic talents', named: 'Named items',
+    pieces: (n) => `${n} pieces`, piece1: '1 piece',
+    slot: { '4pc': '4 pieces', chest: 'Chest', backpack: 'Backpack', exotic: 'Talent', holstered: 'Holstered' },
+    rolls: 'rolls', fixed: 'fixed', maxRoll: 'max roll', varies: 'value not in the data',
+    legacy: 'Older talents in the game data – no longer linked to the item, most likely removed:',
+    more: 'Origin & source', obtain: 'How to get', obtainNote: '(community info)', source: 'Game file', tags: 'Game tags',
+    unknownDate: 'date unknown',
+    formulas: {
+      title: 'How damage is calculated',
+      lead: (build) => `Every formula here is taken from the game files (build ${build}). The key rule: bonuses in the same bucket add up, different buckets multiply. So a bonus in an almost empty bucket is worth more than the same bonus in a full one.`,
+      calcTitle: 'Calculator: which stat helps me most?',
+      calcHint: 'Enter the values from your character screen – the result updates instantly.',
+      inputs: 'Your current values',
+      result: 'Result: +10 percentage points in …',
+      best: (name, gain) => `Right now <strong>${name}</strong> helps you most: <strong>+${gain}%</strong> average damage per shot.`,
+      none: 'Enter values to see a comparison.',
+      note: 'Uses the buckets from the game data: weapon damage, total weapon damage, amplified, crit (chance × damage, crit chance capped at 60%), targets out of cover, damage to armor. Headshots are left out because your head hit rate depends on how you play.',
+      reset: 'Example values',
+      rules: 'Rules in detail',
+      toc: 'Contents',
+    },
+    footer: (m) => `Fan-made, not affiliated with Ubisoft. Names, talents, set bonuses and PvP values come straight from the game files (build ${m.build}, extracted ${m.extracted}). Release dates, how to get items and max rolls of fixed exotic attributes come from community sources. Icons from <a href="https://github.com/mxswat/mx-division-builds">mx-division-builds</a> (mxswat, CC BY-NC-SA 4.0). How to update: <a href="docs/datamining.md">docs/datamining.md</a>.`,
+  },
+};
+
+// Schadens-Toepfe: Schluessel wie in tools/extract.ps1, Ziel = Abschnitt in der Formel-Ansicht
+const BUCKETS = {
+  weaponDamage:      { de: 'Waffenschaden', en: 'Weapon damage', anchor: 'f-weapon', family: 'weapon' },
+  totalWeaponDamage: { de: 'Gesamtwaffenschaden ×', en: 'Total weapon damage ×', anchor: 'f-weapon', family: 'weapon' },
+  amplified:         { de: 'Verstärkt ×', en: 'Amplified ×', anchor: 'f-amplified', family: 'weapon' },
+  critChance:        { de: 'Krit-Chance', en: 'Crit chance', anchor: 'f-hit', family: 'crit' },
+  critDamage:        { de: 'Krit-Schaden', en: 'Crit damage', anchor: 'f-hit', family: 'crit' },
+  headshot:          { de: 'Kopfschuss', en: 'Headshot', anchor: 'f-hit', family: 'crit' },
+  outOfCover:        { de: 'Ziele ohne Deckung', en: 'Out of cover', anchor: 'f-hit', family: 'target' },
+  damageToArmor:     { de: 'Schaden an Rüstung', en: 'Damage to armor', anchor: 'f-hit', family: 'target' },
+  damageToHealth:    { de: 'Schaden an Gesundheit', en: 'Damage to health', anchor: 'f-hit', family: 'target' },
+  statusEffects:     { de: 'Statuseffekte', en: 'Status effects', anchor: 'f-status', family: 'status' },
+  skill:             { de: 'Skills', en: 'Skills', anchor: 'f-skills', family: 'skill' },
+  armor:             { de: 'Rüstung', en: 'Armor', anchor: 'f-basics', family: 'armor' },
+};
+const WEAPON_CATEGORIES = ['Assault Rifle', 'LMG', 'Marksman Rifle', 'Rifle', 'SMG', 'Shotgun', 'Pistol'];
+const GEAR_CATEGORIES = ['Mask', 'Chest', 'Backpack', 'Gloves', 'Holster', 'Kneepads'];
+const CATEGORY_LABEL = {
+  'Assault Rifle': { de: 'Sturmgewehr', en: 'Assault Rifle' }, LMG: { de: 'LMG', en: 'LMG' }, 'Marksman Rifle': { de: 'Präzisionsgewehr', en: 'Marksman Rifle' },
+  Rifle: { de: 'Gewehr', en: 'Rifle' }, SMG: { de: 'MP', en: 'SMG' }, Shotgun: { de: 'Schrotflinte', en: 'Shotgun' }, Pistol: { de: 'Pistole', en: 'Pistol' },
+  Mask: { de: 'Maske', en: 'Mask' }, Chest: { de: 'Weste', en: 'Chest' }, Backpack: { de: 'Rucksack', en: 'Backpack' },
+  Gloves: { de: 'Handschuhe', en: 'Gloves' }, Holster: { de: 'Holster', en: 'Holster' }, Kneepads: { de: 'Knieschoner', en: 'Kneepads' },
+};
+
+const els = Object.fromEntries(['q', 'scale', 'type', 'sort', 'kinds', 'clear', 'list', 'resultCount', 'views', 'modes', 'langs', 'codexView', 'formulaView', 'formulas', 'pvpNote', 'counts', 'subtitle', 'footer', 'talentView', 'tq', 'tscale', 'tsource', 'tweapon', 'tslots', 'tclear', 'tcount', 'tintro', 'tlist', 'faqView', 'faq'].map((id) => [id, document.getElementById(id)]));
+const DEFAULTS = { q: '', scale: '', type: '', sort: 'old', kind: 'all', view: 'codex', mode: 'pve', lang: 'de', tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all' };
+const state = { ...DEFAULTS };
+
+const t = () => UI[state.lang];
+const loc = (value) => (value && typeof value === 'object' ? value[state.lang] ?? value.en : value) ?? '';
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+}
+
+// **fett** aus den Spieldaten -> <strong>
+function richText(value) {
+  return escapeHtml(value).replace(/\*\*(.+?)\*\*/gs, '<strong>$1</strong>');
+}
+
+function formatNumber(value) {
+  return Number(value).toLocaleString(state.lang === 'de' ? 'de-DE' : 'en-US', { maximumFractionDigits: 2 });
+}
+
+function formatValue(v) {
+  if (!v || v.value === null || v.value === undefined) return '';
+  const sign = v.value > 0 ? '+' : '';
+  const unit = v.unit === '%' ? (state.lang === 'de' ? ' %' : '%') : v.unit ? ` ${v.unit}` : '';
+  return `${sign}${formatNumber(v.value)}${unit}`;
+}
+
+function formatDate(added) {
+  if (!added || !added.date) return added ? '' : t().unknownDate;
+  const [year, month, day] = added.date.split('-');
+  const date = new Date(Number(year), Number(month) - 1, Number(day || 1));
+  const options = day ? { day: 'numeric', month: 'short', year: 'numeric' } : { month: 'short', year: 'numeric' };
+  return date.toLocaleDateString(state.lang === 'de' ? 'de-DE' : 'en-US', options);
+}
+
+function kindKey(entry) {
+  if (entry.kind !== 'exotic') return entry.kind;
+  return entry.isWeapon ? 'exotic-weapon' : 'exotic-gear';
+}
+
+const sortDate = (entry) => entry.added?.date || META.build || '9999';
+
+function talentsOf(entry) {
+  const list = [...entry.talents];
+  for (const named of entry.namedItems ?? []) if (named.talent) list.push(named.talent);
+  return list;
+}
+
+function scalesOf(entry) {
+  const set = new Set();
+  for (const b of entry.bonuses ?? []) for (const s of b.scales ?? []) set.add(s);
+  for (const a of entry.attributes ?? []) for (const s of a.scales ?? []) set.add(s);
+  for (const tal of talentsOf(entry)) for (const s of tal.scales ?? []) set.add(s);
+  for (const named of entry.namedItems ?? []) for (const s of named.attribute?.scales ?? []) set.add(s);
+  return set;
+}
+
+function haystackOf(entry) {
+  const parts = [entry.name.de, entry.name.en, entry.categoryLabel?.de ?? '', entry.categoryLabel?.en ?? '', entry.added?.label ?? '', typeof entry.obtain === 'string' ? entry.obtain : ''];
+  for (const b of entry.bonuses ?? []) parts.push(b.label?.de ?? '', b.label?.en ?? '');
+  for (const a of entry.attributes ?? []) parts.push(a.label?.de ?? '', a.label?.en ?? '');
+  for (const tal of talentsOf(entry)) parts.push(tal.name?.de ?? '', tal.name?.en ?? '', tal.text?.de ?? '', tal.text?.en ?? '');
+  for (const named of entry.namedItems ?? []) parts.push(named.name.de, named.name.en, named.attribute?.label?.de ?? '', named.attribute?.label?.en ?? '');
+  return parts.join(' ').toLowerCase().replaceAll('**', '');
+}
+
+function hasPvpDifference(entry) {
+  return (entry.bonuses ?? []).some((b) => b.pvp && b.pvp.value !== b.pve.value) || talentsOf(entry).some((tal) => tal.textPvp);
+}
+
+const newestDate = DATA.map((e) => e.added?.date).filter(Boolean).sort().at(-1) ?? '';
+const entries = DATA.map((entry) => ({
+  ...entry,
+  namedItems: entry.namedItems ?? [],
+  bonuses: entry.bonuses ?? [],
+  attributes: entry.attributes ?? [],
+  kindKey: kindKey(entry),
+  haystack: haystackOf(entry),
+  scaleSet: scalesOf(entry),
+  pvpDiff: hasPvpDifference(entry),
+  isNew: !entry.added?.date || entry.added.date.slice(0, 7) >= newestDate.slice(0, 7),
+}));
+
+// ---------- Filter ----------
+function fillControls() {
+  const ui = t();
+  els.q.placeholder = ui.search;
+  els.q.setAttribute('aria-label', ui.search);
+  const used = new Set(entries.flatMap((e) => [...e.scaleSet]));
+  els.scale.innerHTML = `<option value="">${escapeHtml(ui.anyScale)}</option>` + Object.entries(BUCKETS).filter(([key]) => used.has(key)).map(([key, b]) => `<option value="${key}">${escapeHtml(b[state.lang])}</option>`).join('');
+  const option = (cat) => `<option value="${escapeHtml(cat)}">${escapeHtml(CATEGORY_LABEL[cat][state.lang])}</option>`;
+  els.type.innerHTML = `<option value="">${escapeHtml(ui.anyType)}</option><optgroup label="${escapeHtml(ui.weapons)}">${WEAPON_CATEGORIES.map(option).join('')}</optgroup><optgroup label="${escapeHtml(ui.gear)}">${GEAR_CATEGORIES.map(option).join('')}</optgroup>`;
+  els.sort.innerHTML = Object.entries(ui.sort).map(([key, label]) => `<option value="${key}">${escapeHtml(label)}</option>`).join('');
+  els.kinds.innerHTML = Object.entries(ui.kinds).map(([key, label]) => `<button type="button" data-kind="${key}">${escapeHtml(label)}</button>`).join('');
+  els.clear.textContent = ui.reset;
+  for (const button of els.views.querySelectorAll('button')) button.textContent = ui.views[button.dataset.view];
+  els.pvpNote.textContent = ui.pvpNote;
+  els.subtitle.textContent = ui.subtitle(META.build);
+  const countOf = (kind) => entries.filter((e) => e.kind === kind).length;
+  els.counts.innerHTML = ['gearset', 'brandset', 'exotic'].map((k) => `<div><b>${countOf(k)}</b>${escapeHtml(ui.counts[k])}</div>`).join('') + `<div><b>${TALENTS.length}</b>${escapeHtml(ui.tal.count)}</div>`;
+  fillTalentControls();
+  els.footer.innerHTML = ui.footer(META);
+  document.documentElement.lang = state.lang;
+}
+
+function matches(entry) {
+  if (state.kind !== 'all' && entry.kindKey !== state.kind) return false;
+  if (state.type && !(entry.kind === 'exotic' && entry.category === state.type)) return false;
+  if (state.scale && !entry.scaleSet.has(state.scale)) return false;
+  if (state.q) {
+    const words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.every((word) => entry.haystack.includes(word))) return false;
+  }
+  return true;
+}
+
+function sortEntries(list) {
+  const byName = (a, b) => loc(a.name).localeCompare(loc(b.name), state.lang);
+  if (state.sort === 'name') return list.sort(byName);
+  const direction = state.sort === 'old' ? 1 : -1;
+  return list.sort((a, b) => direction * sortDate(a).localeCompare(sortDate(b)) || byName(a, b));
+}
+
+// ---------- Karten ----------
+function renderScales(keys) {
+  if (!keys || keys.length === 0) return '';
+  const chips = keys.filter((k) => BUCKETS[k]).map((k) => `<a class="scale" data-family="${BUCKETS[k].family}" href="#view=formulas&f=${BUCKETS[k].anchor}" title="${escapeHtml(state.lang === 'de' ? 'Wie wird das berechnet?' : 'How is this calculated?')}">${escapeHtml(BUCKETS[k][state.lang])}</a>`).join('');
+  return chips ? `<div class="scales">${chips}</div>` : '';
+}
+
+const hit = (keys) => (state.scale && keys?.includes(state.scale) ? ' hit' : '');
+// Farbfamilie des ersten bekannten Topfs als Akzent am Talent
+const fam = (keys) => { const key = (keys ?? []).find((k) => BUCKETS[k]); return key ? ` data-family="${BUCKETS[key].family}"` : ''; };
+
+function renderTile(entry) {
+  const icon = ICONS[entry.id];
+  if (icon) return `<div class="tile" data-kind="${entry.kind}"><img src="${ICON_BASE}${icon}.png" alt="" loading="lazy"></div>`;
+  const initials = entry.name.en.replace(/[^A-Za-z0-9 ]/g, '').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('');
+  return `<div class="tile" data-kind="${entry.kind}" aria-hidden="true">${escapeHtml(initials)}</div>`;
+}
+
+function renderBonuses(entry) {
+  if (entry.bonuses.length === 0) return '';
+  // Eine Zeile je Teilezahl: alle Boni, die ab dieser Anzahl gelten, stehen zusammen
+  const byPieces = new Map();
+  for (const b of entry.bonuses) byPieces.set(b.pieces, [...(byPieces.get(b.pieces) ?? []), b]);
+  const rows = [...byPieces].map(([pieces, bonuses]) => {
+    const values = bonuses.map((b) => {
+      const value = state.mode === 'pvp' && b.pvp ? b.pvp : b.pve;
+      const differs = state.mode === 'pvp' && b.pvp && b.pvp.value !== b.pve.value;
+      return `<div class="bonus"><strong>${escapeHtml(formatValue(value))}</strong> ${escapeHtml(loc(b.label))}${differs ? ` <span class="badge" data-tone="pvp">${escapeHtml(t().pvpBadge)}</span> <span class="hint">PvE ${escapeHtml(formatValue(b.pve))}</span>` : ''}${renderScales(b.scales)}</div>`;
+    }).join('');
+    const key = pieces === 1 ? t().piece1 : t().pieces(pieces);
+    return `<li class="row${bonuses.some((b) => hit(b.scales)) ? ' hit' : ''}"><span class="row-key">${escapeHtml(key)}</span><span class="row-val">${values}</span></li>`;
+  }).join('');
+  return `<div class="section"><p class="section-label">${escapeHtml(t().setBonuses)}</p><ul class="rows">${rows}</ul></div>`;
+}
+
+function renderAttributes(entry) {
+  if (entry.attributes.length === 0) return '';
+  const rows = entry.attributes.map((a) => {
+    const value = a.value !== null && a.value !== undefined ? `<strong>${escapeHtml(formatValue(a))}</strong> ` : '';
+    const missing = value ? '' : ` <span class="hint">(${escapeHtml(t().varies)})</span>`;
+    return `<li class="row${hit(a.scales)}"><span class="row-key">${escapeHtml(t().fixed)}</span><span class="row-val">${value}${escapeHtml(loc(a.label))}${missing}${renderScales(a.scales)}</span></li>`;
+  }).join('');
+  return `<div class="section"><p class="section-label">${escapeHtml(t().attributes)} · ${escapeHtml(t().maxRoll)}</p><ul class="rows">${rows}</ul></div>`;
+}
+
+function talentText(tal) {
+  const usePvp = state.mode === 'pvp' && tal.textPvp;
+  const text = loc(usePvp ? tal.textPvp : tal.text);
+  return { text, pvp: Boolean(usePvp) };
+}
+
+function renderTalent(tal, slotLabel) {
+  const { text, pvp } = talentText(tal);
+  const badges = [slotLabel ? `<span class="badge" data-tone="neutral">${escapeHtml(slotLabel)}</span>` : '', pvp ? `<span class="badge" data-tone="pvp">${escapeHtml(t().pvpBadge)}</span>` : ''].join('');
+  return `<div class="talent${hit(tal.scales)}"${fam(tal.scales)}><div class="talent-head"><strong>${escapeHtml(loc(tal.name))}</strong>${badges}</div>${text ? `<p>${richText(text)}</p>` : ''}${renderScales(tal.scales)}${renderApplies(tal)}</div>`;
+}
+
+function renderTalents(entry) {
+  if (entry.talents.length === 0) return '';
+  const label = entry.kind === 'exotic' ? t().exoticTalents : t().talents;
+  const items = entry.talents.map((tal) => renderTalent(tal, t().slot[tal.slot] ?? tal.slot)).join('');
+  return `<div class="section"><p class="section-label">${escapeHtml(label)}</p>${items}</div>`;
+}
+
+function renderNamedItems(entry) {
+  if (entry.namedItems.length === 0) return '';
+  const items = entry.namedItems.map((named) => {
+    const slot = loc(named.slotLabel);
+    const head = `<div class="talent-head"><strong>${escapeHtml(loc(named.name))}</strong>${slot ? `<span class="badge" data-tone="neutral">${escapeHtml(slot)}</span>` : ''}</div>`;
+    if (named.talent) {
+      const { text, pvp } = talentText(named.talent);
+      return `<div class="talent${hit(named.talent.scales)}"${fam(named.talent.scales)}>${head}<p><strong>${escapeHtml(loc(named.talent.name))}</strong>${pvp ? ` <span class="badge" data-tone="pvp">${escapeHtml(t().pvpBadge)}</span>` : ''}${text ? `<br>${richText(text)}` : ''}</p>${renderScales(named.talent.scales)}${renderApplies(named.talent)}</div>`;
+    }
+    if (named.attribute) {
+      const value = named.attribute.value !== null && named.attribute.value !== undefined ? `<strong>${escapeHtml(formatValue(named.attribute))}</strong> ` : '';
+      return `<div class="talent${hit(named.attribute.scales)}"${fam(named.attribute.scales)}>${head}<p>${value}${escapeHtml(loc(named.attribute.label))}</p>${renderScales(named.attribute.scales)}</div>`;
+    }
+    return `<div class="talent">${head}</div>`;
+  }).join('');
+  return `<div class="section"><p class="section-label">${escapeHtml(t().named)}</p>${items}</div>`;
+}
+
+function renderMore(entry) {
+  const ui = t();
+  const parts = [];
+  if (entry.obtain) parts.push(`<p><strong>${escapeHtml(ui.obtain)}:</strong> ${escapeHtml(entry.obtain)} <span>${escapeHtml(state.lang === 'de' ? ui.obtainNote : '')}</span></p>`);
+  if (entry.legacyTalents?.length) {
+    const legacy = entry.legacyTalents.map((tal) => `<p><strong>${escapeHtml(loc(tal.name))}</strong>${tal.slot === 'holstered' ? ` (${escapeHtml(ui.slot.holstered)})` : ''}: ${richText(loc(tal.text))}</p>`).join('');
+    parts.push(`<p><strong>${escapeHtml(ui.legacy)}</strong></p>${legacy}`);
+  }
+  if (entry.tags?.length) parts.push(`<p>${escapeHtml(ui.tags)}: <code>${escapeHtml(entry.tags.join(', '))}</code></p>`);
+  if (entry.source) parts.push(`<p>${escapeHtml(ui.source)}: <code>${escapeHtml(entry.source)}</code></p>`);
+  return parts.length ? `<details class="more"><summary>${escapeHtml(ui.more)}</summary>${parts.join('')}</details>` : '';
+}
+
+function renderCard(entry) {
+  const ui = t();
+  const kindLabel = entry.kind === 'exotic' ? loc(entry.categoryLabel) : ui.kind[entry.kind];
+  const badges = [`<span class="badge" data-tone="${entry.kind}">${escapeHtml(kindLabel)}</span>`];
+  if (entry.isNew) badges.push(`<span class="badge" data-tone="new">${escapeHtml(ui.newBadge)}</span>`);
+  if (state.mode === 'pvp' && entry.pvpDiff) badges.push(`<span class="badge" data-tone="pvp">PvP ≠ PvE</span>`);
+  const other = state.lang === 'de' ? entry.name.en : entry.name.de;
+  const altName = other && other !== loc(entry.name) ? ` <span class="alt-name">${escapeHtml(other)}</span>` : '';
+  const when = [entry.added?.label, formatDate(entry.added)].filter(Boolean).join(' · ');
+  return `<article class="card" id="${entry.kind}-${entry.id}">
+    <div class="card-head">${renderTile(entry)}<div class="card-title"><h3>${escapeHtml(loc(entry.name))}${altName}</h3>
+      <div class="meta">${badges.join('')}${when ? `<span>${escapeHtml(when)}</span>` : ''}</div></div></div>
+    ${renderBonuses(entry)}${renderAttributes(entry)}${renderTalents(entry)}${renderNamedItems(entry)}${renderMore(entry)}
+  </article>`;
+}
+
+function renderCodex() {
+  const ui = t();
+  const visible = sortEntries(entries.filter(matches));
+  els.resultCount.textContent = ui.of(visible.length, entries.length);
+  els.clear.hidden = !state.q && !state.scale && !state.type && state.kind === 'all' && state.sort === 'old';
+  els.pvpNote.hidden = state.mode !== 'pvp';
+  if (visible.length === 0) { els.list.innerHTML = `<p class="empty">${escapeHtml(ui.empty)}</p>`; return; }
+  if (state.sort === 'name') { els.list.innerHTML = `<div class="grid">${visible.map(renderCard).join('')}</div>`; return; }
+  let html = '';
+  let current = null;
+  for (const entry of visible) {
+    const label = entry.added?.label ?? ui.unknownDate;
+    const group = `${label}|${(entry.added?.date ?? '').slice(0, 7)}`;
+    if (group !== current) {
+      if (current !== null) html += '</div></section>';
+      html += `<section class="group"><div class="group-head"><h2>${escapeHtml(label)}</h2><span>${escapeHtml(entry.added?.date ? formatDate({ date: entry.added.date.slice(0, 7) }) : '')}</span></div><div class="grid">`;
+      current = group;
+    }
+    html += renderCard(entry);
+  }
+  html += '</div></section>';
+  els.list.innerHTML = html;
+}
+
+// ---------- Talente ----------
+const TALENT_GROUPS = ['weapon', 'Chest', 'Backpack', 'Mask', 'Gloves', 'Holster', 'Kneepads', 'Set', 'Prototype'];
+const isWeaponSlot = (slot) => WEAPON_CATEGORIES.includes(slot);
+const talentGroup = (tal) => (tal.slots.some(isWeaponSlot) ? 'weapon' : TALENT_GROUPS.find((g) => tal.slots.includes(g)) ?? 'Set');
+const talentById = new Map(TALENTS.map((tal) => [tal.id, tal]));
+const talentHaystack = new Map(TALENTS.map((tal) => [tal.id, [tal.name.de, tal.name.en, tal.text?.de ?? '', tal.text?.en ?? '', ...tal.origins.flatMap((o) => [o.item?.de ?? '', o.item?.en ?? '', o.set?.de ?? '', o.set?.en ?? ''])].join(' ').toLowerCase().replaceAll('**', '')]));
+
+function slotLabel(slot) {
+  return t().tal.groups[slot] ?? CATEGORY_LABEL[slot]?.[state.lang] ?? slot;
+}
+
+function talentMatches(tal) {
+  if (state.tslot !== 'all') {
+    if (state.tslot === 'weapon' ? !tal.slots.some(isWeaponSlot) : !tal.slots.includes(state.tslot)) return false;
+  }
+  if (state.tweapon && !tal.slots.includes(state.tweapon)) return false;
+  if (state.tsource && !tal.sources.includes(state.tsource)) return false;
+  if (state.tscale && !tal.scales?.includes(state.tscale)) return false;
+  if (state.tq) {
+    const hay = talentHaystack.get(tal.id);
+    if (!state.tq.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function renderTalentSlots(tal) {
+  const weapons = tal.slots.filter(isWeaponSlot);
+  const badges = [];
+  if (weapons.length === WEAPON_CATEGORIES.length) badges.push(t().tal.allWeapons);
+  else badges.push(...weapons.map(slotLabel));
+  badges.push(...tal.slots.filter((s) => !isWeaponSlot(s)).map(slotLabel));
+  return badges.map((label) => `<span class="badge" data-tone="neutral">${escapeHtml(label)}</span>`).join('');
+}
+
+function renderOrigins(tal) {
+  const ui = t().tal;
+  const lines = tal.origins.map((o) => {
+    const what = o.item ? `<strong>${escapeHtml(loc(o.item))}</strong>${o.set ? ` (${escapeHtml(loc(o.set))})` : ''}` : `<strong>${escapeHtml(loc(o.set))}</strong>`;
+    return `<li><span class="badge" data-tone="${o.kind === 'exotic' ? 'exotic' : o.kind === 'gearset' ? 'gearset' : 'brandset'}">${escapeHtml(ui.source[o.kind])}</span> ${what} · ${escapeHtml(slotLabel(o.slot))}</li>`;
+  });
+  const link = (id, label) => {
+    const other = talentById.get(id);
+    return other ? `<li>${escapeHtml(label)}: <button type="button" class="link" data-tq="${escapeHtml(loc(other.name))}">${escapeHtml(loc(other.name))}</button></li>` : '';
+  };
+  if (tal.perfect) lines.push(link(tal.perfect, ui.perfect));
+  if (tal.perfectOf) lines.push(link(tal.perfectOf, ui.perfectOf));
+  return lines.length ? `<ul class="t-origins">${lines.join('')}</ul>` : '';
+}
+
+function renderTalentCard(tal) {
+  const ui = t().tal;
+  const { text, pvp } = talentText(tal);
+  const other = state.lang === 'de' ? tal.name.en : tal.name.de;
+  const altName = other && other !== loc(tal.name) ? ` <span class="alt-name">${escapeHtml(other)}</span>` : '';
+  const sources = tal.sources.map((s) => `<span class="badge" data-tone="${s === 'roll' ? 'new' : s === 'exotic' ? 'exotic' : s === 'gearset' ? 'gearset' : s === 'augment' ? 'info' : 'brandset'}" title="${escapeHtml(ui.sourceHint[s])}">${escapeHtml(ui.source[s])}</span>`).join('');
+  const requirement = tal.requirement ? `<p class="t-req"><strong>${escapeHtml(ui.requirement)}:</strong> ${richText(loc(tal.requirement))}</p>` : '';
+  return `<article class="card t-card">
+    <div class="card-head"><div class="card-title"><h3>${escapeHtml(loc(tal.name))}${altName}</h3>
+      <div class="meta">${sources}${renderTalentSlots(tal)}${pvp ? `<span class="badge" data-tone="pvp">${escapeHtml(t().pvpBadge)}</span>` : ''}</div></div></div>
+    <div class="section"><div class="talent${hit(tal.scales)}"${fam(tal.scales)}>${requirement}${text ? `<p>${richText(text)}</p>` : ''}${renderScales(tal.scales)}${renderApplies(tal)}</div>${renderOrigins(tal)}</div>
+  </article>`;
+}
+
+function renderTalentView() {
+  const ui = t().tal;
+  // Wuerfelbare zuerst, dann Named, Gear-Set, Exotic, Augment; innerhalb alphabetisch
+  const order = ['roll', 'named', 'gearset', 'exotic', 'augment'];
+  const rank = (tal) => Math.min(...tal.sources.map((s) => order.indexOf(s)));
+  const visible = TALENTS.filter(talentMatches).sort((a, b) => rank(a) - rank(b) || loc(a.name).localeCompare(loc(b.name), state.lang));
+  els.tcount.textContent = t().of(visible.length, TALENTS.length);
+  els.tclear.hidden = !state.tq && !state.tscale && !state.tsource && !state.tweapon && state.tslot === 'all';
+  if (visible.length === 0) { els.tlist.innerHTML = `<p class="empty">${escapeHtml(ui.empty)}</p>`; return; }
+  let html = '';
+  for (const group of TALENT_GROUPS) {
+    const items = visible.filter((tal) => talentGroup(tal) === group);
+    if (items.length === 0) continue;
+    html += `<section class="group"><div class="group-head"><h2>${escapeHtml(ui.groups[group])}</h2><span>${items.length}</span></div><div class="grid">${items.map(renderTalentCard).join('')}</div></section>`;
+  }
+  els.tlist.innerHTML = html;
+}
+
+function fillTalentControls() {
+  const ui = t().tal;
+  els.tq.placeholder = ui.search;
+  els.tq.setAttribute('aria-label', ui.search);
+  els.tintro.textContent = ui.intro;
+  const used = new Set(TALENTS.flatMap((tal) => tal.scales ?? []));
+  els.tscale.innerHTML = `<option value="">${escapeHtml(t().anyScale)}</option>` + Object.entries(BUCKETS).filter(([key]) => used.has(key)).map(([key, b]) => `<option value="${key}">${escapeHtml(b[state.lang])}</option>`).join('');
+  els.tsource.innerHTML = `<option value="">${escapeHtml(ui.anySource)}</option>` + Object.entries(ui.source).filter(([key]) => TALENTS.some((tal) => tal.sources.includes(key))).map(([key, label]) => `<option value="${key}">${escapeHtml(label)}</option>`).join('');
+  els.tweapon.innerHTML = `<option value="">${escapeHtml(ui.anyWeapon)}</option>` + WEAPON_CATEGORIES.map((cat) => `<option value="${escapeHtml(cat)}">${escapeHtml(CATEGORY_LABEL[cat][state.lang])}</option>`).join('');
+  const slots = ['all', ...TALENT_GROUPS.filter((g) => TALENTS.some((tal) => talentGroup(tal) === g))];
+  els.tslots.innerHTML = slots.map((s) => `<button type="button" data-tslot="${s}">${escapeHtml(s === 'all' ? ui.slotsAll : ui.groups[s])}</button>`).join('');
+  els.tclear.textContent = t().reset;
+}
+
+// ---------- Formeln ----------
+const FORMULAS = {
+  de: () => `
+  <section class="f-card" id="f-basics">
+    <h2>Grundprinzip: Töpfe</h2>
+    <p>Stell dir jeden Schadensbonus als Wasser in einem Topf vor. Innerhalb eines Topfs wird alles zusammengezählt. Am Ende werden die Töpfe miteinander malgenommen.</p>
+    <div class="formula">Schaden = Grundschaden × (1 + Topf A) × (1 + Topf B) × (1 + Topf C) …</div>
+    <div class="example"><p class="label">Beispiel</p>
+      <p>Du hast <strong>+60 %</strong> im Topf A und <strong>0 %</strong> im Topf B.</p>
+      <p>+10 % in Topf A: 1,70 ÷ 1,60 = <strong>+6,25 %</strong> mehr Schaden.</p>
+      <p>+10 % in Topf B: 1,10 ÷ 1,00 = <strong>+10 %</strong> mehr Schaden.</p>
+      <p>Gleiche Zahl auf dem Item – aber der leere Topf bringt deutlich mehr.</p>
+    </div>
+  </section>
+
+  <section class="f-card" id="f-weapon">
+    <h2>Waffenschaden</h2>
+    <p>Spielattribut <code>PhysicalDamageMaxFinal</code>, vereinfacht:</p>
+    <div class="formula">Waffenschaden = (Grundschaden der Waffe + fester Waffentyp-Bonus)
+              × (1 + Waffenschaden % + Waffentyp-Schaden % + Talent-Waffenschaden %)
+              × (1 + Gesamtwaffenschaden %)</div>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Topf</th><th>Was zählt hinein</th><th>Rechnung</th></tr>
+      <tr><td>Waffenschaden</td><td>Kern-Attribut „Waffenschaden“, Brand-Boni, Waffentyp-Schaden (z. B. LMG-Schaden), Talente wie „fehlende Rüstung“, „halbes Magazin“, „wenig Munition“</td><td>alles addiert</td></tr>
+      <tr><td>Gesamtwaffenschaden</td><td>Gear-Talente, die „gesamten Waffenschaden“ erhöhen (z. B. Vigilance, Focus, Obliterate, viele Named-Talente)</td><td>eigener Multiplikator</td></tr>
+    </table></div>
+    <div class="example"><p class="label">Beispiel</p>
+      <p>Waffe mit 10.000 Grundschaden, <strong>+45 %</strong> Waffenschaden, <strong>+15 %</strong> LMG-Schaden, <strong>+20 %</strong> Gesamtwaffenschaden:</p>
+      <p>10.000 × (1 + 0,45 + 0,15) × (1 + 0,20) = 10.000 × 1,60 × 1,20 = <strong>19.200</strong></p>
+      <p>Weitere +10 % Waffenschaden → 1,70 × 1,20 = 20.400 (<strong>+6,25 %</strong>). Weitere +10 % Gesamtwaffenschaden → 1,60 × 1,30 = 20.800 (<strong>+8,3 %</strong>).</p>
+    </div>
+    <p>Merksatz: <strong>„Gesamt“ im Talenttext heißt fast immer: eigener Multiplikator.</strong></p>
+  </section>
+
+  <section class="f-card" id="f-hit">
+    <h2>Krit, Kopfschuss, Deckung, Ziel</h2>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Wert</th><th>Formel aus den Daten</th><th>Was das heißt</th></tr>
+      <tr><td>Krit-Chance</td><td>Summe aller Quellen, Obergrenze 60 % (<code>0.6 + CriticalHitChanceOverrideCap</code>)</td><td>Über 60 % ist verschwendet, außer ein Talent hebt die Grenze an.</td></tr>
+      <tr><td>Krit-Schaden</td><td>0,25 + Waffe + alle Krit-Schaden-Boni (addiert)</td><td>Grundwert 25 %. Lohnt sich erst mit viel Krit-Chance.</td></tr>
+      <tr><td>Kopfschuss</td><td>eigener Multiplikator, höchstens ×10</td><td>Nur bei Kopftreffern.</td></tr>
+      <tr><td>Ziele ohne Deckung</td><td>1 + Boni</td><td>eigener Topf</td></tr>
+      <tr><td>Schaden an Gesundheit</td><td>1 + Boni</td><td>eigener Topf, wirkt erst ohne Rüstung</td></tr>
+      <tr><td>Schaden an Rüstung</td><td>1 + Boni</td><td>eigener Topf, wirkt nur auf Rüstung</td></tr>
+    </table></div>
+    <div class="example"><p class="label">Beispiel Krit</p>
+      <p>50 % Krit-Chance, 100 % Krit-Schaden → im Schnitt 1 + 0,5 × 1,0 = <strong>×1,5</strong>.</p>
+      <p>60 % Krit-Chance, 100 % Krit-Schaden → 1 + 0,6 × 1,0 = <strong>×1,6</strong>. Mehr Krit-Chance bringt danach nichts mehr.</p>
+    </div>
+    <div class="caveat">In welcher Reihenfolge Krit, Kopfschuss, Deckung und Rüstung am Ende zusammengerechnet werden, steht nicht als eine Formel in den Daten – die einzelnen Faktoren schon.</div>
+  </section>
+
+  <section class="f-card" id="f-amplified">
+    <h2>Verstärkter Schaden</h2>
+    <p>Talente, die Schaden „verstärken“ (amplified), arbeiten in den Talentregeln mit einem Schadensmodifikator, der standardmäßig <strong>multiplikativ</strong> ist (<code>ModificationType Multiplicative</code>). Praktisch heißt das: Verstärkung ist ein eigener Faktor obendrauf.</p>
+    <div class="example"><p class="label">Beispiel</p><p>20.000 Schaden, Talent „verstärkt Waffenschaden um 30 %“ → 20.000 × 1,30 = <strong>26.000</strong>, unabhängig davon, wie viel Waffenschaden du schon hast.</p></div>
+  </section>
+
+  <section class="f-card" id="f-status">
+    <h2>Statuseffekte</h2>
+    <div class="formula">Brennen pro Tick = Level-Kurve × 50 × (1 + Statuseffekte %)        alle 0,5 s
+Bluten  pro Tick = Level-Kurve × 45 × (1 + Statuseffekte %)        alle 0,5 s
+Gift    pro Tick = Level-Kurve × 40                  (keine Boni!) alle 0,5 s
+Dauer           = Grunddauer × (1 + Statuseffekte %)</div>
+    <p>Das sind die Werte des <strong>Standard-Statuseffekts</strong> gegen Gegner (PvE). Skills haben eigene, höhere Grundwerte (80–120) und skalieren zusätzlich mit Skill-Tier und Skillschaden. <a href="#view=faq&f=q-dot">Alle Grundwerte</a> · <a href="#view=formulas&f=f-dot">Rechner</a></p>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Effekt</th><th>Grunddauer</th><th>Schaden</th></tr>
+      <tr><td>Bluten</td><td>7 s</td><td>ja, ×45</td></tr>
+      <tr><td>Brennen</td><td>5 s</td><td>ja, ×50</td></tr>
+      <tr><td>Gift</td><td>4 s</td><td>ja, ×40, nicht steigerbar</td></tr>
+      <tr><td>Schock / Blind / Ensnare / Desorientieren</td><td>3 / 5 / 7 / 7 s</td><td>nein</td></tr>
+    </table></div>
+    <ul>
+      <li><strong>„Statuseffekte %“</strong> = dein Statuseffekt-Attribut <strong>plus Skill-Effizienz</strong>.</li>
+      <li><strong>Waffenschaden zählt nicht.</strong> Ein Statuseffekt-Build profitiert nicht von Waffenschaden-Boni.</li>
+      <li><strong>Skill-Tier zählt nicht</strong> für den Schaden von Brennen und Bluten – nur Level/Gear-Stufe (Level-Kurve).</li>
+      <li>Statuseffekte wirken doppelt: mehr Schaden pro Tick <em>und</em> längere Dauer.</li>
+    </ul>
+    <div class="example"><p class="label">Beispiel</p>
+      <p>+30 % Statuseffekte: Brennen macht pro Tick ×1,3 und hält 6,5 s statt 5 s → insgesamt <strong>×1,69</strong> Brennschaden.</p>
+      <p>+30 % Waffenschaden dagegen: <strong>×1,00</strong> – kein zusätzlicher Brennschaden.</p>
+    </div>
+  </section>
+
+  <section class="f-card" id="f-skills">
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>Skill-Tier</strong> = Summe der Tier-Boni, höchstens 6; mit Overcharge 7. Im PvP und in normalisierten Modi immer höchstens 6.</li>
+      <li><strong>Skillschaden</strong> hängt an der Skill-Effizienz (<code>allskills_damage_mod_Bonus = allskills_efficiency_mod_Bonus</code>).</li>
+      <li>Skill-Effizienz steigert damit gleichzeitig Skillschaden und Statuseffekte.</li>
+    </ul>
+  </section>
+
+  <section class="f-card" id="f-pestilence">
+    <h2>Beispiel: Pestilenz</h2>
+    <p>Die Schwächung macht <strong>100 % Waffenschaden über 10 s pro Stapel</strong>, bis zu 50 Stapel (PvP: 60 %).</p>
+    <ul>
+      <li>Skaliert mit <strong>Waffenschaden</strong> (beide Töpfe), <strong>nicht</strong> mit Statuseffekten.</li>
+      <li>Die Rechnung selbst steckt im Programmcode („hardcoded talent“). Ob Krit oder Kopfschuss mitzählen, verraten die Daten nicht.</li>
+      <li>Die Giftwolke aus den Daten (5.000/s) ist im PvE nicht aktiv.</li>
+    </ul>
+  </section>`,
+
+  en: () => `
+  <section class="f-card" id="f-basics">
+    <h2>The basic idea: buckets</h2>
+    <p>Think of every damage bonus as water in a bucket. Inside a bucket everything is added. At the end the buckets are multiplied with each other.</p>
+    <div class="formula">Damage = base damage × (1 + bucket A) × (1 + bucket B) × (1 + bucket C) …</div>
+    <div class="example"><p class="label">Example</p>
+      <p>You have <strong>+60%</strong> in bucket A and <strong>0%</strong> in bucket B.</p>
+      <p>+10% in bucket A: 1.70 ÷ 1.60 = <strong>+6.25%</strong> more damage.</p>
+      <p>+10% in bucket B: 1.10 ÷ 1.00 = <strong>+10%</strong> more damage.</p>
+      <p>Same number on the item – but the empty bucket is worth clearly more.</p>
+    </div>
+  </section>
+
+  <section class="f-card" id="f-weapon">
+    <h2>Weapon damage</h2>
+    <p>Game attribute <code>PhysicalDamageMaxFinal</code>, simplified:</p>
+    <div class="formula">Weapon damage = (weapon base damage + flat weapon type bonus)
+              × (1 + weapon damage % + weapon type damage % + talent weapon damage %)
+              × (1 + total weapon damage %)</div>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Bucket</th><th>What goes in</th><th>Math</th></tr>
+      <tr><td>Weapon damage</td><td>core attribute “Weapon Damage”, brand bonuses, weapon type damage (e.g. LMG damage), talents like “missing armor”, “half magazine”, “low ammo”</td><td>all added</td></tr>
+      <tr><td>Total weapon damage</td><td>gear talents that raise “total weapon damage” (e.g. Vigilance, Focus, Obliterate, many named talents)</td><td>own multiplier</td></tr>
+    </table></div>
+    <div class="example"><p class="label">Example</p>
+      <p>Weapon with 10,000 base damage, <strong>+45%</strong> weapon damage, <strong>+15%</strong> LMG damage, <strong>+20%</strong> total weapon damage:</p>
+      <p>10,000 × (1 + 0.45 + 0.15) × (1 + 0.20) = 10,000 × 1.60 × 1.20 = <strong>19,200</strong></p>
+      <p>Another +10% weapon damage → 1.70 × 1.20 = 20,400 (<strong>+6.25%</strong>). Another +10% total weapon damage → 1.60 × 1.30 = 20,800 (<strong>+8.3%</strong>).</p>
+    </div>
+    <p>Rule of thumb: <strong>“total” in a talent text almost always means its own multiplier.</strong></p>
+  </section>
+
+  <section class="f-card" id="f-hit">
+    <h2>Crit, headshot, cover, target</h2>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Value</th><th>Formula from the data</th><th>What it means</th></tr>
+      <tr><td>Crit chance</td><td>sum of all sources, cap 60% (<code>0.6 + CriticalHitChanceOverrideCap</code>)</td><td>Above 60% is wasted unless a talent raises the cap.</td></tr>
+      <tr><td>Crit damage</td><td>0.25 + weapon + all crit damage bonuses (added)</td><td>Base 25%. Only pays off with lots of crit chance.</td></tr>
+      <tr><td>Headshot</td><td>own multiplier, capped at ×10</td><td>Only on head hits.</td></tr>
+      <tr><td>Targets out of cover</td><td>1 + bonuses</td><td>own bucket</td></tr>
+      <tr><td>Damage to health</td><td>1 + bonuses</td><td>own bucket, only once armor is gone</td></tr>
+      <tr><td>Damage to armor</td><td>1 + bonuses</td><td>own bucket, only against armor</td></tr>
+    </table></div>
+    <div class="example"><p class="label">Crit example</p>
+      <p>50% crit chance, 100% crit damage → on average 1 + 0.5 × 1.0 = <strong>×1.5</strong>.</p>
+      <p>60% crit chance, 100% crit damage → 1 + 0.6 × 1.0 = <strong>×1.6</strong>. More crit chance does nothing after that.</p>
+    </div>
+    <div class="caveat">The order in which crit, headshot, cover and armor are combined at the very end is not a single formula in the data – the individual factors are.</div>
+  </section>
+
+  <section class="f-card" id="f-amplified">
+    <h2>Amplified damage</h2>
+    <p>Talents that “amplify” damage use a damage modifier in the talent rules that is <strong>multiplicative</strong> by default (<code>ModificationType Multiplicative</code>). In practice amplification is its own factor on top.</p>
+    <div class="example"><p class="label">Example</p><p>20,000 damage, talent “amplifies weapon damage by 30%” → 20,000 × 1.30 = <strong>26,000</strong>, no matter how much weapon damage you already have.</p></div>
+  </section>
+
+  <section class="f-card" id="f-status">
+    <h2>Status effects</h2>
+    <div class="formula">Burn  per tick = level curve × 50 × (1 + status effects %)        every 0.5 s
+Bleed per tick = level curve × 45 × (1 + status effects %)        every 0.5 s
+Poison per tick = level curve × 40                 (no bonuses!) every 0.5 s
+Duration       = base duration × (1 + status effects %)</div>
+    <p>These are the values of the <strong>standard status effect</strong> against enemies (PvE). Skills have their own, higher base values (80–120) and also scale with skill tier and skill damage. <a href="#view=faq&f=q-dot">All base values</a> · <a href="#view=formulas&f=f-dot">Calculator</a></p>
+    <div class="table-wrap"><table class="f-table">
+      <tr><th>Effect</th><th>Base duration</th><th>Damage</th></tr>
+      <tr><td>Bleed</td><td>7 s</td><td>yes, ×45</td></tr>
+      <tr><td>Burn</td><td>5 s</td><td>yes, ×50</td></tr>
+      <tr><td>Poison</td><td>4 s</td><td>yes, ×40, cannot be raised</td></tr>
+      <tr><td>Shock / Blind / Ensnare / Disorient</td><td>3 / 5 / 7 / 7 s</td><td>no</td></tr>
+    </table></div>
+    <ul>
+      <li><strong>“Status effects %”</strong> = your status effects attribute <strong>plus skill efficiency</strong>.</li>
+      <li><strong>Weapon damage does not count.</strong> A status effect build gains nothing from weapon damage bonuses.</li>
+      <li><strong>Skill tier does not count</strong> for burn and bleed damage – only level/gear score (level curve).</li>
+      <li>Status effects work twice: more damage per tick <em>and</em> longer duration.</li>
+    </ul>
+    <div class="example"><p class="label">Example</p>
+      <p>+30% status effects: burn deals ×1.3 per tick and lasts 6.5 s instead of 5 s → <strong>×1.69</strong> burn damage in total.</p>
+      <p>+30% weapon damage instead: <strong>×1.00</strong> – no extra burn damage.</p>
+    </div>
+  </section>
+
+  <section class="f-card" id="f-skills">
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>Skill tier</strong> = sum of tier bonuses, max 6; with overcharge 7. In PvP and normalized modes always max 6.</li>
+      <li><strong>Skill damage</strong> is tied to skill efficiency (<code>allskills_damage_mod_Bonus = allskills_efficiency_mod_Bonus</code>).</li>
+      <li>So skill efficiency raises skill damage and status effects at the same time.</li>
+    </ul>
+  </section>
+
+  <section class="f-card" id="f-pestilence">
+    <h2>Example: Pestilence</h2>
+    <p>The debuff deals <strong>100% weapon damage over 10 s per stack</strong>, up to 50 stacks (PvP: 60%).</p>
+    <ul>
+      <li>Scales with <strong>weapon damage</strong> (both buckets), <strong>not</strong> with status effects.</li>
+      <li>The math itself lives in the game code (“hardcoded talent”). Whether crit or headshot count is not in the data.</li>
+      <li>The poison cloud in the data (5,000/s) is not active in PvE.</li>
+    </ul>
+  </section>`,
+};
+
+// Rechner: durchschnittlicher Schaden pro Schuss relativ, Grenzgewinn von +10 Prozentpunkten je Topf
+const CALC_FIELDS = [
+  { key: 'wd', de: 'Waffenschaden % (inkl. Waffentyp)', en: 'Weapon damage % (incl. weapon type)', value: 60 },
+  { key: 'twd', de: 'Gesamtwaffenschaden %', en: 'Total weapon damage %', value: 20 },
+  { key: 'amp', de: 'Verstärkt %', en: 'Amplified %', value: 0 },
+  { key: 'cc', de: 'Krit-Chance % (max. 60)', en: 'Crit chance % (cap 60)', value: 40 },
+  { key: 'cd', de: 'Krit-Schaden % (Grundwert 25)', en: 'Crit damage % (base 25)', value: 80 },
+  { key: 'ooc', de: 'Ziele ohne Deckung %', en: 'Targets out of cover %', value: 10 },
+  { key: 'arm', de: 'Schaden an Rüstung %', en: 'Damage to armor %', value: 0 },
+];
+const calcValues = Object.fromEntries(CALC_FIELDS.map((f) => [f.key, f.value]));
+
+function calcDamage(v) {
+  const cc = Math.min(Math.max(v.cc, 0), 60) / 100;
+  return (1 + v.wd / 100) * (1 + v.twd / 100) * (1 + v.amp / 100) * (1 + cc * (v.cd / 100)) * (1 + v.ooc / 100) * (1 + v.arm / 100);
+}
+
+const calcLabel = (f) => f[state.lang].replace(/ \(.*\)$/, '').replace(/ %$/, '');
+
+function renderCalc() {
+  const f = t().formulas;
+  const inputs = CALC_FIELDS.map((field) => `<label>${escapeHtml(field[state.lang])}<input class="field" type="number" inputmode="decimal" step="1" data-calc="${field.key}" value="${calcValues[field.key]}"></label>`).join('');
+  return `<section class="tool" id="f-calc">
+    <div class="tool-head"><h2>${escapeHtml(f.calcTitle)}</h2><p>${escapeHtml(f.calcHint)}</p></div>
+    <div class="tool-body">
+      <div class="tool-inputs"><p class="tool-label">${escapeHtml(f.inputs)}</p><div class="calc">${inputs}</div><button type="button" class="clear tool-reset" id="calcReset">${escapeHtml(f.reset)}</button></div>
+      <div class="tool-result" aria-live="polite"><p class="tool-label">${escapeHtml(f.result)}</p><p class="tool-summary" id="calcSummary"></p><div class="calc-out" id="calcOut"></div><p class="tool-note">${escapeHtml(f.note)}</p></div>
+    </div>
+  </section>`;
+}
+
+function renderCalcOut() {
+  const out = document.getElementById('calcOut');
+  if (!out) return;
+  const base = calcDamage(calcValues);
+  const gains = CALC_FIELDS.map((field) => {
+    const next = { ...calcValues, [field.key]: calcValues[field.key] + 10 };
+    return { field, gain: (calcDamage(next) / base - 1) * 100 };
+  }).sort((a, b) => b.gain - a.gain);
+  const max = Math.max(...gains.map((g) => g.gain), 0.0001);
+  const percent = state.lang === 'de' ? ' %' : '%';
+  out.innerHTML = gains.map((g, i) => `<div class="bar-row${i === 0 && g.gain > 0 ? ' best' : ''}"><span>${escapeHtml(calcLabel(g.field))}</span><span class="bar"><i style="width:${Math.max(0, (g.gain / max) * 100).toFixed(1)}%"></i></span><b>+${formatNumber(g.gain.toFixed(2))}${percent}</b></div>`).join('');
+  const best = gains[0];
+  document.getElementById('calcSummary').innerHTML = best && best.gain > 0 ? t().formulas.best(escapeHtml(calcLabel(best.field)), formatNumber(best.gain.toFixed(2))) : escapeHtml(t().formulas.none);
+}
+
+function renderFormulas() {
+  const f = t().formulas;
+  const sections = FORMULAS[state.lang]();
+  const holder = document.createElement('div');
+  holder.innerHTML = sections;
+  const toc = [...holder.querySelectorAll('section.f-card')].map((s) => `<a href="#view=formulas&f=${s.id}" data-toc="${s.id}">${escapeHtml(s.querySelector('h2')?.textContent ?? s.id)}</a>`).join('');
+  els.formulas.innerHTML = `
+    <header class="f-head"><h2>${escapeHtml(f.title)}</h2><p>${escapeHtml(f.lead(META.build))}</p></header>
+    ${renderCalc()}
+    ${renderDotCalc()}
+    <div class="f-layout">
+      <aside class="f-toc"><p>${escapeHtml(f.rules)}</p><nav aria-label="${escapeHtml(f.toc)}">${toc}</nav></aside>
+      <div class="f-sections">${sections}</div>
+    </div>`;
+  const calc = document.getElementById('f-calc');
+  calc.addEventListener('input', (event) => {
+    const key = event.target.dataset.calc;
+    if (!key) return;
+    calcValues[key] = Number(event.target.value) || 0;
+    renderCalcOut();
+  });
+  document.getElementById('calcReset').addEventListener('click', () => {
+    for (const field of CALC_FIELDS) calcValues[field.key] = field.value;
+    for (const input of calc.querySelectorAll('input[data-calc]')) input.value = calcValues[input.dataset.calc];
+    renderCalcOut();
+  });
+  renderCalcOut();
+  bindDotCalc();
+  watchToc();
+}
+
+// Markiert im Inhaltsverzeichnis den Abschnitt, der gerade oben im Bild ist
+let tocFrame = 0;
+function markToc() {
+  tocFrame = 0;
+  if (state.view !== 'formulas' && state.view !== 'faq') return;
+  const host = state.view === 'faq' ? els.faq : els.formulas;
+  const line = stickyHeight() + 24;
+  let current = null;
+  for (const section of host.querySelectorAll('section.f-card')) if (section.getBoundingClientRect().top <= line) current = section.id;
+  for (const a of host.querySelectorAll('[data-toc]')) a.setAttribute('aria-current', String(a.dataset.toc === current));
+}
+function watchToc() { markToc(); }
+window.addEventListener('scroll', () => { if (!tocFrame) tocFrame = requestAnimationFrame(markToc); }, { passive: true });
+
+// Hoehe der Sticky-Leisten, damit Sprungziele nicht darunter verschwinden
+function stickyHeight() {
+  const nav = document.getElementById('nav');
+  const toolbar = document.querySelector(state.view === 'talents' ? '#talentView .toolbar' : '#codexView .toolbar');
+  let height = nav.offsetHeight;
+  if ((state.view === 'codex' || state.view === 'talents') && toolbar && getComputedStyle(toolbar).position === 'sticky') height += toolbar.offsetHeight;
+  return height;
+}
+function updateSticky() {
+  const root = document.documentElement.style;
+  root.setProperty('--nav-h', `${document.getElementById('nav').offsetHeight}px`);
+  root.setProperty('--sticky-h', `${stickyHeight()}px`);
+}
+new ResizeObserver(updateSticky).observe(document.getElementById('nav'));
+window.addEventListener('resize', updateSticky);
+// Markenname in der Leiste erst zeigen, wenn der Seitenkopf weggescrollt ist
+new IntersectionObserver(([entry]) => document.getElementById('nav').classList.toggle('stuck', !entry.isIntersecting)).observe(document.querySelector('.masthead'));
+
+// ---------- Rechner: Schaden ueber Zeit (Brennen, Bluten, Gift) ----------
+const DOT_TEXT = {
+  de: {
+    title: 'Rechner: Skill- und Statuseffekt-Schaden',
+    hint: 'Vergleicht alle Skills und Statuseffekte mit Grundwerten und Formeln aus den Spieldaten.',
+    effect: { Direct: 'Skill-Treffer', Burn: 'Brennen', Bleed: 'Bluten', Poison: 'Gift' },
+    inputs: { status: 'Statuseffekte % (Attribut, ohne Effizienz)', eff: 'Fertigkeiten-Effizienz %', skill: 'Fertigkeitenschaden % (ohne Effizienz)', gear: 'Skillschaden aus Gear-Talenten %', blast: 'Explosivschaden %', tier: 'Skill-Tier', diff: 'Modus-Skalierung (0,65–2,2; Standard 1)', ember: 'Ember-Engine-Schwächung aktiv (+25 % Brandschaden)' },
+    cols: { source: 'Quelle', base: 'Grundwert', tick: 'pro Tick', hit: 'pro Treffer', sec: 'pro Sekunde', vs: 'vs. Statuseffekt', rpm: 'Schuss/min' },
+    status: 'Statuseffekt', skill: 'Skill',
+    note: (l, tick) => `Rechnung: Grundwert × Level-Kurve (Stufe 40 = ${l}) × Modus-Skalierung (BaseGearScalingCurve: hebt den Schaden aller Skills und Statuseffekte gleichermaßen; welcher Modus welche Stufe nutzt, steht nicht in den Daten) × die Klammern der jeweiligen Formel. Ein Tick alle ${tick} s. Gegner-Resistenzen sind nicht berücksichtigt – die absoluten Zahlen sind eine Schätzung, der Vergleich zwischen den Quellen ist exakt.`,
+    emberNote: 'Ob die Ember-Schwächung jedes Brennen am Ziel verstärkt oder nur das eigene, verrät der Skillscript nicht eindeutig.',
+  },
+  en: {
+    title: 'Calculator: skill and status effect damage',
+    hint: 'Compares every skill and status effect using base values and formulas from the game files.',
+    effect: { Direct: 'Skill hits', Burn: 'Burn', Bleed: 'Bleed', Poison: 'Poison' },
+    inputs: { status: 'Status effects % (attribute, without efficiency)', eff: 'Skill efficiency %', skill: 'Skill damage % (without efficiency)', gear: 'Skill damage from gear talents %', blast: 'Explosive damage %', tier: 'Skill tier', diff: 'Mode scaling (0.65–2.2; default 1)', ember: 'Ember Engine debuff active (+25% burn damage)' },
+    cols: { source: 'Source', base: 'Base', tick: 'per tick', hit: 'per hit', sec: 'per second', vs: 'vs. status effect', rpm: 'shots/min' },
+    status: 'Status effect', skill: 'Skill',
+    note: (l, tick) => `Math: base value × level curve (level 40 = ${l}) × mode scaling (BaseGearScalingCurve: raises the damage of all skills and status effects equally; which mode uses which level is not in the data) × the brackets of each formula. One tick every ${tick} s. Enemy resistances are not included – absolute numbers are an estimate, the comparison between sources is exact.`,
+    emberNote: 'Whether the Ember debuff boosts every burn on the target or only its own is not clear from the skill script.',
+  },
+};
+// Skill-Familie als farbiger Tag, daneben die Variante ("Geschuetz" | "Ueberfall (Brennen)")
+function skillLabel(s) {
+  const text = loc(s.label);
+  if (s.kind === 'status') {
+    const tag = state.lang === 'de' ? 'Statuseffekt' : 'Status effect';
+    return `<span class="skill-tag" data-skill="status">${escapeHtml(tag)}</span> ${escapeHtml(text.replace(/^Statuseffekt\s+/i, '').replace(/\s+status effect$/i, ''))}`;
+  }
+  const cut = text.indexOf(': ');
+  if (!s.family || cut < 0) return escapeHtml(text);
+  return `<span class="skill-tag" data-skill="${escapeHtml(s.family)}">${escapeHtml(text.slice(0, cut))}</span> ${escapeHtml(text.slice(cut + 2))}`;
+}
+
+const dotState = { effect: 'Direct', status: 50, eff: 20, skill: 0, gear: 0, blast: 0, tier: 6, diff: 1, ember: false };
+
+// Wert eines Formel-Attributs aus den Rechner-Eingaben
+function dotAttrValue(attr, src) {
+  if (/^(Burn|Bleed)DamageModBonus$/.test(attr)) return (dotState.status + dotState.eff) / 100;
+  if (attr === 'allskills_damage_mod_Bonus') return (dotState.skill + dotState.eff) / 100;
+  if (attr === 'GearTalentAllSkillsDamageModBonus') return dotState.gear / 100;
+  if (attr === 'BlastDamageModBonus') return dotState.blast / 100;
+  const tiers = src.tierBonus?.[attr];
+  return tiers ? tiers[Math.min(Math.max(dotState.tier, 0), tiers.length - 1)] ?? 0 : 0;
+}
+
+function dotPerTick(src) {
+  let value = src.base * DOT.levelCurve40 * dotState.diff;
+  for (const bracket of src.brackets) value *= 1 + bracket.reduce((sum, attr) => sum + dotAttrValue(attr, src), 0);
+  if (src.effect === 'Burn' && dotState.ember) value *= 1.25;
+  return value;
+}
+
+function renderDotCalc() {
+  const d = DOT_TEXT[state.lang];
+  const field = (key, extra = '') => `<label>${escapeHtml(d.inputs[key])}<input class="field" type="number" step="${key === 'diff' ? '0.05' : '1'}" data-dot="${key}" value="${dotState[key]}" ${extra}></label>`;
+  const effects = ['Direct', 'Burn', 'Bleed', 'Poison'].map((e) => `<button type="button" data-doteffect="${e}" aria-pressed="${e === dotState.effect}">${escapeHtml(d.effect[e])}</button>`).join('');
+  return `<section class="tool" id="f-dot">
+    <div class="tool-head"><h2>${escapeHtml(d.title)}</h2><p>${escapeHtml(d.hint)}</p></div>
+    <div class="tool-body">
+      <div class="tool-inputs">
+        <div class="segments" role="group" style="margin-bottom:0.75rem">${effects}</div>
+        <div class="calc">${field('status')}${field('eff')}${field('skill')}${field('gear')}${field('blast')}${field('tier', 'min="0" max="7"')}${field('diff', 'min="0.5" max="3"')}</div>
+        <label class="check"><input type="checkbox" data-dot="ember" ${dotState.ember ? 'checked' : ''}> ${escapeHtml(d.inputs.ember)}</label>
+      </div>
+      <div class="tool-result" aria-live="polite"><div id="dotOut"></div><p class="tool-note" id="dotNote"></p></div>
+    </div>
+  </section>`;
+}
+
+function renderDotOut() {
+  const out = document.getElementById('dotOut');
+  if (!out) return;
+  const d = DOT_TEXT[state.lang];
+  const sources = DOT.sources.filter((s) => s.effect === dotState.effect);
+  const reference = sources.find((s) => s.kind === 'status');
+  const refTick = reference ? dotPerTick(reference) : 0;
+  const rows = sources.map((s) => ({ s, tick: dotPerTick(s) })).sort((a, b) => b.tick - a.tick);
+  const max = Math.max(...rows.map((r) => r.tick), 1);
+  const fmt = (n) => Math.round(n).toLocaleString(state.lang === 'de' ? 'de-DE' : 'en-US');
+  const label = (s) => `${skillLabel(s)}${s.kind === 'status' ? `<div class="hint">${escapeHtml(loc(s.note))}</div>` : ''}`;
+  if (dotState.effect === 'Direct') {
+    // Direktschaden: pro Treffer; Geschuetz/Drohne mit Feuerrate auch pro Sekunde
+    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.hit)}</th><th>${escapeHtml(d.cols.rpm)}</th><th>${escapeHtml(d.cols.sec)}</th></tr>${rows.map(({ s, tick }) => `<tr><td>${label(s)}<span class="bar"><i style="width:${(tick / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td><strong>${fmt(tick)}</strong></td><td>${s.rpm ? formatNumber(s.rpm) : '–'}</td><td>${s.rpm ? `<strong>${fmt(tick * s.rpm / 60)}</strong>` : '–'}</td></tr>`).join('')}</table></div>`;
+  } else {
+    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.tick)}</th><th>${escapeHtml(d.cols.sec)}</th><th>${escapeHtml(d.cols.vs)}</th></tr>${rows.map(({ s, tick }) => `<tr${s.kind === 'status' ? ' class="dot-ref"' : ''}><td>${label(s)}<span class="bar"><i style="width:${(tick / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td>${fmt(tick)}</td><td><strong>${fmt(tick / (s.tickSeconds || 0.5))}</strong></td><td>${refTick ? `×${formatNumber((tick / refTick).toFixed(2))}` : ''}</td></tr>`).join('')}</table></div>`;
+  }
+  document.getElementById('dotNote').textContent = d.note(formatNumber(DOT.levelCurve40), formatNumber(reference?.tickSeconds ?? 0.5)) + (dotState.ember && dotState.effect === 'Burn' ? ` ${d.emberNote}` : '');
+}
+
+function bindDotCalc() {
+  const tool = document.getElementById('f-dot');
+  if (!tool) return;
+  tool.addEventListener('input', (event) => {
+    const key = event.target.dataset.dot;
+    if (!key) return;
+    dotState[key] = event.target.type === 'checkbox' ? event.target.checked : Number(event.target.value) || 0;
+    renderDotOut();
+  });
+  tool.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-doteffect]');
+    if (!button) return;
+    dotState.effect = button.dataset.doteffect;
+    for (const b of tool.querySelectorAll('button[data-doteffect]')) b.setAttribute('aria-pressed', String(b.dataset.doteffect === dotState.effect));
+    renderDotOut();
+  });
+  renderDotOut();
+}
+
+// Hinweis bei Talenten, die einen Standard-Statuseffekt mit Schaden ausloesen (Grundwert aus den Spieldaten)
+function renderApplies(tal) {
+  const dots = (tal.applies ?? []).filter((a) => ['Burn', 'Bleed', 'Poison'].includes(a.status) && !a.custom);
+  if (dots.length === 0) return '';
+  return dots.map((a) => {
+    const src = DOT.sources.find((s) => s.kind === 'status' && s.effect === a.status);
+    const name = DOT_TEXT[state.lang].effect[a.status];
+    const text = state.lang === 'de'
+      ? `Löst den Standard-Statuseffekt <strong>${escapeHtml(name)}</strong> aus: Grundwert <strong>${src?.base ?? '?'}</strong>, skaliert nur mit Statuseffekten – nicht mit Skill-Tier oder Skillschaden.`
+      : `Applies the standard <strong>${escapeHtml(name)}</strong> status effect: base value <strong>${src?.base ?? '?'}</strong>, scales only with status effects – not with skill tier or skill damage.`;
+    return `<p class="applies">${text} <a href="#view=faq&f=q-dot">${state.lang === 'de' ? 'Vergleich & Rechner' : 'Comparison & calculator'} →</a></p>`;
+  }).join('');
+}
+
+// ---------- FAQ ----------
+function dotTableHtml(effect) {
+  const de = state.lang === 'de';
+  const rows = DOT.sources.filter((s) => s.effect === effect).sort((a, b) => b.base - a.base).map((s) => {
+    // Tier-Bonus auf Tier 6: Summe aller skill-eigenen Boni dieser Formel
+    const tier6 = Object.values(s.tierBonus ?? {}).reduce((sum, values) => sum + (values[6] ?? 0), 0);
+    const scales = s.brackets.flat().map((attr) => /^(Burn|Bleed)DamageModBonus$/.test(attr) ? (de ? 'Statuseffekte' : 'status effects') : attr === 'allskills_damage_mod_Bonus' ? (de ? 'Skillschaden' : 'skill damage') : attr === 'BlastDamageModBonus' ? (de ? 'Explosivschaden' : 'explosive damage') : attr === 'GearTalentAllSkillsDamageModBonus' ? (de ? 'Gear-Talent-Skillschaden' : 'gear talent skill damage') : null).filter(Boolean);
+    const tierText = tier6 ? `${de ? 'Tier 6' : 'tier 6'}: +${formatNumber(tier6 * 100)}${de ? ' %' : '%'}` : (s.kind === 'skill' ? (de ? 'kein Tier-Bonus' : 'no tier bonus') : '–');
+    const rpm = effect === 'Direct' ? `<td>${s.rpm ? formatNumber(s.rpm) : '–'}</td>` : '';
+    return `<tr><td>${skillLabel(s)}${s.note ? `<div class="hint">${escapeHtml(loc(s.note))}</div>` : ''}</td><td><strong>${formatNumber(s.base)}</strong></td>${rpm}<td>${escapeHtml([...new Set(scales)].join(', ') || (de ? 'nichts' : 'nothing'))}</td><td>${escapeHtml(tierText)}</td></tr>`;
+  }).join('');
+  const rpmHead = effect === 'Direct' ? `<th>${de ? 'Schuss/min' : 'shots/min'}</th>` : '';
+  return `<div class="table-wrap"><table class="f-table"><tr><th>${de ? 'Quelle' : 'Source'}</th><th>${de ? 'Grundwert' : 'Base'}</th>${rpmHead}<th>${de ? 'Skaliert mit' : 'Scales with'}</th><th>Skill-Tier</th></tr>${rows}</table></div>`;
+}
+
+const FAQ = {
+  de: () => `
+  <section class="f-card" id="q-dot">
+    <h2>Wie viel Grundschaden machen Brennen, Bluten und Gift?</h2>
+    <p class="lead">Jede Quelle hat einen eigenen Grundwert. Der <strong>Standard-Statuseffekt</strong> (Ember Engine, Fafnir, Iron Lung, Spezialmunition, die meisten Talente) liegt weit unter den Skill-Versionen – und skaliert nur mit Statuseffekten.</p>
+    <h3>Brennen</h3>${dotTableHtml('Burn')}
+    <h3>Bluten</h3>${dotTableHtml('Bleed')}
+    <h3>Gift</h3>${dotTableHtml('Poison')}
+    <p>Alle Werte gelten gegen Gegner (PvE), ein Tick alle 0,5 s, multipliziert mit der Level-Kurve (Stufe 40 = ${formatNumber(DOT.levelCurve40)}). Gegen Spieler (PvP) gelten andere Grundwerte (Brennen 40, Bluten 35, Gift 20). <a href="#view=formulas&f=f-dot">Zum Rechner →</a></p>
+  </section>
+  <section class="f-card" id="q-ember">
+    <h2>Warum macht Ember Engine (oder Fafnir) weniger Brandschaden als meine Skills?</h2>
+    <p class="lead">Weil beide nur den <strong>Standard-Statuseffekt Brennen</strong> auslösen: Grundwert 50, skaliert nur mit Statuseffekten. Skill-Brennen startet bei 80–120 und wird zusätzlich durch Skill-Tier und Skillschaden verstärkt.</p>
+    <div class="example"><p class="label">Beispiel (Statuseffekte +50 %, Effizienz +20 %, Tier 6)</p>
+      <p>Ember Engine: 50 × (1 + 0,7) = <strong>85</strong> je Tick (× Level-Kurve)</p>
+      <p>Chem-Werfer Brandstifter: 120 × 1,6 × (1 + 0,7 + 0,2) = <strong>365</strong> je Tick – gut <strong>4×</strong> so viel.</p>
+    </div>
+    <p>Spannend an Ember Engine ist eher die Schwächung: Fängt man selbst mit Brennen an, erleidet das Ziel <strong>+25 % Brandschaden</strong>. Gut kombinierbar mit einem Brand-Skill. Ember Engine löst das Brennen mit 40 % Chance bei jedem anderen Statuseffekt aus (Weste: +20 %).</p>
+  </section>
+  <section class="f-card" id="q-sticky">
+    <h2>Warum macht die Haftgranate mehr Brandschaden als Chem-Werfer und Suchermine?</h2>
+    <p class="lead">Alle drei haben Grundwert 120 und +60 % auf Tier 6 – aber die Haftgranate <strong>multipliziert</strong> Statuseffekte und Skillschaden getrennt, Chem-Werfer und Suchermine <strong>addieren</strong> sie in einer Klammer.</p>
+    <div class="formula">Haftgranate:  120 × (1 + Tier) × (1 + Skillschaden) × (1 + Statuseffekte) × (1 + Gear-Talent)
+Chem/Sucher:  120 × (1 + Tier) × (1 + Skillschaden + Statuseffekte) × (1 + Gear-Talent)</div>
+    <div class="example"><p class="label">Beispiel (Statuseffekte +50 %, Effizienz +20 %, Tier 6)</p>
+      <p>Haftgranate: 120 × 1,6 × 1,2 × 1,7 = <strong>392</strong> · Chem-Werfer: 120 × 1,6 × 1,9 = <strong>365</strong> → Haftgranate <strong>+7 %</strong>.</p>
+      <p>Mit Statuseffekten +100 % und Skillschaden +50 %: 3,0 gegen 2,5 → Haftgranate <strong>+20 %</strong>. Je mehr von beidem, desto größer der Abstand.</p>
+    </div>
+    <p>Dazu kommt: Auf Tier 7 (Overcharge) bekommen Haftgranate und Suchermine +100 %, der Chem-Werfer bleibt bei +60 %.</p>
+  </section>
+  <section class="f-card" id="q-status">
+    <h2>Womit skalieren Statuseffekte?</h2>
+    <ul>
+      <li><strong>Schaden und Dauer</strong> des Standard-Statuseffekts: nur „Statuseffekte %“ – und dazu zählt <strong>Fertigkeiten-Effizienz</strong>.</li>
+      <li><strong>Nicht</strong> mit Waffenschaden, <strong>nicht</strong> mit Skill-Tier, <strong>nicht</strong> mit Skillschaden.</li>
+      <li>Skill-Brennen (Chem-Werfer, Haftbombe, Suchermine, Geschütz) skaliert zusätzlich mit Skill-Tier und Skillschaden. Skill-Bluten hat <strong>keinen</strong> Tier-Bonus auf den Schaden.</li>
+      <li>Gift skaliert mit gar nichts.</li>
+    </ul>
+  </section>
+  <section class="f-card" id="q-skills">
+    <h2>Wie viel Grundschaden machen die Skills – und womit skalieren sie?</h2>
+    <p class="lead">Fast alle Skills rechnen nach demselben Muster; der Unterschied steckt im Grundwert, im Tier-Bonus und darin, ob Explosivschaden oder Statuseffekte mitzählen.</p>
+    <div class="formula">Schaden = Grundwert × Level-Kurve × (1 + Tier-Bonus) × (1 + Skillschaden) × (1 + Explosivschaden*) × (1 + Gear-Talent-Skillschaden)
+* nur bei Explosionen; bei Feuer-Skills zählen stattdessen Statuseffekte mit</div>
+    ${dotTableHtml('Direct')}
+    <p>Tier-Bonus = Summe aller Schadensboni der Tier-Tabelle auf Tier 6. <a href="#view=formulas&f=f-dot">Mit deinen Werten ausrechnen →</a></p>
+  </section>
+  <section class="f-card" id="q-turret">
+    <h2>Geschütz „Überfall“ oder Drohne „Stürmer“?</h2>
+    <p class="lead">Beide rechnen identisch und bekommen auf Tier 6 +120 % – aber das Geschütz hat den höheren Grundschaden pro Schuss.</p>
+    <div class="table-wrap"><table class="f-table"><tr><th></th><th>Pro Schuss</th><th>Feuerrate</th><th>Grund-DPS</th></tr>
+      <tr><td>Geschütz: Überfall</td><td>40</td><td>750/min</td><td><strong>500</strong></td></tr>
+      <tr><td>Drohne: Stürmer</td><td>25</td><td>950/min</td><td><strong>396</strong></td></tr>
+    </table></div>
+    <p>Bei gleichen Werten macht das Geschütz rund <strong>26 % mehr Schaden pro Sekunde</strong>. Die Drohne ist dafür beweglich und folgt dir. Feuerraten aus den Waffendaten der Skills (<code>npc_weapon_player_turret</code>, <code>npc_weapon_player_drone</code>).</p>
+  </section>
+  <section class="f-card" id="q-efficiency">
+    <h2>Was bringt Fertigkeiten-Effizienz?</h2>
+    <p class="lead">Effizienz ist ein Sammel-Stat: Sie ist der Grundwert von <strong>sechs</strong> anderen Werten. +10 % Effizienz = +10 % auf jeden davon.</p>
+    <div class="table-wrap"><table class="f-table"><tr><th>Wert</th><th>Wirkt in</th></tr>
+      <tr><td>Fertigkeitenschaden</td><td>allen Skill-Schadensformeln</td></tr>
+      <tr><td>Fertigkeitenwirkzeit</td><td>wie lange Skills aktiv bleiben</td></tr>
+      <tr><td>Fertigkeiten-Lebensenergie</td><td>wie viel ein Skill aushält</td></tr>
+      <tr><td>Reparaturfertigkeiten</td><td>Heilung durch Hive, Falle, Chem-Werfer</td></tr>
+      <tr><td>Fertigkeitentempo</td><td>Abklingzeit</td></tr>
+      <tr><td>Statuseffekte</td><td>Schaden und Dauer von Brennen, Bluten usw.</td></tr>
+    </table></div>
+    <p>Effizienz und z. B. „Fertigkeitenschaden“ vom Gear landen im selben Topf. Effizienz bringt dort genauso viel – plus fünf weitere Werte. Für reine Waffen-Builds bringt sie nichts.</p>
+  </section>
+  <section class="f-card" id="q-handling">
+    <h2>Was bringt Waffenhandling?</h2>
+    <p class="lead">Waffenhandling ist ebenfalls ein Sammel-Stat: Es zählt voll als <strong>Wechseltempo, Präzision, Stabilität und Nachladetempo</strong> und zu einem Viertel als Verringerung des seitlichen Rückstoßes.</p>
+    <div class="formula">Wechseltempo  = Waffenhandling
+Präzision     = Präzision-Boni + Waffenhandling
+Stabilität    = Stabilität-Boni + Waffenhandling
+Nachladetempo = Waffenhandling
+Seitlicher Rückstoß ÷ (1 + Rückstoß-Boni + Waffenhandling × 0,25)</div>
+    <p>Schaden macht Waffenhandling nicht – aber +10 % davon sind gleichzeitig +10 % Stabilität, Präzision, Nachladen und Wechseln.</p>
+  </section>
+  <section class="f-card" id="q-wd">
+    <h2>Waffenschaden oder Gesamtwaffenschaden – was ist besser?</h2>
+    <p class="lead">„Gesamtwaffenschaden“ (Gear-Talente) ist ein <strong>eigener Multiplikator</strong>, normaler Waffenschaden landet in einem großen gemeinsamen Topf. Deshalb ist ein Prozentpunkt Gesamtwaffenschaden fast immer mehr wert.</p>
+    <p>Beispiel: bei +60 % Waffenschaden und +20 % Gesamtwaffenschaden bringen +10 % Waffenschaden +6,25 %, +10 % Gesamtwaffenschaden +8,3 %. <a href="#view=formulas&f=f-calc">Mit deinen Werten ausrechnen →</a></p>
+  </section>
+  <section class="f-card" id="q-crit">
+    <h2>Bringt Krit-Chance über 60 %?</h2>
+    <p class="lead">Nein – die Krit-Chance ist bei <strong>60 %</strong> gedeckelt (<code>0.6 + CriticalHitChanceOverrideCap</code>). Nur Talente, die den Deckel anheben, machen mehr sinnvoll.</p>
+    <p>Krit-Schaden startet bei 25 % und wird mit allen Boni addiert. Er lohnt sich erst, wenn die Krit-Chance hoch ist: Ø-Schaden ×(1 + Chance × Schaden).</p>
+  </section>
+  <section class="f-card" id="q-pestilence">
+    <h2>Womit skaliert Pestilenz?</h2>
+    <p class="lead">Nur mit <strong>Waffenschaden</strong> – die Schwächung macht 100 % Waffenschaden über 10 s pro Stapel (bis 50). Statuseffekte bringen ihr nichts.</p>
+  </section>
+  <section class="f-card" id="q-tier">
+    <h2>Was bringt Skill-Tier?</h2>
+    <p class="lead">Jeder Skill hat eine eigene Tier-Tabelle. Bei Schadens-Skills sind das meist +10 % Skill-eigener Schaden pro Tier (Tier 6: +60 %), einige Varianten erreichen mit Overcharge (Tier 7) +100 %.</p>
+    <p>Skill-Tier geht nur in die skill-eigene Formel. Standard-Statuseffekte (Ember Engine, Spezialmunition) profitieren davon nicht. Höchstens 6, mit Overcharge 7; im PvP und in normalisierten Modi höchstens 6.</p>
+  </section>`,
+
+  en: () => `
+  <section class="f-card" id="q-dot">
+    <h2>How much base damage do burn, bleed and poison deal?</h2>
+    <p class="lead">Every source has its own base value. The <strong>standard status effect</strong> (Ember Engine, Fafnir, Iron Lung, special ammo, most talents) is far below the skill versions – and only scales with status effects.</p>
+    <h3>Burn</h3>${dotTableHtml('Burn')}
+    <h3>Bleed</h3>${dotTableHtml('Bleed')}
+    <h3>Poison</h3>${dotTableHtml('Poison')}
+    <p>All values are against enemies (PvE), one tick every 0.5 s, multiplied by the level curve (level 40 = ${formatNumber(DOT.levelCurve40)}). Against players (PvP) other base values apply (burn 40, bleed 35, poison 20). <a href="#view=formulas&f=f-dot">Open the calculator →</a></p>
+  </section>
+  <section class="f-card" id="q-ember">
+    <h2>Why does Ember Engine (or Fafnir) deal less burn damage than my skills?</h2>
+    <p class="lead">Because both only apply the <strong>standard burn status effect</strong>: base 50, scaling only with status effects. Skill burns start at 80–120 and are boosted further by skill tier and skill damage.</p>
+    <div class="example"><p class="label">Example (status effects +50%, efficiency +20%, tier 6)</p>
+      <p>Ember Engine: 50 × (1 + 0.7) = <strong>85</strong> per tick (× level curve)</p>
+      <p>Chem Launcher Firestarter: 120 × 1.6 × (1 + 0.7 + 0.2) = <strong>365</strong> per tick – more than <strong>4×</strong>.</p>
+    </div>
+    <p>The interesting part of Ember Engine is its debuff: if you start with burn yourself, the target takes <strong>+25% burn damage</strong>. Pairs well with a burn skill. Ember Engine applies its burn with a 40% chance on every other status effect (chest: +20%).</p>
+  </section>
+  <section class="f-card" id="q-sticky">
+    <h2>Why does the Sticky Bomb deal more burn damage than Chem Launcher and Seeker Mine?</h2>
+    <p class="lead">All three have base 120 and +60% at tier 6 – but the Sticky Bomb <strong>multiplies</strong> status effects and skill damage separately, Chem Launcher and Seeker Mine <strong>add</strong> them in one bracket.</p>
+    <div class="formula">Sticky Bomb:   120 × (1 + tier) × (1 + skill damage) × (1 + status effects) × (1 + gear talent)
+Chem/Seeker:   120 × (1 + tier) × (1 + skill damage + status effects) × (1 + gear talent)</div>
+    <div class="example"><p class="label">Example (status effects +50%, efficiency +20%, tier 6)</p>
+      <p>Sticky Bomb: 120 × 1.6 × 1.2 × 1.7 = <strong>392</strong> · Chem Launcher: 120 × 1.6 × 1.9 = <strong>365</strong> → Sticky Bomb <strong>+7%</strong>.</p>
+      <p>With status effects +100% and skill damage +50%: 3.0 vs 2.5 → Sticky Bomb <strong>+20%</strong>. The more of both, the bigger the gap.</p>
+    </div>
+    <p>On top of that, at tier 7 (overcharge) Sticky Bomb and Seeker Mine get +100%, the Chem Launcher stays at +60%.</p>
+  </section>
+  <section class="f-card" id="q-status">
+    <h2>What do status effects scale with?</h2>
+    <ul>
+      <li><strong>Damage and duration</strong> of the standard status effect: only “status effects %” – and <strong>skill efficiency</strong> counts towards it.</li>
+      <li><strong>Not</strong> weapon damage, <strong>not</strong> skill tier, <strong>not</strong> skill damage.</li>
+      <li>Skill burns (Chem Launcher, Sticky Bomb, Seeker Mine, Turret) also scale with skill tier and skill damage. Skill bleeds get <strong>no</strong> tier bonus on damage.</li>
+      <li>Poison scales with nothing.</li>
+    </ul>
+  </section>
+  <section class="f-card" id="q-skills">
+    <h2>How much base damage do skills deal – and what do they scale with?</h2>
+    <p class="lead">Almost every skill follows the same pattern; the difference is the base value, the tier bonus and whether explosive damage or status effects count.</p>
+    <div class="formula">Damage = base × level curve × (1 + tier bonus) × (1 + skill damage) × (1 + explosive damage*) × (1 + gear talent skill damage)
+* explosions only; fire skills use status effects instead</div>
+    ${dotTableHtml('Direct')}
+    <p>Tier bonus = sum of all damage bonuses in the tier table at tier 6. <a href="#view=formulas&f=f-dot">Calculate with your values →</a></p>
+  </section>
+  <section class="f-card" id="q-turret">
+    <h2>Assault Turret or Striker Drone?</h2>
+    <p class="lead">Both use the same formula and get +120% at tier 6 – but the turret has the higher base damage per shot.</p>
+    <div class="table-wrap"><table class="f-table"><tr><th></th><th>Per shot</th><th>Fire rate</th><th>Base DPS</th></tr>
+      <tr><td>Turret: Assault</td><td>40</td><td>750/min</td><td><strong>500</strong></td></tr>
+      <tr><td>Drone: Striker</td><td>25</td><td>950/min</td><td><strong>396</strong></td></tr>
+    </table></div>
+    <p>With equal stats the turret deals about <strong>26% more damage per second</strong>. The drone is mobile and follows you. Fire rates from the skills' weapon data (<code>npc_weapon_player_turret</code>, <code>npc_weapon_player_drone</code>).</p>
+  </section>
+  <section class="f-card" id="q-efficiency">
+    <h2>What does skill efficiency do?</h2>
+    <p class="lead">Efficiency is a bundle stat: it is the base value of <strong>six</strong> other stats. +10% efficiency = +10% on each of them.</p>
+    <div class="table-wrap"><table class="f-table"><tr><th>Stat</th><th>Used in</th></tr>
+      <tr><td>Skill damage</td><td>every skill damage formula</td></tr>
+      <tr><td>Skill duration</td><td>how long skills stay active</td></tr>
+      <tr><td>Skill health</td><td>how much a skill can take</td></tr>
+      <tr><td>Repair skills</td><td>healing from Hive, Trap, Chem Launcher</td></tr>
+      <tr><td>Skill haste</td><td>cooldowns</td></tr>
+      <tr><td>Status effects</td><td>damage and duration of burn, bleed etc.</td></tr>
+    </table></div>
+    <p>Efficiency and e.g. “skill damage” from gear share the same bucket. Efficiency is worth just as much there – plus five more stats. Pure weapon builds gain nothing from it.</p>
+  </section>
+  <section class="f-card" id="q-handling">
+    <h2>What does weapon handling do?</h2>
+    <p class="lead">Weapon handling is a bundle stat too: it counts fully as <strong>swap speed, accuracy, stability and reload speed</strong>, and a quarter of it reduces horizontal recoil.</p>
+    <div class="formula">Swap speed  = weapon handling
+Accuracy    = accuracy bonuses + weapon handling
+Stability   = stability bonuses + weapon handling
+Reload      = weapon handling
+Horizontal recoil ÷ (1 + recoil bonuses + weapon handling × 0.25)</div>
+    <p>It adds no damage – but +10% of it is +10% stability, accuracy, reload and swap at once.</p>
+  </section>
+  <section class="f-card" id="q-wd">
+    <h2>Weapon damage or total weapon damage – which is better?</h2>
+    <p class="lead">“Total weapon damage” (gear talents) is its <strong>own multiplier</strong>, plain weapon damage goes into one big shared bucket. So a point of total weapon damage is almost always worth more.</p>
+    <p>Example: at +60% weapon damage and +20% total weapon damage, +10% weapon damage gives +6.25%, +10% total weapon damage gives +8.3%. <a href="#view=formulas&f=f-calc">Calculate with your values →</a></p>
+  </section>
+  <section class="f-card" id="q-crit">
+    <h2>Is crit chance above 60% worth it?</h2>
+    <p class="lead">No – crit chance is capped at <strong>60%</strong> (<code>0.6 + CriticalHitChanceOverrideCap</code>). Only talents that raise the cap make more useful.</p>
+    <p>Crit damage starts at 25% and adds up with all bonuses. It only pays off with high crit chance: average damage ×(1 + chance × damage).</p>
+  </section>
+  <section class="f-card" id="q-pestilence">
+    <h2>What does Pestilence scale with?</h2>
+    <p class="lead">Only <strong>weapon damage</strong> – the debuff deals 100% weapon damage over 10 s per stack (up to 50). Status effects do nothing for it.</p>
+  </section>
+  <section class="f-card" id="q-tier">
+    <h2>What does skill tier do?</h2>
+    <p class="lead">Every skill has its own tier table. Damage skills mostly get +10% skill-specific damage per tier (tier 6: +60%); some variants reach +100% with overcharge (tier 7).</p>
+    <p>Skill tier only goes into the skill's own formula. Standard status effects (Ember Engine, special ammo) don't benefit. Max 6, 7 with overcharge; max 6 in PvP and normalized modes.</p>
+  </section>`,
+};
+
+// Thema jeder FAQ-Frage: gleiche Farbfamilien wie die Effekt-Chips im Codex
+const FAQ_TOPICS = {
+  'q-dot': 'status', 'q-ember': 'status', 'q-sticky': 'status', 'q-status': 'status',
+  'q-skills': 'skill', 'q-turret': 'skill', 'q-efficiency': 'skill', 'q-tier': 'skill',
+  'q-handling': 'weapon', 'q-wd': 'weapon', 'q-pestilence': 'weapon', 'q-crit': 'crit',
+};
+const TOPIC_LABEL = {
+  status: { de: 'Statuseffekte', en: 'Status effects' }, skill: { de: 'Skills', en: 'Skills' },
+  weapon: { de: 'Waffe', en: 'Weapon' }, crit: { de: 'Krit & Kopfschuss', en: 'Crit & headshot' },
+};
+
+function renderFaq() {
+  const de = state.lang === 'de';
+  const holder = document.createElement('div');
+  holder.innerHTML = FAQ[state.lang]();
+  for (const section of holder.querySelectorAll('section.f-card')) {
+    const topic = FAQ_TOPICS[section.id];
+    if (!topic) continue;
+    section.dataset.family = topic;
+    section.querySelector('h2')?.insertAdjacentHTML('beforebegin', `<span class="f-topic" data-family="${topic}">${escapeHtml(TOPIC_LABEL[topic][state.lang])}</span>`);
+  }
+  const toc = [...holder.querySelectorAll('section.f-card')].map((s) => `<a href="#view=faq&f=${s.id}" data-toc="${s.id}"${s.dataset.family ? ` data-family="${s.dataset.family}"` : ''}>${escapeHtml(s.querySelector('h2')?.textContent ?? s.id)}</a>`).join('');
+  els.faq.innerHTML = `
+    <header class="f-head"><h2>FAQ</h2><p>${de ? 'Antworten direkt aus den Spieldaten – zu Dingen, die das Spiel nicht erklärt.' : 'Answers straight from the game data – for things the game does not explain.'}</p></header>
+    <div class="f-layout">
+      <aside class="f-toc"><p>${de ? 'Fragen' : 'Questions'}</p><nav>${toc}</nav></aside>
+      <div class="f-sections">${holder.innerHTML}</div>
+    </div>`;
+  markToc();
+}
+
+// ---------- Zustand & Navigation ----------
+function readHash() {
+  const params = new URLSearchParams(location.hash.slice(1));
+  for (const key of Object.keys(DEFAULTS)) state[key] = params.get(key) ?? DEFAULTS[key];
+  if (!params.get('lang')) { try { state.lang = localStorage.getItem('lang') || DEFAULTS.lang; } catch {} }
+  if (!params.get('mode')) { try { state.mode = localStorage.getItem('mode') || DEFAULTS.mode; } catch {} }
+  if (!UI[state.lang]) state.lang = 'de';
+  if (state.type && state.kind === 'all') state.kind = WEAPON_CATEGORIES.includes(state.type) ? 'exotic-weapon' : 'exotic-gear';
+  return params.get('f');
+}
+
+function writeHash(anchor) {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(state)) if (value !== DEFAULTS[key]) params.set(key, value);
+  if (anchor) params.set('f', anchor);
+  const hash = params.toString();
+  history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search);
+}
+
+function syncControls() {
+  els.q.value = state.q;
+  els.scale.value = state.scale;
+  els.type.value = state.type;
+  els.sort.value = state.sort;
+  const press = (container, attr, value) => { for (const b of container.querySelectorAll(`button[data-${attr}]`)) b.setAttribute('aria-pressed', String(b.dataset[attr] === value)); };
+  press(els.kinds, 'kind', state.kind);
+  press(els.views, 'view', state.view);
+  press(els.modes, 'mode', state.mode);
+  press(els.langs, 'lang', state.lang);
+  els.codexView.hidden = state.view !== 'codex';
+  els.formulaView.hidden = state.view !== 'formulas';
+  els.faqView.hidden = state.view !== 'faq';
+  els.talentView.hidden = state.view !== 'talents';
+  els.tq.value = state.tq;
+  els.tscale.value = state.tscale;
+  els.tsource.value = state.tsource;
+  els.tweapon.value = state.tweapon;
+  press(els.tslots, 'tslot', state.tslot);
+  updateSticky();
+}
+
+let formulasLang = null;
+let faqLang = null;
+function render(anchor) {
+  if (state.view === 'formulas') {
+    if (formulasLang !== state.lang) { renderFormulas(); formulasLang = state.lang; }
+    if (anchor) document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
+  } else if (state.view === 'faq') {
+    if (faqLang !== state.lang) { renderFaq(); faqLang = state.lang; }
+    if (anchor) document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
+  } else if (state.view === 'talents') {
+    renderTalentView();
+  } else {
+    renderCodex();
+  }
+}
+
+function update({ rebuild = false } = {}) {
+  if (rebuild) fillControls();
+  writeHash();
+  syncControls();
+  render();
+}
+
+els.q.addEventListener('input', () => { state.q = els.q.value.trim(); update(); });
+els.scale.addEventListener('change', () => { state.scale = els.scale.value; update(); });
+els.type.addEventListener('change', () => {
+  state.type = els.type.value;
+  if (state.type) state.kind = WEAPON_CATEGORIES.includes(state.type) ? 'exotic-weapon' : 'exotic-gear';
+  update();
+});
+els.sort.addEventListener('change', () => { state.sort = els.sort.value; update(); });
+els.kinds.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-kind]');
+  if (!button) return;
+  state.kind = button.dataset.kind;
+  state.type = '';
+  update();
+});
+els.tq.addEventListener('input', () => { state.tq = els.tq.value.trim(); update(); });
+els.tscale.addEventListener('change', () => { state.tscale = els.tscale.value; update(); });
+els.tsource.addEventListener('change', () => { state.tsource = els.tsource.value; update(); });
+els.tweapon.addEventListener('change', () => {
+  state.tweapon = els.tweapon.value;
+  if (state.tweapon) state.tslot = 'weapon';
+  update();
+});
+els.tslots.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-tslot]');
+  if (!button) return;
+  state.tslot = button.dataset.tslot;
+  if (state.tslot !== 'weapon') state.tweapon = '';
+  update();
+});
+els.tclear.addEventListener('click', () => {
+  Object.assign(state, { tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all' });
+  update();
+});
+// Verweise zwischen normaler und perfekter Version: Suche auf das andere Talent setzen
+els.tlist.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-tq]');
+  if (!button) return;
+  Object.assign(state, { tq: button.dataset.tq, tscale: '', tsource: '', tweapon: '', tslot: 'all' });
+  update();
+  window.scrollTo({ top: 0 });
+});
+els.views.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-view]');
+  if (!button) return;
+  state.view = button.dataset.view;
+  update();
+  window.scrollTo({ top: 0 });
+});
+els.modes.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-mode]');
+  if (!button) return;
+  state.mode = button.dataset.mode;
+  try { localStorage.setItem('mode', state.mode); } catch {}
+  update();
+});
+els.langs.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-lang]');
+  if (!button) return;
+  state.lang = button.dataset.lang;
+  try { localStorage.setItem('lang', state.lang); } catch {}
+  update({ rebuild: true });
+});
+els.clear.addEventListener('click', () => {
+  Object.assign(state, { q: '', scale: '', type: '', sort: 'old', kind: 'all' });
+  update();
+});
+window.addEventListener('hashchange', () => {
+  const anchor = readHash();
+  fillControls();
+  syncControls();
+  render(anchor);
+});
+
+const startAnchor = readHash();
+fillControls();
+syncControls();
+render(startAnchor);
+</script>
+</body>
+</html>
