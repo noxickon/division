@@ -207,8 +207,33 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
     - `juice.ps1` – Parser für das Snowdrop-Textformat und die `.locpack`-Lokalisierung.
     - `build.ps1` – baut `index.html` aus `template.html` + `data\*.json`.
     - `serve.ps1` – lokaler Server auf `http://localhost:8080`.
+    - `archive.ps1` – sichert das Wissens-Set eines Exports pro Build nach `D:\DivisionArchive` (siehe Archiv).
 - `data\community\*.json` = alte, aus dem Internet gesammelte Daten; liefern nur „seit wann“, Bezugsquelle und Attribut-Höchstwerte.
 - Diese Doku liegt als `docs\datamining.md` im Repo.
+
+## Archiv (nur lokal)
+
+Das Spiel hat immer nur den aktuellen Build; nach einem Patch sind die alten Daten weg. Deshalb wird vor jedem Patch das **Wissens-Set** des Exports gesichert, nur lokal, nie ins Repo oder in eine Cloud.
+
+- **Ort:** `D:\DivisionArchive\builds\<build>\` mit `files\` (gleiche Pfade wie im Export), `manifest.csv` (Pfad, Größe, SHA1), `changes.csv` (added/changed/removed gegenüber dem vorherigen Build), `dropped.csv.gz` (Pfad und Größe aller weggelassenen Dateien), `info.json`.
+- **Aufruf:** `powershell -NoProfile -ExecutionPolicy Bypass -File tools\archive.ps1` (Build-Datum aus dem Spielordner; stimmt nur, wenn der Export nach dem letzten Update gemacht wurde, sonst `-Build yyyy-mm-dd`).
+- **Platz:** Unveränderte Dateien werden per NTFS-Hardlink mit dem vorherigen Build geteilt; jeder Build-Ordner ist trotzdem vollständig durchsuchbar, Platz kosten nur geänderte Dateien. Keine Datenbank: Die Rohdaten sind Textdateien, Ordner lassen sich direkt durchsuchen.
+- **Wissens-Set** (Build 2026-10-09: 99.457 Dateien, 657 MB; weggelassen 2.012.262 Dateien, 44,7 GB):
+
+| Ordner | Warum |
+| --- | --- |
+| `hunter`/`rogue\game system data` | Talente, Items, Formeln, Waffen, Loot |
+| `hunter`/`rogue\skillscript` | Talent- und Skill-Logik |
+| `hunter\localization\packages\{german,english}` | alle Texte |
+| `hunter`/`rogue`/`snowdrop\nodes` | Bausteine der Skillscripts (z. B. `combat_ingredients_damage_scaling`, `npc scale damage`, `statuseffect_*`); 330 davon werden referenziert |
+| `hunter`/`rogue\contentscripts` | Open-World-Aktivitäten |
+| `hunter`/`rogue\interaction`, `snowdrop\modules` | von den Spieldaten eingebunden bzw. Schemas |
+| `hunter\scripts` | Boss-, Raid- und Missionsskripte |
+| `hunter`/`rogue\maps\**\*.mlayer`, `*.juice` (ohne `terrainvirtualtexture`/`terrainvttiles`) | Platzierungen, Zonen, Kamera-Lesezeichen (Grundlage für eine spätere Karte) |
+
+- **Weggelassen:** Geometrie (`.sector`, `.mphys`, `.navmesh*`), Gelände-Texturen, `graph objects`, Animation, Audio, Shader, UI-Graphen, `global variables` (nur UI-Zustände/Farben), 16 weitere Sprachen, Level-Bau.
+- **Suche langsam beim ersten Mal:** Das erste Lesen der Archiv-Dateien dauert lange (31.000 Dateien: 33 s kalt, 2,5 s warm), vermutlich durch den Echtzeitscan von Windows Defender. Ein Zeitlimit beim ersten Durchsuchen liegt also nicht am Archiv; ein zweiter Versuch oder ein engerer Unterordner hilft.
+- **Map-Zuordnung:** `H\juice\map\rbtaglevelmapping.juice`: `672729d1…` = Huntsville (Washington D.C.), `4af94da9…` = Warlockville (New York), `6eb4a619…` = Joinville.
 
 ## Grenzen und Sicherheit
 
