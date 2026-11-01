@@ -33,6 +33,7 @@ $html = (Read-Text 'template.html').
     Replace('/*ICONS*/', (Inline (ConvertTo-Json -InputObject $icons -Compress))).
     Replace('/*META*/', (Inline (Read-Text 'data\meta.json').Trim())).
     Replace('/*TALENTS*/', (Inline (Read-Text 'data\talents.json').Trim())).
+    Replace('/*SKILLS*/', (Inline (Read-Text 'data\skills.json').Trim())).
     Replace('/*DOT*/', (Inline (Read-Text 'data\dot.json').Trim()))
 [IO.File]::WriteAllText((Join-Path $Repo 'index.html'), $html, $Utf8)
 Write-Host "index.html geschrieben: $($entries.Count) Eintraege, $($icons.Count) Icons"

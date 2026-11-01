@@ -902,6 +902,288 @@ foreach ($d in $DotDefs) {
 $levelCurve40 = [math]::Round([math]::Pow(1.125, 29) * [math]::Pow(1.25, 5) * [math]::Pow(1.125, 10), 2)
 Log "DoT-Quellen: $($dotSources.Count), Level-Kurve Stufe 40 = $levelCurve40"
 
+# ---------- Skill-Mods: welche Werte auf welchem Mod-Platz wuerfeln koennen ----------
+# Kurven (Percent_1_to_10 ...) und Qualitaetsfaktoren aus den Attributlisten; Wert = Power * A^2 + Power * B + C
+$genDir = Join-Path $H 'juice\itemgeneration'
+$listRoots = @((Read-Juice (Join-Path $genDir "attributelists\attributelist_code1_data$Version.mitemgenerationattributelists")), (Read-Juice (Join-Path $genDir "attributelists\skillmod_attributelist_code1_data$Version.mitemgenerationattributelists")))
+function Read-CurveFormulas($Node) {
+    $out = New-Object System.Collections.Generic.List[object]
+    foreach ($fo in $Node.kids | Where-Object { $_.kw -eq 'ItemGenerationBracketedCurveFormula' }) {
+        $num = { param($k, $d) $v = Get-Prop $fo $k; if ($null -eq $v) { $d } else { [double]::Parse($v, [Globalization.CultureInfo]::InvariantCulture) } }
+        # (-1) in Klammern: als Befehlsargument waere -1 ein Text und der Vergleich mit der Power schlaegt fehl
+        $out.Add(@{ max = [double](& $num 'myMaxPower' (-1)); a = [double](& $num 'myA' 0); b = [double](& $num 'myB' 0); c = [double](& $num 'myC' 0) })
+    }
+    return ,$out.ToArray()
+}
+$Curves = @{}; $QualityLists = @{}
+foreach ($lr in $listRoots) {
+    foreach ($cv in $lr.kids | Where-Object { $_.kw -eq 'ItemGenerationBracketedCurve' }) { $Curves[$cv.name] = Read-CurveFormulas $cv }
+    foreach ($ql in $lr.kids | Where-Object { $_.kw -eq 'QualityCurveModifierList' }) { $QualityLists[$ql.name] = $ql }
+}
+function Read-QualityMods($Node) {
+    $map = @{}
+    foreach ($q in $Node.kids | Where-Object { $_.kw -eq 'QualityCurveModifier' }) {
+        $qual = Get-Prop $q 'myQuality'; if (-not $qual) { $qual = 'Grey' }
+        $m = Get-Prop $q 'myModifier'; $map[$qual] = $(if ($null -eq $m) { 1.0 } else { [double]::Parse($m, [Globalization.CultureInfo]::InvariantCulture) })
+    }
+    return $map
+}
+# Kurve eines AttributeData-Felds: Verweis auf eine benannte Kurve oder eingebettete Formeln
+function Get-FieldCurve($Data, [string]$Key) {
+    $line = $Data.props | Where-Object { $_.StartsWith("$Key ") } | Select-Object -First 1
+    if ($line) { $ref = Get-Ref $line; if ($ref) { return $Curves[$ref.name] } }
+    $kid = Get-Kid $Data $Key
+    if ($kid) { return Read-CurveFormulas $kid }
+    return $null
+}
+function Get-CurveValue($Formulas, [double]$Power) {
+    foreach ($fo in $Formulas) { if ($fo.max -lt 0 -or $Power -le $fo.max) { return $Power * $fo.a * $fo.a + $Power * $fo.b + $fo.c } }
+    return $null
+}
+# Power je Stufe (itemgenerationsettings: Basiswert x Modifikator pro Stufe); ein Gegenstand der Stufe 40 liegt zwischen Power(40) und Power(41)
+$powerDef = Find-Kids (Read-Juice (Join-Path $H 'rejuice\itemgenerationsettings.rejuice')) 'myPowerDefinitions' | Select-Object -First 1
+$powerSteps = foreach ($lm in Find-Kids $powerDef 'LevelPowerModifier') {
+    $maxLevel = Get-Prop $lm 'myMaxLevel'; if (-not $maxLevel) { $maxLevel = ($lm.name -split '-')[-1] }
+    @{ max = [int]$maxLevel; mod = [double]::Parse((Get-Prop $lm 'myModifier'), [Globalization.CultureInfo]::InvariantCulture) }
+}
+function Get-Power([int]$Level) {
+    $p = [double](Get-Prop $powerDef 'myPowerBaseValue')
+    for ($lv = 2; $lv -le $Level; $lv++) { $step = $powerSteps | Where-Object { $lv -le $_.max } | Select-Object -First 1; if ($step) { $p *= $step.mod } }
+    return $p
+}
+$PowerMin = Get-Power 40; $PowerMax = Get-Power 41
+Log ("Skill-Mods: Power Stufe 30 = {0:N0}, Stufe 40 = {1:N0} bis {2:N0}" -f (Get-Power 30), $PowerMin, $PowerMax)
+
+# Attributlisten der Skill-Mods: Container -> Werte mit Kurven und Qualitaetsfaktoren
+$ModLists = @{}
+foreach ($lr in $listRoots) {
+    foreach ($c in $lr.kids | Where-Object { $_.kw -eq 'AttributeListContainer' -and $_.name -like 'SkillMod*' }) {
+        $entries = foreach ($ad in Find-Kids (Get-Kid $c 'myAttributes') 'AttributeData') {
+            $uid = Get-Prop $ad 'myAttribute'
+            if (-not $uid -or -not $Attr[$uid]) { continue }
+            $qLine = $ad.props | Where-Object { $_.StartsWith('myQualityModifiers ') } | Select-Object -First 1
+            $qRef = if ($qLine) { Get-Ref $qLine } else { $null }
+            $qNode = if ($qRef) { $QualityLists[$qRef.name] } else { Get-Kid $ad 'myQualityModifiers' }
+            @{ attr = $Attr[$uid].name; key = $ad.name; min = (Get-FieldCurve $ad 'myRangeMin'); max = (Get-FieldCurve $ad 'myRangeMax'); quality = $(if ($qNode) { Read-QualityMods $qNode } else { @{} }) }
+        }
+        $ModLists[$c.name] = @($entries)
+    }
+}
+
+# Mod-Konfigurationen: Verknuepfung -> Attributlisten
+$ModListsByLink = @{}
+foreach ($cfg in (Read-Juice (Join-Path $Configs "configs_mods_skills_code1_data$Version.mitemgenerationconfigs")).kids | Where-Object { $_.kw -eq 'ItemGenerationConfig' }) {
+    $linkLine = $cfg.props | Where-Object { $_.StartsWith('myItemGenerationConfigLink ') } | Select-Object -First 1
+    if (-not $linkLine) { continue }
+    $names = @(Find-Kids $cfg 'myPossibleAttributeLists' | ForEach-Object { $_.props } | ForEach-Object { (Get-Ref $_).name } | Where-Object { $_ } | Select-Object -Unique)
+    $ModListsByLink[(Get-Ref $linkLine).name] = $names
+}
+# Mod-Gegenstaende: Platz-Tag -> Attributlisten
+$ListsBySlotTag = @{}
+foreach ($mf in @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'juice\item') -Filter 's_mod_attachment_*.mitem')) {
+    $mt = [IO.File]::ReadAllText($mf.FullName)
+    if ($mt -notmatch 'myItemGenerationConfig <[^>]*> = (\S+)') { continue }
+    $names = $ModListsByLink[$Matches[1]]
+    if (-not $names) { continue }
+    # Der Platz steht als ItemModTag (nicht ItemTag) im Mod
+    foreach ($tag in @([regex]::Matches($mt, '(?m)^\s*ItemModTag .* (\S+)\s*$') | ForEach-Object { $_.Groups[1].Value })) { if (-not $ListsBySlotTag[$tag]) { $ListsBySlotTag[$tag] = @() }; foreach ($n in $names) { if ($ListsBySlotTag[$tag] -notcontains $n) { $ListsBySlotTag[$tag] += $n } } }
+}
+
+# Namen der Mod-Plaetze aus der Tag-Hierarchie
+$TagNames = @{}
+foreach ($th in Find-Kids (Read-Juice (Join-Path $H 'rejuice\itemmodtaghierarchy.rejuice')) 'ItemModTagHierarchy') {
+    $tag = Get-Prop $th 'myTag'; $ui = Get-Prop $th 'myUIName'
+    if ($tag -and $ui) { $TagNames[$tag] = Clean-Name (Get-Loc $ui) }
+}
+
+# Wer benutzt welches Attribut (umgekehrter Formelgraph), um "wirkt bei" und die Formel zu finden
+$UsedBy = @{}
+foreach ($fa in $formulas) {
+    $text = "$($fa.formula) " + (($fa.specializations | ForEach-Object { $_.formula }) -join ' ')
+    foreach ($tok in [regex]::Matches($text, '[A-Za-z_][A-Za-z0-9_]*') | ForEach-Object { $_.Value } | Select-Object -Unique) {
+        if ($tok -eq $fa.name) { continue }
+        if (-not $UsedBy.ContainsKey($tok)) { $UsedBy[$tok] = New-Object System.Collections.Generic.List[string] }
+        $UsedBy[$tok].Add($fa.name)
+    }
+}
+function Get-Consumers([string]$Name, [int]$Depth = 4) {
+    $seen = @{}; $frontier = @($Name)
+    for ($d = 0; $d -lt $Depth; $d++) {
+        $next = @()
+        foreach ($n in $frontier) { foreach ($u in @($UsedBy[$n])) { if ($u -and -not $seen.ContainsKey($u)) { $seen[$u] = $d; $next += $u } } }
+        $frontier = $next
+    }
+    return $seen
+}
+
+# Lesbare Begriffe fuer die Formeln: Beschriftung aus den Woerterbuechern, sonst aus den Wortteilen des Namens
+$ModAttrNames = @{}; foreach ($ml in $ModLists.Values) { foreach ($me in $ml) { $ModAttrNames[$me.attr] = $true } }
+$TermWords = [ordered]@{
+    damage = 'Schaden', 'Damage'; duration = 'Wirkzeit', 'Duration'; health = 'Lebensenergie', 'Health'; burn = 'Brand', 'Burn'; strength = 'Stärke', 'Strength'
+    radius = 'Radius', 'Radius'; cooldown = 'Abklingzeit', 'Cooldown'; healing = 'Heilung', 'Healing'; heal = 'Heilung', 'Healing'; armor = 'Rüstung', 'Armor'
+    repair = 'Reparatur', 'Repair'; ammo = 'Munition', 'Ammo'; charges = 'Ladungen', 'Charges'; speed = 'Tempo', 'Speed'; range = 'Reichweite', 'Range'
+    blast = 'Explosion', 'Blast'; bleed = 'Bluten', 'Bleed'; cone = 'Kegel', 'Cone'; conesize = 'Kegelgröße', 'Cone size'; conewidth = 'Kegelbreite', 'Cone width'; width = 'Breite', 'Width'
+    resistance = 'Widerstand', 'Resistance'; mines = 'Minen', 'Mines'; amount = 'Anzahl', 'Amount'; maxtargets = 'Max. Ziele', 'Max targets'; debuffduration = 'Debuff-Wirkzeit', 'Debuff duration'
+    effectduration = 'Effekt-Wirkzeit', 'Effect duration'; damagemax = 'Max. Schaden', 'Max damage'; damagemin = 'Min. Schaden', 'Min damage'; handling = 'Handling', 'Handling'; weapon = 'Waffe', 'Weapon'
+}
+$SpecialTerms = @{
+    SkillCurveFinal = 'Skill-Stufe (Kurve)', 'Skill level (curve)'; BaseCurve = 'Skill-Stufe (Kurve)', 'Skill level (curve)'
+    GearTalentAllSkillsDamageModBonus = 'Fertigkeitenschaden aus Talenten', 'Skill damage from talents'; GearTalentAllSkillsHealingModBonus = 'Reparatur aus Talenten', 'Repair from talents'
+    allskills_cooldown_mod_Bonus = 'Fertigkeitentempo', 'Skill haste'; MIN = 'min', 'min'; MAX = 'max', 'max'; Ceiling = 'aufrunden', 'round up'   # Hashtables ignorieren Gross/Klein: MIN deckt auch Min ab
+}
+function Get-Words([string]$Name, [string[]]$Skip) {
+    $de = @(); $en = @()
+    # -creplace: -replace ignoriert Gross/Klein und wuerde jedes Buchstabenpaar trennen
+    foreach ($w in ($Name -creplace '([a-z])([A-Z])', '$1_$2').ToLower() -split '_') {
+        if (-not $w -or $Skip -contains $w -or $w -match '^(mod|modbonus|bonus|flat|final|base|platform|player|allskills|\d+)$') { continue }
+        if ($TermWords.Contains($w)) { $de += $TermWords[$w][0]; $en += $TermWords[$w][1] }
+    }
+    if ($de.Count -eq 0) { return $null }
+    return [ordered]@{ de = ($de -join ' '); en = ($en -join ' ') }
+}
+# Begriff fuer einen Namen in einer Formel; kind: self (dieser Mod), mod (anderer Mod-Wert), base, curve, fn, term
+function Get-Term([string]$Name, $Stat, $Variants, [string[]]$Skip) {
+    if ($Name -eq $Stat.attr) { return [ordered]@{ de = $Stat.label.de; en = $Stat.label.en; kind = 'self' } }
+    if ($SpecialTerms.ContainsKey($Name)) { $sp = $SpecialTerms[$Name]; return [ordered]@{ de = $sp[0]; en = $sp[1]; kind = $(if ($Name -match 'Curve') { 'curve' } elseif ($Name -cmatch '^[A-Z][a-z]*$|^MIN$|^MAX$') { 'fn' } else { 'term' }) } }
+    if ($Name -match '_[Bb]ase$') {
+        # Grundwert als Zahl fuer das Rechenbeispiel, wenn er im Woerterbuch als feste Zahl steht
+        $bv = $null; $bf = $AttrByName[$Name].formula
+        if ($bf -and [double]::TryParse(($bf -replace '\s', ''), [Globalization.NumberStyles]::Float, [Globalization.CultureInfo]::InvariantCulture, [ref]$bv)) { } else { $bv = $null }
+        return [ordered]@{ de = 'Grundwert'; en = 'Base value'; kind = 'base'; value = $bv }
+    }
+    $a = $AttrByName[$Name]
+    $label = if ($a -and $a.label) { Clean-Name $a.label } else { Get-Words $Name $Skip }
+    if (-not $label) { $h = ($Name -replace '_', ' '); $label = [ordered]@{ de = $h; en = $h } }
+    # Variantenname nur bei skill-eigenen Namen, nicht bei globalen (allskills_..., GearTalent..., BurnDamageModBonus)
+    $variant = if ($Name -cmatch '^(allskills_|[A-Z])') { $null } else { $Variants | Where-Object { $v = $_; ($Name.ToLower() -split '_') | Where-Object { $sg = $_; $v.keys | Where-Object { $sg.Length -ge 4 -and ($sg.StartsWith($_) -or $_.StartsWith($sg)) } } } | Select-Object -First 1 }
+    $de = $label.de; $en = $label.en
+    if ($ModAttrNames.ContainsKey($Name)) { return [ordered]@{ de = "Mod: $de"; en = "Mod: $en"; kind = 'mod' } }
+    if ($Name -match 'flat_?Bonus$') { $de += ' (fest)'; $en += ' (flat)' }
+    if ($variant -and -not $de.Contains($variant.name.de)) { $de += " ($($variant.name.de))" }
+    if ($variant -and -not $en.Contains($variant.name.en)) { $en += " ($($variant.name.en))" }
+    return [ordered]@{ de = $de; en = $en; kind = 'term' }
+}
+
+$SkillIcons ='chemlauncher_firestarter chemlauncher_foam chemlauncher_oxidizer chemlauncher_reinforcer decoy_holographic drone_bombardier drone_defender drone_fixer drone_striker drone_tactician firefly_blinder firefly_burster firefly_demolisher hive_artificer hive_booster hive_restorer hive_reviver hive_stinger pulse_achillies pulse_banshee pulse_jammer pulse_remote pulse_scanner seeker_airburst seeker_cluster seeker_explosive seeker_mender shield_bulwark shield_crusader shield_deflector shield_striker stickybomb_burn stickybomb_emp stickybomb_explosive trap_repair trap_shock trap_shrapnel turret_artillery turret_assault turret_incinerator turret_sniper' -split ' '
+$variantFiles = @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'juice\item') -Filter 's_mod_*.mitem' | Where-Object { $_.Name -notmatch 'attachment|skin|_dev|fx_|template' })
+# Freischaltbar ist eine Variante nur, wenn ein Skill-Set der Basis (base of operations\boo_skillset_*) sie nennt.
+# Sonst ist sie gestrichen oder noch nicht veroeffentlicht (z. B. Bienenstock "Elektronische Verteidigung", Haftgranate "Toedlicher Laser")
+$booDir = Join-Path $H 'juice\base of operations'
+$booItem = @{}
+foreach ($bf in Get-ChildItem -LiteralPath $booDir -Filter 'boo_skillmod_*.mbooskillmod') { if ([IO.File]::ReadAllText($bf.FullName) -match 'myItemType "[^"]*/([^/"]+)\.mitem"') { $booItem[$bf.BaseName] = $Matches[1] } }
+$ReleasedVariants = @{}
+foreach ($bf in Get-ChildItem -LiteralPath $booDir -Filter 'boo_skillset_*.mbooskillset') {
+    foreach ($m in [regex]::Matches([IO.File]::ReadAllText($bf.FullName), '= (boo_skillmod_\S+) [0-9A-F]{32}')) { $it = $booItem[$m.Groups[1].Value]; if ($it) { $ReleasedVariants[$it] = $true } }
+}
+$skills = New-Object System.Collections.Generic.List[object]
+foreach ($file in @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'juice\item') -Filter 'player_weapon_skill_*.mitem')) {
+    $sroot = Read-Juice $file.FullName
+    $sitem = $sroot.kids | Where-Object { $_.kw -eq 'WeaponItem' } | Select-Object -First 1
+    if (-not $sitem) { continue }
+    $sname = Clean-Name (Get-Loc (Get-Prop $sitem 'myUIName'))
+    $sockets = Find-Kids $sitem 'ItemSocket'
+    $tagsOf = { param($s) @((Get-Kid $s 'myModTags').props | ForEach-Object { ($_ -split '\s+')[-1] }) }
+    $baseSocket = $sockets | Where-Object { (Get-Prop $_ 'mySocketIO') -eq 'BaseModSocket' } | Select-Object -First 1
+    if (-not $sname -or -not $baseSocket) { continue }
+    $baseTag = & $tagsOf $baseSocket | Where-Object { $_ -ne 'Skill_Base_Mod_Socket' } | Select-Object -First 1
+    $slotSockets = @($sockets | Where-Object { (Get-Prop $_ 'mySocketIO') -match '^SocketSkill\d' })
+    if ($slotSockets.Count -eq 0) { continue }
+
+    # Varianten: s_mod_<skill>_<variante>.mitem mit dem Basis-Tag des Skills
+    $variants = New-Object System.Collections.Generic.List[object]
+    foreach ($vf in $variantFiles) {
+        $vt = [IO.File]::ReadAllText($vf.FullName)
+        $vtags = @([regex]::Matches($vt, '(?m)^\s*ItemModTag .* (\S+)\s*$') | ForEach-Object { $_.Groups[1].Value })
+        if ($vtags -notcontains $baseTag -or -not $ReleasedVariants.ContainsKey($vf.BaseName)) { continue }
+        if ($vt -notmatch '(?m)^\s*myUIName (".*")\s*$') { continue }
+        $vname = Clean-Name (Get-Loc $Matches[1].Trim('"'))
+        if (-not $vname) { continue }
+        $vtag = $vtags | Where-Object { $_ -ne $baseTag } | Select-Object -First 1
+        $suffix = ($vf.BaseName -replace '^s_mod_[a-z]+_', '').ToLower()
+        # Suchbegriffe, unter denen die Variante in Attributnamen vorkommt (ohne Woerter des Skills selbst, z. B. "sticky", "smart")
+        $skillWords = @($baseTag.ToLower() -split '_')
+        # Nur einzelne Woerter: "shield_rifle_buff" wuerde sonst auf jedes "shield_..."-Attribut passen; "healing" statt "heal" (sonst auch "health")
+        $alias = @{ wasp_nest = 'hornet'; repair = 'healing'; rifle_buff = 'shieldbuff' }
+        $keys = @($suffix, $vtag.ToLower(), ($vname.en.ToLower() -replace '[^a-z]', ''), $alias[$suffix]) + @($suffix -split '_') + @($vtag.ToLower() -split '_') | Where-Object { $_ -and $_ -notmatch '_' -and $_.Length -ge 4 -and $skillWords -notcontains $_ } | Select-Object -Unique
+        $skillKey = ($file.BaseName -replace '^player_weapon_skill_', '' -replace '_v\d+$|default$', '').ToLower()
+        # Icon aus mx-division-builds (public/icons/skills/<skill>_<variante>.png); Namen weichen leicht ab (Riot Foam -> foam, Achilles -> achillies)
+        $plain = $vname.en.ToLower() -replace '[^a-z]', ''
+        $icon = $SkillIcons | Where-Object { $sfx = ($_ -split '_', 2)[1]; $_.StartsWith(($skillKey -replace 'seekermine', 'seeker') + '_') -and ($plain.Contains($sfx) -or $sfx.StartsWith($plain.Substring(0, [math]::Min(5, $plain.Length)))) } | Select-Object -First 1
+        # Ohne Treffer liefert die Pipeline "AutomationNull", das ConvertTo-Json als {} schreibt; deshalb ausdruecklich $null
+        $variants.Add([ordered]@{ id = $vf.BaseName; name = $vname; icon = $(if ($icon) { [string]$icon } else { $null }); keys = $keys })
+    }
+
+    $slots = foreach ($ss in $slotSockets | Sort-Object { Get-Prop $_ 'mySocketIO' }) {
+        $slotTag = & $tagsOf $ss | Select-Object -First 1
+        if (-not $slotTag) { continue }
+        # Einige Plaetze ziehen aus mehreren Listen; die zum Platz passende Liste zuerst, doppelte Werte zaehlen nur einmal
+        $slotWords = @($slotTag.ToLower() -split '_' | Where-Object { $_.Length -ge 4 })
+        $listNames = @($ListsBySlotTag[$slotTag] | Where-Object { $_ } | Sort-Object { $ln = $_.ToLower(); -not ($slotWords | Where-Object { $ln.Contains($_) }) })
+        $seenAttr = @{}
+        $stats = foreach ($listName in $listNames) {
+            foreach ($e in @($ModLists[$listName])) {
+                if ($seenAttr.ContainsKey($e.attr)) { continue }
+                $seenAttr[$e.attr] = $true
+                $consumers = Get-Consumers $e.attr
+                $prefix = (($e.attr -split '_')[0] -replace '\d+$', '').ToLower()
+                # Woerter des Skills selbst ("shield", "sticky") zaehlen nicht, sonst passt "shieldbuff" auf jedes Schild-Attribut
+                $segsOf = { param($n) @($n.ToLower() -split '_' | Where-Object { $_.Length -ge 4 -and $skillWords -notcontains $_ }) }
+                $variantsIn = { param($segs) @($variants | Where-Object { $v = $_; @($segs | Where-Object { $sg = $_; @($v.keys | Where-Object { $sg.StartsWith($_) -or $_.StartsWith($sg) }).Count }).Count } | ForEach-Object { $_.id }) }
+                # 1. Der Attributname nennt die Variante selbst (drone_bombardier_num_bombs)
+                $hits = @(& $variantsIn (& $segsOf $e.attr))
+                if ($hits.Count -eq 0) {
+                    # 2. Sonst die Formeln direkt darueber: nennen sie Varianten, gilt es fuer diese; eine allgemeine Formel bedeutet "alle"
+                    $generic = $false; $found = @()
+                    foreach ($cn in @($consumers.Keys | Where-Object { $consumers[$_] -le 1 -and $_.ToLower().StartsWith($prefix) })) {
+                        $hv = @(& $variantsIn (& $segsOf $cn))
+                        if ($hv.Count) { $found += $hv } else { $generic = $true }
+                    }
+                    $hits = if ($generic) { @() } else { @($found | Select-Object -Unique) }
+                }
+                $varOut = New-Object System.Collections.Generic.List[string]
+                if ($hits.Count -lt $variants.Count) { foreach ($x in $hits) { $varOut.Add($x) } }
+                $ranges = [ordered]@{}
+                foreach ($q in 'Blue', 'Purple', 'Orange') {
+                    $qm = if ($e.quality.ContainsKey($q)) { $e.quality[$q] } else { 1.0 }
+                    $lo = Get-CurveValue $e.min $PowerMin; $hi = Get-CurveValue $e.max $PowerMax
+                    if ($null -eq $lo -or $null -eq $hi) { continue }
+                    $ranges[$q] = [ordered]@{ min = (Get-BonusValue $e.attr ($lo * $qm)).value; max = (Get-BonusValue $e.attr ($hi * $qm)).value }
+                }
+                # Formeln, in die der Wert direkt einfliesst (eine Stufe ueber dem Attribut)
+                $statLabel = $(if ($AttrByName[$e.attr].label) { $lb = Get-AttrLabel $e.attr; [ordered]@{ de = $lb.de.TrimEnd(':', ' '); en = $lb.en.TrimEnd(':', ' ') } } else { [ordered]@{ de = $e.key; en = $e.key } })
+                $statInfo = @{ attr = $e.attr; label = $statLabel }
+                # Jede Formel mit lesbaren Begriffen fuer alle vorkommenden Namen (Ergebnis + Terme)
+                $direct = @($consumers.Keys | Where-Object { $consumers[$_] -eq 0 -and $AttrByName[$_].formula } | Sort-Object | Select-Object -First 4 | ForEach-Object {
+                    $fname = $_; $ftext = $AttrByName[$fname].formula
+                    $terms = [ordered]@{}
+                    foreach ($tk in @([regex]::Matches($ftext, '[A-Za-z_][A-Za-z0-9_]*') | ForEach-Object { $_.Value } | Select-Object -Unique)) { $terms[$tk] = Get-Term $tk $statInfo $variants $skillWords }
+                    $res = Get-Term $fname @{ attr = '' } $variants $skillWords
+                    [ordered]@{ name = $fname; label = [ordered]@{ de = $res.de; en = $res.en }; formula = $ftext; terms = $terms }
+                })
+                [ordered]@{
+                    attr = $e.attr
+                    label = $statLabel
+                    unit = (Get-BonusValue $e.attr 1).unit
+                    ranges = $ranges
+                    variants = $varOut.ToArray()
+                    formulas = $direct
+                    scales = Get-Scales @($e.attr) $null
+                }
+            }
+        }
+        [ordered]@{ tag = $slotTag; name = $(if ($TagNames[$slotTag]) { $TagNames[$slotTag] } else { [ordered]@{ de = $slotTag; en = $slotTag } }); stats = @($stats) }
+    }
+    if (@($slots | Where-Object { $_.stats.Count -gt 0 }).Count -eq 0) { continue }
+    $skills.Add([ordered]@{
+        id = Get-Slug $sname.en
+        name = $sname
+        variants = @($variants | ForEach-Object { [ordered]@{ id = $_.id; name = $_.name; icon = $_.icon } })
+        slots = @($slots)
+        source = "juice\item\$($file.Name)"
+    })
+}
+Log "Skills mit Mods: $($skills.Count) ($(@($skills | ForEach-Object { $_.slots | ForEach-Object { $_.stats } }).Count) Mod-Werte)"
+
 # ---------- Ausgabe ----------
 $Utf8 = New-Object Text.UTF8Encoding($false)
 function Write-Json($Value, [string]$Name) {
@@ -909,13 +1191,14 @@ function Write-Json($Value, [string]$Name) {
     [IO.File]::WriteAllText((Join-Path $Repo "data\$Name"), $json, $Utf8)
 }
 $byName = [Comparison[object]] { param($a, $b) [string]::Compare($a['name']['en'], $b['name']['en'], $true) }
-foreach ($list in $gearsets, $brandsets, $exotics, $namedWeapons, $talents) { $list.Sort($byName) }
+foreach ($list in $gearsets, $brandsets, $exotics, $namedWeapons, $skills, $talents) { $list.Sort($byName) }
 Write-Json $talents.ToArray() 'talents.json'
 Write-Json ([ordered]@{ levelCurve40 = $levelCurve40; levelFormula = $AttrByName['LevelAndTierCurve'].formula; sources = $dotSources.ToArray() }) 'dot.json'
 Write-Json $gearsets.ToArray() 'gearsets.json'
 Write-Json $brandsets.ToArray() 'brandsets.json'
 Write-Json $exotics.ToArray() 'exotics.json'
 Write-Json $namedWeapons.ToArray() 'namedweapons.json'
+Write-Json $skills.ToArray() 'skills.json'
 Write-Json $formulas.ToArray() 'formulas.json'
 
 $build = $null

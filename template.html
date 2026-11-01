@@ -199,6 +199,52 @@ a.scale::before { content: '↗'; margin-right: 0.25rem; opacity: 0.7; }
 .wstats .hint { display: block; color: var(--hm-fg-3); font-size: 0.75rem; font-weight: 450; }
 .base-weapon { margin: 0 0 0.5rem; color: var(--hm-fg-2); font-size: 0.875rem; }
 
+/* Skills: Mod-Platz -> moegliche Werte als Baum mit gerader Linie links */
+.tile[data-kind='skill'] { background: oklch(0.36 0.07 195); }
+.variants { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.375rem; }
+.variant { display: inline-flex; align-items: center; gap: 0.25rem; height: 1.5rem; padding: 0 0.5rem 0 0.25rem; border: 1px solid var(--hm-line); border-radius: 0.3125rem; background: var(--hm-control); color: var(--hm-fg-2); font-size: 0.75rem; font-weight: 550; white-space: nowrap; }
+.variant img { width: 1rem; height: 1rem; object-fit: contain; }
+.variant.small { height: 1.25rem; font-size: 0.6875rem; }
+.variant.no-icon { padding-left: 0.5rem; }
+.slot-label { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.25rem; font-size: 0.875rem; font-weight: 600; }
+.mod-list { margin: 0 0 0 0.375rem; padding: 0 0 0 0.875rem; border-left: 2px solid var(--hm-line); list-style: none; }
+.mod-list + .slot-label { margin-top: 0.75rem; }
+.mod { position: relative; padding: 0.375rem 0; }
+.mod::before { content: ''; position: absolute; left: -0.875rem; top: 1.0625rem; width: 0.625rem; border-top: 2px solid var(--hm-line); }
+.mod-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; font-size: 0.875rem; }
+.mod-head .mod-name { color: var(--hm-fg); }
+.mod-head .mod-range { color: var(--hm-fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.mod-sub { color: var(--hm-fg-3); font-size: 0.75rem; line-height: 1.125rem; font-variant-numeric: tabular-nums; }
+.mod-applies { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; margin-top: 0.25rem; color: var(--hm-fg-3); font-size: 0.75rem; }
+.mod details { margin-top: 0.25rem; font-size: 0.75rem; color: var(--hm-fg-3); }
+.mod details summary { cursor: pointer; }
+.fx { margin-top: 0.375rem; padding: 0.5rem 0.625rem; border-radius: var(--hm-radius-sm); background: var(--hm-inset); color: var(--hm-fg-2); font-size: 0.8125rem; line-height: 1.375rem; }
+.fx + .fx { margin-top: 0.25rem; }
+.fx-name { color: var(--hm-fg); font-weight: 600; }
+.fx-line { padding-left: 1rem; }
+.fx-line.first { padding-left: 1.75rem; }
+.fx-term[data-kind='self'] { padding: 0 0.25rem; border-radius: 0.25rem; background: var(--fam-bg, oklch(0.7 0.12 195 / 0.16)); color: oklch(0.83 0.1 195); font-weight: 600; }
+.fx-term[data-kind='mod'] { color: oklch(0.83 0.1 195); }
+.fx-term[data-kind='base'], .fx-term[data-kind='curve'] { color: var(--hm-fg); }
+.fx-term[data-kind='fn'] { font-style: italic; }
+.fx-example { margin-top: 0.375rem; padding-top: 0.375rem; border-top: 1px dashed var(--hm-line); color: var(--hm-fg-2); }
+.fx-example strong { color: var(--hm-fg); font-variant-numeric: tabular-nums; }
+.fx-example span { color: var(--hm-fg-3); font-size: 0.75rem; }
+.mod details code { display: block; margin-top: 0.25rem; padding: 0.375rem 0.5rem; border-radius: var(--hm-radius-sm); background: var(--hm-inset); color: var(--hm-fg-2); white-space: pre-wrap; word-break: break-word; }
+.mod.hit .mod-name { color: var(--hm-accent-subtle-fg, var(--hm-fg)); }
+/* Skills: links vertikale Tabs (gerader Akzentstrich wie bei den Talenten), rechts der gewaehlte Skill */
+.s-layout { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 1rem; align-items: start; }
+.s-nav { position: sticky; top: calc(var(--sticky-h, 7rem) + 0.75rem); display: grid; gap: 0.375rem; max-height: calc(100vh - var(--sticky-h, 7rem) - 1.5rem); overflow-y: auto; }
+.s-tab { display: flex; align-items: center; gap: 0.625rem; width: 100%; padding: 0.5rem 0.625rem; border: 1px solid var(--hm-line-subtle); border-radius: var(--hm-radius-md); background: var(--hm-card); color: var(--hm-fg-2); font: inherit; text-align: left; cursor: pointer; transition: background-color var(--hm-duration-feedback) ease; }
+.s-tab:hover { background: var(--hm-hover); color: var(--hm-fg); }
+.s-tab[aria-selected='true'] { color: var(--hm-fg); background: var(--hm-overlay); box-shadow: inset 3px 0 0 oklch(0.83 0.1 195); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.s-tab .tile { width: 2.25rem; height: 2.25rem; }
+.s-tab .tile img { width: 1.625rem; height: 1.625rem; }
+.s-tab strong { display: block; font-size: 0.875rem; font-weight: 600; }
+.s-tab small { display: block; color: var(--hm-fg-3); font-size: 0.75rem; line-height: 1rem; }
+.s-slots { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.25rem 1.5rem; padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--hm-line-subtle); }
+.s-slot .mod-list + .slot-label { margin-top: 0; }
+
 .talent { padding: 0.5rem; margin: 0 -0.5rem; border-radius: var(--hm-radius-sm); }
 .talent + .talent { margin-top: 0.25rem; }
 .talent-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; }
@@ -364,6 +410,7 @@ footer a { color: var(--hm-fg-2); }
       <div class="segments" id="views" role="group">
         <button type="button" data-view="codex"></button>
         <button type="button" data-view="talents"></button>
+        <button type="button" data-view="skills"></button>
         <button type="button" data-view="formulas"></button>
         <button type="button" data-view="faq"></button>
       </div>
@@ -416,6 +463,18 @@ footer a { color: var(--hm-fg-2); }
     <main id="tlist"></main>
   </div>
 
+  <div id="skillView" hidden>
+    <div class="toolbar" role="search">
+      <div class="toolbar-row">
+        <input class="field search" id="sq" type="search" autocomplete="off">
+        <button type="button" class="clear" id="sclear" hidden></button>
+        <span class="result-count" id="scount" aria-live="polite"></span>
+      </div>
+    </div>
+    <p class="t-intro" id="sintro"></p>
+    <main id="slist"></main>
+  </div>
+
   <div id="faqView" hidden>
     <div class="formulas" id="faq"></div>
   </div>
@@ -429,18 +488,27 @@ footer a { color: var(--hm-fg-2); }
 
 <script type="application/json" id="data">/*DATA*/</script>
 <script type="application/json" id="talentData">/*TALENTS*/</script>
+<script type="application/json" id="skillData">/*SKILLS*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const ICONS = /*ICONS*/;
 const META = /*META*/;
 const TALENTS = JSON.parse(document.getElementById('talentData').textContent);
 const DOT = /*DOT*/;
+const SKILLS = JSON.parse(document.getElementById('skillData').textContent);
+const SKILL_ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/master/public/icons/skills/';
 const ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/master/public/icons/brands/';
 
 const UI = {
   de: {
     subtitle: (build) => `Gear-Sets, Brand-Sets, Exotics, Named-Waffen und Schadensformeln · direkt aus den Spieldaten (Build ${build})`,
-    views: { codex: 'Codex', talents: 'Talente', formulas: 'Formeln', faq: 'FAQ' },
+    views: { codex: 'Codex', talents: 'Talente', skills: 'Skills', formulas: 'Formeln', faq: 'FAQ' },
+    skl: {
+      count: 'Skills', search: 'Skills, Varianten oder Mod-Werte suchen …', all: 'Alle',
+      intro: 'Welche Werte auf den Mods jedes Skill-Platzes würfeln können. Die Spanne gilt für gelbe Mods (High-End) auf Stufe 40 und ist aus den Kurven der Spieldaten berechnet (Wert = Power × A² + Power × B + C, mal Qualitätsfaktor). „Wirkt bei“ kommt aus den Formeln: Ein Wert, der nicht zur Variante passt, kann trotzdem auf dem Mod stehen, bringt dort aber nichts.',
+      appliesTo: 'Wirkt bei', allVariants: 'allen Varianten', formula: 'Formel', quality: { Purple: 'Lila', Blue: 'Blau' },
+      empty: 'Nichts gefunden. Anderer Skill oder weniger Wörter?',
+    },
     tal: {
       count: 'Talente',
       search: 'Talente durchsuchen …',
@@ -494,7 +562,13 @@ const UI = {
   },
   en: {
     subtitle: (build) => `Gear sets, brand sets, exotics, named weapons and damage formulas · straight from the game files (build ${build})`,
-    views: { codex: 'Codex', talents: 'Talents', formulas: 'Formulas', faq: 'FAQ' },
+    views: { codex: 'Codex', talents: 'Talents', skills: 'Skills', formulas: 'Formulas', faq: 'FAQ' },
+    skl: {
+      count: 'Skills', search: 'Search skills, variants or mod stats…', all: 'All',
+      intro: 'Which stats can roll on the mods of each skill slot. Ranges are for yellow (high-end) mods at level 40, computed from the curves in the game data (value = power × A² + power × B + C, times the quality factor). “Applies to” comes from the formulas: a stat that does not fit the variant can still roll on the mod, it just does nothing there.',
+      appliesTo: 'Applies to', allVariants: 'all variants', formula: 'Formula', quality: { Purple: 'Purple', Blue: 'Blue' },
+      empty: 'Nothing matches. Try another skill or fewer words.',
+    },
     tal: {
       count: 'Talents',
       search: 'Search talents…',
@@ -572,8 +646,8 @@ const CATEGORY_LABEL = {
   Gloves: { de: 'Handschuhe', en: 'Gloves' }, Holster: { de: 'Holster', en: 'Holster' }, Kneepads: { de: 'Knieschoner', en: 'Kneepads' },
 };
 
-const els = Object.fromEntries(['q', 'scale', 'type', 'sort', 'kinds', 'clear', 'list', 'resultCount', 'views', 'modes', 'langs', 'codexView', 'formulaView', 'formulas', 'pvpNote', 'counts', 'subtitle', 'footer', 'talentView', 'tq', 'tscale', 'tsource', 'tweapon', 'tslots', 'tclear', 'tcount', 'tintro', 'tlist', 'faqView', 'faq'].map((id) => [id, document.getElementById(id)]));
-const DEFAULTS = { q: '', scale: '', type: '', sort: 'old', kind: 'all', view: 'codex', mode: 'pve', lang: 'de', tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all' };
+const els = Object.fromEntries(['q', 'scale', 'type', 'sort', 'kinds', 'clear', 'list', 'resultCount', 'views', 'modes', 'langs', 'codexView', 'formulaView', 'formulas', 'pvpNote', 'counts', 'subtitle', 'footer', 'talentView', 'tq', 'tscale', 'tsource', 'tweapon', 'tslots', 'tclear', 'tcount', 'tintro', 'tlist', 'faqView', 'faq', 'skillView', 'sq', 'sclear', 'scount', 'sintro', 'slist'].map((id) => [id, document.getElementById(id)]));
+const DEFAULTS = { q: '', scale: '', type: '', sort: 'old', kind: 'all', view: 'codex', mode: 'pve', lang: 'de', tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all', sq: '', sskill: 'all' };
 const state = { ...DEFAULTS };
 
 const t = () => UI[state.lang];
@@ -672,8 +746,9 @@ function fillControls() {
   els.pvpNote.textContent = ui.pvpNote;
   els.subtitle.textContent = ui.subtitle(META.build);
   const countOf = (kind) => entries.filter((e) => e.kind === kind).length;
-  els.counts.innerHTML = ['gearset', 'brandset', 'exotic', 'namedweapon'].map((k) => `<div><b>${countOf(k)}</b>${escapeHtml(ui.counts[k])}</div>`).join('') + `<div><b>${TALENTS.length}</b>${escapeHtml(ui.tal.count)}</div>`;
+  els.counts.innerHTML = ['gearset', 'brandset', 'exotic', 'namedweapon'].map((k) => `<div><b>${countOf(k)}</b>${escapeHtml(ui.counts[k])}</div>`).join('') + `<div><b>${TALENTS.length}</b>${escapeHtml(ui.tal.count)}</div><div><b>${SKILLS.length}</b>${escapeHtml(ui.skl.count)}</div>`;
   fillTalentControls();
+  fillSkillControls();
   els.footer.innerHTML = ui.footer(META);
   document.documentElement.lang = state.lang;
 }
@@ -1640,6 +1715,133 @@ function renderFaq() {
   markToc();
 }
 
+// ---------- Skills ----------
+const skillIcon = (icon) => `${SKILL_ICON_BASE}${icon}.png`;
+// Ohne Community-Icon (z. B. Smart-Deckung): Chip nur mit Namen, Kachel mit Anfangsbuchstaben
+const variantChip = (v, small) => `<span class="variant${small ? ' small' : ''}${v.icon ? '' : ' no-icon'}">${v.icon ? `<img src="${skillIcon(v.icon)}" alt="" loading="lazy">` : ''}${escapeHtml(loc(v.name))}</span>`;
+const skillHaystack = new Map(SKILLS.map((s) => [s.id, [s.name.de, s.name.en, ...s.variants.flatMap((v) => [v.name.de, v.name.en]), ...s.slots.flatMap((sl) => [sl.name.de, sl.name.en, ...sl.stats.flatMap((st) => [st.label.de, st.label.en])])].join(' ').toLowerCase()]));
+
+function fillSkillControls() {
+  const ui = t().skl;
+  els.sq.placeholder = ui.search;
+  els.sq.setAttribute('aria-label', ui.search);
+  els.sintro.textContent = ui.intro;
+  els.sclear.textContent = t().reset;
+}
+
+function formatRange(r, unit) {
+  if (!r) return '–';
+  const u = unit === '%' ? (state.lang === 'de' ? ' %' : '%') : '';
+  const sign = unit === '%' ? '' : '+';
+  return r.min === r.max ? `${sign}${formatNumber(r.max)}${u}` : `${sign}${formatNumber(r.min)}–${formatNumber(r.max)}${u}`;
+}
+
+// Formel aus den Spieldaten lesbar machen: Namen -> Begriffe, * -> ×, jeder Faktor der obersten Ebene in eine eigene Zeile
+function renderReadableFormula(f, st) {
+  const tokens = f.formula.match(/[A-Za-z_][A-Za-z0-9_]*|\d+(?:\.\d+)?|\S/g) ?? [];
+  const ops = { '*': ' × ', '+': ' + ', '-': ' − ', '/': ' ÷ ', ',': ', ' };
+  const lines = [''];
+  let depth = 0;
+  for (const tok of tokens) {
+    if (tok === '(') depth++;
+    if (tok === ')') depth--;
+    if (tok === '*' && depth === 0) { lines.push('× '); continue; }
+    const term = f.terms?.[tok];
+    let html;
+    if (term) html = `<span class="fx-term" data-kind="${term.kind}" title="${escapeHtml(tok)}">${escapeHtml(loc(term))}</span>`;
+    else if (/^\d/.test(tok)) html = escapeHtml(formatNumber(Number(tok)));
+    else html = escapeHtml(ops[tok] ?? tok);
+    lines[lines.length - 1] += html;
+  }
+  const body = lines.map((l, i) => `<div class="fx-line${i ? '' : ' first'}">${l}</div>`).join('');
+  return `<div class="fx" title="${escapeHtml(`${f.name} = ${f.formula}`)}"><div class="fx-name">${escapeHtml(loc(f.label))} =</div>${body}${renderFormulaExample(f, st)}</div>`;
+}
+
+// Formel mit Zahlen ausrechnen: dieser Mod = Wert, Grundwert aus den Daten (sonst 100), Skill-Kurve = 1, alle anderen Boni = 0
+function evalFormula(f, selfValue) {
+  const fns = { MIN: 'Math.min', MAX: 'Math.max', CEILING: 'Math.ceil', FLOOR: 'Math.floor', ABS: 'Math.abs' };
+  let expr = '';
+  for (const tok of f.formula.match(/[A-Za-z_][A-Za-z0-9_]*|\d+(?:\.\d+)?|\S/g) ?? []) {
+    if (/^\d/.test(tok)) { expr += tok; continue; }
+    if (/^[()+\-*/,]$/.test(tok)) { expr += tok; continue; }
+    const term = f.terms?.[tok];
+    if (!term) return null;
+    if (term.kind === 'self') expr += `(${selfValue})`;
+    else if (term.kind === 'base') expr += `(${term.value ?? 100})`;
+    else if (term.kind === 'curve') expr += '(1)';
+    else if (term.kind === 'fn') { const fn = fns[tok.toUpperCase()]; if (!fn) return null; expr += fn; }
+    else expr += '(0)';
+  }
+  try { const v = Function(`"use strict"; return (${expr});`)(); return Number.isFinite(v) ? v : null; } catch { return null; }
+}
+
+function renderFormulaExample(f, st) {
+  const max = st.ranges?.Orange?.max;
+  if (max === undefined || max === null) return '';
+  const selfValue = st.unit === '%' ? max / 100 : max;
+  const without = evalFormula(f, 0);
+  const withMod = evalFormula(f, selfValue);
+  if (without === null || withMod === null || without === withMod) return '';
+  const de = state.lang === 'de';
+  const pct = (v) => `${v >= 0 ? '+' : ''}${formatNumber(v * 100)}${de ? ' %' : '%'}`;
+  // Sammel-Boni (..._modBonus_Final) sind selbst Prozentwerte, alles andere ein Endwert
+  const isBonus = /mod_?bonus/i.test(f.name);
+  const show = (v) => (isBonus ? pct(v) : formatNumber(v));
+  const change = !isBonus && without !== 0 ? ` (${pct(withMod / without - 1)})` : '';
+  const modText = formatRange({ min: max, max }, st.unit);
+  const baseKnown = Object.values(f.terms ?? {}).some((term) => term.kind === 'base' && term.value !== null && term.value !== undefined);
+  const hasBase = Object.values(f.terms ?? {}).some((term) => term.kind === 'base');
+  const hasCurve = Object.values(f.terms ?? {}).some((term) => term.kind === 'curve');
+  const note = de
+    ? `alle anderen Boni = 0${hasBase ? (baseKnown ? ', Grundwert aus den Spieldaten' : ', Grundwert = 100 angenommen') : ''}${hasCurve ? ', Skill-Stufe = 1' : ''}`
+    : `all other bonuses = 0${hasBase ? (baseKnown ? ', base value from the game data' : ', base value assumed 100') : ''}${hasCurve ? ', skill level = 1' : ''}`;
+  return `<div class="fx-example">${de ? 'Beispiel' : 'Example'}: ${de ? 'ohne Mod' : 'without mod'} <strong>${escapeHtml(show(without))}</strong> → ${de ? 'mit' : 'with'} ${escapeHtml(modText)} <strong>${escapeHtml(show(withMod))}</strong>${escapeHtml(change)} <span>(${escapeHtml(note)})</span></div>`;
+}
+
+function renderSkillStat(skill, st, words) {
+  const ui = t().skl;
+  const r = st.ranges ?? {};
+  const variants = (st.variants ?? []).map((id) => skill.variants.find((v) => v.id === id)).filter(Boolean);
+  const applies = variants.length ? variants.map((v) => variantChip(v, true)).join('') : `<span>${escapeHtml(ui.allVariants)}</span>`;
+  const formulas = (st.formulas ?? []).filter((f) => f.formula).map((f) => renderReadableFormula(f, st)).join('');
+  const hitText = words.length && words.every((w) => `${st.label.de} ${st.label.en}`.toLowerCase().includes(w));
+  return `<li class="mod${hitText ? ' hit' : ''}">
+    <div class="mod-head"><span class="mod-name">${escapeHtml(loc(st.label))}</span><span class="mod-range">${escapeHtml(formatRange(r.Orange, st.unit))}</span></div>
+    <div class="mod-applies">${escapeHtml(ui.appliesTo)}: ${applies}</div>
+    ${formulas ? `<details><summary>${escapeHtml(ui.formula)}</summary>${formulas}</details>` : ''}
+  </li>`;
+}
+
+function skillTile(skill) {
+  const icon = skill.variants.find((v) => v.icon)?.icon;
+  return `<div class="tile" data-kind="skill">${icon ? `<img src="${skillIcon(icon)}" alt="" loading="lazy">` : escapeHtml(skill.name.en.split(/\s+/).map((w) => w[0]).join('').slice(0, 2))}</div>`;
+}
+
+// Rechte Seite: der gewaehlte Skill mit seinen Mod-Plaetzen nebeneinander
+function renderSkillDetail(skill, words) {
+  const other = state.lang === 'de' ? skill.name.en : skill.name.de;
+  const altName = other && other !== loc(skill.name) ? ` <span class="alt-name">${escapeHtml(other)}</span>` : '';
+  const slots = skill.slots.filter((sl) => sl.stats.length).map((sl) => `<div class="s-slot"><p class="slot-label">${escapeHtml(loc(sl.name))}</p><ul class="mod-list">${sl.stats.map((st) => renderSkillStat(skill, st, words)).join('')}</ul></div>`).join('');
+  return `<article class="card s-detail" id="skill-${skill.id}">
+    <div class="card-head">${skillTile(skill)}<div class="card-title"><h3>${escapeHtml(loc(skill.name))}${altName}</h3>
+      <div class="variants">${skill.variants.map((v) => variantChip(v)).join('')}</div></div></div>
+    <div class="s-slots">${slots}</div>
+  </article>`;
+}
+
+// Links: alle Skills als vertikale Tabs
+function renderSkillView() {
+  const words = state.sq.toLowerCase().split(/\s+/).filter(Boolean);
+  const visible = SKILLS.filter((s) => words.every((w) => skillHaystack.get(s.id).includes(w)))
+    .sort((a, b) => loc(a.name).localeCompare(loc(b.name), state.lang));
+  els.scount.textContent = t().of(visible.length, SKILLS.length);
+  els.sclear.hidden = !state.sq;
+  if (visible.length === 0) { els.slist.innerHTML = `<p class="empty">${escapeHtml(t().skl.empty)}</p>`; return; }
+  const current = visible.find((s) => s.id === state.sskill) ?? visible[0];
+  const tabs = visible.map((s) => `<button type="button" class="s-tab" role="tab" data-sskill="${s.id}" aria-selected="${s.id === current.id}">${skillTile(s)}<span><strong>${escapeHtml(loc(s.name))}</strong><small>${escapeHtml(s.variants.map((v) => loc(v.name)).join(' · '))}</small></span></button>`).join('');
+  els.slist.innerHTML = `<div class="s-layout"><nav class="s-nav" role="tablist">${tabs}</nav>${renderSkillDetail(current, words)}</div>`;
+}
+
 // ---------- Zustand & Navigation ----------
 // Der Typ-Filter gilt fuer Exotics und Named Weapons; Waffentypen passen nicht zu Exotic-Ausruestung usw.
 function typeFitsKind() {
@@ -1679,6 +1881,8 @@ function syncControls() {
   els.formulaView.hidden = state.view !== 'formulas';
   els.faqView.hidden = state.view !== 'faq';
   els.talentView.hidden = state.view !== 'talents';
+  els.skillView.hidden = state.view !== 'skills';
+  els.sq.value = state.sq;
   els.tq.value = state.tq;
   els.tscale.value = state.tscale;
   els.tsource.value = state.tsource;
@@ -1696,6 +1900,8 @@ function render(anchor) {
   } else if (state.view === 'faq') {
     if (faqLang !== state.lang) { renderFaq(); faqLang = state.lang; }
     if (anchor) document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
+  } else if (state.view === 'skills') {
+    renderSkillView();
   } else if (state.view === 'talents') {
     renderTalentView();
   } else {
@@ -1738,6 +1944,17 @@ els.tslots.addEventListener('click', (event) => {
   if (!button) return;
   state.tslot = button.dataset.tslot;
   if (state.tslot !== 'weapon') state.tweapon = '';
+  update();
+});
+els.sq.addEventListener('input', () => { state.sq = els.sq.value.trim(); update(); });
+els.slist.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-sskill]');
+  if (!button) return;
+  state.sskill = button.dataset.sskill;
+  update();
+});
+els.sclear.addEventListener('click', () => {
+  state.sq = '';
   update();
 });
 els.tclear.addEventListener('click', () => {
