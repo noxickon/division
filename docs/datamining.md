@@ -33,26 +33,29 @@ Waffenschaden = (Grundschaden × max(0.5, BaseMod) + Flat_Typ) × (1 + WD% + Typ
 
 Standard-Statuseffekt gegen Gegner (PvE, `NPC_*_Damage_Base`), ein Tick alle 0,5 s (`statuseffecttalentrule_<effekt>`, Regel „(NPC)“, `myFrequency 0.5`):
 
-| Effekt | Schaden pro Tick | Basisdauer |
-| --- | --- | --- |
-| Brennen | Level-Kurve × 50 × (1 + Statuseffekte) | 5 s |
-| Bluten | Level-Kurve × 45 × (1 + Statuseffekte) | 7 s |
-| Gift | Level-Kurve × 40, **keine Boni** | 4 s |
-| Schock / Blind / Ensnare / Desorientieren | kein Schaden | 3 / 5 / 7 / 7 s |
+| Effekt | Schaden pro Tick | Basisdauer auf Gegnern (`NPC_*_Duration_Base`) | auf Spielern (`*_Duration_Final`) |
+| --- | --- | --- | --- |
+| Brennen | Level-Kurve × 50 × (1 + Statuseffekte) | 7 s | 5 s |
+| Bluten | Level-Kurve × 45 × (1 + Statuseffekte) | 10 s | 7 s |
+| Gift | Level-Kurve × 40, **keine Boni** (nur die Dauer steigt) | 10 s | 4 s |
+| Schock / Blind / Ensnare / Desorientieren | kein Schaden | 5 / 7 / 7 / 10 s | 3 / 5 / 7 / 7 s |
 
-Gegen Spieler (PvP) gelten `Burn_Damage_Final` usw.: Brennen 40, Bluten 35, Gift 20. Level-Kurve auf Stufe 40 = 1,125^39 × 1,25^5 ≈ 301,65 (`LevelAndTierCurve`), dazu ein Schwierigkeitsfaktor (`BaseGearScalingCurve`, 0,65–2,2).
+Welche Dauer gilt, entscheidet das Ziel: `R\juice\statuseffects\<effekt>.mstatuseffect` nennt `myDuration` (Spieler) und `myDurationForNPCs` (Gegner). Auf Spielern (du selbst, PvP) gelten `Burn_Damage_Final` usw.: Brennen 40, Bluten 35, Gift 20. Level-Kurve auf Stufe 40 = 1,125^39 × 1,25^5 ≈ 301,65 (`LevelAndTierCurve`), dazu ein Schwierigkeitsfaktor (`BaseGearScalingCurve`, 0,65–2,2).
 
 **Wer nutzt den Standard-Statuseffekt?** Talente und Exotics lösen Statuseffekte über `ApplyStatusEffect` (Talentregel) oder `ApplyStatusEffectNode` (Skillscript) aus. Ohne `myDamageOverride` gilt der Standardschaden. So z. B. Ember Engine (Spontaneous Combustion), Fafnir (Dragon's Breath), Iron Lung (Ardent), Backfire und Ridgeway's Pride (Bluten). Spezialmunition setzt den Wert ausdrücklich, aber identisch (`IncendiaryAmmo_Damage = NPC_Burn_Damage_Base`).
 
 **Skill-Schaden über Zeit** hat eigene Formeln in `player_skill_dictionary.mdict` und Tier-Tabellen in `H\juice\item\skill_tier_<skill>.mskilltier` (`SkillTierUnlock "Tier N"` → `myEffects`):
 
-| Quelle | Grundwert | Formel (vereinfacht) | Tier-Bonus auf Schaden |
-| --- | --- | --- | --- |
-| Chem-Werfer Brandstifter | 120 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent-Skillschaden) | Tier 6: +60 % |
-| Haftbombe Brand | 120 | × (1 + Tier) × (1 + Skillschaden) × (1 + Statuseffekte) × (1 + Gear-Talent) | Tier 6: +60 %, Tier 7: +100 % |
-| Suchermine Luftexplosion | 120 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | Tier 6: +60 %, Tier 7: +100 % |
-| Geschütz Flammenwerfer | 80 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | Tier 6: +60 % |
-| Hive Stachel, Suchermine Explosiv, Mörser (Bluten) | 45 | × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | keiner |
+| Quelle | Grundwert | Formel (vereinfacht) | Tier-Bonus auf Schaden | Wirkzeit ohne Statuseffekte (Tier 6 / 7) |
+| --- | --- | --- | --- | --- |
+| Chem-Werfer Brandstifter | 120 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent-Skillschaden) | Tier 6: +60 % | 4 s (6,4 / 8 s) |
+| Haftbombe Brand | 120 | × (1 + Tier) × (1 + Skillschaden) × (1 + Statuseffekte) × (1 + Gear-Talent) | Tier 6: +60 %, Tier 7: +100 % | 4 s (8,8 / 12 s) |
+| Suchermine Luftexplosion | 120 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | Tier 6: +60 %, Tier 7: +100 % | 4 s (16 / 20 s) |
+| Geschütz Flammenwerfer | 80 | × (1 + Tier) × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | Tier 6: +60 % (`turret2_flame_burn_strength_mod_Bonus`, zählt auch für die Wirkzeit) | 4 s (6,4 / 6,4 s) |
+| Hive Stachel, Suchermine Explosiv, Mörser (Bluten) | 45 | × (1 + Statuseffekte + Skillschaden) × (1 + Gear-Talent) | keiner | 7 s (kein Tier-Bonus) |
+| Drohne Gasbomber (Gift) | 80 | **keine** Statuseffekte, **kein** Skillschaden | keiner | 5 s (8 / 10 s), Statuseffekte verlängern sie nicht |
+
+Wirkzeit-Formeln: gleicher Name mit `duration` statt `damage` (z. B. `Sticky_Burn_StatusEffect_Duration_Final` = 4 × (1 + `sticky_burn_statuseffect_duration_mod_bonus`) × (1 + `Burn_Duration_Mod_Bonus`)). `Burn_/Bleed_/Poison_Duration_Mod_Bonus` = `AllStatusEffectsModBonus`; die Feuerwall-Spezialisierung („Angereicherte Magnesium-Formel“, Stufe 5) legt +0,2 in `Burn_Duration_Mod_Bonus`.
 
 **Skill-Direktschaden:** alle `*damage*_Final` in `player_skill_dictionary.mdict`. Muster: Grundwert × Level-Kurve × (1 + Skill-eigene Boni/Tier) × (1 + Skillschaden) × (1 + Explosivschaden, nur Explosionen) × (1 + Gear-Talent-Skillschaden). Geschütz „Überfall“, „Scharfschütze“ und Drohne „Stürmer“ rechnen über Sammel-Boni (`turret_assault_damage_modBonus_Final = (…)×(…)×(…) − 1`), der Extraktor löst sie in Klammern auf. Feuerraten stehen in den Waffendaten der Skills (`R\juice\weapon\npc_weapon_player_turret.mweapon`: 40 Schaden, 750/min; `npc_weapon_player_drone.mweapon`: 25 Schaden, 950/min). Variantennamen: Tier-Datei → `mySkillMod` → `s_mod_*.mitem` → `myUIName`; die Familiennamen der Tier-Tabellen sind uneinheitlich, deshalb ordnet `extract.ps1` Formel → Familie/Tier-Datei fest zu (`$SkillMap`).
 
@@ -63,7 +66,7 @@ Ember Engine 4-Teil: 40 % Chance auf Standard-Brennen bei jedem anderen Statusef
 - Dauer = Basisdauer × (1 + Statuseffekte).
 - **Statuseffekte** = Statuseffekt-Attribut + Skill-Effizienz (`AllStatusEffectsModBonus = allskills_efficiency_mod_Bonus`).
 - **Skill-Kurve** hängt nur von Level bzw. Gear-Stufe ab, nicht vom Skill-Tier. **Waffenschaden zählt nicht.**
-- Beispiel: +30 % Statuseffekte → Brennen macht 1,3× Schaden pro Tick und hält 6,5 s statt 5 s, also insgesamt 1,69×.
+- Beispiel: +30 % Statuseffekte → Brennen macht 1,3× Schaden pro Tick und hält auf Gegnern 9,1 s statt 7 s, also insgesamt 1,69×.
 
 ### Skills
 
@@ -87,14 +90,14 @@ Ember Engine 4-Teil: 40 % Chance auf Standard-Brennen bei jedem anderen Statusef
 Nach jedem Patch die Daten neu exportieren, Formeln neu extrahieren und mit dem alten Stand vergleichen.
 
 1. **Spiel und Ubisoft Connect schließen.** Hunter nur bei geschlossenem Spiel benutzen, den Spielordner nie verändern.
-2. **Alten Export sichern:** `C:\Users\alex\Downloads\exported_files` umbenennen, z. B. in `exported_files_2026-10-09`.
+2. **Alten Export löschen:** Er ist im Archiv gesichert (`tools\archive.ps1`, siehe unten). Vor dem neuen Export löschen, sonst mischen sich alter und neuer Stand: `cmd /c rmdir /s /q "C:\Users\alex\Downloads\exported_files"` (schneller als der Explorer).
 3. **Hunter starten** (`Downloads\hunter.exe`, v2.2.9; bei Bedarf neue Version von [dtzxporter.com/tools/hunter](https://dtzxporter.com/tools/hunter)).
-4. **Einstellungen:** Models, Animations, Images, Materials, Sounds aus; **Load Raw Files an**; Exportordner `C:\Users\alex\Downloads\exported_files`.
+4. **Einstellungen:** Models, Animations, Materials, Sounds aus; **Images an (PNG)** und **Load Raw Files an**; Exportordner `C:\Users\alex\Downloads\exported_files`. Hunter legt `images\` und `raw_files\` nebeneinander an; die Bilder brauchen nur die Icons.
 5. **Laden:** `D:\UbisoftLibrary\Tom Clancy's The Division 2\hunter\sdf\pc\data\sdf.sdftoc` (die `sdf_streaming`-Dateien werden nicht gebraucht).
 6. **Exportieren.** Voller Export ≈ 1,2 Mio. Dateien. Nötig sind nur `hunter\game system data`, `rogue\game system data` und `hunter\localization`.
 7. **Optional:** Den Exportordner während des Exports vom Defender-Scan ausnehmen und den Ausschluss danach wieder entfernen.
 8. **Daten extrahieren:** im Repo `D:\GitHub\division` ausführen: `powershell -NoProfile -ExecutionPolicy Bypass -File tools\extract.ps1` → schreibt `data\gearsets.json`, `brandsets.json`, `exotics.json`, `formulas.json`, `meta.json` (Laufzeit ca. 1 Minute).
-9. **Seite bauen:** `powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1` → `index.html`.
+9. **Seite bauen:** erst `tools\icons.ps1` (Icons nach `img\`), dann `powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1` → `index.html`.
 10. **Ansehen:** `powershell -NoProfile -ExecutionPolicy Bypass -File tools\serve.ps1`, dann `http://localhost:8080` öffnen.
 11. **Änderungen prüfen:** `git diff --stat data/` zeigt, was sich durch den Patch geändert hat; neue Exotics ohne Community-Daten erscheinen mit Saison-Tag (z. B. Y8S3) statt Datum.
 12. **Veröffentlichen:** committen und auf `main` pushen (GitHub Pages).
@@ -213,6 +216,12 @@ Diesen Abschnitt beim nächsten Mal zuerst lesen: Er sagt, wo jede Information l
     - `extract.ps1` – liest den Hunter-Export und schreibt `data\*.json`: `gearsets`, `brandsets`, `exotics`, `namedweapons` (Basiswaffe, Named-Talent, Waffenwerte), `skills` (Skill-Mods: Plätze, Werte mit Spannen je Qualität, „wirkt bei“, Formeln), `talents` (Talente gelber Items mit Slot/Herkunft), `dot` (Schaden-über-Zeit-Quellen mit Grundwert, Formel-Klammern, Tier-Boni, Tick-Rate), `formulas` (alle Attribute), `meta` (Build-Datum). Talente bekommen `applies` (ausgelöste Statuseffekte). Parameter: `-Export <raw_files>`, `-Version <N>`, `-Game <Spielordner>`.
     - `juice.ps1` – Parser für das Snowdrop-Textformat und die `.locpack`-Lokalisierung.
     - `build.ps1` – baut `index.html` aus `template.html` + `data\*.json`.
+    - `icons.ps1` – schneidet die Icons aus dem eigenen Bild-Export nach `img\` und schreibt `data\icons.json` (ID → Pfad im Repo). Keine fremden Quellen.
+        - **Set- und Markenlogos:** `myIconSprite` im `.mgearset` (Sprite-ID + Spritesheet) → Rechteck aus `hunter\ui\spritesheets\<sheet>.spritesheet` → Ausschnitt aus `images\hunter\baked\ui\spritesheets\<sheet>.png`.
+        - **Skill-Varianten:** `myIconSprite` der Tier-Datei `skill_tier_*.mskilltier`, deren `mySkillMod` die Variante ist; sonst das Skill-Mod-Item.
+        - **Exotics und Named Weapons:** `myIcon` im `.mitem` oder einem Elternitem → `images\hunter\baked\ui\loose_images\generated icons\…png`, verkleinert auf 160 × 80.
+        - Die Spritesheets sind Masken (Rotkanal = Deckkraft); gespeichert wird weiß mit Transparenz, die Farbe kommt aus dem CSS.
+        - Ohne Treffer zeigt die Seite Initialen. Nach jedem Export erneut ausführen, dann `build.ps1`.
     - `serve.ps1` – lokaler Server auf `http://localhost:8080`.
     - `archive.ps1` – sichert das Wissens-Set eines Exports pro Build nach `D:\DivisionArchive` (siehe Archiv).
 - `data\community\*.json` = alte, aus dem Internet gesammelte Daten; liefern nur „seit wann“, Bezugsquelle und Attribut-Höchstwerte.

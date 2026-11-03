@@ -149,6 +149,8 @@ select.field option, select.field optgroup { background: var(--hm-overlay); colo
 .card-head { display: flex; gap: 0.75rem; padding: 1rem 1rem 0.75rem; }
 .tile { flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--hm-radius-md); color: #fff; font-size: 0.8125rem; font-weight: 650; }
 .tile img { width: 2rem; height: 2rem; object-fit: contain; }
+.tile.item { width: 5rem; }
+.tile.item img { width: 4.75rem; height: 2.5rem; }
 .tile[data-kind='gearset'] { background: var(--gearset-tile); }
 .tile[data-kind='brandset'] { background: var(--brand-tile); }
 .tile[data-kind='exotic'] { background: var(--exotic-tile); }
@@ -203,7 +205,8 @@ a.scale::before { content: '↗'; margin-right: 0.25rem; opacity: 0.7; }
 .tile[data-kind='skill'] { background: oklch(0.36 0.07 195); }
 .variants { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.375rem; }
 .variant { display: inline-flex; align-items: center; gap: 0.25rem; height: 1.5rem; padding: 0 0.5rem 0 0.25rem; border: 1px solid var(--hm-line); border-radius: 0.3125rem; background: var(--hm-control); color: var(--hm-fg-2); font-size: 0.75rem; font-weight: 550; white-space: nowrap; }
-.variant img { width: 1rem; height: 1rem; object-fit: contain; }
+/* Skill-Icons sind weisse Masken; im Chip in Textfarbe eingefaerbt */
+.variant i { flex: none; width: 1rem; height: 1rem; background: currentColor; mask: var(--icon) center / contain no-repeat; -webkit-mask: var(--icon) center / contain no-repeat; }
 .variant.small { height: 1.25rem; font-size: 0.6875rem; }
 .variant.no-icon { padding-left: 0.5rem; }
 .slot-label { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.25rem; font-size: 0.875rem; font-weight: 600; }
@@ -496,8 +499,6 @@ const META = /*META*/;
 const TALENTS = JSON.parse(document.getElementById('talentData').textContent);
 const DOT = /*DOT*/;
 const SKILLS = JSON.parse(document.getElementById('skillData').textContent);
-const SKILL_ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/master/public/icons/skills/';
-const ICON_BASE = 'https://raw.githubusercontent.com/mxswat/mx-division-builds/master/public/icons/brands/';
 
 const UI = {
   de: {
@@ -558,7 +559,7 @@ const UI = {
       rules: 'Regeln im Detail',
       toc: 'Inhalt',
     },
-    footer: (m) => `Fan-Projekt, nicht mit Ubisoft verbunden. Namen, Talente, Set-Boni und PvP-Werte stammen direkt aus den Spieldateien (Build ${m.build}, ausgelesen am ${m.extracted}). „Seit wann“, Bezugsquellen und Höchstwerte fester Exotic-Attribute stammen aus Community-Quellen. Icons von <a href="https://github.com/mxswat/mx-division-builds">mx-division-builds</a> (mxswat, CC BY-NC-SA 4.0). Anleitung zum Aktualisieren: <a href="docs/datamining.md">docs/datamining.md</a>.`,
+    footer: (m) => `Fan-Projekt, nicht mit Ubisoft verbunden. Namen, Talente, Set-Boni und PvP-Werte stammen direkt aus den Spieldateien (Build ${m.build}, ausgelesen am ${m.extracted}). „Seit wann“, Bezugsquellen und Höchstwerte fester Exotic-Attribute stammen aus Community-Quellen. Icons und Item-Bilder stammen ebenfalls aus den Spieldateien. Anleitung zum Aktualisieren: <a href="docs/datamining.md">docs/datamining.md</a>.`,
   },
   en: {
     subtitle: (build) => `Gear sets, brand sets, exotics, named weapons and damage formulas · straight from the game files (build ${build})`,
@@ -618,7 +619,7 @@ const UI = {
       rules: 'Rules in detail',
       toc: 'Contents',
     },
-    footer: (m) => `Fan-made, not affiliated with Ubisoft. Names, talents, set bonuses and PvP values come straight from the game files (build ${m.build}, extracted ${m.extracted}). Release dates, how to get items and max rolls of fixed exotic attributes come from community sources. Icons from <a href="https://github.com/mxswat/mx-division-builds">mx-division-builds</a> (mxswat, CC BY-NC-SA 4.0). How to update: <a href="docs/datamining.md">docs/datamining.md</a>.`,
+    footer: (m) => `Fan-made, not affiliated with Ubisoft. Names, talents, set bonuses and PvP values come straight from the game files (build ${m.build}, extracted ${m.extracted}). Release dates, how to get items and max rolls of fixed exotic attributes come from community sources. Icons and item images come from the game files as well. How to update: <a href="docs/datamining.md">docs/datamining.md</a>.`,
   },
 };
 
@@ -647,7 +648,7 @@ const CATEGORY_LABEL = {
 };
 
 const els = Object.fromEntries(['q', 'scale', 'type', 'sort', 'kinds', 'clear', 'list', 'resultCount', 'views', 'modes', 'langs', 'codexView', 'formulaView', 'formulas', 'pvpNote', 'counts', 'subtitle', 'footer', 'talentView', 'tq', 'tscale', 'tsource', 'tweapon', 'tslots', 'tclear', 'tcount', 'tintro', 'tlist', 'faqView', 'faq', 'skillView', 'sq', 'sclear', 'scount', 'sintro', 'slist'].map((id) => [id, document.getElementById(id)]));
-const DEFAULTS = { q: '', scale: '', type: '', sort: 'old', kind: 'all', view: 'codex', mode: 'pve', lang: 'de', tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all', sq: '', sskill: 'all' };
+const DEFAULTS = { q: '', scale: '', type: '', sort: 'new', kind: 'all', view: 'codex', mode: 'pve', lang: 'de', tq: '', tscale: '', tsource: '', tweapon: '', tslot: 'all', sq: '', sskill: 'all' };
 const state = { ...DEFAULTS };
 
 const t = () => UI[state.lang];
@@ -768,9 +769,9 @@ function sortEntries(list) {
   const byName = (a, b) => loc(a.name).localeCompare(loc(b.name), state.lang);
   if (state.sort === 'name') return list.sort(byName);
   const direction = state.sort === 'old' ? 1 : -1;
-  // Named Weapons haben kein Datum: immer am Ende, nach Waffentyp gruppiert
+  // Named Weapons haben kein Release-Datum: immer am Ende, nach Waffentyp gruppiert; innerhalb des Typs nach Anlagedatum (aus der UID)
   const dated = list.filter((e) => e.kind !== 'namedweapon').sort((a, b) => direction * sortDate(a).localeCompare(sortDate(b)) || byName(a, b));
-  const named = list.filter((e) => e.kind === 'namedweapon').sort((a, b) => WEAPON_CATEGORIES.indexOf(a.category) - WEAPON_CATEGORIES.indexOf(b.category) || byName(a, b));
+  const named = list.filter((e) => e.kind === 'namedweapon').sort((a, b) => WEAPON_CATEGORIES.indexOf(a.category) - WEAPON_CATEGORIES.indexOf(b.category) || direction * (a.created ?? '').localeCompare(b.created ?? '') || byName(a, b));
   return [...dated, ...named];
 }
 
@@ -795,8 +796,10 @@ const fam = (keys) => { const key = (keys ?? []).find((k) => BUCKETS[k]); return
 
 function renderTile(entry) {
   const icon = ICONS[entry.id];
-  if (icon) return `<div class="tile" data-kind="${entry.kind}"><img src="${ICON_BASE}${icon}.png" alt="" loading="lazy"></div>`;
   const initials = entry.name.en.replace(/[^A-Za-z0-9 ]/g, '').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('');
+  // Exotics und Named Weapons zeigen Item-Bilder (2:1), Sets und Marken Logos; faellt ein Bild aus, bleiben die Initialen
+  const item = entry.kind === 'exotic' || entry.kind === 'namedweapon';
+  if (icon) return `<div class="tile${item ? ' item' : ''}" data-kind="${entry.kind}" data-ini="${escapeHtml(initials)}"><img src="${escapeHtml(icon)}" alt="" loading="lazy" onerror="const t=this.parentNode;t.classList.remove('item');t.textContent=t.dataset.ini"></div>`;
   return `<div class="tile" data-kind="${entry.kind}" aria-hidden="true">${escapeHtml(initials)}</div>`;
 }
 
@@ -919,7 +922,7 @@ function renderCodex() {
   const ui = t();
   const visible = sortEntries(entries.filter(matches));
   els.resultCount.textContent = ui.of(visible.length, entries.length);
-  els.clear.hidden = !state.q && !state.scale && !state.type && state.kind === 'all' && state.sort === 'old';
+  els.clear.hidden = !state.q && !state.scale && !state.type && state.kind === 'all' && state.sort === 'new';
   els.pvpNote.hidden = state.mode !== 'pvp';
   if (visible.length === 0) { els.list.innerHTML = `<p class="empty">${escapeHtml(ui.empty)}</p>`; return; }
   if (state.sort === 'name') { els.list.innerHTML = `<div class="grid">${visible.map(renderCard).join('')}</div>`; return; }
@@ -1096,23 +1099,23 @@ const FORMULAS = {
     <div class="formula">Brennen pro Tick = Level-Kurve × 50 × (1 + Statuseffekte %)        alle 0,5 s
 Bluten  pro Tick = Level-Kurve × 45 × (1 + Statuseffekte %)        alle 0,5 s
 Gift    pro Tick = Level-Kurve × 40                  (keine Boni!) alle 0,5 s
-Dauer           = Grunddauer × (1 + Statuseffekte %)</div>
-    <p>Das sind die Werte des <strong>Standard-Statuseffekts</strong> gegen Gegner (PvE). Skills haben eigene, höhere Grundwerte (80–120) und skalieren zusätzlich mit Skill-Tier und Skillschaden. <a href="#view=faq&f=q-dot">Alle Grundwerte</a> · <a href="#view=formulas&f=f-dot">Rechner</a></p>
+Dauer           = Grunddauer × (1 + Statuseffekte % [+ Feuerwall ${formatNumber(DOT.firewallBurnDuration * 100)} % bei Brennen])</div>
+    <p>Das sind die Werte des <strong>Standard-Statuseffekts</strong> gegen Gegner (PvE). Skill-Brennen hat eigene, höhere Grundwerte (80–120) und skaliert zusätzlich mit Skill-Tier und Skillschaden; Skill-Bluten startet wie der Standard bei 45 (dazu Skillschaden, kein Tier-Bonus), das Gift des Gasbombers bei 80 (ohne Boni). <a href="#view=faq&f=q-dot">Alle Grundwerte</a> · <a href="#view=formulas&f=f-dot">Rechner</a></p>
     <div class="table-wrap"><table class="f-table">
-      <tr><th>Effekt</th><th>Grunddauer</th><th>Schaden</th></tr>
-      <tr><td>Bluten</td><td>7 s</td><td>ja, ×45</td></tr>
-      <tr><td>Brennen</td><td>5 s</td><td>ja, ×50</td></tr>
-      <tr><td>Gift</td><td>4 s</td><td>ja, ×40, nicht steigerbar</td></tr>
-      <tr><td>Schock / Blind / Ensnare / Desorientieren</td><td>3 / 5 / 7 / 7 s</td><td>nein</td></tr>
+      <tr><th>Effekt</th><th>Grunddauer auf Gegnern</th><th>Grunddauer auf dir (Spieler, PvP)</th><th>Schaden je Tick</th></tr>
+      ${['Burn', 'Bleed', 'Poison'].map((e) => { const s = dotStatus(e); return `<tr><td>${DOT_TEXT.de.effect[e]}</td><td><strong>${formatNumber(s.duration.base)} s</strong></td><td>${formatNumber(s.player.duration)} s</td><td>×${formatNumber(s.base)} (auf dir ×${formatNumber(s.player.base)})${s.brackets.length ? '' : ', Schaden nicht steigerbar'}</td></tr>`; }).join('')}
+      <tr><td>Schock / Blind / Ensnare / Desorientieren</td><td>5 / 7 / 7 / 10 s</td><td>3 / 5 / 7 / 7 s</td><td>kein Schaden</td></tr>
     </table></div>
+    <p>Welche Dauer gilt, entscheidet das Ziel: Jeder Statuseffekt nennt zwei Formeln (<code>myDuration</code> für Spieler, z. B. <code>Burn_Duration_Final</code>, und <code>myDurationForNPCs</code> für Gegner, z. B. <code>NPC_Burn_Duration_Base</code>). Skills setzen eigene Wirkzeiten (Tabelle in den <a href="#view=faq&f=q-dot">FAQ</a>).</p>
     <ul>
       <li><strong>„Statuseffekte %“</strong> = dein Statuseffekt-Attribut <strong>plus Skill-Effizienz</strong>.</li>
       <li><strong>Waffenschaden zählt nicht.</strong> Ein Statuseffekt-Build profitiert nicht von Waffenschaden-Boni.</li>
-      <li><strong>Skill-Tier zählt nicht</strong> für den Schaden von Brennen und Bluten – nur Level/Gear-Stufe (Level-Kurve).</li>
-      <li>Statuseffekte wirken doppelt: mehr Schaden pro Tick <em>und</em> längere Dauer.</li>
+      <li><strong>Skill-Tier zählt nicht</strong> für den Standard-Statuseffekt (Schaden und Dauer) – nur Level/Gear-Stufe (Level-Kurve).</li>
+      <li>Statuseffekte wirken doppelt: mehr Schaden pro Tick <em>und</em> längere Dauer (bei Gift nur die Dauer).</li>
+      <li><strong>Heulen</strong> (neu mit Echoes of Central Park, Impulsgeber „Das Heulen“): kein eigener Schadens-Statuseffekt, sondern ein <strong>Schock</strong> (3 s, Tier 6: 7,5 s, Tier 7: 9 s; PvP 1,5 s) für menschliche Gegner außerhalb von Deckung. Den Rüstungsschaden macht der Skill selbst (Grundwert 366, <a href="#view=formulas&f=f-dot">Rechner</a>).</li>
     </ul>
     <div class="example"><p class="label">Beispiel</p>
-      <p>+30 % Statuseffekte: Brennen macht pro Tick ×1,3 und hält 6,5 s statt 5 s → insgesamt <strong>×1,69</strong> Brennschaden.</p>
+      <p>+30 % Statuseffekte: Brennen macht pro Tick ×1,3 und hält auf Gegnern ${formatNumber(dotStatus('Burn').duration.base * 1.3)} s statt ${formatNumber(dotStatus('Burn').duration.base)} s → insgesamt <strong>×1,69</strong> Brennschaden.</p>
       <p>+30 % Waffenschaden dagegen: <strong>×1,00</strong> – kein zusätzlicher Brennschaden.</p>
     </div>
   </section>
@@ -1197,23 +1200,23 @@ Dauer           = Grunddauer × (1 + Statuseffekte %)</div>
     <div class="formula">Burn  per tick = level curve × 50 × (1 + status effects %)        every 0.5 s
 Bleed per tick = level curve × 45 × (1 + status effects %)        every 0.5 s
 Poison per tick = level curve × 40                 (no bonuses!) every 0.5 s
-Duration       = base duration × (1 + status effects %)</div>
-    <p>These are the values of the <strong>standard status effect</strong> against enemies (PvE). Skills have their own, higher base values (80–120) and also scale with skill tier and skill damage. <a href="#view=faq&f=q-dot">All base values</a> · <a href="#view=formulas&f=f-dot">Calculator</a></p>
+Duration       = base duration × (1 + status effects % [+ Firewall ${formatNumber(DOT.firewallBurnDuration * 100)}% for burn])</div>
+    <p>These are the values of the <strong>standard status effect</strong> against enemies (PvE). Skill burns have their own, higher base values (80–120) and also scale with skill tier and skill damage; skill bleeds start at 45 like the standard one (plus skill damage, no tier bonus), the Gas Bomber's poison at 80 (no bonuses). <a href="#view=faq&f=q-dot">All base values</a> · <a href="#view=formulas&f=f-dot">Calculator</a></p>
     <div class="table-wrap"><table class="f-table">
-      <tr><th>Effect</th><th>Base duration</th><th>Damage</th></tr>
-      <tr><td>Bleed</td><td>7 s</td><td>yes, ×45</td></tr>
-      <tr><td>Burn</td><td>5 s</td><td>yes, ×50</td></tr>
-      <tr><td>Poison</td><td>4 s</td><td>yes, ×40, cannot be raised</td></tr>
-      <tr><td>Shock / Blind / Ensnare / Disorient</td><td>3 / 5 / 7 / 7 s</td><td>no</td></tr>
+      <tr><th>Effect</th><th>Base duration on enemies</th><th>Base duration on you (player, PvP)</th><th>Damage per tick</th></tr>
+      ${['Burn', 'Bleed', 'Poison'].map((e) => { const s = dotStatus(e); return `<tr><td>${DOT_TEXT.en.effect[e]}</td><td><strong>${formatNumber(s.duration.base)} s</strong></td><td>${formatNumber(s.player.duration)} s</td><td>×${formatNumber(s.base)} (on you ×${formatNumber(s.player.base)})${s.brackets.length ? '' : ', damage cannot be raised'}</td></tr>`; }).join('')}
+      <tr><td>Shock / Blind / Ensnare / Disorient</td><td>5 / 7 / 7 / 10 s</td><td>3 / 5 / 7 / 7 s</td><td>no damage</td></tr>
     </table></div>
+    <p>The target decides which duration applies: every status effect names two formulas (<code>myDuration</code> for players, e.g. <code>Burn_Duration_Final</code>, and <code>myDurationForNPCs</code> for enemies, e.g. <code>NPC_Burn_Duration_Base</code>). Skills set their own durations (table in the <a href="#view=faq&f=q-dot">FAQ</a>).</p>
     <ul>
       <li><strong>“Status effects %”</strong> = your status effects attribute <strong>plus skill efficiency</strong>.</li>
       <li><strong>Weapon damage does not count.</strong> A status effect build gains nothing from weapon damage bonuses.</li>
-      <li><strong>Skill tier does not count</strong> for burn and bleed damage – only level/gear score (level curve).</li>
-      <li>Status effects work twice: more damage per tick <em>and</em> longer duration.</li>
+      <li><strong>Skill tier does not count</strong> for the standard status effect (damage and duration) – only level/gear score (level curve).</li>
+      <li>Status effects work twice: more damage per tick <em>and</em> longer duration (poison: duration only).</li>
+      <li><strong>Howl</strong> (new with Echoes of Central Park, Pulse “The Howl”): not a separate damaging status effect but a <strong>shock</strong> (3 s, tier 6: 7.5 s, tier 7: 9 s; PvP 1.5 s) on human enemies outside cover. The armor damage comes from the skill itself (base 366, <a href="#view=formulas&f=f-dot">calculator</a>).</li>
     </ul>
     <div class="example"><p class="label">Example</p>
-      <p>+30% status effects: burn deals ×1.3 per tick and lasts 6.5 s instead of 5 s → <strong>×1.69</strong> burn damage in total.</p>
+      <p>+30% status effects: burn deals ×1.3 per tick and lasts ${formatNumber(dotStatus('Burn').duration.base * 1.3)} s instead of ${formatNumber(dotStatus('Burn').duration.base)} s on enemies → <strong>×1.69</strong> burn damage in total.</p>
       <p>+30% weapon damage instead: <strong>×1.00</strong> – no extra burn damage.</p>
     </div>
   </section>
@@ -1353,21 +1356,23 @@ const DOT_TEXT = {
     title: 'Rechner: Skill- und Statuseffekt-Schaden',
     hint: 'Vergleicht alle Skills und Statuseffekte mit Grundwerten und Formeln aus den Spieldaten.',
     effect: { Direct: 'Skill-Treffer', Burn: 'Brennen', Bleed: 'Bluten', Poison: 'Gift' },
-    inputs: { status: 'Statuseffekte % (Attribut, ohne Effizienz)', eff: 'Fertigkeiten-Effizienz %', skill: 'Fertigkeitenschaden % (ohne Effizienz)', gear: 'Skillschaden aus Gear-Talenten %', blast: 'Explosivschaden %', tier: 'Skill-Tier', diff: 'Modus-Skalierung (0,65–2,2; Standard 1)', ember: 'Ember-Engine-Schwächung aktiv (+25 % Brandschaden)' },
-    cols: { source: 'Quelle', base: 'Grundwert', tick: 'pro Tick', hit: 'pro Treffer', sec: 'pro Sekunde', vs: 'vs. Statuseffekt', rpm: 'Schuss/min' },
+    inputs: { status: 'Statuseffekte % (Attribut, ohne Effizienz)', eff: 'Fertigkeiten-Effizienz %', skill: 'Fertigkeitenschaden % (ohne Effizienz)', gear: 'Skillschaden aus Gear-Talenten %', blast: 'Explosivschaden %', tier: 'Skill-Tier', diff: 'Modus-Skalierung (0,65–2,2; Standard 1)', ember: 'Ember-Engine-Schwächung aktiv (+25 % Brandschaden)', firewall: (p) => `Feuerwall: Angereicherte Magnesium-Formel (+${p} % Brenndauer)` },
+    cols: { source: 'Quelle', base: 'Grundwert', tick: 'pro Tick', hit: 'pro Treffer', sec: 'pro Sekunde', dur: 'Wirkzeit', total: 'gesamt', vs: 'vs. Statuseffekt', rpm: 'Schuss/min' },
     status: 'Statuseffekt', skill: 'Skill',
     note: (l, tick) => `Rechnung: Grundwert × Level-Kurve (Stufe 40 = ${l}) × Modus-Skalierung (BaseGearScalingCurve: hebt den Schaden aller Skills und Statuseffekte gleichermaßen; welcher Modus welche Stufe nutzt, steht nicht in den Daten) × die Klammern der jeweiligen Formel. Ein Tick alle ${tick} s. Gegner-Resistenzen sind nicht berücksichtigt – die absoluten Zahlen sind eine Schätzung, der Vergleich zwischen den Quellen ist exakt.`,
     emberNote: 'Ob die Ember-Schwächung jedes Brennen am Ziel verstärkt oder nur das eigene, verrät der Skillscript nicht eindeutig.',
+    area: (tick, dur, total) => `Wolke: „pro Treffer“ = pro Tick (alle ${tick} s), Wirkzeit ${dur} s → ${total} gesamt je Ziel`,
   },
   en: {
     title: 'Calculator: skill and status effect damage',
     hint: 'Compares every skill and status effect using base values and formulas from the game files.',
     effect: { Direct: 'Skill hits', Burn: 'Burn', Bleed: 'Bleed', Poison: 'Poison' },
-    inputs: { status: 'Status effects % (attribute, without efficiency)', eff: 'Skill efficiency %', skill: 'Skill damage % (without efficiency)', gear: 'Skill damage from gear talents %', blast: 'Explosive damage %', tier: 'Skill tier', diff: 'Mode scaling (0.65–2.2; default 1)', ember: 'Ember Engine debuff active (+25% burn damage)' },
-    cols: { source: 'Source', base: 'Base', tick: 'per tick', hit: 'per hit', sec: 'per second', vs: 'vs. status effect', rpm: 'shots/min' },
+    inputs: { status: 'Status effects % (attribute, without efficiency)', eff: 'Skill efficiency %', skill: 'Skill damage % (without efficiency)', gear: 'Skill damage from gear talents %', blast: 'Explosive damage %', tier: 'Skill tier', diff: 'Mode scaling (0.65–2.2; default 1)', ember: 'Ember Engine debuff active (+25% burn damage)', firewall: (p) => `Firewall: Enriched Magnesium Formula (+${p}% burn duration)` },
+    cols: { source: 'Source', base: 'Base', tick: 'per tick', hit: 'per hit', sec: 'per second', dur: 'duration', total: 'total', vs: 'vs. status effect', rpm: 'shots/min' },
     status: 'Status effect', skill: 'Skill',
     note: (l, tick) => `Math: base value × level curve (level 40 = ${l}) × mode scaling (BaseGearScalingCurve: raises the damage of all skills and status effects equally; which mode uses which level is not in the data) × the brackets of each formula. One tick every ${tick} s. Enemy resistances are not included – absolute numbers are an estimate, the comparison between sources is exact.`,
     emberNote: 'Whether the Ember debuff boosts every burn on the target or only its own is not clear from the skill script.',
+    area: (tick, dur, total) => `Cloud: “per hit” = per tick (every ${tick} s), duration ${dur} s → ${total} in total per target`,
   },
 };
 // Skill-Familie als farbiger Tag, daneben die Variante ("Geschuetz" | "Ueberfall (Brennen)")
@@ -1382,22 +1387,62 @@ function skillLabel(s) {
   return `<span class="skill-tag" data-skill="${escapeHtml(s.family)}">${escapeHtml(text.slice(0, cut))}</span> ${escapeHtml(text.slice(cut + 2))}`;
 }
 
-const dotState = { effect: 'Direct', status: 50, eff: 20, skill: 0, gear: 0, blast: 0, tier: 6, diff: 1, ember: false };
+const dotState = { effect: 'Direct', status: 50, eff: 20, skill: 0, gear: 0, blast: 0, tier: 6, diff: 1, ember: false, firewall: false };
 
 // Wert eines Formel-Attributs aus den Rechner-Eingaben
 function dotAttrValue(attr, src) {
   if (/^(Burn|Bleed)DamageModBonus$/.test(attr)) return (dotState.status + dotState.eff) / 100;
+  // Wirkzeit-Boni haengen wie der Schaden an den Statuseffekten; Feuerwall verlaengert nur Brennen
+  if (/^(Burn|Bleed|Poison)_Duration_Mod_Bonus$/.test(attr)) return (dotState.status + dotState.eff) / 100 + (attr.startsWith('Burn') && dotState.firewall ? DOT.firewallBurnDuration : 0);
   if (attr === 'allskills_damage_mod_Bonus') return (dotState.skill + dotState.eff) / 100;
   if (attr === 'GearTalentAllSkillsDamageModBonus') return dotState.gear / 100;
   if (attr === 'BlastDamageModBonus') return dotState.blast / 100;
+  // Fertigkeitenwirkzeit (z. B. Saeurewolke des Chem-Werfers) hat die Effizienz als Grundwert
+  if (attr === 'allskills_duration_mod_Bonus') return dotState.eff / 100;
   const tiers = src.tierBonus?.[attr];
-  return tiers ? tiers[Math.min(Math.max(dotState.tier, 0), tiers.length - 1)] ?? 0 : 0;
+  // Skill-Tier als ganze Zahl 0..7 (Tabelle: Index = Tier)
+  const tier = Math.min(Math.max(Math.round(dotState.tier), 0), 7);
+  return tiers ? tiers[Math.min(tier, tiers.length - 1)] ?? 0 : 0;
 }
+
+// Wirkzeit auf einem Skill-Tier ohne Statuseffekte, Effizienz und Feuerwall: nur Grundwert und Tier-Boni
+function dotDurationAtTier(dur, tier) {
+  if (!dur) return null;
+  let value = dur.base;
+  for (const bracket of dur.brackets) value *= 1 + bracket.reduce((sum, attr) => sum + (dur.tierBonus?.[attr]?.[tier] ?? 0), 0);
+  return value;
+}
+// Verlaengern Statuseffekte diese Wirkzeit? (Burn_/Bleed_/Poison_Duration_Mod_Bonus in der Formel)
+function dotDurationScales(dur) {
+  return Boolean(dur?.brackets.flat().some((attr) => /^(Burn|Bleed|Poison)_Duration_Mod_Bonus$/.test(attr)));
+}
+// "4 s (Tier 6: 16 s, Tier 7: 20 s)"; ohne Tier-Bonus nur die Sekunden
+function dotDurationText(dur, html = false) {
+  const de = state.lang === 'de';
+  const secs = (n) => `${formatNumber(Math.round(n * 100) / 100)} s`;
+  const [base, t6, t7] = [0, 6, 7].map((tier) => dotDurationAtTier(dur, tier));
+  const head = html ? `<strong>${secs(base)}</strong>` : secs(base);
+  const same = (a, b) => Math.abs(a - b) < 1e-9;
+  if (same(base, t6) && same(base, t7)) return head;
+  const word = de ? 'Tier' : 'tier';
+  const tiers = same(t6, t7) ? `${word} 6 ${de ? 'und' : 'and'} 7: ${secs(t6)}` : `${word} 6: ${secs(t6)}, ${word} 7: ${secs(t7)}`;
+  return `${head} (${tiers})`;
+}
+const dotStatus = (effect) => DOT.sources.find((s) => s.kind === 'status' && s.effect === effect);
 
 function dotPerTick(src) {
   let value = src.base * DOT.levelCurve40 * dotState.diff;
   for (const bracket of src.brackets) value *= 1 + bracket.reduce((sum, attr) => sum + dotAttrValue(attr, src), 0);
   if (src.effect === 'Burn' && dotState.ember) value *= 1.25;
+  return value;
+}
+
+// Wirkzeit in Sekunden (null, wenn die Quelle keine Wirkzeit-Formel hat)
+function dotDuration(src) {
+  const dur = src.duration;
+  if (!dur) return null;
+  let value = dur.base;
+  for (const bracket of dur.brackets) value *= 1 + bracket.reduce((sum, attr) => sum + dotAttrValue(attr, dur), 0);
   return value;
 }
 
@@ -1412,6 +1457,7 @@ function renderDotCalc() {
         <div class="segments" role="group" style="margin-bottom:0.75rem">${effects}</div>
         <div class="calc">${field('status')}${field('eff')}${field('skill')}${field('gear')}${field('blast')}${field('tier', 'min="0" max="7"')}${field('diff', 'min="0.5" max="3"')}</div>
         <label class="check"><input type="checkbox" data-dot="ember" ${dotState.ember ? 'checked' : ''}> ${escapeHtml(d.inputs.ember)}</label>
+        <label class="check"><input type="checkbox" data-dot="firewall" ${dotState.firewall ? 'checked' : ''}> ${escapeHtml(d.inputs.firewall(formatNumber(DOT.firewallBurnDuration * 100)))}</label>
       </div>
       <div class="tool-result" aria-live="polite"><div id="dotOut"></div><p class="tool-note" id="dotNote"></p></div>
     </div>
@@ -1423,17 +1469,28 @@ function renderDotOut() {
   if (!out) return;
   const d = DOT_TEXT[state.lang];
   const sources = DOT.sources.filter((s) => s.effect === dotState.effect);
+  // Gesamtschaden = pro Tick × Anzahl Ticks in der Wirkzeit; ohne Wirkzeit-Formel zaehlt der Tick
+  const withTotals = (s) => {
+    const tick = dotPerTick(s);
+    const dur = dotState.effect === 'Direct' ? null : dotDuration(s);
+    return { s, tick, dur, total: dur == null ? null : tick * dur / (s.tickSeconds || 0.5) };
+  };
   const reference = sources.find((s) => s.kind === 'status');
-  const refTick = reference ? dotPerTick(reference) : 0;
-  const rows = sources.map((s) => ({ s, tick: dotPerTick(s) })).sort((a, b) => b.tick - a.tick);
-  const max = Math.max(...rows.map((r) => r.tick), 1);
+  const ref = reference ? withTotals(reference) : null;
+  const rows = sources.map(withTotals).sort((a, b) => (b.total ?? b.tick) - (a.total ?? a.tick));
+  const max = Math.max(...rows.map((r) => r.total ?? r.tick), 1);
   const fmt = (n) => Math.round(n).toLocaleString(state.lang === 'de' ? 'de-DE' : 'en-US');
   const label = (s) => `${skillLabel(s)}${s.kind === 'status' ? `<div class="hint">${escapeHtml(loc(s.note))}</div>` : ''}`;
   if (dotState.effect === 'Direct') {
-    // Direktschaden: pro Treffer; Geschuetz/Drohne mit Feuerrate auch pro Sekunde
-    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.hit)}</th><th>${escapeHtml(d.cols.rpm)}</th><th>${escapeHtml(d.cols.sec)}</th></tr>${rows.map(({ s, tick }) => `<tr><td>${label(s)}<span class="bar"><i style="width:${(tick / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td><strong>${fmt(tick)}</strong></td><td>${s.rpm ? formatNumber(s.rpm) : '–'}</td><td>${s.rpm ? `<strong>${fmt(tick * s.rpm / 60)}</strong>` : '–'}</td></tr>`).join('')}</table></div>`;
+    // Direktschaden: pro Treffer; Geschuetz/Drohne mit Feuerrate auch pro Sekunde; tickende Wolken pro Tick, mit Wirkzeit und Gesamtschaden
+    const area = (s, tick) => {
+      const dur = dotDuration(s);
+      return dur == null ? '' : `<div class="hint">${escapeHtml(d.area(formatNumber(s.tickSeconds), formatNumber(dur.toFixed(1)), fmt(tick * dur / s.tickSeconds)))}</div>`;
+    };
+    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.hit)}</th><th>${escapeHtml(d.cols.rpm)}</th><th>${escapeHtml(d.cols.sec)}</th></tr>${rows.map(({ s, tick }) => `<tr><td>${label(s)}${s.tickSeconds ? area(s, tick) : ''}<span class="bar"><i style="width:${(tick / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td><strong>${fmt(tick)}</strong></td><td>${s.rpm ? formatNumber(s.rpm) : '–'}</td><td>${s.rpm ? `<strong>${fmt(tick * s.rpm / 60)}</strong>` : s.tickSeconds ? `<strong>${fmt(tick / s.tickSeconds)}</strong>` : '–'}</td></tr>`).join('')}</table></div>`;
   } else {
-    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.tick)}</th><th>${escapeHtml(d.cols.sec)}</th><th>${escapeHtml(d.cols.vs)}</th></tr>${rows.map(({ s, tick }) => `<tr${s.kind === 'status' ? ' class="dot-ref"' : ''}><td>${label(s)}<span class="bar"><i style="width:${(tick / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td>${fmt(tick)}</td><td><strong>${fmt(tick / (s.tickSeconds || 0.5))}</strong></td><td>${refTick ? `×${formatNumber((tick / refTick).toFixed(2))}` : ''}</td></tr>`).join('')}</table></div>`;
+    const secs = (n) => `${formatNumber(n.toFixed(1))} s`;
+    out.innerHTML = `<div class="table-wrap"><table class="f-table dot-table"><tr><th>${escapeHtml(d.cols.source)}</th><th>${escapeHtml(d.cols.base)}</th><th>${escapeHtml(d.cols.tick)}</th><th>${escapeHtml(d.cols.sec)}</th><th>${escapeHtml(d.cols.dur)}</th><th>${escapeHtml(d.cols.total)}</th><th>${escapeHtml(d.cols.vs)}</th></tr>${rows.map(({ s, tick, dur, total }) => `<tr${s.kind === 'status' ? ' class="dot-ref"' : ''}><td>${label(s)}<span class="bar"><i style="width:${((total ?? tick) / max * 100).toFixed(1)}%"></i></span></td><td>${formatNumber(s.base)}</td><td>${fmt(tick)}</td><td>${fmt(tick / (s.tickSeconds || 0.5))}</td><td>${dur == null ? '–' : secs(dur)}</td><td>${total == null ? '–' : `<strong>${fmt(total)}</strong>`}</td><td>${ref?.total && total != null ? `×${formatNumber((total / ref.total).toFixed(2))}` : ''}</td></tr>`).join('')}</table></div>`;
   }
   document.getElementById('dotNote').textContent = d.note(formatNumber(DOT.levelCurve40), formatNumber(reference?.tickSeconds ?? 0.5)) + (dotState.ember && dotState.effect === 'Burn' ? ` ${d.emberNote}` : '');
 }
@@ -1464,9 +1521,12 @@ function renderApplies(tal) {
   return dots.map((a) => {
     const src = DOT.sources.find((s) => s.kind === 'status' && s.effect === a.status);
     const name = DOT_TEXT[state.lang].effect[a.status];
+    const secs = src?.duration ? `${formatNumber(src.duration.base)} s` : '?';
+    // Gift: Schaden ohne Boni, nur die Wirkzeit steigt mit Statuseffekten
+    const fixed = src && src.brackets.length === 0;
     const text = state.lang === 'de'
-      ? `Löst den Standard-Statuseffekt <strong>${escapeHtml(name)}</strong> aus: Grundwert <strong>${src?.base ?? '?'}</strong>, skaliert nur mit Statuseffekten – nicht mit Skill-Tier oder Skillschaden.`
-      : `Applies the standard <strong>${escapeHtml(name)}</strong> status effect: base value <strong>${src?.base ?? '?'}</strong>, scales only with status effects – not with skill tier or skill damage.`;
+      ? `Löst den Standard-Statuseffekt <strong>${escapeHtml(name)}</strong> aus: Grundwert <strong>${src?.base ?? '?'}</strong>, auf Gegnern <strong>${secs}</strong>; ${fixed ? 'nur die Wirkzeit steigt mit Statuseffekten' : 'Schaden und Wirkzeit steigen nur mit Statuseffekten'} – nicht mit Skill-Tier oder Skillschaden.`
+      : `Applies the standard <strong>${escapeHtml(name)}</strong> status effect: base value <strong>${src?.base ?? '?'}</strong>, <strong>${secs}</strong> on enemies; ${fixed ? 'only the duration scales with status effects' : 'damage and duration scale only with status effects'} – not with skill tier or skill damage.`;
     return `<p class="applies">${text} <a href="#view=faq&f=q-dot">${state.lang === 'de' ? 'Vergleich & Rechner' : 'Comparison & calculator'} →</a></p>`;
   }).join('');
 }
@@ -1480,21 +1540,31 @@ function dotTableHtml(effect) {
     const scales = s.brackets.flat().map((attr) => /^(Burn|Bleed)DamageModBonus$/.test(attr) ? (de ? 'Statuseffekte' : 'status effects') : attr === 'allskills_damage_mod_Bonus' ? (de ? 'Skillschaden' : 'skill damage') : attr === 'BlastDamageModBonus' ? (de ? 'Explosivschaden' : 'explosive damage') : attr === 'GearTalentAllSkillsDamageModBonus' ? (de ? 'Gear-Talent-Skillschaden' : 'gear talent skill damage') : null).filter(Boolean);
     const tierText = tier6 ? `${de ? 'Tier 6' : 'tier 6'}: +${formatNumber(tier6 * 100)}${de ? ' %' : '%'}` : (s.kind === 'skill' ? (de ? 'kein Tier-Bonus' : 'no tier bonus') : '–');
     const rpm = effect === 'Direct' ? `<td>${s.rpm ? formatNumber(s.rpm) : '–'}</td>` : '';
-    return `<tr><td>${skillLabel(s)}${s.note ? `<div class="hint">${escapeHtml(loc(s.note))}</div>` : ''}</td><td><strong>${formatNumber(s.base)}</strong></td>${rpm}<td>${escapeHtml([...new Set(scales)].join(', ') || (de ? 'nichts' : 'nothing'))}</td><td>${escapeHtml(tierText)}</td></tr>`;
+    // Wirkzeit in Sekunden: Grundwert und Wert auf Tier 6/7 (ohne Statuseffekte); Hinweis, wenn Statuseffekte sie nicht verlaengern
+    const durHints = [];
+    if (s.duration && !dotDurationScales(s.duration)) durHints.push(de ? 'Statuseffekte verlängern sie nicht' : 'not extended by status effects');
+    if (s.player?.duration) durHints.push(de ? `auf Spielern (du, PvP): ${formatNumber(s.player.duration)} s` : `on players (you, PvP): ${formatNumber(s.player.duration)} s`);
+    const dur = effect === 'Direct' ? '' : `<td>${s.duration ? dotDurationText(s.duration, true) : '–'}${durHints.map((h) => `<div class="hint">${escapeHtml(h)}</div>`).join('')}</td>`;
+    // Tickende Wolke (Saeurefalle, Oxidator): Grundwert ist der Schaden pro Tick
+    const area = effect === 'Direct' && s.tickSeconds && s.duration
+      ? `<div class="hint">${de ? `pro Tick alle ${formatNumber(s.tickSeconds)} s, Wirkzeit ${dotDurationText(s.duration)}` : `per tick every ${formatNumber(s.tickSeconds)} s, duration ${dotDurationText(s.duration)}`}</div>` : '';
+    return `<tr><td>${skillLabel(s)}${s.note ? `<div class="hint">${escapeHtml(loc(s.note))}</div>` : ''}${area}</td><td><strong>${formatNumber(s.base)}</strong></td>${rpm}<td>${escapeHtml([...new Set(scales)].join(', ') || (de ? 'nichts' : 'nothing'))}</td><td>${escapeHtml(tierText)}</td>${dur}</tr>`;
   }).join('');
   const rpmHead = effect === 'Direct' ? `<th>${de ? 'Schuss/min' : 'shots/min'}</th>` : '';
-  return `<div class="table-wrap"><table class="f-table"><tr><th>${de ? 'Quelle' : 'Source'}</th><th>${de ? 'Grundwert' : 'Base'}</th>${rpmHead}<th>${de ? 'Skaliert mit' : 'Scales with'}</th><th>Skill-Tier</th></tr>${rows}</table></div>`;
+  const durHead = effect === 'Direct' ? '' : `<th>${de ? 'Wirkzeit (ohne Statuseffekte)' : 'Duration (without status effects)'}</th>`;
+  return `<div class="table-wrap"><table class="f-table"><tr><th>${de ? 'Quelle' : 'Source'}</th><th>${de ? 'Grundwert' : 'Base'}</th>${rpmHead}<th>${de ? 'Skaliert mit' : 'Scales with'}</th><th>Skill-Tier</th>${durHead}</tr>${rows}</table></div>`;
 }
 
 const FAQ = {
   de: () => `
   <section class="f-card" id="q-dot">
     <h2>Wie viel Grundschaden machen Brennen, Bluten und Gift?</h2>
-    <p class="lead">Jede Quelle hat einen eigenen Grundwert. Der <strong>Standard-Statuseffekt</strong> (Ember Engine, Fafnir, Iron Lung, Spezialmunition, die meisten Talente) liegt weit unter den Skill-Versionen – und skaliert nur mit Statuseffekten.</p>
+    <p class="lead">Jede Quelle hat einen eigenen Grundwert. Beim Brennen liegt der <strong>Standard-Statuseffekt</strong> (Ember Engine, Fafnir, Iron Lung, Spezialmunition, die meisten Talente) weit unter den Skill-Versionen – und skaliert nur mit Statuseffekten. Beim Bluten starten Standard und Skills gleich (${formatNumber(dotStatus('Bleed').base)}), dafür hält der Standard auf Gegnern länger.</p>
     <h3>Brennen</h3>${dotTableHtml('Burn')}
     <h3>Bluten</h3>${dotTableHtml('Bleed')}
     <h3>Gift</h3>${dotTableHtml('Poison')}
-    <p>Alle Werte gelten gegen Gegner (PvE), ein Tick alle 0,5 s, multipliziert mit der Level-Kurve (Stufe 40 = ${formatNumber(DOT.levelCurve40)}). Gegen Spieler (PvP) gelten andere Grundwerte (Brennen 40, Bluten 35, Gift 20). <a href="#view=formulas&f=f-dot">Zum Rechner →</a></p>
+    <p>Alle Werte gelten gegen Gegner (PvE), ein Tick alle 0,5 s, multipliziert mit der Level-Kurve (Stufe 40 = ${formatNumber(DOT.levelCurve40)}). <strong>Wirkzeit</strong> = Grundwert und Wert auf Tier 6 bzw. Tier 7 (Overcharge), noch <strong>ohne Statuseffekte</strong>: „Statuseffekte %“ (inklusive Fertigkeiten-Effizienz) verlängern sie um denselben Prozentsatz (+50 % → ×1,5), Brennen zusätzlich die Feuerwall-Spezialisierung „Angereicherte Magnesium-Formel“ (+${formatNumber(DOT.firewallBurnDuration * 100)} %, im selben Topf). Ausnahme: das Gift des Gasbombers, dessen Wirkzeit nur mit dem Skill-Tier steigt.</p>
+    <p>Auf Spielern (du selbst, PvP) gilt der Standard-Statuseffekt mit anderen Werten: ${['Burn', 'Bleed', 'Poison'].map((e) => `${DOT_TEXT.de.effect[e]} ${formatNumber(dotStatus(e).player.base)} je Tick, ${formatNumber(dotStatus(e).player.duration)} s`).join(' · ')}. Skills haben im PvP eigene Werte. <a href="#view=formulas&f=f-dot">Zum Rechner →</a></p>
   </section>
   <section class="f-card" id="q-ember">
     <h2>Warum macht Ember Engine (oder Fafnir) weniger Brandschaden als meine Skills?</h2>
@@ -1506,7 +1576,7 @@ const FAQ = {
     <p>Spannend an Ember Engine ist eher die Schwächung: Fängt man selbst mit Brennen an, erleidet das Ziel <strong>+25 % Brandschaden</strong>. Gut kombinierbar mit einem Brand-Skill. Ember Engine löst das Brennen mit 40 % Chance bei jedem anderen Statuseffekt aus (Weste: +20 %).</p>
   </section>
   <section class="f-card" id="q-sticky">
-    <h2>Warum macht die Haftgranate mehr Brandschaden als Chem-Werfer und Suchermine?</h2>
+    <h2>Warum macht die Haftgranate pro Tick mehr Brandschaden als Chem-Werfer und Suchermine?</h2>
     <p class="lead">Alle drei haben Grundwert 120 und +60 % auf Tier 6 – aber die Haftgranate <strong>multipliziert</strong> Statuseffekte und Skillschaden getrennt, Chem-Werfer und Suchermine <strong>addieren</strong> sie in einer Klammer.</p>
     <div class="formula">Haftgranate:  120 × (1 + Tier) × (1 + Skillschaden) × (1 + Statuseffekte) × (1 + Gear-Talent)
 Chem/Sucher:  120 × (1 + Tier) × (1 + Skillschaden + Statuseffekte) × (1 + Gear-Talent)</div>
@@ -1515,14 +1585,15 @@ Chem/Sucher:  120 × (1 + Tier) × (1 + Skillschaden + Statuseffekte) × (1 + Ge
       <p>Mit Statuseffekten +100 % und Skillschaden +50 %: 3,0 gegen 2,5 → Haftgranate <strong>+20 %</strong>. Je mehr von beidem, desto größer der Abstand.</p>
     </div>
     <p>Dazu kommt: Auf Tier 7 (Overcharge) bekommen Haftgranate und Suchermine +100 %, der Chem-Werfer bleibt bei +60 %.</p>
+    <p><strong>Über die ganze Wirkzeit</strong> sieht es anders aus: Die Tier-Tabellen verlängern das Brennen unterschiedlich stark. Ohne Statuseffekte brennt die Suchermine (Luftdetonation) ${dotDurationText(DOT.sources.find((s) => s.id === 'seekermine_airburst_burn_damage_final')?.duration)}, die Haftgranate ${dotDurationText(DOT.sources.find((s) => s.id === 'sticky_burn_statuseffect_damage_final')?.duration)}, der Chem-Werfer ${dotDurationText(DOT.sources.find((s) => s.id === 'chemlauncher_explosive_burn_damage_final')?.duration)}. Im Beispiel oben (alle Wirkzeiten × 1,7) macht die Suchermine damit insgesamt rund <strong>1,7×</strong> so viel Brandschaden wie die Haftgranate, die Haftgranate rund 1,5× so viel wie der Chem-Werfer. <a href="#view=formulas&f=f-dot">Im Rechner vergleichen →</a></p>
   </section>
   <section class="f-card" id="q-status">
     <h2>Womit skalieren Statuseffekte?</h2>
     <ul>
-      <li><strong>Schaden und Dauer</strong> des Standard-Statuseffekts: nur „Statuseffekte %“ – und dazu zählt <strong>Fertigkeiten-Effizienz</strong>.</li>
+      <li><strong>Schaden und Dauer</strong> des Standard-Statuseffekts: nur „Statuseffekte %“ – und dazu zählt <strong>Fertigkeiten-Effizienz</strong>. Die Brenndauer verlängert zusätzlich die Feuerwall-Spezialisierung (+${formatNumber(DOT.firewallBurnDuration * 100)} %).</li>
       <li><strong>Nicht</strong> mit Waffenschaden, <strong>nicht</strong> mit Skill-Tier, <strong>nicht</strong> mit Skillschaden.</li>
-      <li>Skill-Brennen (Chem-Werfer, Haftbombe, Suchermine, Geschütz) skaliert zusätzlich mit Skill-Tier und Skillschaden. Skill-Bluten hat <strong>keinen</strong> Tier-Bonus auf den Schaden.</li>
-      <li>Gift skaliert mit gar nichts.</li>
+      <li>Skill-Brennen (Chem-Werfer, Haftbombe, Suchermine, Geschütz) skaliert zusätzlich mit Skill-Tier und Skillschaden; das Skill-Tier verlängert auch die Wirkzeit. Skill-Bluten hat <strong>keinen</strong> Tier-Bonus, weder auf den Schaden noch auf die Wirkzeit.</li>
+      <li>Gift: Der Schaden pro Tick steigt mit gar nichts, nur die Wirkzeit mit Statuseffekten. Das Gift der Drohne „Gasbomber“ zählt weder Statuseffekte noch Skillschaden; nur das Skill-Tier verlängert die Wirkzeit: ${dotDurationText(DOT.sources.find((s) => s.id === 'drone_gas_bomber_poison_damage_final')?.duration)}.</li>
     </ul>
   </section>
   <section class="f-card" id="q-skills">
@@ -1531,7 +1602,7 @@ Chem/Sucher:  120 × (1 + Tier) × (1 + Skillschaden + Statuseffekte) × (1 + Ge
     <div class="formula">Schaden = Grundwert × Level-Kurve × (1 + Tier-Bonus) × (1 + Skillschaden) × (1 + Explosivschaden*) × (1 + Gear-Talent-Skillschaden)
 * nur bei Explosionen; bei Feuer-Skills zählen stattdessen Statuseffekte mit</div>
     ${dotTableHtml('Direct')}
-    <p>Tier-Bonus = Summe aller Schadensboni der Tier-Tabelle auf Tier 6. <a href="#view=formulas&f=f-dot">Mit deinen Werten ausrechnen →</a></p>
+    <p>Tier-Bonus = Schadensbonus aus der Tier-Tabelle auf Tier 6 (der Wert gilt für diese Stufe, er wird nicht über die Tiers aufsummiert; nennt die Formel mehrere Tier-Attribute, zählt ihre Summe). Bei den Wolken (Säurefalle, Oxidator) ist der Grundwert der Schaden pro Tick. <a href="#view=formulas&f=f-dot">Mit deinen Werten ausrechnen →</a></p>
   </section>
   <section class="f-card" id="q-turret">
     <h2>Geschütz „Überfall“ oder Drohne „Stürmer“?</h2>
@@ -1588,11 +1659,12 @@ Seitlicher Rückstoß ÷ (1 + Rückstoß-Boni + Waffenhandling × 0,25)</div>
   en: () => `
   <section class="f-card" id="q-dot">
     <h2>How much base damage do burn, bleed and poison deal?</h2>
-    <p class="lead">Every source has its own base value. The <strong>standard status effect</strong> (Ember Engine, Fafnir, Iron Lung, special ammo, most talents) is far below the skill versions – and only scales with status effects.</p>
+    <p class="lead">Every source has its own base value. For burn, the <strong>standard status effect</strong> (Ember Engine, Fafnir, Iron Lung, special ammo, most talents) is far below the skill versions – and only scales with status effects. For bleed, standard and skills start the same (${formatNumber(dotStatus('Bleed').base)}), but the standard bleed lasts longer on enemies.</p>
     <h3>Burn</h3>${dotTableHtml('Burn')}
     <h3>Bleed</h3>${dotTableHtml('Bleed')}
     <h3>Poison</h3>${dotTableHtml('Poison')}
-    <p>All values are against enemies (PvE), one tick every 0.5 s, multiplied by the level curve (level 40 = ${formatNumber(DOT.levelCurve40)}). Against players (PvP) other base values apply (burn 40, bleed 35, poison 20). <a href="#view=formulas&f=f-dot">Open the calculator →</a></p>
+    <p>All values are against enemies (PvE), one tick every 0.5 s, multiplied by the level curve (level 40 = ${formatNumber(DOT.levelCurve40)}). <strong>Duration</strong> = base value and value at tier 6 or tier 7 (overcharge), still <strong>without status effects</strong>: “status effects %” (including skill efficiency) extend it by the same percentage (+50% → ×1.5), burn additionally the Firewall specialization “Enriched Magnesium Formula” (+${formatNumber(DOT.firewallBurnDuration * 100)}%, same bucket). Exception: the Gas Bomber's poison, whose duration only grows with skill tier.</p>
+    <p>On players (yourself, PvP) the standard status effect uses other values: ${['Burn', 'Bleed', 'Poison'].map((e) => `${DOT_TEXT.en.effect[e].toLowerCase()} ${formatNumber(dotStatus(e).player.base)} per tick, ${formatNumber(dotStatus(e).player.duration)} s`).join(' · ')}. Skills have their own PvP values. <a href="#view=formulas&f=f-dot">Open the calculator →</a></p>
   </section>
   <section class="f-card" id="q-ember">
     <h2>Why does Ember Engine (or Fafnir) deal less burn damage than my skills?</h2>
@@ -1604,7 +1676,7 @@ Seitlicher Rückstoß ÷ (1 + Rückstoß-Boni + Waffenhandling × 0,25)</div>
     <p>The interesting part of Ember Engine is its debuff: if you start with burn yourself, the target takes <strong>+25% burn damage</strong>. Pairs well with a burn skill. Ember Engine applies its burn with a 40% chance on every other status effect (chest: +20%).</p>
   </section>
   <section class="f-card" id="q-sticky">
-    <h2>Why does the Sticky Bomb deal more burn damage than Chem Launcher and Seeker Mine?</h2>
+    <h2>Why does the Sticky Bomb deal more burn damage per tick than Chem Launcher and Seeker Mine?</h2>
     <p class="lead">All three have base 120 and +60% at tier 6 – but the Sticky Bomb <strong>multiplies</strong> status effects and skill damage separately, Chem Launcher and Seeker Mine <strong>add</strong> them in one bracket.</p>
     <div class="formula">Sticky Bomb:   120 × (1 + tier) × (1 + skill damage) × (1 + status effects) × (1 + gear talent)
 Chem/Seeker:   120 × (1 + tier) × (1 + skill damage + status effects) × (1 + gear talent)</div>
@@ -1613,14 +1685,15 @@ Chem/Seeker:   120 × (1 + tier) × (1 + skill damage + status effects) × (1 + 
       <p>With status effects +100% and skill damage +50%: 3.0 vs 2.5 → Sticky Bomb <strong>+20%</strong>. The more of both, the bigger the gap.</p>
     </div>
     <p>On top of that, at tier 7 (overcharge) Sticky Bomb and Seeker Mine get +100%, the Chem Launcher stays at +60%.</p>
+    <p><strong>Over the full duration</strong> the picture changes: the tier tables extend the burn by very different amounts. Without status effects the Seeker Mine (Airburst) burns ${dotDurationText(DOT.sources.find((s) => s.id === 'seekermine_airburst_burn_damage_final')?.duration)}, the Sticky Bomb ${dotDurationText(DOT.sources.find((s) => s.id === 'sticky_burn_statuseffect_damage_final')?.duration)}, the Chem Launcher ${dotDurationText(DOT.sources.find((s) => s.id === 'chemlauncher_explosive_burn_damage_final')?.duration)}. In the example above (all durations × 1.7) the Seeker Mine therefore deals about <strong>1.7×</strong> the total burn damage of the Sticky Bomb, the Sticky Bomb about 1.5× that of the Chem Launcher. <a href="#view=formulas&f=f-dot">Compare in the calculator →</a></p>
   </section>
   <section class="f-card" id="q-status">
     <h2>What do status effects scale with?</h2>
     <ul>
-      <li><strong>Damage and duration</strong> of the standard status effect: only “status effects %” – and <strong>skill efficiency</strong> counts towards it.</li>
+      <li><strong>Damage and duration</strong> of the standard status effect: only “status effects %” – and <strong>skill efficiency</strong> counts towards it. Burn duration is also extended by the Firewall specialization (+${formatNumber(DOT.firewallBurnDuration * 100)}%).</li>
       <li><strong>Not</strong> weapon damage, <strong>not</strong> skill tier, <strong>not</strong> skill damage.</li>
-      <li>Skill burns (Chem Launcher, Sticky Bomb, Seeker Mine, Turret) also scale with skill tier and skill damage. Skill bleeds get <strong>no</strong> tier bonus on damage.</li>
-      <li>Poison scales with nothing.</li>
+      <li>Skill burns (Chem Launcher, Sticky Bomb, Seeker Mine, Turret) also scale with skill tier and skill damage; skill tier also extends their duration. Skill bleeds get <strong>no</strong> tier bonus, neither on damage nor on duration.</li>
+      <li>Poison: damage per tick scales with nothing, only the duration with status effects. The Gas Bomber drone's poison counts neither status effects nor skill damage; only skill tier extends its duration: ${dotDurationText(DOT.sources.find((s) => s.id === 'drone_gas_bomber_poison_damage_final')?.duration)}.</li>
     </ul>
   </section>
   <section class="f-card" id="q-skills">
@@ -1629,7 +1702,7 @@ Chem/Seeker:   120 × (1 + tier) × (1 + skill damage + status effects) × (1 + 
     <div class="formula">Damage = base × level curve × (1 + tier bonus) × (1 + skill damage) × (1 + explosive damage*) × (1 + gear talent skill damage)
 * explosions only; fire skills use status effects instead</div>
     ${dotTableHtml('Direct')}
-    <p>Tier bonus = sum of all damage bonuses in the tier table at tier 6. <a href="#view=formulas&f=f-dot">Calculate with your values →</a></p>
+    <p>Tier bonus = damage bonus from the tier table at tier 6 (the value applies to that tier, it is not added up across tiers; if the formula names several tier attributes, their sum counts). For the clouds (Corrosive Trap, Oxidizer) the base value is the damage per tick. <a href="#view=formulas&f=f-dot">Calculate with your values →</a></p>
   </section>
   <section class="f-card" id="q-turret">
     <h2>Assault Turret or Striker Drone?</h2>
@@ -1716,9 +1789,8 @@ function renderFaq() {
 }
 
 // ---------- Skills ----------
-const skillIcon = (icon) => `${SKILL_ICON_BASE}${icon}.png`;
-// Ohne Community-Icon (z. B. Smart-Deckung): Chip nur mit Namen, Kachel mit Anfangsbuchstaben
-const variantChip = (v, small) => `<span class="variant${small ? ' small' : ''}${v.icon ? '' : ' no-icon'}">${v.icon ? `<img src="${skillIcon(v.icon)}" alt="" loading="lazy">` : ''}${escapeHtml(loc(v.name))}</span>`;
+// Icon je Variante aus ICONS (Schluessel = Varianten-ID); ohne Icon: Chip nur mit Namen, Kachel mit Anfangsbuchstaben
+const variantChip = (v, small) => `<span class="variant${small ? ' small' : ''}${ICONS[v.id] ? '' : ' no-icon'}">${ICONS[v.id] ? `<i style="--icon:url('${escapeHtml(ICONS[v.id])}')" aria-hidden="true"></i>` : ''}${escapeHtml(loc(v.name))}</span>`;
 const skillHaystack = new Map(SKILLS.map((s) => [s.id, [s.name.de, s.name.en, ...s.variants.flatMap((v) => [v.name.de, v.name.en]), ...s.slots.flatMap((sl) => [sl.name.de, sl.name.en, ...sl.stats.flatMap((st) => [st.label.de, st.label.en])])].join(' ').toLowerCase()]));
 
 function fillSkillControls() {
@@ -1813,8 +1885,8 @@ function renderSkillStat(skill, st, words) {
 }
 
 function skillTile(skill) {
-  const icon = skill.variants.find((v) => v.icon)?.icon;
-  return `<div class="tile" data-kind="skill">${icon ? `<img src="${skillIcon(icon)}" alt="" loading="lazy">` : escapeHtml(skill.name.en.split(/\s+/).map((w) => w[0]).join('').slice(0, 2))}</div>`;
+  const icon = skill.variants.map((v) => ICONS[v.id]).find(Boolean);
+  return `<div class="tile" data-kind="skill">${icon ? `<img src="${escapeHtml(icon)}" alt="" loading="lazy">` : escapeHtml(skill.name.en.split(/\s+/).map((w) => w[0]).join('').slice(0, 2))}</div>`;
 }
 
 // Rechte Seite: der gewaehlte Skill mit seinen Mod-Plaetzen nebeneinander
@@ -1991,7 +2063,7 @@ els.langs.addEventListener('click', (event) => {
   update({ rebuild: true });
 });
 els.clear.addEventListener('click', () => {
-  Object.assign(state, { q: '', scale: '', type: '', sort: 'old', kind: 'all' });
+  Object.assign(state, { q: '', scale: '', type: '', sort: 'new', kind: 'all' });
   update();
 });
 window.addEventListener('hashchange', () => {

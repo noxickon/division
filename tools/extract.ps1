@@ -329,7 +329,7 @@ $itemFiles = @(Get-ChildItem (Join-Path $R 'juice\item') -Filter *.mitem) + @(Ge
 foreach ($file in $itemFiles) {
     if ($file.Name -match '^(appearance_|player_gear_mtx|player_(shirt|pants|shoes|mask_mtx|patchitem)|ci_|blueprint_)') { continue }
     $text = [IO.File]::ReadAllText($file.FullName)
-    $head = if ($text -match '(?m)^(\w+Item) (\S+) <[^>]*>(?: : (\S+))?') { @{ cls = $Matches[1]; id = $Matches[2]; template = $Matches[3] } } else { $null }
+    $head = if ($text -match '(?m)^(\w+Item) (\S+) <(?:\s*uid=([0-9A-F]{32}))?[^>]*>(?: : (\S+))?') { @{ cls = $Matches[1]; id = $Matches[2]; uid = $Matches[3]; template = $Matches[4] } } else { $null }
     if (-not $head) { continue }
     $ui = if ($text -match '(?m)^\s*myUIName (".*")\s*$') { Get-Loc $Matches[1].Trim('"') } else { $null }
     $weapon = if ($head.cls -eq 'WeaponItem') { Get-WeaponRef $text } else { $null }
@@ -337,7 +337,16 @@ foreach ($file in $itemFiles) {
     if ($text -notmatch 'myItemGenerationConfig <[^>]*> = (\S+)') { continue }
     $link = $Matches[1]
     $tags = @([regex]::Matches($text, '(?m)^\s*ItemTag .* (\S+)\s*$') | ForEach-Object { $_.Groups[1].Value })
-    $Items[$head.id] = @{ id = $head.id; cls = $head.cls; template = $head.template; link = $link; name = $ui; tags = $tags; weapon = $weapon; file = $file.Name }
+    $Items[$head.id] = @{ id = $head.id; cls = $head.cls; uid = $head.uid; template = $head.template; link = $link; name = $ui; tags = $tags; weapon = $weapon; file = $file.Name }
+}
+# Snowdrop-UIDs tragen in den Hex-Zeichen 9-16 den Unix-Zeitpunkt, an dem der Eintrag angelegt wurde.
+# Fuer Items ohne Veroeffentlichungsdatum (Named Weapons) dient das als Sortierschluessel; es ist kein Release-Datum.
+function Get-UidDate([string]$Uid) {
+    if ($Uid -notmatch '^[0-9A-F]{32}$') { return $null }
+    $sec = [Convert]::ToInt64($Uid.Substring(8, 8), 16)
+    $date = [DateTimeOffset]::FromUnixTimeSeconds($sec).UtcDateTime
+    if ($date.Year -lt 2015 -or $date.Year -gt 2035) { return $null }
+    return $date.ToString('yyyy-MM-dd')
 }
 Log "Items mit Konfiguration: $($Items.Count)"
 
@@ -663,6 +672,7 @@ foreach ($item in $Items.Values | Where-Object { $_.cls -eq 'WeaponItem' -and $_
         name = $name
         base = $baseName
         added = $null
+        created = Get-UidDate $item.uid
         talents = @((With-Slot 'named' $talent))
         stats = $stats
         tags = @($item.tags | Where-Object { $_ -match 'DZ|Raid|Vendor|Season|Event|Hunter|Box' })
@@ -802,6 +812,26 @@ function Get-TickSeconds([string]$Rule) {
     $act = if ($npc) { Find-Kids $npc 'ApplyDamageOrHealing' | Select-Object -First 1 } else { $null }
     if ($act) { return [double](Get-Prop $act 'myFrequency') } else { return $null }
 }
+# Wirkzeit einer DoT-Quelle: gleichnamige Formel mit duration statt damage, z. B. 4 * (1 + Tier-Bonus) * (1 + Burn_Duration_Mod_Bonus)
+function Get-Duration([string]$DamageAttr, [string]$TierFile) {
+    return Get-DurationOf ($DamageAttr -replace '(?i)damage', 'duration') $TierFile
+}
+# Wirkzeit-Formel in Grundwert, Klammern und Tier-Boni zerlegen
+function Get-DurationOf([string]$DurationAttr, [string]$TierFile) {
+    $def = $AttrByName[$DurationAttr]
+    if (-not $def -or -not $def.formula) { return $null }
+    $formula = $def.formula -replace '\s', ''
+    # Statuseffekt-Form "7 + (7 * Burn_Duration_Mod_Bonus)" als 7 * (1 + Burn_Duration_Mod_Bonus) lesen
+    if ($formula -match '^([0-9.]+)\+\(\1\*(\w+)\)$') { $formula = "$($Matches[1])*(1+$($Matches[2]))" }
+    $acc = Get-Factors $formula @{ base = $null; brackets = (New-Object System.Collections.Generic.List[object]) }
+    if (-not $acc.base) { return $null }
+    $all = @($acc.brackets | ForEach-Object { $_ })
+    return [ordered]@{
+        attr = $def.name; formula = $def.formula; base = $acc.base
+        brackets = @($acc.brackets | ForEach-Object { ,@($_) })
+        tierBonus = $(if ($TierFile) { Get-TierTable $TierFile $all } else { @{} })
+    }
+}
 # Standard-Statuseffekte (gegen Gegner) plus alle Skill-Schadensformeln aus player_skill_dictionary
 $DotDefs = @(
     @{ id = 'burn-status'; effect = 'Burn'; kind = 'status'; attr = 'NPC_Burn_Damage_Base'; rule = 'statuseffecttalentrule_burn'; label = @{ de = 'Statuseffekt Brennen'; en = 'Burn status effect' }; note = @{ de = 'Ember Engine, Fafnir, Brandmunition, Talente, Exotics'; en = 'Ember Engine, Fafnir, incendiary ammo, talents, exotics' } }
@@ -854,12 +884,40 @@ $SkillMap = [ordered]@{
     '^firefly_hardpoint' = @{ family = 'firefly'; tier = 'skill_tier_firefly_hardpoint' }
     '^firefly_magnetic' = @{ family = 'firefly'; tier = 'skill_tier_firefly_shrapnel' }
     '^pulse_emp' = @{ family = 'pulse'; tier = 'skill_tier_pulse_emp' }
+    # Echoes of Central Park (Build 2026-10-29); Trophaeen-System (drone_trophy_system) hat keine Schadensformel, es reflektiert nur
+    '^trap_corrosive' = @{ family = 'trap'; tier = 'skill_tier_trap_corrosive'; part = @{ de = 'Wolke'; en = 'cloud' } }
+    '^hive_leech' = @{ family = 'hive'; tier = 'skill_tier_hive_leech' }
+    '^seekermine_blackout' = @{ family = 'seeker'; tier = 'skill_tier_seekermine_blackout' }
+    '^pulse_howl' = @{ family = 'pulse'; tier = 'skill_tier_pulse_howl'; part = @{ de = 'Rüstungsschaden'; en = 'armor damage' } }
+    '^drone_gas_bomber' = @{ family = 'drone'; tier = 'skill_tier_drone_gas_bomber' }
 }
 # Feuerrate der Skills, die wie Waffen schiessen (Waffendaten in rogue\juice\weapon)
 # (Scharfschuetzen-Geschuetz ausgelassen: feuert nur auf Befehl, 3 Schuss)
 $SkillWeapons = @{ turret2_assault_damage_Final = 'npc_weapon_player_turret'; drone_assault_damage_Final = 'npc_weapon_player_drone' }
 foreach ($def in $formulas | Where-Object { $_.dict -eq 'player_skill_dictionary' -and $_.name -match '(?i)damage_?final$' -and $_.name -notmatch '^pvp_|ricochet' -and $_.formula }) {
     $DotDefs += @{ id = $def.name.ToLower(); attr = $def.name; kind = 'skill' }
+}
+# Skill-Schaden, den eine Talentregel als Schaden eines Statuseffekts einsetzt (ApplyStatusEffect mit myDamageOverride <Formel>),
+# z. B. Gasbomber: Gift mit drone_gas_bomber_poison_damage_Final. Gilt vor der Einordnung ueber den Namen.
+$OverrideStatus = @{}
+foreach ($list in $StatusBySource.Values) {
+    foreach ($s in @($list)) { if ($s.override -match '^\w+$' -and @('Burn', 'Bleed', 'Poison') -contains $s.status) { $OverrideStatus[$s.override] = $s.status } }
+}
+# Skill-Flaechen, die wie ein DoT ticken (ApplyDamageOrHealing mit myFrequency und myDuration, z. B. Saeurewolke
+# von Chem-Werfer und Saeurefalle): Schadensformel -> Tick-Abstand und Wirkzeit-Formel
+$AreaTicks = @{}
+foreach ($rf in Get-ChildItem (Join-Path $H 'juice\talentrules') -Filter '*.mtalentrules') {
+    $txt = [IO.File]::ReadAllText($rf.FullName)
+    foreach ($m in [regex]::Matches($txt, 'ApplyDamageOrHealing[^\{\r\n]*\s*\{([^\{\}]*)\}')) {
+        $body = $m.Groups[1].Value
+        # "myDamageOrHeal 0" ueberspringen, der Schaden steht dann in myDamageOrHealBasedOnSource
+        if ($body -notmatch '(?m)^\s*myDamageOrHeal(?:BasedOnSource)? -?([A-Za-z]\w*)\s*$') { continue }
+        $dmg = $Matches[1]
+        if ($body -notmatch '(?m)^\s*myFrequency ([0-9.]+)\s*$') { continue }
+        $freq = [double]::Parse($Matches[1], [Globalization.CultureInfo]::InvariantCulture)
+        if ($freq -le 0 -or $body -notmatch '(?m)^\s*myDuration (\w+)\s*$') { continue }
+        if (-not $AreaTicks.ContainsKey($dmg)) { $AreaTicks[$dmg] = @{ freq = $freq; duration = $Matches[1] } }
+    }
 }
 $dotSources = New-Object System.Collections.Generic.List[object]
 foreach ($d in $DotDefs) {
@@ -870,18 +928,19 @@ foreach ($d in $DotDefs) {
     $all = @($acc.brackets | ForEach-Object { $_ })
     $own = @($all | Where-Object { $_ -notmatch $Generic })
     $effect = $d.effect
-    if (-not $effect) { $effect = if ($d.attr -match '(?i)bleed') { 'Bleed' } elseif ($d.attr -match '(?i)burn' -and $acc.base -le 200) { 'Burn' } else { 'Direct' } }
-    $tiers = @{}; $label = $d.label; $family = $null
+    if (-not $effect) { $effect = if ($OverrideStatus[$d.attr]) { $OverrideStatus[$d.attr] } elseif ($d.attr -match '(?i)bleed') { 'Bleed' } elseif ($d.attr -match '(?i)burn' -and $acc.base -le 200) { 'Burn' } else { 'Direct' } }
+    $tiers = @{}; $label = $d.label; $family = $null; $tierFile = $null
     if ($d.kind -eq 'skill') {
         $map = $null
         foreach ($k in $SkillMap.Keys) { if ($d.attr -match $k) { $map = $SkillMap[$k]; break } }
         if (-not $map) { Log "Skill ohne Zuordnung: $($d.attr)"; continue }
         $family = $map.family
+        $tierFile = $map.tier
         $tiers = Get-TierTable $map.tier $all
         $variant = $TierFiles[$map.tier].variant
         $fam = $SkillFamilies[$map.family]
         $label = [ordered]@{ de = "$($fam.de): $($variant.de)"; en = "$($fam.en): $($variant.en)" }
-        $suffix = if ($effect -eq 'Burn') { @{ de = 'Brennen'; en = 'burn' } } elseif ($effect -eq 'Bleed') { @{ de = 'Bluten'; en = 'bleed' } } else { $map.part }
+        $suffix = if ($effect -eq 'Burn') { @{ de = 'Brennen'; en = 'burn' } } elseif ($effect -eq 'Bleed') { @{ de = 'Bluten'; en = 'bleed' } } elseif ($effect -eq 'Poison') { @{ de = 'Gift'; en = 'poison' } } else { $map.part }
         if ($suffix) { $label = [ordered]@{ de = "$($label.de) ($($suffix.de))"; en = "$($label.en) ($($suffix.en))" } }
     }
     $rpm = $null
@@ -889,18 +948,35 @@ foreach ($d in $DotDefs) {
         $wp = Join-Path $R "juice\weapon\$($SkillWeapons[$d.attr]).mweapon"
         if ((Test-Path -LiteralPath $wp) -and ([IO.File]::ReadAllText($wp) -match 'myRPM ([0-9.]+)')) { $rpm = [double]$Matches[1] }
     }
+    # Wirkzeit: DoT-Formel mit duration statt damage; tickende Skill-Flaeche: Wirkzeit-Formel der Talentregel
+    $area = if ($effect -eq 'Direct') { $AreaTicks[$d.attr] } else { $null }
+    $duration = if ($area) { Get-DurationOf $area.duration $tierFile } elseif ($effect -ne 'Direct') { Get-Duration $d.attr $tierFile } else { $null }
+    # Standard-Statuseffekt auf Spielern (du selbst, PvP): Burn_Damage_Final / Burn_Duration_Final statt NPC_Burn_*_Base
+    $player = $null
+    if ($d.kind -eq 'status') {
+        $pAttr = $d.attr -replace '^NPC_', '' -replace '_Base$', '_Final'
+        $pAcc = Get-Factors $AttrByName[$pAttr].formula @{ base = $null; brackets = (New-Object System.Collections.Generic.List[object]) }
+        $pDur = Get-Duration $pAttr $null
+        $player = [ordered]@{ attr = $pAttr; base = $pAcc.base; duration = $(if ($pDur) { $pDur.base } else { $null }); durationAttr = $(if ($pDur) { $pDur.attr } else { $null }) }
+    }
     $dotSources.Add([ordered]@{
         id = $d.id; effect = $effect; kind = $d.kind; family = $family; label = $label; note = $d.note
         attr = $d.attr; formula = $def.formula
         base = $acc.base
         brackets = @($acc.brackets | ForEach-Object { ,@($_) })
         tierBonus = $tiers
-        tickSeconds = $(if ($d.rule) { Get-TickSeconds $d.rule } elseif ($effect -eq 'Burn') { Get-TickSeconds 'statuseffecttalentrule_burn' } elseif ($effect -eq 'Bleed') { Get-TickSeconds 'statuseffecttalentrule_bleed' } else { $null })
+        duration = $duration
+        # Skill-Statuseffekte ticken wie der Statuseffekt selbst (Regel "(NPC)" in statuseffecttalentrule_<effekt>)
+        tickSeconds = $(if ($d.rule) { Get-TickSeconds $d.rule } elseif ($effect -ne 'Direct') { Get-TickSeconds "statuseffecttalentrule_$($effect.ToLower())" } elseif ($area) { $area.freq } else { $null })
         rpm = $rpm
+        player = $player
     })
 }
 $levelCurve40 = [math]::Round([math]::Pow(1.125, 29) * [math]::Pow(1.25, 5) * [math]::Pow(1.125, 10), 2)
 Log "DoT-Quellen: $($dotSources.Count), Level-Kurve Stufe 40 = $levelCurve40"
+# Feuerwall-Spezialisierung, Knoten "Angereicherte Magnesium-Formel": letzte Stufe = Brenndauer-Bonus (Burn_Duration_Mod_Bonus)
+$firewallBurnDuration = if ([IO.File]::ReadAllText((Join-Path $H 'juice\talent\talent_specialization_flamethrower_burnduration_tier5.mtalent')) -match 'myValue ([0-9.]+)') { [double]$Matches[1] } else { 0 }
+Log "Feuerwall Brenndauer: +$($firewallBurnDuration * 100) %"
 
 # ---------- Skill-Mods: welche Werte auf welchem Mod-Platz wuerfeln koennen ----------
 # Kurven (Percent_1_to_10 ...) und Qualitaetsfaktoren aus den Attributlisten; Wert = Power * A^2 + Power * B + C
@@ -1064,7 +1140,6 @@ function Get-Term([string]$Name, $Stat, $Variants, [string[]]$Skip) {
     return [ordered]@{ de = $de; en = $en; kind = 'term' }
 }
 
-$SkillIcons ='chemlauncher_firestarter chemlauncher_foam chemlauncher_oxidizer chemlauncher_reinforcer decoy_holographic drone_bombardier drone_defender drone_fixer drone_striker drone_tactician firefly_blinder firefly_burster firefly_demolisher hive_artificer hive_booster hive_restorer hive_reviver hive_stinger pulse_achillies pulse_banshee pulse_jammer pulse_remote pulse_scanner seeker_airburst seeker_cluster seeker_explosive seeker_mender shield_bulwark shield_crusader shield_deflector shield_striker stickybomb_burn stickybomb_emp stickybomb_explosive trap_repair trap_shock trap_shrapnel turret_artillery turret_assault turret_incinerator turret_sniper' -split ' '
 $variantFiles = @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'juice\item') -Filter 's_mod_*.mitem' | Where-Object { $_.Name -notmatch 'attachment|skin|_dev|fx_|template' })
 # Freischaltbar ist eine Variante nur, wenn ein Skill-Set der Basis (base of operations\boo_skillset_*) sie nennt.
 # Sonst ist sie gestrichen oder noch nicht veroeffentlicht (z. B. Bienenstock "Elektronische Verteidigung", Haftgranate "Toedlicher Laser")
@@ -1105,12 +1180,8 @@ foreach ($file in @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'ju
         # Nur einzelne Woerter: "shield_rifle_buff" wuerde sonst auf jedes "shield_..."-Attribut passen; "healing" statt "heal" (sonst auch "health")
         $alias = @{ wasp_nest = 'hornet'; repair = 'healing'; rifle_buff = 'shieldbuff' }
         $keys = @($suffix, $vtag.ToLower(), ($vname.en.ToLower() -replace '[^a-z]', ''), $alias[$suffix]) + @($suffix -split '_') + @($vtag.ToLower() -split '_') | Where-Object { $_ -and $_ -notmatch '_' -and $_.Length -ge 4 -and $skillWords -notcontains $_ } | Select-Object -Unique
-        $skillKey = ($file.BaseName -replace '^player_weapon_skill_', '' -replace '_v\d+$|default$', '').ToLower()
-        # Icon aus mx-division-builds (public/icons/skills/<skill>_<variante>.png); Namen weichen leicht ab (Riot Foam -> foam, Achilles -> achillies)
-        $plain = $vname.en.ToLower() -replace '[^a-z]', ''
-        $icon = $SkillIcons | Where-Object { $sfx = ($_ -split '_', 2)[1]; $_.StartsWith(($skillKey -replace 'seekermine', 'seeker') + '_') -and ($plain.Contains($sfx) -or $sfx.StartsWith($plain.Substring(0, [math]::Min(5, $plain.Length)))) } | Select-Object -First 1
-        # Ohne Treffer liefert die Pipeline "AutomationNull", das ConvertTo-Json als {} schreibt; deshalb ausdruecklich $null
-        $variants.Add([ordered]@{ id = $vf.BaseName; name = $vname; icon = $(if ($icon) { [string]$icon } else { $null }); keys = $keys })
+        # Icons erzeugt tools\icons.ps1 (Schluessel = Varianten-ID)
+        $variants.Add([ordered]@{ id = $vf.BaseName; name = $vname; keys = $keys })
     }
 
     $slots = foreach ($ss in $slotSockets | Sort-Object { Get-Prop $_ 'mySocketIO' }) {
@@ -1177,7 +1248,7 @@ foreach ($file in @(Get-ChildItem (Join-Path $R 'juice\item'), (Join-Path $H 'ju
     $skills.Add([ordered]@{
         id = Get-Slug $sname.en
         name = $sname
-        variants = @($variants | ForEach-Object { [ordered]@{ id = $_.id; name = $_.name; icon = $_.icon } })
+        variants = @($variants | ForEach-Object { [ordered]@{ id = $_.id; name = $_.name } })
         slots = @($slots)
         source = "juice\item\$($file.Name)"
     })
@@ -1193,7 +1264,7 @@ function Write-Json($Value, [string]$Name) {
 $byName = [Comparison[object]] { param($a, $b) [string]::Compare($a['name']['en'], $b['name']['en'], $true) }
 foreach ($list in $gearsets, $brandsets, $exotics, $namedWeapons, $skills, $talents) { $list.Sort($byName) }
 Write-Json $talents.ToArray() 'talents.json'
-Write-Json ([ordered]@{ levelCurve40 = $levelCurve40; levelFormula = $AttrByName['LevelAndTierCurve'].formula; sources = $dotSources.ToArray() }) 'dot.json'
+Write-Json ([ordered]@{ levelCurve40 = $levelCurve40; levelFormula = $AttrByName['LevelAndTierCurve'].formula; firewallBurnDuration = $firewallBurnDuration; sources = $dotSources.ToArray() }) 'dot.json'
 Write-Json $gearsets.ToArray() 'gearsets.json'
 Write-Json $brandsets.ToArray() 'brandsets.json'
 Write-Json $exotics.ToArray() 'exotics.json'

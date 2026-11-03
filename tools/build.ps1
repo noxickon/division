@@ -16,13 +16,10 @@ foreach ($e in $entries) {
     $ids[$key] = $true
 }
 
-# Icons der alten Seite (Schluessel wie hunter-s-fury) auf die neuen IDs (hunters-fury) abbilden
-$iconsOld = Read-Text 'data\icons.json' | ConvertFrom-Json
+# Icons (ID -> Bildpfad im Repo) erzeugt tools\icons.ps1; nur Eintraege uebernehmen, deren Bild es gibt
 $icons = [ordered]@{}
-foreach ($p in $iconsOld.PSObject.Properties) {
-    $plain = $p.Name -replace '-', ''
-    $match = $entries | Where-Object { ($_.id -replace '-', '') -eq $plain } | Select-Object -First 1
-    if ($match) { $icons[[string]$match.id] = [string]$p.Value }
+foreach ($p in (Read-Text 'data\icons.json' | ConvertFrom-Json).PSObject.Properties) {
+    if (Test-Path -LiteralPath (Join-Path $Repo ([string]$p.Value -replace '/', '\'))) { $icons[$p.Name] = [string]$p.Value }
 }
 
 # </script> darf im eingebetteten JSON nicht vorkommen
